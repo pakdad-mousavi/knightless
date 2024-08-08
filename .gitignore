@@ -1,0 +1,26 @@
+#dependency directories
+node_modules
+deploy
+
+#Environment variables file
+.env
+.env.test
+
+#Generated output
+dist
+build
+
+#Generated CSS
+assets/css/*.min.css
+
+#Generated JS
+assets/js/*.min.js
+
+#macOS
+.DS_Store
+
+#Visual Studio Code
+.vscode
+
+#other
+other
