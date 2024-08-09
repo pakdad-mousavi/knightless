@@ -1,0 +1,14 @@
+{
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["**/*.css", "**/*.scss", "**/*.html", "**/*.hbs"],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ],
+  "semi": true,
+  "arrowParens": "always",
+  "printWidth": 480
+}
