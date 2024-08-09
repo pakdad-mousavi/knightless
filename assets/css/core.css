@@ -1,4 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-cream;
+}
+
+body *.font-sans {
+  @apply tracking-wide font-extralight;
+}
+
+#menu-toggle:checked + #menu {
+  @apply block;
+}
+
+.header-item {
+  @apply block w-full p-3 rounded-md lg:inline hover:bg-slate-600 lg:p-0 lg:hover:bg-transparent;
+}
