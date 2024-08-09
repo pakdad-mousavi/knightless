@@ -12,10 +12,18 @@ body *.font-sans {
   @apply tracking-wide font-extralight;
 }
 
+body *.font-serif {
+  @apply tracking-widest;
+}
+
 #menu-toggle:checked + #menu {
   @apply block;
 }
 
 .header-item {
   @apply block w-full p-3 rounded-md lg:inline hover:bg-slate-600 lg:p-0 lg:hover:bg-transparent;
+}
+
+.button {
+  @apply px-8 py-2 rounded-md bg-birch border-[1px] border-spruce active:bg-cream duration-100;
 }
