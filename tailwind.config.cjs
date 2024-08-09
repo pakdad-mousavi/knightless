@@ -10,10 +10,11 @@ export default {
     },
     extend: {
       colors: {
-        birch: "#C5BFB0",
-        spruce: "#20211D",
-        oak: "#5B4F47",
-        cream: "#F8F7F4",
+        "birch": "#C5BFB0",
+        "spruce": "#20211D",
+        "dark-oak": "#5B4F47",
+        "oak": "#8B7151",
+        "cream": "#F8F7F4",
       },
     },
   },
