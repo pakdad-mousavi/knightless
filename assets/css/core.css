@@ -25,5 +25,5 @@ body *.font-serif {
 }
 
 .button {
-  @apply px-8 py-2 rounded-md bg-birch border-[1px] border-spruce active:bg-cream duration-100 text-spruce;
+  @apply px-8 py-2 rounded-md bg-birch border-[1px] border-spruce active:bg-cream duration-100 text-spruce whitespace-nowrap;
 }
