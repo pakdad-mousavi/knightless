@@ -1,1 +1,40 @@
-<h1 class="text-2xl">{{player.personalDetails.firstName}}</h1>
+<div class="container px-4 py-20 mx-auto font-sans">
+  {{#with player}}
+  {{#with personalDetails}}
+  <div class="flex justify-evenly">
+    <div class="w-1/2">
+      <div class="mb-10 font-serif font-bold uppercase">
+        <h2 class="text-3xl mb-2">{{firstName}}</h2>
+        <h1 class="text-4xl">{{lastName}}</h1>
+        <hr class="w-1/4 border-[1px] border-spruce mt-4">
+      </div>
+      <div class="flex ">
+        <ul class="w-1/2 details-list">
+          <li>Date Of Birth:</li>
+          <li>{{dateOfBirth}}</li>
+          <li>Place Of Birth:</li>
+          <li>{{placeOfBirth}}</li>
+          <li>Peak FIDE Rating:</li>
+          <li>{{peakFideRating}}</li>
+        </ul>
+        <ul class="w-1/2 details-list">
+          <li>Date Of Death:</li>
+          <li>{{dateOfBirth}}</li>
+          <li>Place Of Death:</li>
+          <li>{{placeOfBirth}}</li>
+          <li class="flex items-center font-bold">
+            {{#if hasBeenChampion}}
+            <span class="block mr-4"><img src="https://placeholder.co/80.png"></span>
+            Won World Chess Champion Title
+            {{/if}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="w-[400px]">
+      <img src="https://placeholder.co/600.png" alt="{{firstName}} {{lastName}}" class="rounded-2xl">
+    </div>
+  </div>
+  {{/with}}
+  {{/with}}
+</div>
