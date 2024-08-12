@@ -8,5 +8,10 @@ export const getPlayer = async (req, res) => {
   const { id } = req.params;
   const player = await Player.findOne({ id }).lean();
   const fullname = player.personalDetails.firstName + player.personalDetails.lastName;
-  res.render('hall-of-fame/player', {player, title: fullname });
+  const dto = {
+    player,
+    title: fullname,
+    isHomePage: false,
+  };
+  res.render('hall-of-fame/player', dto);
 };

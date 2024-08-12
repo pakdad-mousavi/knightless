@@ -1,3 +1,7 @@
 export const index = (req, res) => {
-  res.render("home", { title: "Chessless" });
+  const dto = {
+    title: 'Chessless',
+    isHomePage: true,
+  };
+  res.render('home', dto);
 };
