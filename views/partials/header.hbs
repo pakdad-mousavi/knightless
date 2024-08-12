@@ -1,5 +1,5 @@
-<header class="container mx-auto font-sans absolute">
-  <div class="flex flex-wrap items-center px-8 py-6 lg:flex-nowrap bg-black/30 backdrop-blur-md text-cream">
+<header class="container mx-auto font-sans {{#if isHomePage}}absolute{{/if}}">
+  <div class="flex flex-wrap items-center px-8 py-6 lg:flex-nowrap {{#unless isHomePage}}bg-spruce{{/unless}} {{#if isHomePage}}bg-black/30 backdrop-blur-md{{/if}} text-cream">
     <div class="flex items-center flex-1">
       <a href="/" class="inline-flex items-center gap-2">
         <img src="https://placehold.co/25.png" alt="">
