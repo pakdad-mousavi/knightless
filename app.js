@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import { engine } from 'express-handlebars';
 import path from 'path';
 import dotenv from 'dotenv';
@@ -36,14 +37,14 @@ app.set('views', './views');
 // Set up routes:
 app.use('/', defaultRouter);
 
-// // Connect to database:
-// (async () => {
-//   try {
-//     await mongoose.connect(`${process.env.MONGO_DB_URI}`, { family: 4 });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// })();
+// Connect to database:
+(async () => {
+  try {
+    await mongoose.connect(`${process.env.MONGO_DB_URI}`, { family: 4 });
+  } catch (err) {
+    console.log(err);
+  }
+})();
 
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
