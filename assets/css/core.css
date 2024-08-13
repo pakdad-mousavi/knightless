@@ -29,5 +29,5 @@ body *.font-serif {
 }
 
 .details-list {
-  @apply [&>*:nth-child(even)]:!font-bold [&>*:nth-child(even)]:!mb-6 text-lg;
+  @apply [&>*:nth-child(even)]:!font-bold [&>*:nth-child(even)]:!mb-6 text-lg text-oak;
 }
