@@ -1,14 +1,15 @@
-<div class="container px-4 py-20 mx-auto font-sans">
+<div class="container px-4 py-20 mx-auto font-sans xl:px-28">
+  {{!-- Personal details --}}
   {{#with player}}
   {{#with personalDetails}}
   <div class="flex justify-evenly">
     <div class="w-1/2">
       <div class="mb-10 font-serif font-bold uppercase">
-        <h2 class="text-3xl mb-2">{{firstName}}</h2>
+        <h2 class="mb-2 text-3xl">{{firstName}}</h2>
         <h1 class="text-4xl">{{lastName}}</h1>
         <hr class="w-1/4 border-[1px] border-spruce mt-4">
       </div>
-      <div class="flex ">
+      <div class="flex">
         <ul class="w-1/2 details-list">
           <li>Date Of Birth:</li>
           <li>{{dateOfBirth}}</li>
@@ -19,9 +20,9 @@
         </ul>
         <ul class="w-1/2 details-list">
           <li>Date Of Death:</li>
-          <li>{{dateOfBirth}}</li>
+          <li>{{dateOfDeath}}</li>
           <li>Place Of Death:</li>
-          <li>{{placeOfBirth}}</li>
+          <li>{{placeOfDeath}}</li>
           <li class="flex items-center font-bold">
             {{#if hasBeenChampion}}
             <span class="block mr-4"><img src="https://placeholder.co/80.png"></span>
@@ -31,10 +32,29 @@
         </ul>
       </div>
     </div>
-    <div class="w-[400px]">
-      <img src="https://placeholder.co/600.png" alt="{{firstName}} {{lastName}}" class="rounded-2xl">
+    <div class="w-1/2">
+      <img src="https://placeholder.co/400.png" alt="{{firstName}} {{lastName}}" class="ml-auto rounded-2xl">
     </div>
   </div>
   {{/with}}
+  {{/with}}
+
+  {{#with player}}
+  <div class="mt-10">
+    {{!-- Early Life --}}
+    <div class="mb-8">
+    <div class="flex gap-x-2">
+      <div>
+        <img src="https://placeholder.co/50.png" alt="">
+      </div>
+      <div>
+        <span class="italic">The Formative Years</span>
+        <h3 class="font-serif text-xl font-bold uppercase">Early Life</h3>
+      </div>
+    </div>
+    <hr class="w-1/4 border-[1px] border-spruce mt-2">
+    </div>
+    <p class="text-lg text-oak">{{earlyLife}}</p>
+  </div>
   {{/with}}
 </div>
