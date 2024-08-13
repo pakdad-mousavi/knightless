@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { engine } from 'express-handlebars';
+import helpers from './views/helpers.js';
 import path from 'path';
 import dotenv from 'dotenv';
 // import mongoose from 'mongoose';
@@ -29,6 +30,7 @@ app.engine(
     extname: '.hbs',
     defaultLayout: 'index',
     partialsDir: `${dirname}/views/partials`,
+    helpers,
   })
 );
 app.set('view engine', '.hbs');
