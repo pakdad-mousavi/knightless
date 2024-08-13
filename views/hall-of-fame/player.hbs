@@ -1,8 +1,8 @@
-<div class="container px-4 py-20 mx-auto font-sans xl:px-28">
+<div class="container py-20 mx-auto font-sans">
   {{!-- Personal details --}}
   {{#with player}}
   {{#with personalDetails}}
-  <div class="flex justify-evenly">
+  <div class="flex px-20 justify-evenly xl:px-28">
     <div class="w-1/2">
       <div class="mb-10 font-serif font-bold uppercase">
         <h2 class="mb-2 text-3xl">{{firstName}}</h2>
@@ -23,7 +23,7 @@
           <li>{{dateOfDeath}}</li>
           <li>Place Of Death:</li>
           <li>{{placeOfDeath}}</li>
-          <li class="flex items-center font-bold">
+          <li class="flex items-center font-bold !text-dark-oak">
             {{#if hasBeenChampion}}
             <span class="block mr-4"><img src="https://placeholder.co/80.png"></span>
             Won World Chess Champion Title
@@ -40,21 +40,44 @@
   {{/with}}
 
   {{#with player}}
-  <div class="mt-10">
+  <div class="mt-10 space-y-10 [&>*:nth-child(odd)]:bg-white">
     {{!-- Early Life --}}
-    <div class="mb-8">
-    <div class="flex gap-x-2">
-      <div>
-        <img src="https://placeholder.co/50.png" alt="">
+    <div class="px-20 py-5 xl:px-28">
+      <div class="mb-8">
+        <div class="flex gap-x-2">
+          <div>
+            <img src="https://placeholder.co/50.png" alt="">
+          </div>
+          <div>
+            <span class="italic">The Formative Years</span>
+            <h3 class="font-serif text-xl font-bold uppercase">Early Life</h3>
+          </div>
+        </div>
+        <hr class="w-1/4 border-[1px] border-spruce mt-2">
       </div>
-      <div>
-        <span class="italic">The Formative Years</span>
-        <h3 class="font-serif text-xl font-bold uppercase">Early Life</h3>
+      <div class="paragraphs-container">
+        {{#makeParagraphs earlyLife}}{{/makeParagraphs}}
       </div>
     </div>
-    <hr class="w-1/4 border-[1px] border-spruce mt-2">
+
+    {{!-- Rise to prominence --}}
+    <div class="px-20 py-5 xl:px-28">
+      <div class="mb-8">
+        <div class="flex gap-x-2">
+          <div>
+            <img src="https://placeholder.co/50.png" alt="">
+          </div>
+          <div>
+            <span class="italic">The Path To Stardom</span>
+            <h3 class="font-serif text-xl font-bold uppercase">Rise To Prominence</h3>
+          </div>
+        </div>
+        <hr class="w-1/4 border-[1px] border-spruce mt-2">
+      </div>
+      <div class="paragraphs-container">
+        {{#makeParagraphs riseToProminence}}{{/makeParagraphs}}
+      </div>
     </div>
-    <p class="text-lg text-oak">{{earlyLife}}</p>
   </div>
   {{/with}}
 </div>
