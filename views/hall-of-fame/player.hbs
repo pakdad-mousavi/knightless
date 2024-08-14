@@ -188,7 +188,24 @@
       </div>
     </div>
 
-    
+    {{!-- Fun fact section --}}
+    <div class="px-20 py-10 xl:px-28 bg-dark-oak text-cream">
+      <div class="relative mb-4 space-y-2 text-center">
+        <div class="flex items-end justify-center mb-6 gap-x-4">
+          <img src="https://placeholder.co/30.png" alt="">
+          <h3 class="">Learn More About {{personalDetails.firstName}} {{personalDetails.lastName}}</h3>
+          <img src="https://placeholder.co/30.png" alt="">
+        </div>
+        <div class="flex flex-col items-center justify-center mb-8">
+          <hr class="w-full border-2 border-cream">
+          <h2 class="px-4 font-serif text-3xl font-bold uppercase -translate-y-1/2 bg-dark-oak">Fun Fact</h2>
+        </div>
+      </div>
+      <div class="paragraphs-container text-center !text-cream">
+        {{#makeParagraphs funFact}}{{/makeParagraphs}}
+      </div>
+    </div>
+
   </div>
   {{/with}}
 </div>
