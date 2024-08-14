@@ -35,3 +35,15 @@ body *.font-serif {
 .paragraphs-container {
   @apply space-y-6 text-lg text-oak;
 }
+
+.searchbar {
+  @apply relative w-2/5 mx-auto;
+}
+
+.searchbar > input {
+  @apply bg-white w-full px-4 py-2 rounded-lg border-[1px] border-spruce;
+}
+
+.searchbar > img {
+  @apply absolute right-5 top-1/2 -translate-y-1/2;
+}
