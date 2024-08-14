@@ -2,10 +2,9 @@
   {{!-- Personal details --}}
   {{#with player}}
   {{#with personalDetails}}
-  <div
-    class="flex items-center px-20 flex-col lg:flex-row lg:items-start gap-y-10 lg:gap-0 justify-evenly xl:px-28">
+  <div class="flex flex-col items-center section-container lg:flex-row lg:items-start gap-y-10 lg:gap-0 justify-evenly">
     <div class="lg:w-1/2">
-      <div class="mb-10 font-serif font-bold uppercase text-center lg:text-left">
+      <div class="mb-10 font-serif font-bold text-center uppercase lg:text-left">
         <h2 class="mb-2 text-3xl">{{firstName}}</h2>
         <h1 class="text-4xl">{{lastName}}</h1>
         <hr class="w-1/2 lg:w-1/4 border-[1px] border-spruce mt-4 mx-auto lg:mx-0">
@@ -43,7 +42,7 @@
   {{#with player}}
   <div class="mt-10 space-y-5 [&>*:nth-child(odd)]:bg-white mb-20">
     {{!-- Early Life --}}
-    <div class="px-20 py-10 xl:px-28">
+    <section class="py-10 section-container">
       <div class="mb-8">
         <div class="flex gap-x-2">
           <div>
@@ -59,10 +58,10 @@
       <div class="paragraphs-container">
         {{#makeParagraphs earlyLife}}{{/makeParagraphs}}
       </div>
-    </div>
+    </section>
 
     {{!-- Rise to prominence --}}
-    <div class="px-20 py-10 xl:px-28">
+    <section class="py-10 section-container">
       <div class="mb-8">
         <div class="flex gap-x-2">
           <div>
@@ -78,10 +77,10 @@
       <div class="paragraphs-container">
         {{#makeParagraphs riseToProminence}}{{/makeParagraphs}}
       </div>
-    </div>
+    </section>
 
     {{!-- World Chess Champion --}}
-    <div class="px-20 py-10 xl:px-28">
+    <section class="py-10 section-container">
       <div class="mb-8">
         <div class="flex gap-x-2">
           <div>
@@ -97,10 +96,10 @@
       <div class="paragraphs-container">
         {{#makeParagraphs worldChessChampion}}{{/makeParagraphs}}
       </div>
-    </div>
+    </section>
 
     {{!-- Playing Style --}}
-    <div class="px-20 py-10 xl:px-28">
+    <section class="py-10 section-container">
       <div class="mb-8">
         <div class="flex gap-x-2">
           <div>
@@ -130,10 +129,10 @@
         </div>
         {{/each}}
       </div>
-    </div>
+    </section>
 
     {{!-- Achievements and records section --}}
-    <div class="px-20 py-10 xl:px-28">
+    <section class="py-10 section-container">
       <div class="mb-8">
         <div class="flex gap-x-2">
           <div>
@@ -149,10 +148,10 @@
       <div class="paragraphs-container">
         {{#makeParagraphs achievementsAndRecords}}{{/makeParagraphs}}
       </div>
-    </div>
+    </section>
 
     {{!-- Off the board section --}}
-    <div class="px-20 py-10 xl:px-28">
+    <section class="py-10 section-container">
       <div class="mb-8">
         <div class="flex gap-x-2">
           <div>
@@ -168,10 +167,10 @@
       <div class="paragraphs-container">
         {{#makeParagraphs offTheBoard}}{{/makeParagraphs}}
       </div>
-    </div>
+    </section>
 
     {{!-- Personal life section --}}
-    <div class="px-20 py-10 xl:px-28">
+    <section class="py-10 section-container">
       <div class="mb-8">
         <div class="flex gap-x-2">
           <div>
@@ -187,10 +186,10 @@
       <div class="paragraphs-container">
         {{#makeParagraphs personalLife}}{{/makeParagraphs}}
       </div>
-    </div>
+    </section>
 
     {{!-- Fun fact section --}}
-    <div class="px-20 py-10 xl:px-28 bg-dark-oak text-cream">
+    <section class="py-10 section-container bg-dark-oak text-cream">
       <div class="relative mb-4 space-y-2 text-center">
         <div class="flex items-end justify-center mb-6 gap-x-4">
           <img src="https://placeholder.co/30.png" alt="">
@@ -205,12 +204,12 @@
       <div class="paragraphs-container text-center !text-cream">
         {{#makeParagraphs funFact}}{{/makeParagraphs}}
       </div>
-    </div>
+    </section>
   </div>
   {{/with}}
 
   {{!-- Search for more section --}}
-  <div class="px-20 py-10 mb-10 text-center xl:px-28"> {{!-- Section title --}}
+  <section class="py-10 mb-10 text-center section-container"> {{!-- Section title --}}
     <div class="relative space-y-2 font-serif font-bold uppercase text-dark-oak">
       <h3 class="mb-8 text-3xl">Find More</h3>
       <div class="flex flex-col items-center justify-center mb-8">
@@ -218,7 +217,7 @@
         <h2 class="px-4 text-4xl -translate-y-1/2 bg-cream">Chess Talents</h2>
       </div>
     </div>
-    <p class="w-3/5 mx-auto mb-8 font-sans text-xl">
+    <p class="mx-auto mb-8 font-sans text-xl md:w-4/5 lg:w-3/5">
       Search for another top-rated chess player (a player rated over 2500) and discover more insights into these
       players' mindsets and ideologies.
     </p>
@@ -226,6 +225,6 @@
       <img src="https://placeholder.co/25.png" alt="">
       <input type="text" placeholder="Search For a Top-Rated Player...">
     </div>
-  </div>
+  </section>
 
 </div>

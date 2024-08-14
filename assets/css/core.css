@@ -47,3 +47,7 @@ body *.font-serif {
 .searchbar > img {
   @apply absolute -translate-y-1/2 right-5 top-1/2;
 }
+
+.section-container {
+  @apply px-10 md:px-10 lg:px-20 xl:px-28;
+}
