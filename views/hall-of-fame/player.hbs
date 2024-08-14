@@ -27,6 +27,9 @@
             {{#if hasBeenChampion}}
             <span class="block mr-2 md:mr-0 lg:mr-4"><img src="https://placeholder.co/80.png"></span>
             Won World Chess Champion Title
+            {{else}}
+            <span class="block mr-2 md:mr-0 lg:mr-4"><img src="https://placeholder.co/80.png"></span>
+            Not Yet Won World Chess Champion Title
             {{/if}}
           </li>
         </ul>
@@ -115,7 +118,7 @@
       <div class="flex flex-wrap items-center gap-4 mx-auto lg:items-start lg:justify-center">
         {{#each playingStyle}}
         <div class="md:w-[calc(50%-1rem)] xl:w-[calc(33.333333%-1rem)]">
-          <div class="p-4 bg-white rounded-lg">
+          <div class="p-4 bg-white rounded-lg xl:h-64">
             <div class="flex items-center mb-6 gap-x-2">
               <div class="flex-1">
                 <span class="text-sm">{{subtitle}}</span>
