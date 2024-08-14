@@ -98,7 +98,38 @@
       </div>
     </div>
 
-
+    {{!-- Playing Style --}}
+    <div class="px-20 py-5 xl:px-28">
+      <div class="mb-8">
+        <div class="flex gap-x-2">
+          <div>
+            <img src="https://placeholder.co/50.png" alt="">
+          </div>
+          <div>
+            <span class="italic">Mastering The Chessboard</span>
+            <h3 class="font-serif text-xl font-bold uppercase">Playing Style</h3>
+          </div>
+        </div>
+        <hr class="w-1/4 border-[1px] border-spruce mt-2">
+      </div>
+      <div class="flex flex-wrap items-center gap-4 mx-auto lg:items-start lg:justify-center">
+        {{#each playingStyle}}
+        <div class="md:w-[calc(50%-1rem)] xl:w-[calc(33.333333%-1rem)]">
+          <div class="p-4 bg-white rounded-lg">
+            <div class="flex items-center mb-6 gap-x-2">
+              <div class="flex-1">
+                <span class="text-sm">{{subtitle}}</span>
+                <h4 class="font-serif text-lg font-bold uppercase">{{name}}</h4>
+                <hr class="w-3/4 border-[1px] border-spruce mt-2">
+              </div>
+              <img src="https://placeholder.co/70.png" alt="">
+            </div>
+            <p class="text-lg">{{description}}</p>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
   </div>
   {{/with}}
 </div>
