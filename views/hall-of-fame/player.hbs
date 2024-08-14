@@ -2,14 +2,15 @@
   {{!-- Personal details --}}
   {{#with player}}
   {{#with personalDetails}}
-  <div class="flex px-20 justify-evenly xl:px-28">
-    <div class="w-1/2">
-      <div class="mb-10 font-serif font-bold uppercase">
+  <div
+    class="flex items-center px-20 flex-col lg:flex-row lg:items-start gap-y-10 lg:gap-0 justify-evenly xl:px-28">
+    <div class="lg:w-1/2">
+      <div class="mb-10 font-serif font-bold uppercase text-center lg:text-left">
         <h2 class="mb-2 text-3xl">{{firstName}}</h2>
         <h1 class="text-4xl">{{lastName}}</h1>
-        <hr class="w-1/4 border-[1px] border-spruce mt-4">
+        <hr class="w-1/2 lg:w-1/4 border-[1px] border-spruce mt-4 mx-auto lg:mx-0">
       </div>
-      <div class="flex">
+      <div class="flex justify-center text-center lg:text-left gap-x-2 lg:gap-x-0">
         <ul class="w-1/2 details-list">
           <li>Date Of Birth:</li>
           <li>{{dateOfBirth}}</li>
@@ -23,16 +24,16 @@
           <li>{{dateOfDeath}}</li>
           <li>Place Of Death:</li>
           <li>{{placeOfDeath}}</li>
-          <li class="flex items-center font-bold !text-dark-oak">
+          <li class="flex lg:flex-row items-center font-bold !text-dark-oak">
             {{#if hasBeenChampion}}
-            <span class="block mr-4"><img src="https://placeholder.co/80.png"></span>
+            <span class="block mr-2 md:mr-0 lg:mr-4"><img src="https://placeholder.co/80.png"></span>
             Won World Chess Champion Title
             {{/if}}
           </li>
         </ul>
       </div>
     </div>
-    <div class="w-1/2">
+    <div class="lg:w-1/2">
       <img src="https://placeholder.co/400.png" alt="{{firstName}} {{lastName}}" class="ml-auto rounded-2xl">
     </div>
   </div>
