@@ -37,7 +37,7 @@ body *.font-serif {
 }
 
 .searchbar {
-  @apply relative w-2/5 mx-auto;
+  @apply relative md:w-3/5 lg:w-2/5 mx-auto;
 }
 
 .searchbar > input {
@@ -45,5 +45,5 @@ body *.font-serif {
 }
 
 .searchbar > img {
-  @apply absolute right-5 top-1/2 -translate-y-1/2;
+  @apply absolute -translate-y-1/2 right-5 top-1/2;
 }
