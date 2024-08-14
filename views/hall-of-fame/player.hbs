@@ -169,6 +169,26 @@
       </div>
     </div>
 
+    {{!-- Personal life section --}}
+    <div class="px-20 py-10 xl:px-28">
+      <div class="mb-8">
+        <div class="flex gap-x-2">
+          <div>
+            <img src="https://placeholder.co/50.png" alt="">
+          </div>
+          <div>
+            <span class="italic">The Person Behind The Pawn</span>
+            <h3 class="font-serif text-xl font-bold uppercase">Personal Life</h3>
+          </div>
+        </div>
+        <hr class="w-1/4 border-[1px] border-spruce mt-2">
+      </div>
+      <div class="paragraphs-container">
+        {{#makeParagraphs personalLife}}{{/makeParagraphs}}
+      </div>
+    </div>
+
+    
   </div>
   {{/with}}
 </div>
