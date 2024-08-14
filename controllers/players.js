@@ -2,7 +2,12 @@ import { Player } from '../models/player.js';
 import { getPlayingStyles } from '../helpers/getPlayingStyles.js';
 
 export const getPlayers = (req, res) => {
-  res.send('Hall of fame stuff goes here. :)');
+  const model = {
+    title: 'Hall Of Fame',
+    isHomePage: false,
+  };
+
+  res.render('hall-of-fame/list', model);
 };
 
 export const getPlayerById = async (req, res) => {
