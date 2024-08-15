@@ -77,7 +77,7 @@
             <ul class="h-40 overflow-scroll">
               {{#each playingStyles}}
               <li>
-                <input type="checkbox" name="playingStyles" id="{{this}}" class="mr-2">
+                <input type="checkbox" name="playingStyles" id="{{this}}" value="{{this}}" class="mr-2">
                 <label for="{{this}}">{{this}}</label>
               </li>
               {{/each}}
@@ -91,8 +91,8 @@
               <a href="#">^</a>
             </div>
             <div class="slider">
-              <input type="range" min="2500" max="2800" step="50" value="2500" list="detents" name="rating-A">
-              <input type="range" min="2500" max="2800" step="50" value="2800" list="detents" name="rating-B">
+              <input type="range" min="2500" max="2800" step="50" value="2500" list="detents" name="ratingA">
+              <input type="range" min="2500" max="2800" step="50" value="2800" list="detents" name="ratingB">
               <datalist id="detents">
                 <option value="2500">
                 <option value="2550">
@@ -113,7 +113,7 @@
               <a href="#">^</a>
             </div>
             <label class="inline-flex items-center cursor-pointer">
-              <input type="checkbox" value="" class="sr-only peer">
+              <input type="checkbox" name="formerChampion" value="true" class="sr-only peer">
               <div
                 class="relative w-11 mr-4 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dark-oak">
               </div>
