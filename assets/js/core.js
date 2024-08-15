@@ -22,6 +22,6 @@ const watchSliders = (sliders, displayElement) => {
   });
 };
 
-const sliders = document.querySelectorAll('.slider > input[name=rating-range]');
+const sliders = document.querySelectorAll('.slider > input');
 const displayElement = document.querySelector('.rating-range-values');
 watchSliders(sliders, displayElement);
