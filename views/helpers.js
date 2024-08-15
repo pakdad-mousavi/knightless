@@ -15,7 +15,7 @@ const helper = {
 
     return result.join(' ');
   },
-  
+
   sub(minuend, subtrahend) {
     if (minuend && subtrahend) {
       return minuend - subtrahend;
