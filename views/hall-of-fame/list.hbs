@@ -41,27 +41,21 @@
               <h3 class="mr-4">Active Filters</h3>
               <a href="#">^</a>
             </div>
-            <ul class="h-40 overflow-scroll">
+            <ul class="h-40 mb-4 overflow-scroll">
+              {{#each options.playingStyles}}
+              {{#if this}}
               <li>
                 <a href="#" class="mr-2 font-bold">X</a>
-                <span>Strategic</span>
+                <span>{{@key}}</span>
               </li>
+              {{/if}}
+              {{/each}}
+              {{#if options.hasBeenChampion}}
               <li>
                 <a href="#" class="mr-2 font-bold">X</a>
-                <span>Tactical</span>
+                <span>Former Champion</span>
               </li>
-              <li>
-                <a href="#" class="mr-2 font-bold">X</a>
-                <span>Counterattacking</span>
-              </li>
-              <li>
-                <a href="#" class="mr-2 font-bold">X</a>
-                <span>Hypermodern</span>
-              </li>
-              <li>
-                <a href="#" class="mr-2 font-bold">X</a>
-                <span>Endgame Specialist</span>
-              </li>
+              {{/if}}
             </ul>
             <button type="submit" class="button !px-4 !py-1">Apply</button>
             <button type="reset" class="button !px-4 !py-1">Reset</button>
@@ -77,7 +71,8 @@
             <ul class="h-40 overflow-scroll">
               {{#each options.playingStyles}}
               <li>
-                <input type="checkbox" name="playingStyles" id="{{@key}}" value="{{@key}}" class="mr-2" {{#if this}}checked{{/if}}>
+                <input type="checkbox" name="playingStyles" id="{{@key}}" value="{{@key}}" class="mr-2" {{#if
+                  this}}checked{{/if}}>
                 <label for="{{@key}}">{{@key}}</label>
               </li>
               {{/each}}
@@ -91,8 +86,10 @@
               <a href="#">^</a>
             </div>
             <div class="slider">
-              <input type="range" min="2500" max="2900" step="50" value="{{options.ratingA}}" list="detents" name="ratingA">
-              <input type="range" min="2500" max="2900" step="50" value="{{options.ratingB}}" list="detents" name="ratingB">
+              <input type="range" min="2500" max="2900" step="50" value="{{options.ratingA}}" list="detents"
+                name="ratingA">
+              <input type="range" min="2500" max="2900" step="50" value="{{options.ratingB}}" list="detents"
+                name="ratingB">
               <datalist id="detents">
                 <option value="2500">
                 <option value="2550">
@@ -105,7 +102,8 @@
                 <option value="2900">
               </datalist>
             </div>
-            <p class="text-sm">Range: <span class="ml-2 font-semibold rating-range-values">{{options.ratingA}} - {{options.ratingB}}</span></p>
+            <p class="text-sm">Range: <span class="ml-2 font-semibold rating-range-values">{{options.ratingA}} -
+                {{options.ratingB}}</span></p>
           </div>
 
           {{!-- Was world champion --}}
@@ -115,7 +113,8 @@
               <a href="#">^</a>
             </div>
             <label class="inline-flex items-center cursor-pointer">
-              <input type="checkbox" name="formerChampion" value="true" {{#if options.hasBeenChampion}}checked{{/if}} class="sr-only peer">
+              <input type="checkbox" name="formerChampion" value="true" {{#if options.hasBeenChampion}}checked{{/if}}
+                class="sr-only peer">
               <div
                 class="relative w-11 mr-4 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dark-oak">
               </div>
@@ -124,7 +123,8 @@
           </div>
         </form>
       </div>
-      <div class="col-span-4">Players</div>
+      <div class="col-span-4">
+      </div>
     </div>
   </div>
 </div>
