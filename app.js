@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { engine } from 'express-handlebars';
 import helpers from './views/helpers.js';
+import cookieParser from 'cookie-parser';
 import path from 'path';
 import dotenv from 'dotenv';
 // import mongoose from 'mongoose';
@@ -22,6 +23,9 @@ app.use(express.static(`${dirname}/assets/`));
 // Set up the body parser:
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Set up the cookie parser:
+app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // Set up view engine:
 app.engine(
