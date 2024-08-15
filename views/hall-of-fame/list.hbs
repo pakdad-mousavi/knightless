@@ -24,6 +24,33 @@
   </div>
 
   <div>
+    {{!-- Top players bar --}}
+    <div class="w-4/5 pl-4 mb-4 ml-auto">
+      <div class="flex items-center gap-x-4">
+        <h3 class="font-serif text-xl font-bold uppercase">Players</h3>
+        <div class="bg-white px-2 py-1 rounded-md border-[1px] border-spruce">
+          {{paging.totalRecords}}
+        </div>
+        <div class="flex items-center">
+          {{#if paging.hasPrev}}
+          <a href="/hall-of-fame?page={{sub paging.currentPage 1}}"
+            class="bg-white px-3 py-1 rounded-md border-[1px] border-spruce block">Prev.</a>
+          {{else}}
+          <div class="bg-white px-3 py-1 rounded-md border-[1px] border-gray-400 block text-gray-400 cursor-default">
+            Prev.</div>
+          {{/if}}
+          <hr class="w-28 border-[1px] border-spruce">
+          {{#if paging.hasNext}}
+          <a href="/hall-of-fame?page={{add paging.currentPage 1}}"
+            class="bg-white px-3 py-1 rounded-md border-[1px] border-spruce">Next</a>
+          {{else}}
+          <div class="bg-white px-3 py-1 rounded-md border-[1px] border-gray-400 block text-gray-400 cursor-default">
+            Next</div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+
     <div class="grid grid-cols-5">
       {{!-- Filters side bar --}}
       <div class="col-span-1 border-r-[1px] border-spruce">
@@ -113,8 +140,8 @@
               <a href="#">^</a>
             </div>
             <label class="inline-flex items-center cursor-pointer">
-              <input type="checkbox" name="formerChampion" value="Former Champion" {{#if options.hasBeenChampion}}checked{{/if}}
-                class="sr-only peer">
+              <input type="checkbox" name="formerChampion" value="Former Champion" {{#if
+                options.hasBeenChampion}}checked{{/if}} class="sr-only peer">
               <div
                 class="relative w-11 mr-4 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dark-oak">
               </div>

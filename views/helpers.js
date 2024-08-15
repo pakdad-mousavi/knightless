@@ -15,6 +15,22 @@ const helper = {
 
     return result.join(' ');
   },
+  
+  sub(minuend, subtrahend) {
+    if (minuend && subtrahend) {
+      return minuend - subtrahend;
+    }
+
+    return '';
+  },
+
+  add(value, addend) {
+    if (value && addend) {
+      return value + addend;
+    }
+
+    return '';
+  },
 };
 
 export default helper;

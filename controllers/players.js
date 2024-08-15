@@ -45,7 +45,7 @@ export const getPlayers = async (req, res) => {
   // Paging object:
   const paging = {
     currentPage: 1,
-    pageSize: 9,
+    pageSize: 8,
     hasNext: false,
     hasPrev: false,
     totalRecords,
