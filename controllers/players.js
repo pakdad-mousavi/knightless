@@ -87,7 +87,7 @@ export const applySearchFilters = (req, res) => {
     playingStyles: styles ? [].concat(styles) : [],
     ratingA: rtA,
     ratingB: rtB,
-    hasBeenChampion: chmp === 'true',
+    hasBeenChampion: chmp === 'Former Champion',
   };
 
   res.cookie('filters', filters, {
