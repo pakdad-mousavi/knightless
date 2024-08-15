@@ -123,7 +123,36 @@
           </div>
         </form>
       </div>
-      <div class="col-span-4">
+      <div class="col-span-4 pl-4">
+        <div class="grid grid-cols-2 gap-8">
+          {{#each players}}
+          <div>
+            <a href="/hall-of-fame/magnus-carlsen">
+              <div class="flex items-center h-48 p-2 bg-white rounded-lg">
+                <div class="flex items-center gap-x-4">
+                  <div>
+                    {{#if this.personalDetails.hasBeenChampion}}
+                    <span class="text-xs">Won World Chess Champion</span>
+                    <hr class="w-2/5 border-[1px] border-dark-oak">
+                    {{else}}
+                    <span class="text-xs">Peak Rating: <b
+                        class="ml-1 font-bold">{{this.personalDetails.peakFideRating}}</b></span>
+                    <hr class="w-2/5 border-[1px] border-dark-oak">
+                    {{/if}}
+                    <div class="my-2 font-serif text-xl font-bold uppercase text-dark-oak">
+                      <h4>{{this.personalDetails.firstName}} {{this.personalDetails.lastName}}</h4>
+                    </div>
+                    <p class="text-sm text-oak line-clamp-4">{{this.earlyLife}}</p>
+                  </div>
+                  <div class="min-w-40">
+                    <img src="https://placeholder.co/600" alt="" class="rounded-lg border-[1px] border-spruce">
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          {{/each}}
+        </div>
       </div>
     </div>
   </div>
