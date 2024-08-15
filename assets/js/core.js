@@ -17,7 +17,7 @@ const watchSliders = (sliders, displayElement) => {
     slider.addEventListener('input', () => {
       // Get slider values and display them
       const { sliderLeft, sliderRight } = getsliderValues(sliders);
-      displayElement.innerText = `${sliderLeft} - ${sliderRight}${sliderRight === 2800 ? '+' : ''}`;
+      displayElement.innerText = `${sliderLeft} - ${sliderRight}`;
     });
   });
 };
