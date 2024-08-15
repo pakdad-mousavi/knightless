@@ -75,10 +75,10 @@
               <a href="#">^</a>
             </div>
             <ul class="h-40 overflow-scroll">
-              {{#each playingStyles}}
+              {{#each options.playingStyles}}
               <li>
-                <input type="checkbox" name="playingStyles" id="{{this}}" value="{{this}}" class="mr-2">
-                <label for="{{this}}">{{this}}</label>
+                <input type="checkbox" name="playingStyles" id="{{@key}}" value="{{@key}}" class="mr-2" {{#if this}}checked{{/if}}>
+                <label for="{{@key}}">{{@key}}</label>
               </li>
               {{/each}}
             </ul>
@@ -91,8 +91,8 @@
               <a href="#">^</a>
             </div>
             <div class="slider">
-              <input type="range" min="2500" max="2800" step="50" value="2500" list="detents" name="ratingA">
-              <input type="range" min="2500" max="2800" step="50" value="2800" list="detents" name="ratingB">
+              <input type="range" min="2500" max="2900" step="50" value="{{options.ratingA}}" list="detents" name="ratingA">
+              <input type="range" min="2500" max="2900" step="50" value="{{options.ratingB}}" list="detents" name="ratingB">
               <datalist id="detents">
                 <option value="2500">
                 <option value="2550">
@@ -101,9 +101,11 @@
                 <option value="2700">
                 <option value="2750">
                 <option value="2800">
+                <option value="2850">
+                <option value="2900">
               </datalist>
             </div>
-            <p class="text-sm">Range: <span class="ml-2 font-semibold rating-range-values">2500 - 2800+</span></p>
+            <p class="text-sm">Range: <span class="ml-2 font-semibold rating-range-values">{{options.ratingA}} - {{options.ratingB}}</span></p>
           </div>
 
           {{!-- Was world champion --}}
@@ -113,7 +115,7 @@
               <a href="#">^</a>
             </div>
             <label class="inline-flex items-center cursor-pointer">
-              <input type="checkbox" name="formerChampion" value="true" class="sr-only peer">
+              <input type="checkbox" name="formerChampion" value="true" {{#if options.hasBeenChampion}}checked{{/if}} class="sr-only peer">
               <div
                 class="relative w-11 mr-4 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dark-oak">
               </div>
