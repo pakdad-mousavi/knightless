@@ -30,9 +30,6 @@ const removeActiveFilter = (filterName) => {
   filter.checked = false;
 
   form.submit();
-
-
-
 };
 
 const watchActiveFilters = (filterBox) => {
@@ -47,9 +44,30 @@ const watchActiveFilters = (filterBox) => {
   });
 };
 
+const resetFilters = (checkboxes, ranges) => {
+  if (!checkboxes || !ranges) return;
+  const resetBtn = document.querySelector('button[type=reset]');
+  const form = document.querySelector('form');
+
+  resetBtn.addEventListener('click', () => {
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
+    ranges[0].value = 2500;
+    ranges[1].value = 2900;
+
+    form.submit();
+  });
+};
+
 const sliders = document.querySelectorAll('.slider > input');
 const displayElement = document.querySelector('.rating-range-values');
 watchSliders(sliders, displayElement);
 
 const activeFiltersContainer = document.querySelector('.active-filters');
 watchActiveFilters(activeFiltersContainer);
+
+const checkboxes = document.querySelectorAll('input[type=checkbox]');
+const ranges = document.querySelectorAll('input[type=range]');
+resetFilters(checkboxes, ranges);
