@@ -76,3 +76,12 @@ export const getPlayingStyles = (styles) => {
 
   return result;
 };
+
+export const getDistinctPlayingStyles = () => {
+  const result = [];
+  for (let playingStyle of Object.values(playingStyles)) {
+    result.push(playingStyle.name);
+  }
+
+  return result;
+};

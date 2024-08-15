@@ -27,133 +27,100 @@
     <div class="grid grid-cols-5">
       {{!-- Filters side bar --}}
       <div class="col-span-1 border-r-[1px] border-spruce">
-        {{!-- Filters title --}}
-        <div class="flex items-center py-2 pr-4">
-          <h3 class="flex-1 font-serif text-xl font-bold uppercase">Filters</h3>
-          <span><img src="https://placeholder.co/25.png" alt=""></span>
-        </div>
-        <hr class="border-spruce">
+        <form action="/hall-of-fame" method="post">
+          {{!-- Filters title --}}
+          <div class="flex items-center py-2 pr-4">
+            <h3 class="flex-1 font-serif text-xl font-bold uppercase">Filters</h3>
+            <span><img src="https://placeholder.co/25.png" alt=""></span>
+          </div>
+          <hr class="border-spruce">
 
-        {{!-- Active Filters --}}
-        <div class="mb-4 mr-2">
-          <div class="flex py-2 text-gray-500">
-            <h3 class="mr-4">Active Filters</h3>
-            <a href="#">^</a>
-          </div>
-          <ul class="h-40 overflow-scroll">
-            <li>
-              <a href="#" class="mr-2 font-bold">X</a>
-              <span>Strategic</span>
-            </li>
-            <li>
-              <a href="#" class="mr-2 font-bold">X</a>
-              <span>Tactical</span>
-            </li>
-            <li>
-              <a href="#" class="mr-2 font-bold">X</a>
-              <span>Counterattacking</span>
-            </li>
-            <li>
-              <a href="#" class="mr-2 font-bold">X</a>
-              <span>Hypermodern</span>
-            </li>
-            <li>
-              <a href="#" class="mr-2 font-bold">X</a>
-              <span>Endgame Specialist</span>
-            </li>
-          </ul>
-          <button type="submit" class="button !px-4 !py-1">Apply</button>
-          <button type="reset" class="button !px-4 !py-1">Reset</button>
-        </div>
-        <hr class="border-spruce">
-
-        {{!-- Playing styles --}}
-        <div class="mb-4 mr-2">
-          <div class="flex py-2 text-gray-500">
-            <h3 class="mr-4">Playing Styles</h3>
-            <a href="#">^</a>
-          </div>
-          <ul class="h-40 overflow-scroll">
-            <li>
-              <input type="checkbox" name="strategic" id="strategic" class="mr-2">
-              <label for="strategic">Strategic</label>
-            </li>
-            <li>
-              <input type="checkbox" name="tactical" id="tactical" class="mr-2">
-              <label for="tactical">Tactical</label>
-            </li>
-            <li>
-              <input type="checkbox" name="Counterattacking" id="Counterattacking" class="mr-2">
-              <label for="Counterattacking">Counterattacking</label>
-            </li>
-            <li>
-              <input type="checkbox" name="Hypermodern" id="Hypermodern" class="mr-2">
-              <label for="Hypermodern">Hypermodern</label>
-            </li>
-            <li>
-              <input type="checkbox" name="endgame-specialist" id="endgame-specialist" class="mr-2">
-              <label for="endgame-specialist">Endgame Specialist</label>
-            </li>
-            <li>
-              <input type="checkbox" name="strategic" id="strategic" class="mr-2">
-              <label for="strategic">Strategic</label>
-            </li>
-            <li>
-              <input type="checkbox" name="tactical" id="tactical" class="mr-2">
-              <label for="tactical">Tactical</label>
-            </li>
-            <li>
-              <input type="checkbox" name="Counterattacking" id="Counterattacking" class="mr-2">
-              <label for="Counterattacking">Counterattacking</label>
-            </li>
-            <li>
-              <input type="checkbox" name="Hypermodern" id="Hypermodern" class="mr-2">
-              <label for="Hypermodern">Hypermodern</label>
-            </li>
-            <li>
-              <input type="checkbox" name="endgame-specialist" id="endgame-specialist" class="mr-2">
-              <label for="endgame-specialist">Endgame Specialist</label>
-            </li>
-          </ul>
-        </div>
-
-        {{!-- Peak rating --}}
-        <div class="mb-4 mr-2">
-          <div class="flex py-2 mb-2 text-gray-500">
-            <h3 class="mr-4">Peak Rating (elo)</h3>
-            <a href="#">^</a>
-          </div>
-          <div class="slider">
-            <input type="range" min="2500" max="2800" step="50" value="2500" list="detents" name="rating-A">
-            <input type="range" min="2500" max="2800" step="50" value="2800" list="detents" name="rating-B">
-            <datalist id="detents">
-              <option value="2500">
-              <option value="2550">
-              <option value="2600">
-              <option value="2650">
-              <option value="2700">
-              <option value="2750">
-              <option value="2800">
-            </datalist>
-          </div>
-          <p class="text-sm">Range: <span class="ml-2 font-semibold rating-range-values">2500 - 2800+</span></p>
-        </div>
-
-        {{!-- Was world champion --}}
-        <div class="mb-4 mr-2">
-          <div class="flex py-2 text-gray-500">
-            <h3 class="mr-4">Chess Champion</h3>
-            <a href="#">^</a>
-          </div>
-          <label class="inline-flex items-center cursor-pointer">
-            <input type="checkbox" value="" class="sr-only peer">
-            <div
-              class="relative w-11 mr-4 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dark-oak">
+          {{!-- Active Filters --}}
+          <div class="mb-4 mr-2">
+            <div class="flex py-2 text-gray-500">
+              <h3 class="mr-4">Active Filters</h3>
+              <a href="#">^</a>
             </div>
-            <span class="">Former Champion</span>
-          </label>
-        </div>
+            <ul class="h-40 overflow-scroll">
+              <li>
+                <a href="#" class="mr-2 font-bold">X</a>
+                <span>Strategic</span>
+              </li>
+              <li>
+                <a href="#" class="mr-2 font-bold">X</a>
+                <span>Tactical</span>
+              </li>
+              <li>
+                <a href="#" class="mr-2 font-bold">X</a>
+                <span>Counterattacking</span>
+              </li>
+              <li>
+                <a href="#" class="mr-2 font-bold">X</a>
+                <span>Hypermodern</span>
+              </li>
+              <li>
+                <a href="#" class="mr-2 font-bold">X</a>
+                <span>Endgame Specialist</span>
+              </li>
+            </ul>
+            <button type="submit" class="button !px-4 !py-1">Apply</button>
+            <button type="reset" class="button !px-4 !py-1">Reset</button>
+          </div>
+          <hr class="border-spruce">
 
+          {{!-- Playing styles --}}
+          <div class="mb-4 mr-2">
+            <div class="flex py-2 text-gray-500">
+              <h3 class="mr-4">Playing Styles</h3>
+              <a href="#">^</a>
+            </div>
+            <ul class="h-40 overflow-scroll">
+              {{#each playingStyles}}
+              <li>
+                <input type="checkbox" name="playingStyles" id="{{this}}" class="mr-2">
+                <label for="{{this}}">{{this}}</label>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+
+          {{!-- Peak rating --}}
+          <div class="mb-4 mr-2">
+            <div class="flex py-2 mb-2 text-gray-500">
+              <h3 class="mr-4">Peak Rating (elo)</h3>
+              <a href="#">^</a>
+            </div>
+            <div class="slider">
+              <input type="range" min="2500" max="2800" step="50" value="2500" list="detents" name="rating-A">
+              <input type="range" min="2500" max="2800" step="50" value="2800" list="detents" name="rating-B">
+              <datalist id="detents">
+                <option value="2500">
+                <option value="2550">
+                <option value="2600">
+                <option value="2650">
+                <option value="2700">
+                <option value="2750">
+                <option value="2800">
+              </datalist>
+            </div>
+            <p class="text-sm">Range: <span class="ml-2 font-semibold rating-range-values">2500 - 2800+</span></p>
+          </div>
+
+          {{!-- Was world champion --}}
+          <div class="mb-4 mr-2">
+            <div class="flex py-2 text-gray-500">
+              <h3 class="mr-4">Chess Champion</h3>
+              <a href="#">^</a>
+            </div>
+            <label class="inline-flex items-center cursor-pointer">
+              <input type="checkbox" value="" class="sr-only peer">
+              <div
+                class="relative w-11 mr-4 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dark-oak">
+              </div>
+              <span>Former Champion</span>
+            </label>
+          </div>
+        </form>
       </div>
       <div class="col-span-4">Players</div>
     </div>

@@ -1,14 +1,19 @@
 import { Player } from '../models/player.js';
-import { getPlayingStyles } from '../helpers/getPlayingStyles.js';
+import { getPlayingStyles, getDistinctPlayingStyles} from '../helpers/getPlayingStyles.js';
 
 export const getPlayers = (req, res) => {
+  const playingStyles = getDistinctPlayingStyles();
+
   const model = {
+    playingStyles,
     title: 'Hall Of Fame',
     isHomePage: false,
   };
 
   res.render('hall-of-fame/list', model);
 };
+
+export const applySearchFilters = (req, res) => {};
 
 export const getPlayerById = async (req, res) => {
   const { id } = req.params;
