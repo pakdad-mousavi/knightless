@@ -19,6 +19,8 @@ const dirname = path.resolve();
 
 // Render static files:
 app.use(express.static(`${dirname}/assets/`));
+// Render static chessboardjs files from node modules:
+app.use('/chessboardjs', express.static(`${dirname}/node_modules/@chrisoakman/chessboardjs/dist`));
 
 // Set up the body parser:
 app.use(express.urlencoded({ extended: true }));
