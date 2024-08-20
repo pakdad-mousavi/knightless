@@ -16,7 +16,7 @@ export const getPieceById = async (req, res) => {
 
     // Response model
     const model = {
-      title: piece.name,
+      title: `The ${piece.name}`,
       piece,
       otherPieces,
       isHomePage: false,
