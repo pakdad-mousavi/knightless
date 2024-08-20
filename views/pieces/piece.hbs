@@ -68,6 +68,40 @@
         <a href="#" class="button">Chess Notation</a>
       </div>
     </section>
+
+    {{!-- Strengths --}}
+    <section class="py-10 section-container">
+      <div>
+        <div class="mb-6 space-y-0.5">
+          <span>How The {{piece.name}} Excels In Games</span>
+          <h4 class="font-serif text-lg font-bold uppercase">Strengths</h4>
+          <hr class="w-1/5 border-2 border-oak">
+        </div>
+        <div class="text-lg paragraphs-container !text-dark-oak">
+          {{#each piece.strengths}}
+          <p class=""><span class="mr-1 font-semibold">{{@key}}:</span> {{this}}</p>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+
+    {{!-- Weaknesses --}}
+    <section class="py-20 bg-white section-container">
+      <div>
+        <div class="mb-6 space-y-0.5">
+          <span>The Drawbacks Of The {{piece.name}}</span>
+          <h4 class="font-serif text-lg font-bold uppercase">Weaknesses</h4>
+          <hr class="w-1/5 border-2 border-oak">
+        </div>
+        <div class="text-lg paragraphs-container !text-dark-oak">
+          {{#each piece.weaknesses}}
+          <p class=""><span class="mr-1 font-semibold">{{@key}}:</span> {{this}}</p>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+
+
   </div>
 </div>
 
