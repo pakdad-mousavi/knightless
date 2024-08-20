@@ -1,13 +1,20 @@
 import { Piece } from '../models/piece.js';
-import { getOtherPieces } from '../helpers/getOtherPieces.js';
 
 export const getPieceById = async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Find the piece
     const piece = await Piece.findOne({ id }).lean();
-    const otherPieces = getOtherPieces(piece.name);
 
+    // Find the other pieces and get only their names
+    const otherPieces = (
+      await Piece.find({ id: { $ne: id } })
+        .select('name -_id')
+        .lean()
+    ).map((piece) => piece.name);
+
+    // Response model
     const model = {
       title: piece.name,
       piece,
