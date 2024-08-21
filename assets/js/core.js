@@ -67,7 +67,7 @@ const resetFilters = (checkboxes, ranges) => {
 const createGameFen = (fen, turn = 'w', castling = {}, enPassant = '-', halfmoves = '0', fullmoves = '0') => {
   //Handle castling notation
   let castlingNotation = '';
-  
+
   if (Object.keys(castling).length === 0) {
     castlingNotation = '-';
   } else {
@@ -92,19 +92,46 @@ const setUpSampleBoards = (boardElements) => {
     const gameFen = createGameFen(posFen);
     const maxMoves = boardElement.dataset.maxMoves;
 
-    // Get the game board's panel (all sampleBoards have a reset button and a move counter)
+    // Get the game board's panel (all sampleBoards have a reset button and a move counter panel)
     const panel = document.querySelector(`.${boardName}`);
     const resetBtn = panel.children[0];
-    const moveCounter = panel.children[1];
+    const moveCounterPanel = panel.children[1];
+
+    // Keep track of moves gone
+    let moveCounter = 0;
 
     // Create the game
     const game = new Chess();
     game.load(gameFen, { skipValidation: true });
 
     // Config event functions go here (onDrop, onChange, etc)
-    const onDrop = (source, target, piece, newPosition) => {
-      console.log(`From: ${source}`);
-      console.log(`To: ${target}`);
+    const onDragStart = (_, piece) => {
+      if (piece.search(/^w/) === -1) {
+        return false;
+      }
+    };
+
+    const onDrop = (from, to) => {
+      // Make the move in the game
+      try {
+        const move = game.move({
+          from,
+          to,
+          promotion: 'q',
+        });
+
+        // Update the move counter
+        moveCounter++;
+        updateMoveCounter();
+
+        // Load in the new position, but as white's turn again
+        const newPosFen = move.after.split(' ')[0];
+        const newGameFen = createGameFen(newPosFen, 'w');
+        game.load(newGameFen, { skipValidation: true });
+      } catch {
+        //If it was an illegal move, just snap back
+        return 'snapback';
+      }
     };
 
     // Create the config object for the gameboard
@@ -112,17 +139,27 @@ const setUpSampleBoards = (boardElements) => {
       draggable: true,
       position: gameFen,
       pieceTheme: '/chesspieces/{piece}.svg',
-      onDrop: onDrop,
+      onDrop,
+      onDragStart,
     };
 
     const board = new Chessboard(boardElement, config);
 
     // Handle the reset button
     resetBtn.addEventListener('click', (e) => {
+      // Reset both the game and chessboard positions
       e.preventDefault();
       board.position(gameFen);
       game.load(gameFen, { skipValidation: true });
+
+      // Reset move counter
+      moveCounter = 0;
+      updateMoveCounter();
     });
+
+    const updateMoveCounter = () => {
+      moveCounterPanel.innerHTML = `Moves Used: ${moveCounter}`;
+    };
   });
 };
 
