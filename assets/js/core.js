@@ -45,7 +45,7 @@ const watchActiveFilters = (filterBox) => {
 };
 
 const resetFilters = (checkboxes, ranges) => {
-  if (!checkboxes || !ranges) return;
+  if (!checkboxes.length || !ranges.length) return;
   const resetBtn = document.querySelector('button[type=reset]');
   const form = document.querySelector('form');
 
