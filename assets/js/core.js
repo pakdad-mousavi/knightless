@@ -1,4 +1,4 @@
-// import { Chess } from "/chessjs/chess.js";
+import { Chess } from '/chessjs/chess.js';
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
@@ -64,26 +64,65 @@ const resetFilters = (checkboxes, ranges) => {
   });
 };
 
+const createGameFen = (fen, turn = 'w', castling = {}, enPassant = '-', halfmoves = '0', fullmoves = '0') => {
+  //Handle castling notation
+  let castlingNotation = '';
+  
+  if (Object.keys(castling).length === 0) {
+    castlingNotation = '-';
+  } else {
+    const whiteKingSide = castling.white.kingSide ? 'K' : '';
+    const whiteQueenSide = castling.white.queenSide ? 'Q' : '';
+    const blackKingSide = castling.black.kingSide ? 'k' : '';
+    const blackQueenSide = castling.black.queenSide ? 'q' : '';
+
+    castlingNotation.concat(whiteKingSide, whiteQueenSide, blackKingSide, blackQueenSide);
+  }
+
+  return [fen, turn, castlingNotation, enPassant, halfmoves, fullmoves].join(' ');
+};
+
 const setUpSampleBoards = (boardElements) => {
   if (!boardElements.length) return;
 
   boardElements.forEach((boardElement) => {
-    const fen = boardElement.dataset.fen;
+    // Get respective data from the webpage
+    const boardName = boardElement.dataset['board-name'];
+    const posFen = boardElement.dataset.fen;
+    const gameFen = createGameFen(posFen);
     const maxMoves = boardElement.dataset.maxMoves;
 
+    // Get the game board's panel (all sampleBoards have a reset button and a move counter)
+    const panel = document.querySelector(`.${boardName}`);
+    const resetBtn = panel.children[0];
+    const moveCounter = panel.children[1];
+
+    // Create the game
+    const game = new Chess();
+    game.load(gameFen, { skipValidation: true });
+
+    // Config event functions go here (onDrop, onChange, etc)
     const onDrop = (source, target, piece, newPosition) => {
       console.log(`From: ${source}`);
       console.log(`To: ${target}`);
     };
 
+    // Create the config object for the gameboard
     const config = {
       draggable: true,
-      position: fen,
+      position: gameFen,
       pieceTheme: '/chesspieces/{piece}.svg',
       onDrop: onDrop,
     };
 
     const board = new Chessboard(boardElement, config);
+
+    // Handle the reset button
+    resetBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      board.position(gameFen);
+      game.load(gameFen, { skipValidation: true });
+    });
   });
 };
 
