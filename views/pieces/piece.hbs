@@ -1,5 +1,6 @@
 <div class="container py-20 mx-auto font-sans">
   <div class="space-y-20">
+    {{#with piece}}
     <section class="flex items-center section-container"> {{!-- Section title --}}
       <div>
         <img src="https://placeholder.co/200x400" alt="">
@@ -9,9 +10,9 @@
           <hr class="w-3/4 border-2 border-oak">
           <h2 class="px-6 text-5xl -translate-y-1/2 bg-cream">The</h2>
         </div>
-        <h1 class="mb-8 text-7xl">{{piece.name}}</h1>
+        <h1 class="mb-8 text-7xl">{{name}}</h1>
         <hr class="w-4/5 mx-auto border-2 border-oak">
-        <h3 class="my-4 text-xl">{{piece.subtitle}}</h3>
+        <h3 class="my-4 text-xl">{{subtitle}}</h3>
         <hr class="w-1/2 mx-auto border-2 border-oak">
       </div>
       <div>
@@ -23,24 +24,24 @@
       {{!-- Overview section --}}
       <div class="w-1/2">
         <div class="mb-6 space-y-0.5">
-          <span>All About The {{piece.name}}</span>
+          <span>All About The {{name}}</span>
           <h4 class="font-serif text-lg font-bold uppercase">Overview</h4>
           <hr class="w-5/12 border-2 border-oak">
         </div>
         <div class="paragraphs-container !text-dark-oak">
-          {{#makeParagraphs piece.overview}}{{/makeParagraphs}}
+          {{#makeParagraphs overview}}{{/makeParagraphs}}
         </div>
       </div>
 
       {{!-- main details section --}}
       <div class="w-1/2">
         <div class="mb-6 space-y-0.5">
-          <span>How {{piece.name}}s Navigate The Board</span>
+          <span>How {{name}}s Navigate The Board</span>
           <h4 class="font-serif text-lg font-bold uppercase">Main Details</h4>
           <hr class="w-5/12 border-2 border-oak">
         </div>
         <ul class="flex flex-wrap text-lg">
-          {{#each piece.mainDetails}}
+          {{#each mainDetails}}
           <li class="flex w-5/12 xl:w-1/3">
             <span class="mr-2">(icon)</span>
             <h3 class="font-semibold">{{this.name}}:</h3>
@@ -72,12 +73,12 @@
     {{!-- Strengths --}}
     <section class="py-10 section-container">
       <div class="mb-6 space-y-0.5">
-        <span>How The {{piece.name}} Excels In Games</span>
+        <span>How The {{name}} Excels In Games</span>
         <h4 class="font-serif text-lg font-bold uppercase">Strengths</h4>
         <hr class="w-1/5 border-2 border-oak">
       </div>
       <div class="text-lg paragraphs-container !text-dark-oak">
-        {{#each piece.strengths}}
+        {{#each strengths}}
         <p class=""><span class="mr-1 font-semibold">{{@key}}:</span> {{this}}</p>
         {{/each}}
       </div>
@@ -86,18 +87,48 @@
     {{!-- Weaknesses --}}
     <section class="py-20 bg-white section-container">
       <div class="mb-6 space-y-0.5">
-        <span>The Drawbacks Of The {{piece.name}}</span>
+        <span>The Drawbacks Of The {{name}}</span>
         <h4 class="font-serif text-lg font-bold uppercase">Weaknesses</h4>
         <hr class="w-1/5 border-2 border-oak">
       </div>
       <div class="text-lg paragraphs-container !text-dark-oak">
-        {{#each piece.weaknesses}}
+        {{#each weaknesses}}
         <p class=""><span class="mr-1 font-semibold">{{@key}}:</span> {{this}}</p>
         {{/each}}
       </div>
     </section>
 
-
+    {{!-- Sample board section --}}
+    <section class="py-10 section-container">
+      <div class="flex items-center gap-x-4">
+        <div class="w-1/2">
+          <div class="mb-8 space-y-0.5">
+            <span>Try Moving The {{name}}s</span>
+            <h4 class="font-serif text-lg font-bold uppercase">Sample Board</h4>
+            <hr class="w-3/5 border-2 border-oak">
+          </div>
+          <div class="paragraphs-container !text-dark-oak">
+            <p>
+              Use this sample board to try moving the white {{name}}s across the board and getting a feel for the
+              pieces, as well as their movement.
+            </p>
+            <p>
+              See the black pawns? Try capturing them all in only <span class="font-semibold">7 moves.</span> If you
+              can't then don't worry, just press the retry button and try again.
+            </p>
+          </div>
+          <div class="mt-10">
+            <a href="#" class="mr-4 button">Retry</a>
+            <div class="border-[1px] border-spruce inline-block px-2 py-1 rounded-md bg-white">Moves Used: 0</div>
+          </div>
+        </div>
+        <div class="w-1/2">
+          <div class="w-full bg-red-200 aspect-square sampleBoard" data-fen="{{sampleBoard.fen}}"
+            data-maxMoves="{{sampleBoard.maxMoves}}"></div>
+        </div>
+      </div>
+    </section>
+    {{/with}}
   </div>
 </div>
 
