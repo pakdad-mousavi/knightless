@@ -109,21 +109,21 @@
           </div>
           <div class="paragraphs-container !text-dark-oak">
             <p>
-              Use this sample board to try moving the white {{name}}s across the board and getting a feel for the
-              pieces, as well as their movement.
+              Use this sample board to try moving the white pieces across the board and getting a feel for them, as well
+              as their movement and range.
             </p>
             <p>
-              See the black pawns? Try capturing them all in only <span class="font-semibold">7 moves.</span> If you
-              can't then don't worry, just press the retry button and try again.
+              See the black pawns? Try capturing them all in only <span class="font-semibold">{{sampleBoard.maxMoves}}
+                moves.</span> If you can't then don't worry, just press the retry button and try again.
             </p>
           </div>
-          <div class="mt-10">
+          <div class="mt-10 {{id}}">
             <a href="#" class="mr-4 button">Retry</a>
             <div class="border-[1px] border-spruce inline-block px-2 py-1 rounded-md bg-white">Moves Used: 0</div>
           </div>
         </div>
         <div class="w-1/2">
-          <div class="w-full aspect-square sample-board" data-fen="{{sampleBoard.fen}}"
+          <div class="w-full aspect-square sample-board" data-board-name="{{id}}" data-fen="{{sampleBoard.fen}}"
             data-maxMoves="{{sampleBoard.maxMoves}}"></div>
         </div>
       </div>
