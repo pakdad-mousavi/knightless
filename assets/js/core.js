@@ -1,3 +1,5 @@
+// import { Chess } from "/chessjs/chess.js";
+
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
   let sliderRight = Number(sliders[1].value);
@@ -46,6 +48,7 @@ const watchActiveFilters = (filterBox) => {
 
 const resetFilters = (checkboxes, ranges) => {
   if (!checkboxes.length || !ranges.length) return;
+
   const resetBtn = document.querySelector('button[type=reset]');
   const form = document.querySelector('form');
 
@@ -61,6 +64,29 @@ const resetFilters = (checkboxes, ranges) => {
   });
 };
 
+const setUpSampleBoards = (boardElements) => {
+  if (!boardElements.length) return;
+
+  boardElements.forEach((boardElement) => {
+    const fen = boardElement.dataset.fen;
+    const maxMoves = boardElement.dataset.maxMoves;
+
+    const onDrop = (source, target, piece, newPosition) => {
+      console.log(`From: ${source}`);
+      console.log(`To: ${target}`);
+    };
+
+    const config = {
+      draggable: true,
+      position: fen,
+      pieceTheme: '/chesspieces/{piece}.svg',
+      onDrop: onDrop,
+    };
+
+    const board = new Chessboard(boardElement, config);
+  });
+};
+
 const sliders = document.querySelectorAll('.slider > input');
 const displayElement = document.querySelector('.rating-range-values');
 watchSliders(sliders, displayElement);
@@ -71,3 +97,6 @@ watchActiveFilters(activeFiltersContainer);
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const ranges = document.querySelectorAll('input[type=range]');
 resetFilters(checkboxes, ranges);
+
+const boardElements = document.querySelectorAll('.sample-board');
+setUpSampleBoards(boardElements);
