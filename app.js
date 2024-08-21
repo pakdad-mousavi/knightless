@@ -19,8 +19,18 @@ const dirname = path.resolve();
 
 // Render static files:
 app.use(express.static(`${dirname}/assets/`));
-// Render static chessboardjs files from node modules:
+
+// Render static chessboardjs and chess.js files from node modules:
 app.use('/chessboardjs', express.static(`${dirname}/node_modules/@chrisoakman/chessboardjs/dist`));
+app.use('/chessjs', express.static(`${dirname}/node_modules/chess.js/dist/esm`));
+
+// Render static chesspieces files from images folder:
+app.use(
+  '/chesspieces',
+  express.static(`${dirname}/assets/images/chesspieces`, {
+    maxAge: '1d',
+  })
+);
 
 // Set up the body parser:
 app.use(express.urlencoded({ extended: true }));
