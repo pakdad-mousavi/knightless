@@ -8,4 +8,4 @@ Website that both teaches chess and allows you to read about other chess aspects
 2. Create a "section-paragraph" class to handle the width responsiveness for each section paragraph.
 3. Add font icons to the project.
 4. Fit an "about us" page and attributions page in the header. (contact us goes in the attributions page)
-
+5. Add a "title" attribute to the body to show the current page for client side javascript.
