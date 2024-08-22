@@ -154,7 +154,8 @@
         </div>
         <div
           class="{{#if (isEven @index)}}order-{{getEvenOrderFromIndex @index}}{{else}}order-{{sub (getEvenOrderFromIndex @index) 1}}{{/if}}">
-          <div class="aspect-square bg-red-400"></div>
+          <div class="bg-red-400 aspect-square position-board" data-fen="{{this.fen}}"
+            data-highlight-squares="{{this.highlightSquares}}"></div>
         </div>
         {{/each}}
       </div>
