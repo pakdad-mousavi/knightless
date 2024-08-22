@@ -1,4 +1,5 @@
 import { Chess, SQUARES } from '/chessjs/chess.js';
+import { createGameFen, checkForPieces } from './chessUtils.mjs';
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
@@ -64,36 +65,6 @@ const resetFilters = (checkboxes, ranges) => {
   });
 };
 
-// Chess utility functions
-const createGameFen = (fen, turn = 'w', castling = {}, enPassant = '-', halfmoves = '0', fullmoves = '0') => {
-  //Handle castling notation
-  let castlingNotation = '';
-
-  if (Object.keys(castling).length === 0) {
-    castlingNotation = '-';
-  } else {
-    const whiteKingSide = castling.white.kingSide ? 'K' : '';
-    const whiteQueenSide = castling.white.queenSide ? 'Q' : '';
-    const blackKingSide = castling.black.kingSide ? 'k' : '';
-    const blackQueenSide = castling.black.queenSide ? 'q' : '';
-
-    castlingNotation.concat(whiteKingSide, whiteQueenSide, blackKingSide, blackQueenSide);
-  }
-
-  return [fen, turn, castlingNotation, enPassant, halfmoves, fullmoves].join(' ');
-};
-
-const checkForPieces = (game, type, color) => {
-  for (let square of SQUARES) {
-    const item = game.get(square);
-
-    if (item !== null && item.type === type && item.color === color) {
-      return true;
-    }
-  }
-  return false;
-};
-
 const setUpSampleBoards = (boardElements) => {
   if (!boardElements.length) return;
 
@@ -116,13 +87,19 @@ const setUpSampleBoards = (boardElements) => {
     const game = new Chess();
     game.load(gameFen, { skipValidation: true });
 
-    // Config event functions go here (onDrop, onChange, etc)
+    // Only allow white pieces to be moved
     const onDragStart = (_, piece) => {
       if (piece.search(/^w/) === -1) {
         return false;
       }
     };
 
+    // For promotions or en passants, to load in the new position on the board
+    const onSnapEnd = () => {
+      board.position(game.fen());
+    };
+
+    // Integrate the board move with the game move
     const onDrop = (from, to) => {
       // Make the move in the game
       try {
@@ -144,11 +121,6 @@ const setUpSampleBoards = (boardElements) => {
         //If it was an illegal move, just snap back
         return 'snapback';
       }
-    };
-
-    // For promotions or en passants, to load in the new position on the board
-    const onSnapEnd = () => {
-      board.position(game.fen());
     };
 
     // Create the config object for the gameboard
@@ -175,11 +147,11 @@ const setUpSampleBoards = (boardElements) => {
       updateMovePanel();
     });
 
+    // Update the counter panel
     const updateMovePanel = () => {
-      // Update the counter panel
       moveCounterPanel.innerHTML = `Moves Used: ${moveCounter}`;
 
-      // If the limit is hit, check to see if all black pawns are captured
+      // If the move limit is hit, check to see if all black pawns are captured
       if (moveCounter === maxMoves) {
         const allBlackPawnsCaptured = !checkForPieces(game, 'p', 'b');
 
