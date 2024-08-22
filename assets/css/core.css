@@ -83,8 +83,17 @@ body *.font-serif {
   background-color: rgba(0, 0, 0, 1);
   border: 0;
 }
+
 .slider input:last-of-type::-moz-range-track {
   -moz-appearance: none;
   background: none transparent;
   border: 0;
+}
+
+.fail-panel {
+  @apply !text-rose-500 !border-rose-600;
+}
+
+.success-panel {
+  @apply !text-emerald-500 !border-emerald-600;
 }
