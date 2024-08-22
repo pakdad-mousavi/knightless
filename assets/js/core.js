@@ -146,6 +146,11 @@ const setUpSampleBoards = (boardElements) => {
       }
     };
 
+    // For promotions or en passants, to load in the new position on the board
+    const onSnapEnd = () => {
+      board.position(game.fen());
+    };
+
     // Create the config object for the gameboard
     const config = {
       draggable: true,
@@ -153,6 +158,7 @@ const setUpSampleBoards = (boardElements) => {
       pieceTheme: '/chesspieces/{piece}.svg',
       onDrop,
       onDragStart,
+      onSnapEnd,
     };
 
     const board = new Chessboard(boardElement, config);
