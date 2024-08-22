@@ -26,7 +26,7 @@
         <div class="mb-6 space-y-0.5">
           <span>All About The {{name}}</span>
           <h4 class="font-serif text-lg font-bold uppercase">Overview</h4>
-          <hr class="w-5/12 border-2 border-oak">
+          <hr class="w-5/12 border-[1px] border-oak">
         </div>
         <div class="paragraphs-container !text-dark-oak">
           {{#makeParagraphs overview}}{{/makeParagraphs}}
@@ -38,7 +38,7 @@
         <div class="mb-6 space-y-0.5">
           <span>How {{name}}s Navigate The Board</span>
           <h4 class="font-serif text-lg font-bold uppercase">Main Details</h4>
-          <hr class="w-5/12 border-2 border-oak">
+          <hr class="w-5/12 border-[1px] border-oak">
         </div>
         <ul class="flex flex-wrap text-lg">
           {{#each mainDetails}}
@@ -75,7 +75,7 @@
       <div class="mb-6 space-y-0.5">
         <span>How The {{name}} Excels In Games</span>
         <h4 class="font-serif text-lg font-bold uppercase">Strengths</h4>
-        <hr class="w-1/5 border-2 border-oak">
+        <hr class="w-1/5 border-[1px] border-oak">
       </div>
       <div class="text-lg paragraphs-container !text-dark-oak">
         {{#each strengths}}
@@ -89,7 +89,7 @@
       <div class="mb-6 space-y-0.5">
         <span>The Drawbacks Of The {{name}}</span>
         <h4 class="font-serif text-lg font-bold uppercase">Weaknesses</h4>
-        <hr class="w-1/5 border-2 border-oak">
+        <hr class="w-1/5 border-[1px] border-oak">
       </div>
       <div class="text-lg paragraphs-container !text-dark-oak">
         {{#each weaknesses}}
@@ -105,7 +105,7 @@
           <div class="mb-8 space-y-0.5">
             <span>Try Moving The {{name}}s</span>
             <h4 class="font-serif text-lg font-bold uppercase">Sample Board</h4>
-            <hr class="w-3/5 border-2 border-oak">
+            <hr class="w-3/5 border-[1px] border-oak">
           </div>
           <div class="paragraphs-container !text-dark-oak">
             <p>
@@ -119,13 +119,44 @@
           </div>
           <div class="mt-10 {{id}}">
             <a href="#" class="mr-4 button">Retry</a>
-            <div class="border-[1px] border-spruce inline-block px-2 py-1 rounded-md bg-white">Moves Used: 0</div>
+            <div class="border-[1px] border-spruce inline-block px-2 py-1 rounded-md bg-white duration-500">
+              Moves Used: 0
+            </div>
           </div>
         </div>
         <div class="w-1/2">
           <div class="w-full aspect-square sample-board" data-board-name="{{id}}" data-fen="{{sampleBoard.fen}}"
             data-max-moves="{{sampleBoard.maxMoves}}"></div>
         </div>
+      </div>
+    </section>
+
+    {{!-- Strategic uses --}}
+    <section class="py-10 section-container">
+      <div class="mb-10 space-y-1 text-center">
+        <span>The Drawbacks Of The {{name}}</span>
+        <h4 class="font-serif text-lg font-bold uppercase">Weaknesses</h4>
+        <hr class="w-2/5 mx-auto border-[1px] border-oak">
+      </div>
+      <div class="grid items-center grid-cols-2 gap-10">
+        {{#each strategicUses}}
+        <div
+          class="{{#if (isEven @index)}}order-{{getOddOrderFromIndex @index}}{{else}}order-{{add (getOddOrderFromIndex @index) 1}}{{/if}}">
+          <div class="text-lg">
+            <p class="font-serif font-bold uppercase">
+              {{@key}}
+            </p>
+            <hr class="mb-4 border-[1px] border-dark-oak w-2/5">
+            <p>
+              {{this.description}}
+            </p>
+          </div>
+        </div>
+        <div
+          class="{{#if (isEven @index)}}order-{{getEvenOrderFromIndex @index}}{{else}}order-{{sub (getEvenOrderFromIndex @index) 1}}{{/if}}">
+          <div class="aspect-square bg-red-400"></div>
+        </div>
+        {{/each}}
       </div>
     </section>
     {{/with}}
