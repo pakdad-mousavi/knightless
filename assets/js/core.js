@@ -1,4 +1,4 @@
-import { Chess } from '/chessjs/chess.js';
+import { Chess, SQUARES } from '/chessjs/chess.js';
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
@@ -64,6 +64,7 @@ const resetFilters = (checkboxes, ranges) => {
   });
 };
 
+// Chess utility functions
 const createGameFen = (fen, turn = 'w', castling = {}, enPassant = '-', halfmoves = '0', fullmoves = '0') => {
   //Handle castling notation
   let castlingNotation = '';
@@ -82,6 +83,17 @@ const createGameFen = (fen, turn = 'w', castling = {}, enPassant = '-', halfmove
   return [fen, turn, castlingNotation, enPassant, halfmoves, fullmoves].join(' ');
 };
 
+const checkForPieces = (game, type, color) => {
+  for (let square of SQUARES) {
+    const item = game.get(square);
+
+    if (item !== null && item.type === type && item.color === color) {
+      return true;
+    }
+  }
+  return false;
+};
+
 const setUpSampleBoards = (boardElements) => {
   if (!boardElements.length) return;
 
@@ -90,7 +102,7 @@ const setUpSampleBoards = (boardElements) => {
     const boardName = boardElement.dataset['board-name'];
     const posFen = boardElement.dataset.fen;
     const gameFen = createGameFen(posFen);
-    const maxMoves = boardElement.dataset.maxMoves;
+    const maxMoves = Number(boardElement.dataset['max-moves']);
 
     // Get the game board's panel (all sampleBoards have a reset button and a move counter panel)
     const panel = document.querySelector(`.${boardName}`);
@@ -122,7 +134,7 @@ const setUpSampleBoards = (boardElements) => {
 
         // Update the move counter
         moveCounter++;
-        updateMoveCounter();
+        updateMovePanel();
 
         // Load in the new position, but as white's turn again
         const newPosFen = move.after.split(' ')[0];
@@ -154,11 +166,28 @@ const setUpSampleBoards = (boardElements) => {
 
       // Reset move counter
       moveCounter = 0;
-      updateMoveCounter();
+      updateMovePanel();
     });
 
-    const updateMoveCounter = () => {
+    const updateMovePanel = () => {
+      // Update the counter panel
       moveCounterPanel.innerHTML = `Moves Used: ${moveCounter}`;
+
+      // If the limit is hit, check to see if all black pawns are captured
+      if (moveCounter === maxMoves) {
+        const allBlackPawnsCaptured = !checkForPieces(game, 'p', 'b');
+
+        if (allBlackPawnsCaptured) {
+          moveCounterPanel.classList.add('success-panel');
+        } else {
+          moveCounterPanel.classList.add('fail-panel');
+        }
+      }
+
+      if (moveCounter === 0) {
+        moveCounterPanel.classList.remove('success-panel');
+        moveCounterPanel.classList.remove('fail-panel');
+      }
     };
   });
 };
