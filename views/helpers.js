@@ -31,6 +31,18 @@ const helper = {
 
     return '';
   },
+
+  isEven(value) {
+    return value % 2 === 0;
+  },
+
+  getOddOrderFromIndex(index) {
+    return 2 * index + 1;
+  },
+
+  getEvenOrderFromIndex(index) {
+    return 2 * index + 2;
+  },
 };
 
 export default helper;
