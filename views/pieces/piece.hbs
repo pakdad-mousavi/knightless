@@ -160,6 +160,22 @@
         {{/each}}
       </div>
     </section>
+
+    {{!-- Historical reference section --}}
+    <section class="py-10 section-container bg-dark-oak text-cream">
+      <div class="relative mb-4 space-y-2 font-serif font-bold text-center uppercase">
+        <h3 class="mb-8 text-3xl">Historical</h3>
+        <div class="flex flex-col items-center justify-center">
+          <hr class="w-full border-2 border-cream">
+          <h2 class="px-4 text-4xl -translate-y-1/2 bg-dark-oak">Reference</h2>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="w-3/5 text-lg paragraphs-container !text-cream mx-auto mb-8">
+        {{#makeParagraphs historicalReference}}{{/makeParagraphs}}
+        </div>
+      </div>
+    </section>
     {{/with}}
   </div>
 </div>
