@@ -147,14 +147,14 @@
               {{@key}}
             </p>
             <hr class="mb-4 border-[1px] border-dark-oak w-2/5">
-            <p>
-              {{this.description}}
-            </p>
+            <div class="paragraphs-container !text-dark-oak">
+              {{#makeParagraphs this.description}}{{/makeParagraphs}}
+            </div>
           </div>
         </div>
         <div
           class="{{#if (isEven @index)}}order-{{getEvenOrderFromIndex @index}}{{else}}order-{{sub (getEvenOrderFromIndex @index) 1}}{{/if}}">
-          <div class="bg-red-400 aspect-square position-board" data-fen="{{this.fen}}"
+          <div class="p-10 aspect-square position-board" data-fen="{{this.fen}}"
             data-highlight-squares="{{this.highlightSquares}}"></div>
         </div>
         {{/each}}
