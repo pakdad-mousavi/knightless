@@ -169,7 +169,7 @@ const setUpSampleBoards = (boardElements) => {
     };
 
     // Handle dynamic board resizing
-    window.addEventListener('resize', function () {
+    window.addEventListener('resize', () => {
       board.resize();
     });
   });
@@ -203,7 +203,7 @@ const setUpPositionBoards = (boardElements) => {
     highlightAllSquares();
 
     // Handle dynamic board resizing
-    window.addEventListener('resize', function () {
+    window.addEventListener('resize', () => {
       board.resize();
       highlightAllSquares(); // Re-highlight the squares
     });
