@@ -167,6 +167,11 @@ const setUpSampleBoards = (boardElements) => {
         moveCounterPanel.classList.remove('fail-panel');
       }
     };
+
+    // Handle dynamic board resizing
+    window.addEventListener('resize', function () {
+      board.resize();
+    });
   });
 };
 
@@ -184,14 +189,24 @@ const setUpPositionBoards = (boardElements) => {
       pieceTheme: '/chesspieces/{piece}.svg',
     };
 
-    new Chessboard(boardElement, config);
+    const board = new Chessboard(boardElement, config);
 
-    if (squaresToHighlight && squaresToHighlight.length) {
-      console.log('xxxx');
-      for (let square of squaresToHighlight) {
-        highlightSquare(boardElement, square);
+    // Make a function so that it can be reused when the board is resized
+    const highlightAllSquares = () => {
+      if (squaresToHighlight && squaresToHighlight.length) {
+        console.log('xxxx');
+        for (let square of squaresToHighlight) {
+          highlightSquare(boardElement, square);
+        }
       }
-    }
+    };
+    highlightAllSquares();
+
+    // Handle dynamic board resizing
+    window.addEventListener('resize', function () {
+      board.resize();
+      highlightAllSquares(); // Re-highlight the squares
+    });
   });
 };
 
