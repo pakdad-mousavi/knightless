@@ -1,28 +1,28 @@
 <div class="container py-20 mx-auto font-sans">
   <div class="space-y-20">
     {{#with piece}}
-    <section class="flex items-center section-container"> {{!-- Section title --}}
+    <section class="flex items-center justify-center gap-x-10 lg:gap-x-0 section-container "> {{!-- Section title --}}
       <div>
         <img src="https://placeholder.co/200x400" alt="">
       </div>
-      <div class="relative flex-1 font-serif font-bold text-center uppercase text-dark-oak">
+      <div class="relative font-serif font-bold text-center uppercase lg:flex-1 text-dark-oak">
         <div class="flex flex-col items-center justify-center">
-          <hr class="w-3/4 border-2 border-oak">
+          <hr class="w-full md:w-3/4 border-2 border-oak">
           <h2 class="px-6 text-5xl -translate-y-1/2 bg-cream">The</h2>
         </div>
         <h1 class="mb-8 text-7xl">{{name}}</h1>
-        <hr class="w-4/5 mx-auto border-2 border-oak">
+        <hr class="w-full sm:w-4/5 mx-auto border-2 border-oak">
         <h3 class="my-4 text-xl">{{subtitle}}</h3>
-        <hr class="w-1/2 mx-auto border-2 border-oak">
+        <hr class="w-4/5 sm:w-1/2 mx-auto border-2 border-oak">
       </div>
       <div>
         <img src="https://placeholder.co/200x400" alt="">
       </div>
     </section>
 
-    <section class="flex gap-x-10 section-container">
+    <section class="flex flex-col lg:flex-row gap-y-20 gap-x-10 section-container">
       {{!-- Overview section --}}
-      <div class="w-1/2">
+      <div class="lg:w-1/2">
         <div class="mb-6 space-y-0.5">
           <span>All About The {{name}}</span>
           <h4 class="font-serif text-lg font-bold uppercase">Overview</h4>
@@ -34,7 +34,7 @@
       </div>
 
       {{!-- main details section --}}
-      <div class="w-1/2">
+      <div class="lg:w-1/2">
         <div class="mb-6 space-y-0.5">
           <span>How {{name}}s Navigate The Board</span>
           <h4 class="font-serif text-lg font-bold uppercase">Main Details</h4>
@@ -100,12 +100,12 @@
 
     {{!-- Sample board section --}}
     <section class="py-10 section-container">
-      <div class="flex items-center gap-x-10">
-        <div class="w-1/2">
+      <div class="flex flex-col items-center text-center gap-y-20 lg:flex-row gap-x-10 lg:text-left">
+        <div class="lg:w-1/2">
           <div class="mb-8 space-y-0.5">
             <span>Try Moving The {{name}}s</span>
             <h4 class="font-serif text-lg font-bold uppercase">Sample Board</h4>
-            <hr class="w-3/5 border-[1px] border-oak">
+            <hr class="lg:mx-0 mx-auto w-1/5 lg:w-2/5 border-[1px] border-oak">
           </div>
           <div class="paragraphs-container !text-dark-oak">
             <p>
@@ -124,7 +124,7 @@
             </div>
           </div>
         </div>
-        <div class="w-1/2">
+        <div class="w-full md:w-3/4 lg:w-1/2">
           <div class="w-full aspect-square sample-board" data-board-name="{{id}}" data-fen="{{sampleBoard.fen}}"
             data-max-moves="{{sampleBoard.maxMoves}}"></div>
         </div>
@@ -134,27 +134,27 @@
     {{!-- Strategic uses --}}
     <section class="py-10 section-container">
       <div class="mb-10 space-y-1 text-center">
-        <span>The Drawbacks Of The {{name}}</span>
-        <h4 class="font-serif text-lg font-bold uppercase">Weaknesses</h4>
+        <span>How The {{name}} Excels In Games</span>
+        <h4 class="font-serif text-lg font-bold uppercase">Strategic Uses</h4>
         <hr class="w-2/5 mx-auto border-[1px] border-oak">
       </div>
-      <div class="grid items-center grid-cols-2 gap-10">
+      <div class="grid items-center gap-20 justify-items-center lg:justify-start lg:grid-cols-2">
         {{#each strategicUses}}
         <div
-          class="{{#if (isEven @index)}}order-{{getOddOrderFromIndex @index}}{{else}}order-{{add (getOddOrderFromIndex @index) 1}}{{/if}}">
-          <div class="text-lg">
+          class="{{#if (isEven @index)}}lg:order-{{getOddOrderFromIndex @index}}{{else}}lg:order-{{add (getOddOrderFromIndex @index) 1}}{{/if}}">
+          <div class="text-lg text-center lg:text-left">
             <p class="font-serif font-bold uppercase">
               {{@key}}
             </p>
-            <hr class="mb-4 border-[1px] border-dark-oak w-2/5">
+            <hr class="mx-auto lg:mx-0 mb-4 border-[1px] border-dark-oak w-1/5 lg:w-2/5">
             <div class="paragraphs-container !text-dark-oak">
               {{#makeParagraphs this.description}}{{/makeParagraphs}}
             </div>
           </div>
         </div>
         <div
-          class="{{#if (isEven @index)}}order-{{getEvenOrderFromIndex @index}}{{else}}order-{{sub (getEvenOrderFromIndex @index) 1}}{{/if}}">
-          <div class="p-10 aspect-square position-board" data-fen="{{this.fen}}"
+          class="w-11/12 md:w-3/4 lg:w-11/12 {{#if (isEven @index)}}lg:order-{{getEvenOrderFromIndex @index}}{{else}}lg:order-{{sub (getEvenOrderFromIndex @index) 1}}{{/if}}">
+          <div class="w-full aspect-square position-board" data-fen="{{this.fen}}"
             data-highlight-squares="{{this.highlightSquares}}"></div>
         </div>
         {{/each}}
