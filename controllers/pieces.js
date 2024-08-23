@@ -4,15 +4,14 @@ export const getPieceById = async (req, res) => {
   const { id } = req.params;
 
   try {
+    const lowercaseId = id.toLowerCase();
     // Find the piece
-    const piece = await Piece.findOne({ id }).lean();
+    const piece = await Piece.findOne({ id: lowercaseId }).lean();
 
     // Find the other pieces and get only their names
-    const otherPieces = (
-      await Piece.find({ id: { $ne: id } })
-        .select('name -_id')
-        .lean()
-    ).map((piece) => piece.name);
+    const otherPieces = await Piece.find({ id: { $ne: lowercaseId } })
+      .select('name overview -_id')
+      .lean();
 
     // Response model
     const model = {
