@@ -172,11 +172,43 @@
       </div>
       <div class="text-center">
         <div class="w-3/5 text-lg paragraphs-container !text-cream mx-auto mb-8">
-        {{#makeParagraphs historicalReference}}{{/makeParagraphs}}
+          {{#makeParagraphs historicalReference}}{{/makeParagraphs}}
         </div>
       </div>
     </section>
     {{/with}}
+
+    {{!-- See other pieces section --}}
+    <section class="py-10 section-container">
+      <div class="relative mb-8 space-y-2 font-serif font-bold text-center uppercase">
+        <h3 class="mb-8 text-3xl">Check Out The</h3>
+        <div class="flex flex-col items-center justify-center">
+          <hr class="w-full border-2 border-dark-oak">
+          <h2 class="px-4 text-4xl -translate-y-1/2 bg-cream">other Pieces</h2>
+        </div>
+      </div>
+
+      <div
+        class="grid md:grid-cols-12 xl:grid-cols-6 md:[&>*:nth-child(5)]:!col-start-4 xl:[&>*:nth-child(4)]:!col-start-2 gap-10 lg:gap-0 xl:gap-10">
+        {{#each otherPieces}}
+        <div class="md:col-span-6 xl:col-span-2 lg:p-10 xl:p-0">
+          <a href="/pieces/{{this.name}}"
+            class="flex flex-col p-4 box-border bg-white aspect-square rounded-xl border-[1px] border-spruce w-2/3 md:w-full mx-auto md:mx-0">
+            <div class="flex items-center mb-4">
+              <div class="flex-1 space-y-2 font-serif font-bold uppercase text-dark-oak">
+                <h5 class="text-2xl">The</h5>
+                <h4 class="text-3xl">{{this.name}}</h4>
+                <hr class="w-4/5 border-[1px] mt-1 border-oak">
+              </div>
+              <span class="text-2xl">(icon)</span>
+            </div>
+            <p class="mt-8 text-lg text-center line-clamp-6 md:mt-auto">{{this.overview}}</p>
+          </a>
+        </div>
+        {{/each}}
+      </div>
+
+    </section>
   </div>
 </div>
 
