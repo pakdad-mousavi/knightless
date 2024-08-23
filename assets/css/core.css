@@ -97,3 +97,11 @@ body *.font-serif {
 .success-panel {
   @apply !text-emerald-500 !border-emerald-600;
 }
+
+.highlighted-white {
+  @apply !bg-red-400;
+}
+
+.highlighted-black {
+  @apply !bg-red-500;
+}

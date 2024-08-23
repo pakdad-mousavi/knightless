@@ -28,3 +28,13 @@ export const checkForPieces = (game, type, color) => {
   }
   return false;
 };
+
+export const highlightSquare = (boardElement, square) => {
+  const box = boardElement.querySelector(`.square-${square}`);
+  // console.log(box);
+  if (box.classList.contains('white-1e1d7')) {
+    box.classList.add('highlighted-white');
+  } else {
+    box.classList.add('highlighted-black');
+  }
+};

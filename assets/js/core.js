@@ -1,5 +1,5 @@
 import { Chess, SQUARES } from '/chessjs/chess.js';
-import { createGameFen, checkForPieces } from './chessUtils.mjs';
+import { createGameFen, checkForPieces, highlightSquare } from './chessUtils.mjs';
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
@@ -170,6 +170,31 @@ const setUpSampleBoards = (boardElements) => {
   });
 };
 
+const setUpPositionBoards = (boardElements) => {
+  if (!boardElements.length) return;
+
+  boardElements.forEach((boardElement) => {
+    // Get respective data from the webpage
+    const posFen = boardElement.dataset.fen;
+    let squaresToHighlight = boardElement.dataset['highlight-squares'];
+    if (squaresToHighlight.length) squaresToHighlight = squaresToHighlight.split(',');
+
+    const config = {
+      position: posFen,
+      pieceTheme: '/chesspieces/{piece}.svg',
+    };
+
+    new Chessboard(boardElement, config);
+
+    if (squaresToHighlight && squaresToHighlight.length) {
+      console.log('xxxx');
+      for (let square of squaresToHighlight) {
+        highlightSquare(boardElement, square);
+      }
+    }
+  });
+};
+
 const sliders = document.querySelectorAll('.slider > input');
 const displayElement = document.querySelector('.rating-range-values');
 watchSliders(sliders, displayElement);
@@ -181,5 +206,8 @@ const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const ranges = document.querySelectorAll('input[type=range]');
 resetFilters(checkboxes, ranges);
 
-const boardElements = document.querySelectorAll('.sample-board');
-setUpSampleBoards(boardElements);
+const sampleBoards = document.querySelectorAll('.sample-board');
+setUpSampleBoards(sampleBoards);
+
+const positionBoards = document.querySelectorAll('.position-board');
+setUpPositionBoards(positionBoards);
