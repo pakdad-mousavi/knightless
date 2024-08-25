@@ -36,6 +36,10 @@ body *.font-serif {
   @apply space-y-6 text-lg text-oak;
 }
 
+.paragraphs-container b {
+  @apply font-semibold;
+}
+
 .searchbar {
   @apply relative mx-auto md:w-3/5 lg:w-2/5;
 }

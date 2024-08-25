@@ -42,7 +42,7 @@
   </section>
 
   {{!-- Empty board section --}}
-  <section class="section-container">
+  <section class="py-10 section-container">
     <div class="flex flex-col items-center text-center gap-y-20 lg:flex-row gap-x-10 lg:text-left">
       <div class="lg:w-1/2">
         <div class="mb-8 space-y-0.5">
@@ -64,6 +64,96 @@
       <div class="w-full md:w-3/4 lg:w-1/2">
         <div class="w-full aspect-square position-board" data-fen="8/8/8/8/8/8/8/8"
           data-highlight-squares="g1,g2,g3,g4,g5,a5,b5,c5,d5,e5,f5"></div>
+      </div>
+    </div>
+  </section>
+
+  {{!-- Chess notation with pieces section --}}
+  <section class="py-20 section-container">
+    <div class="mb-16 space-y-0.5 text-center">
+      <span class="text-lg">How To Record Moves</span>
+      <h4 class="font-serif text-xl font-bold uppercase">Chess Notation With Pieces</h4>
+      <hr class="mx-auto w-1/5 border-[1px] border-oak">
+    </div>
+
+    <div class="grid items-center grid-cols-2 gap-x-20 gap-y-32">
+      <div class="order-1">
+        <div class="mb-8 space-y-0.5">
+          <span>Referring To Each Piece</span>
+          <h4 class="font-serif text-lg font-bold uppercase">The Pieces</h4>
+          <hr class=" w-2/5 border-[1px] border-oak">
+        </div>
+        <div class="paragraphs-container !text-dark-oak">
+          <p>
+            With chess notation, each piece has a certain letter representing it. For example the king is <span
+              class="font-semibold">"K"</span>, and the queen is <span class="font-semibold">"Q"</span>. Here are the
+            letters for each piece:
+          </p>
+          <p>
+          <ul class="list-disc list-inside">
+            <li>King: <span class="font-semibold">"K"</span></li>
+            <li>Queen: <span class="font-semibold">"Q"</span></li>
+            <li>Knight: <span class="font-semibold">"N"</span></li>
+            <li>Bishop: <span class="font-semibold">"B"</span></li>
+            <li>Rook: <span class="font-semibold">"R"</span></li>
+            <li>Pawn: <span class="font-semibold">(pawns do not get letters)</span></li>
+          </ul>
+          </p>
+        </div>
+      </div>
+      <div class="order-2">
+        <div class="position-board" data-highlight-squares=""></div>
+      </div>
+      <div class="order-4">
+        <div class="mb-8 space-y-0.5">
+          <span>Referring To A Move</span>
+          <h4 class="font-serif text-lg font-bold uppercase">Moving The Pieces</h4>
+          <hr class=" w-2/5 border-[1px] border-oak">
+        </div>
+        <div class="paragraphs-container !text-dark-oak">
+          <p>
+            How can you tell someone which piece you moved and where to? Well, you use the earlier notation to refer to
+            the square and the specific piece letter.
+          </p>
+          <p>
+            Here's an example. Let's say our knight moved from the b1 square to c3. This move would be <b>"Nc3".</b>
+            First comes the piece, then the square it has moved to.
+          </p>
+          <p>
+            Take a look at the board, the rook has just moved from d3 to d7. What would this move be? The correct answer
+            is <b>Rd7.</b>
+          </p>
+        </div>
+      </div>
+      <div class="order-3">
+        <div class="position-board" data-fen="1kr5/1ppR2p1/p6p/7P/6P1/1P6/P1P5/1K6" data-highlight-squares="d3,d7">
+        </div>
+      </div>
+      <div class="order-5">
+        <div class="mb-8 space-y-0.5">
+          <span>Captures, Checks, and Checkmates</span>
+          <h4 class="font-serif text-lg font-bold uppercase">Different Move Types</h4>
+          <hr class=" w-2/5 border-[1px] border-oak">
+        </div>
+        <div class="paragraphs-container !text-dark-oak">
+          <p>
+            What if we capture a piece with our piece, or deliver check or checkmate with our move?
+          </p>
+          <p>
+            If the move we make is a capture, then we need to put an <b>"x"</b> between the piece and square. For
+            example: <b>"Bxf7"</b> (bishop takes f7) or <b>"Kxg3"</b> (king takes g3).
+          </p>
+          <p>
+            If our move is a check, then we need to put a <b>"+"</b> at the end, for example: <b>"Qa4+"</b> or <b>"Bxf3+"</b>.
+          </p>
+          <p>
+            If our move is a checkmate, then we need to place a <b>"#"</b> at the end, such as: <b>Re4#</b>.
+          </p>
+        </div>
+      </div>
+      <div class="order-6">
+        <div class="position-board" data-fen="1kr5/1ppR2p1/p6p/7P/6P1/1P6/P1P5/1K6" data-highlight-squares="d3,d7">
+        </div>
       </div>
     </div>
   </section>

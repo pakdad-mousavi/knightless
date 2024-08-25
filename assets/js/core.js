@@ -185,7 +185,7 @@ const setUpPositionBoards = (boardElements) => {
     if (squaresToHighlight.length) squaresToHighlight = squaresToHighlight.split(',');
 
     const config = {
-      position: posFen,
+      position: posFen || 'start',
       pieceTheme: '/chesspieces/{piece}.svg',
     };
 
@@ -194,7 +194,6 @@ const setUpPositionBoards = (boardElements) => {
     // Make a function so that it can be reused when the board is resized
     const highlightAllSquares = () => {
       if (squaresToHighlight && squaresToHighlight.length) {
-        console.log('xxxx');
         for (let square of squaresToHighlight) {
           highlightSquare(boardElement, square);
         }
