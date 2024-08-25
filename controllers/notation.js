@@ -5,5 +5,5 @@ export const index = (req, res) => {
     isHomePage: false,
   };
 
-  res.render('notation');
+  res.render('notation', model);
 };
