@@ -109,3 +109,7 @@ body *.font-serif {
 .highlighted-black {
   @apply !bg-red-500;
 }
+
+.link {
+  @apply text-blue-600 active:text-blue-800
+}
