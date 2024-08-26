@@ -3,6 +3,7 @@ import * as homeController from '../controllers/home.js';
 import * as playersController from '../controllers/players.js';
 import * as piecesController from '../controllers/pieces.js';
 import * as notationController from '../controllers/notation.js';
+import * as attributionsController from '../controllers/attributions.js';
 
 const router = express.Router();
 
@@ -19,5 +20,8 @@ router.route('/pieces/:id').get(piecesController.getPieceById);
 
 // Notation
 router.route('/notation').get(notationController.index);
+
+//Attributions
+router.route('/attributions').get(attributionsController.index);
 
 export default router;
