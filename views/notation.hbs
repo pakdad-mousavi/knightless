@@ -11,8 +11,8 @@
         </div>
       </div>
 
-      <div class="flex gap-10">
-        <div class="bg-white p-5 w-1/2 mx-auto rounded-lg border-spruce border-[1px]">
+      <div class="flex flex-col gap-10 md:flex-row">
+        <div class="bg-white p-5 md:w-1/2 mx-auto rounded-lg border-spruce border-[1px]">
           <h4 class="mb-8 font-serif text-2xl font-bold uppercase">What Notation Is:</h4>
           <div class="mx-auto space-y-5 font-sans text-xl">
             <p>
@@ -24,7 +24,7 @@
             </p>
           </div>
         </div>
-        <div class="bg-white p-5 w-1/2 mx-auto rounded-lg border-spruce border-[1px]">
+        <div class="bg-white p-5 md:w-1/2 mx-auto rounded-lg border-spruce border-[1px]">
           <h4 class="mb-8 font-serif text-2xl font-bold uppercase">What It's For:</h4>
           <div class="mx-auto space-y-5 font-sans text-xl">
             <p>
@@ -56,8 +56,8 @@
               respectively)</span>. Each square is referred to by combining its file's letter with its rank's number.
           </p>
           <p>
-            For example, on the board, the square <span class="font-semibold">g6</span> is on the g-file and 5th rank.
-            Putting the file's letter and rank's number together, you get the square g6.
+            For example, on the board, the square <span class="font-semibold">g5</span> is on the g-file and 5th rank.
+            Putting the file's letter and rank's number together, you get the square g5.
           </p>
         </div>
       </div>
@@ -76,12 +76,12 @@
       <hr class="mx-auto w-1/5 border-[1px] border-oak">
     </div>
 
-    <div class="grid items-center grid-cols-2 gap-x-20 gap-y-32">
+    <div class="grid items-center text-center lg:grid-cols-2 gap-x-20 gap-y-32 lg:text-left">
       <div class="order-1">
         <div class="mb-8 space-y-0.5">
           <span>Referring To Each Piece</span>
           <h4 class="font-serif text-lg font-bold uppercase">The Pieces</h4>
-          <hr class=" w-2/5 border-[1px] border-oak">
+          <hr class=" w-2/5 mx-auto lg:mx-0 border-[1px] border-oak">
         </div>
         <div class="paragraphs-container !text-dark-oak">
           <p>
@@ -101,14 +101,14 @@
           </p>
         </div>
       </div>
-      <div class="order-2">
-        <div class="position-board" data-highlight-squares=""></div>
+      <div class="order-2 w-full mx-auto md:w-3/4 lg:w-full">
+        <div class="w-full position-board" data-highlight-squares=""></div>
       </div>
-      <div class="order-4">
+      <div class="order-3 lg:order-4">
         <div class="mb-8 space-y-0.5">
           <span>Referring To A Move</span>
           <h4 class="font-serif text-lg font-bold uppercase">Moving The Pieces</h4>
-          <hr class=" w-2/5 border-[1px] border-oak">
+          <hr class=" w-2/5 mx-auto lg:mx-0 border-[1px] border-oak">
         </div>
         <div class="paragraphs-container !text-dark-oak">
           <p>
@@ -125,15 +125,16 @@
           </p>
         </div>
       </div>
-      <div class="order-3">
-        <div class="position-board" data-fen="1kr5/1ppR2p1/p6p/7P/6P1/1P6/P1P5/1K6" data-highlight-squares="d3,d7">
+      <div class="order-4 w-full mx-auto lg:order-3 md:w-3/4 lg:w-full">
+        <div class="w-full position-board" data-fen="1kr5/1ppR2p1/p6p/7P/6P1/1P6/P1P5/1K6"
+          data-highlight-squares="d3,d7">
         </div>
       </div>
       <div class="order-5">
         <div class="mb-8 space-y-0.5">
           <span>Captures, Checks, and Checkmates</span>
           <h4 class="font-serif text-lg font-bold uppercase">Different Move Types</h4>
-          <hr class=" w-2/5 border-[1px] border-oak">
+          <hr class=" w-2/5 mx-auto lg:mx-0 border-[1px] border-oak">
         </div>
         <div class="paragraphs-container !text-dark-oak">
           <p>
@@ -152,16 +153,16 @@
           </p>
         </div>
       </div>
-      <div class="order-6">
-        <div class="position-board" data-fen="rnbqk2r/1pp1bppp/p2p1n2/4p2Q/2B1P3/2NP4/PPP2PPP/R1B1K1NR"
+      <div class="order-6 w-full mx-auto md:w-3/4 lg:w-full">
+        <div class="w-full position-board" data-fen="rnbqk2r/1pp1bppp/p2p1n2/4p2Q/2B1P3/2NP4/PPP2PPP/R1B1K1NR"
           data-highlight-squares="c4,b5,a6,h5,g6,f7,d5,e6">
         </div>
       </div>
-      <div class="order-8">
+      <div class="order-7 lg:order-8">
         <div class="mb-8 space-y-0.5">
           <span>Special Pawn Notation</span>
           <h4 class="font-serif text-lg font-bold uppercase">Pawn Moves And Captures</h4>
-          <hr class=" w-2/5 border-[1px] border-oak">
+          <hr class=" w-2/5 mx-auto lg:mx-0 border-[1px] border-oak">
         </div>
         <div class="paragraphs-container !text-dark-oak">
           <p>
@@ -178,8 +179,8 @@
           </p>
         </div>
       </div>
-      <div class="order-7">
-        <div class="position-board" data-fen="rnbqkbnr/ppp2ppp/8/3pp3/4P3/8/PPPP1PPP/RNBQKBNR"
+      <div class="order-8 w-full mx-auto md:w-3/4 lg:w-full lg:order-7">
+        <div class="w-full position-board" data-fen="rnbqkbnr/ppp2ppp/8/3pp3/4P3/8/PPPP1PPP/RNBQKBNR"
           data-highlight-squares="e2,e4">
         </div>
       </div>
@@ -197,8 +198,8 @@
         </div>
       </div>
 
-      <div class="flex gap-10">
-        <div class="bg-white p-5 w-1/2 mx-auto rounded-lg border-spruce border-[1px]">
+      <div class="flex flex-col gap-10 md:flex-row">
+        <div class="bg-white p-5 md:w-1/2 mx-auto rounded-lg border-spruce border-[1px]">
           <h4 class="mb-8 font-serif text-2xl font-bold uppercase">What PGN Is:</h4>
           <div class="mx-auto space-y-5 font-sans text-xl">
             <p>
@@ -209,7 +210,7 @@
               notation.</p>
           </div>
         </div>
-        <div class="bg-white p-5 w-1/2 mx-auto rounded-lg border-spruce border-[1px]">
+        <div class="bg-white p-5 md:w-1/2 mx-auto rounded-lg border-spruce border-[1px]">
           <h4 class="mb-8 font-serif text-2xl font-bold uppercase">Why Use PGN:</h4>
           <div class="mx-auto space-y-5 font-sans text-xl">
             <p>
@@ -244,3 +245,5 @@
     </div>
   </section>
 </div>
+
+<h1 class="h-10 mt-10 bg-red-200 sm:bg-green-200 md:bg-blue-200 lg:bg-purple-300 xl:bg-lime-300 2xl:bg-yellow-200"></h1>
