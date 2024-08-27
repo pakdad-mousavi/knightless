@@ -4,6 +4,7 @@ import * as playersController from '../controllers/players.js';
 import * as piecesController from '../controllers/pieces.js';
 import * as notationController from '../controllers/notation.js';
 import * as attributionsController from '../controllers/attributions.js';
+import * as contactController from '../controllers/contact.js';
 
 const router = express.Router();
 
@@ -21,7 +22,10 @@ router.route('/pieces/:id').get(piecesController.getPieceById);
 // Notation
 router.route('/notation').get(notationController.index);
 
-//Attributions
+// Attributions
 router.route('/attributions').get(attributionsController.index);
+
+// Contact
+router.route('/contact').get(contactController.index);
 
 export default router;
