@@ -1,10 +1,10 @@
 {{!-- {{#with dailyPuzzle}}
 {{puzzle.id}}
 {{/with}} --}}
-<div class="container font-sans">
+<div class="container mx-auto font-sans">
   {{!-- Title --}}
   <section class="py-20 section-container">
-    <div class="relative mb-10 space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
+    <div class="relative space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
       <h3 class="mb-8 text-3xl">Our Daily</h3>
       <div class="flex flex-col items-center justify-center mb-8">
         <hr class="w-full border-2 border-oak">
@@ -17,4 +17,50 @@
     </div>
   </section>
 
+  {{!-- Puzzle --}}
+  <section class="py-10 section-container">
+    <div class="flex gap-x-10">
+      {{!-- Board --}}
+      <div class="w-3/5">
+        <div class="w-full position-board" data-fen="8/8/8/8/8/8/8/8" data-highlight-squares=""></div>
+      </div>
+
+      {{!-- PGN panel --}}
+      <div class="w-2/5">
+        <div class="flex flex-col h-full bg-white border-2 border-spruce">
+          {{!-- Title --}}
+          <div>
+            <div class="flex flex-col items-start justify-center mt-7">
+              <hr class="w-11/12 mx-auto border-2 border-oak">
+              <h2 class="px-4 font-serif text-xl font-bold uppercase -translate-y-1/2 bg-white">PGN Panel</h2>
+            </div>
+          </div>
+
+          {{!-- Moves --}}
+          <div class="flex h-[400px] overflow-y-scroll border-y-[1px] bg-cream">
+            <div class="grid w-12 grid-cols-1 text-center">
+              {{#each dailyPuzzle.game.pgnArray}}
+              <div class="even:hidden py-[2px] bg-white border-r-[1px]">{{getMoveNumberFromIndex (add @index 2)}}.
+              </div>
+              {{/each}}
+            </div>
+            <div class="grid flex-1 grid-cols-2">
+              {{#each dailyPuzzle.game.pgnArray}}
+              <div class="py-[2px] px-2 duration-75 hover:bg-dark-oak hover:text-cream border-spruce">{{this}}</div>
+              {{/each}}
+            </div>
+          </div>
+
+          {{!-- Message box --}}
+          <div class="flex w-full justify-center text-center">
+            <div class="px-4 pt-10">
+              <h4 class="font-serif text-lg font-bold uppercase">Find the best move for <span>black</span>.
+            </div>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</section>
 </div>
