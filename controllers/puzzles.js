@@ -15,6 +15,7 @@ export const getDailyPuzzle = async (req, res) => {
         name: 'Blitz',
       },
       pgn: 'd4 d5 Bf4 Bf5 Nf3 e6 c4 Nf6 Nc3 Bd6 Bg3 Nbd7 e3 O-O c5 Bxg3 hxg3 h6 Bd3 Ne4 Qc2 Ndf6 Nd2 Nxc3 Bxf5 exf5 bxc3 Ne4 Nxe4 fxe4 Rb1 b6 Rh5 bxc5 Rb5 cxd4 cxd4 c6 Qxc6 Rc8 Qxd5 Qf6 Qxe4 Rc1+ Ke2 Qa6 Qd5 Rc2+ Kf3 g6 Rxh6 Qf6+ Ke4',
+      pgnArray: ['d4', 'd5', 'Bf4', 'Bf5', 'Nf3', 'e6', 'c4', 'Nf6', 'Nc3', 'Bd6', 'Bg3', 'Nbd7', 'e3', 'O-O', 'c5', 'Bxg3', 'hxg3', 'h6', 'Bd3', 'Ne4', 'Qc2', 'Ndf6', 'Nd2', 'Nxc3', 'Bxf5', 'exf5', 'bxc3', 'Ne4', 'Nxe4', 'fxe4', 'Rb1', 'b6', 'Rh5', 'bxc5', 'Rb5', 'cxd4', 'cxd4', 'c6', 'Qxc6', 'Rc8', 'Qxd5', 'Qf6', 'Qxe4', 'Rc1+', 'Ke2', 'Qa6', 'Qd5', 'Rc2+', 'Kf3', 'g6', 'Rxh6', 'Qf6+', 'Ke4'],
       players: [
         {
           color: 'white',
