@@ -25,11 +25,7 @@ const helper = {
   },
 
   add(value, addend) {
-    if (value && addend) {
-      return value + addend;
-    }
-
-    return '';
+    return value + addend;
   },
 
   isEven(value) {
@@ -43,6 +39,10 @@ const helper = {
   getEvenOrderFromIndex(index) {
     return 2 * index + 2;
   },
+
+  getMoveNumberFromIndex(index) {
+    return Math.floor(index / 2);
+  }
 };
 
 export default helper;
