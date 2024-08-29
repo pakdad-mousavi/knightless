@@ -216,7 +216,12 @@ const setUpPuzzleBoards = (boardElements) => {
     // Get the game position and the puzzle solution
     const pgn = boardElement.dataset.pgn.replaceAll(',', ' ');
     const solution = boardElement.dataset.solution.split(',');
-    console.log(solution);
+
+    // Get the move box and message box elements for the respective board
+    const id = boardElement.id;
+    const pgnPanel = document.querySelector(`.${id}.pgn-panel`);
+    const messageBox = pgnPanel.querySelector(`.message-box`);
+    // const moveBox = pgnPanel.querySelector(`.move-box`);
 
     // Create the game with the pgn
     const game = new Chess();
@@ -243,7 +248,7 @@ const setUpPuzzleBoards = (boardElements) => {
 
         // If the move is correct...
         if (move.lan === solution[movesUsed]) {
-          console.log('Correct');
+          updatePgnPanel();
 
           // If the puzzle is over...
           if (solution.length === movesUsed + 1) {
@@ -285,6 +290,15 @@ const setUpPuzzleBoards = (boardElements) => {
 
     const board = new Chessboard(boardElement, config);
     board.orientation(orientation);
+
+    const updatePgnPanel = (orientation = null, move = null) => {
+      if (orientation) {
+        messageBox.innerText = `Find the best move for ${orientation}.`;
+      }
+    };
+
+    // Give the pgn panel its initial message
+    updatePgnPanel(orientation);
   });
 };
 
