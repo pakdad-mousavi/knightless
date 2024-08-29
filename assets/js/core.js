@@ -1,4 +1,4 @@
-import { Chess, SQUARES } from '/chessjs/chess.js';
+import { Chess } from '/chessjs/chess.js';
 import { createGameFen, checkForPieces, highlightSquare } from './chessUtils.mjs';
 
 const getsliderValues = (sliders) => {
@@ -248,11 +248,11 @@ const setUpPuzzleBoards = (boardElements) => {
 
         // If the move is correct...
         if (move.lan === solution[movesUsed]) {
-          updatePgnPanel();
+          updatePgnPanel({ move, isCorrect: true, puzzleOver: false });
 
           // If the puzzle is over...
           if (solution.length === movesUsed + 1) {
-            console.log('puzzle over');
+            updatePgnPanel({ move, isCorrect: true, puzzleOver: true });
             return;
           }
 
@@ -266,7 +266,7 @@ const setUpPuzzleBoards = (boardElements) => {
 
         // If the move is wrong...
         else {
-          console.log('Wrong');
+          updatePgnPanel({ move, isCorrect: false, puzzleOver: false });
           game.undo(); // Undo the move
 
           window.setTimeout(() => {
@@ -291,14 +291,31 @@ const setUpPuzzleBoards = (boardElements) => {
     const board = new Chessboard(boardElement, config);
     board.orientation(orientation);
 
-    const updatePgnPanel = (orientation = null, move = null) => {
-      if (orientation) {
-        messageBox.innerText = `Find the best move for ${orientation}.`;
+    const updatePgnPanel = (obj) => {
+      // Initial run, set the message to tell the player who's turn it is
+      if (obj.orientation) {
+        const message = [];
+        message.push(`<h4>It's your turn.</h4>`);
+        message.push(`<span class="font-normal">Find the best move for ${obj.orientation}.</span>`);
+        messageBox.innerHTML = message.join('');
+      }
+
+      if (obj.move) {
+        // Set the message to tell the player the puzzle is over
+        if (obj.puzzleOver && obj.isCorrect) {
+          messageBox.innerHTML = `<h4>Puzzle solved!</h4><span class="font-normal">Great job.</span>`;
+        } else {
+          // Tell the player to keep going or to try again based on move
+          const messageType = obj.isCorrect ? 'success' : 'fail';
+          const messageTitle = obj.isCorrect ? `<h4><span class="${messageType}">${obj.move.san}</span> is the best move.</h4>` : `<h4><span class="${messageType}">${obj.move.san}</span> is not the right move.</h4>`;
+          const messageText = obj.isCorrect ? `<span class="font-normal">Keep going...</span>` : `<span class="font-normal">Try again.</span>`;
+          messageBox.innerHTML = messageTitle + messageText;
+        }
       }
     };
 
     // Give the pgn panel its initial message
-    updatePgnPanel(orientation);
+    updatePgnPanel({ orientation });
   });
 };
 
