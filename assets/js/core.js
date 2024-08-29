@@ -279,6 +279,7 @@ const setUpPuzzleBoards = (boardElements) => {
       draggable: true,
       onDrop,
       onDragStart,
+      moveSpeed: 150,
       pieceTheme: '/chesspieces/{piece}.svg',
     };
 
