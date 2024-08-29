@@ -209,6 +209,76 @@ const setUpPositionBoards = (boardElements) => {
   });
 };
 
+const setUpPuzzleBoards = (boardElements) => {
+  if (!boardElements.length) return;
+
+  boardElements.forEach((boardElement) => {
+    // Get the game position and the puzzle solution
+    const pgn = boardElement.dataset.pgn.replaceAll(',', ' ');
+    const solution = boardElement.dataset.solution.split(',');
+    console.log(solution);
+
+    // Create the game with the pgn
+    const game = new Chess();
+    game.loadPgn(pgn);
+
+    // Deduce the board orientation based on number of moves done
+    const gameLength = game.moveNumber();
+    const orientation = gameLength % 2 === 0 ? 'white' : 'black';
+
+    // Keep track of the moves used by the player
+    let movesUsed = 0;
+
+    const onDrop = (from, to) => {
+      try {
+        // Make the move (checks if it is legal or not)
+        const move = game.move({ from, to });
+
+        // If the move is correct...
+        if (move.lan === solution[movesUsed]) {
+          console.log('Correct');
+
+          // If the puzzle is over...
+          if (solution.length === movesUsed + 1) {
+            console.log('puzzle over');
+            return;
+          }
+
+          // If the puzzle is not over, make the opponents move
+          window.setTimeout(() => {
+            game.move(solution[movesUsed + 1]);
+            board.position(game.fen());
+            movesUsed += 2;
+          }, 400);
+        }
+
+        // If the move is wrong...
+        else {
+          console.log('Wrong');
+          game.undo(); // Undo the move
+
+          window.setTimeout(() => {
+            board.position(game.fen()); // Return back to position before the move
+          }, 400);
+        }
+      } catch {
+        return 'snapback';
+      }
+    };
+
+    // Create the chessboard
+    const config = {
+      position: game.fen() || 'start',
+      draggable: true,
+      onDrop,
+      pieceTheme: '/chesspieces/{piece}.svg',
+    };
+
+    const board = new Chessboard(boardElement, config);
+    board.orientation(orientation);
+  });
+};
+
 const sliders = document.querySelectorAll('.slider > input');
 const displayElement = document.querySelector('.rating-range-values');
 watchSliders(sliders, displayElement);
@@ -225,3 +295,6 @@ setUpSampleBoards(sampleBoards);
 
 const positionBoards = document.querySelectorAll('.position-board');
 setUpPositionBoards(positionBoards);
+
+const puzzleBoards = document.querySelectorAll('.puzzle-board');
+setUpPuzzleBoards(puzzleBoards);

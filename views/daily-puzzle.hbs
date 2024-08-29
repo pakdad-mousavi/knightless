@@ -22,7 +22,8 @@
     <div class="flex gap-x-10">
       {{!-- Board --}}
       <div class="w-3/5">
-        <div class="w-full position-board" data-fen="8/8/8/8/8/8/8/8" data-highlight-squares=""></div>
+        <div class="w-full bg-red-400 aspect-square puzzle-board" data-pgn="{{dailyPuzzle.game.pgnArray}}"
+          data-solution="{{dailyPuzzle.puzzle.solution}}"></div>
       </div>
 
       {{!-- PGN panel --}}
@@ -52,8 +53,8 @@
           </div>
 
           {{!-- Message box --}}
-          <div class="flex w-full justify-center text-center">
-            <div class="px-4 pt-10">
+          <div class="flex justify-center w-full text-center">
+            <div class="px-4 py-10">
               <h4 class="font-serif text-lg font-bold uppercase">Find the best move for <span>black</span>.
             </div>
             </h4>
