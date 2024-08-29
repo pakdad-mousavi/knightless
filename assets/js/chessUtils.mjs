@@ -23,18 +23,19 @@ export const checkForPieces = (game, type, color) => {
     const item = game.get(square);
 
     if (item !== null && item.type === type && item.color === color) {
-      return true;
+      return square;
     }
   }
   return false;
 };
 
-export const highlightSquare = (boardElement, square) => {
+export const highlightSquare = (boardElement, square, cssClass = null) => {
   const box = boardElement.querySelector(`.square-${square}`);
-  // console.log(box);
-  if (box.classList.contains('white-1e1d7')) {
-    box.classList.add('highlighted-white');
-  } else {
-    box.classList.add('highlighted-black');
+
+  if (cssClass) {
+    return box.classList.add(cssClass);
   }
+
+  const highlightClass = box.classList.contains('white-1e1d7') ? 'highlighted-white' : 'highlighted-black';
+  box.classList.add(highlightClass);
 };
