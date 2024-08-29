@@ -229,6 +229,13 @@ const setUpPuzzleBoards = (boardElements) => {
     // Keep track of the moves used by the player
     let movesUsed = 0;
 
+    // Only allow the player to move their respective pieces
+    const onDragStart = (_, piece) => {
+      if ((orientation === 'white' && piece.search(/^w/) === -1) || (orientation === 'black' && piece.search(/^b/) === -1)) {
+        return false;
+      }
+    };
+
     const onDrop = (from, to) => {
       try {
         // Make the move (checks if it is legal or not)
@@ -271,6 +278,7 @@ const setUpPuzzleBoards = (boardElements) => {
       position: game.fen() || 'start',
       draggable: true,
       onDrop,
+      onDragStart,
       pieceTheme: '/chesspieces/{piece}.svg',
     };
 
