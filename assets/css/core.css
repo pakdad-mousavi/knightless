@@ -118,6 +118,10 @@ body *.font-serif {
   @apply !bg-red-500;
 }
 
+.inCheck {
+  background-image: radial-gradient( red 0%, transparent 100%);
+}
+
 .link {
   @apply text-blue-600 active:text-blue-800
 }
