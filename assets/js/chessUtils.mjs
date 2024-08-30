@@ -1,5 +1,16 @@
 import { SQUARES } from '/chessjs/chess.js';
+
 const HIGHLIGHTCLASSES = ['in-check-black', 'in-check-white', 'highlighted-black', 'highlighted-white', 'move-highlight-black', 'move-highlight-white'];
+const MAXVOLUME = 1;
+const HALFVOLUME = 0.5;
+
+export const FLAGS = {
+  nonCapture: 'n',
+  twoSquarePawnPush: 'b',
+  enPassant: 'e',
+  capture: 'c',
+  promotion: 'p',
+};
 
 export const createGameFen = (fen, turn = 'w', castling = {}, enPassant = '-', halfmoves = '0', fullmoves = '0') => {
   //Handle castling notation
@@ -59,8 +70,12 @@ export const highlightChecks = (game, boardElement) => {
   }
 };
 
-export const playMoveAudio = (moveType, volume) => {
+export const playMoveAudio = async (moveType) => {
   const audio = new Audio(`/sounds/${moveType}.mp3`);
-  audio.volume = volume;
-  audio.play();
+  audio.volume = moveType === 'check' ? MAXVOLUME : HALFVOLUME;
+  try {
+    await audio.play();
+  } catch (error) {
+    console.log('Redirect user to le faq page');
+  }
 };
