@@ -1,5 +1,5 @@
 import { Chess } from '/chessjs/chess.js';
-import { createGameFen, checkForPieces, highlightSquare } from './chessUtils.mjs';
+import { createGameFen, checkForPieces, highlightSquare, removeAllHighlights, highlightChecks } from './chessUtils.mjs';
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
@@ -36,9 +36,7 @@ const removeActiveFilter = (filterName) => {
 };
 
 const watchActiveFilters = (filterBox) => {
-  if (!filterBox) return;
-
-  filterBox.addEventListener('click', (e) => {
+  filterBox?.addEventListener('click', (e) => {
     const element = e.target;
     if (element.tagName === 'A') {
       const filterName = element.nextElementSibling.innerText;
@@ -233,10 +231,11 @@ const setUpPuzzleBoards = (boardElements) => {
 
     // Keep track of the moves used by the player
     let movesUsed = 0;
+    let puzzleOver = false;
 
     // Only allow the player to move their respective pieces
     const onDragStart = (_, piece) => {
-      if ((orientation === 'white' && piece.search(/^w/) === -1) || (orientation === 'black' && piece.search(/^b/) === -1)) {
+      if ((orientation === 'white' && piece.search(/^w/) === -1) || (orientation === 'black' && piece.search(/^b/) === -1) || puzzleOver) {
         return false;
       }
     };
@@ -246,21 +245,29 @@ const setUpPuzzleBoards = (boardElements) => {
         // Make the move (checks if it is legal or not)
         const move = game.move({ from, to });
 
+        removeAllHighlights(boardElement); // First, remove all current highlights
+        highlightChecks(game, boardElement); // Then, check for a check on the next turns' player's king
+
+        // If the puzzle is over...
+        if (solution.length === movesUsed + 1 || game.isCheckmate()) {
+          updatePgnPanel({ move, isCorrect: true, puzzleOver: true }); // Update pgn panel
+          puzzleOver = true; // Update puzzleOver
+          removeAllHighlights(boardElement); // Remove highlights
+          highlightChecks(game, boardElement); // check for any checks
+          return;
+        }
+
         // If the move is correct...
         if (move.lan === solution[movesUsed]) {
-          updatePgnPanel({ move, isCorrect: true, puzzleOver: false });
+          updatePgnPanel({ move, isCorrect: true, puzzleOver: false }); // Update pgn panel
 
-          // If the puzzle is over...
-          if (solution.length === movesUsed + 1) {
-            updatePgnPanel({ move, isCorrect: true, puzzleOver: true });
-            return;
-          }
-
-          // If the puzzle is not over, make the opponents move
+          // Make the opponents move
           window.setTimeout(() => {
-            game.move(solution[movesUsed + 1]);
-            board.position(game.fen());
-            movesUsed += 2;
+            game.move(solution[movesUsed + 1]); // Make the next move
+            board.position(game.fen()); // Set the board position
+            removeAllHighlights(boardElement); // Remove highlights
+            highlightChecks(game, boardElement); // Highlight any new checks
+            movesUsed += 2; // Update movesUsed
           }, 400);
         }
 
@@ -271,7 +278,9 @@ const setUpPuzzleBoards = (boardElements) => {
 
           window.setTimeout(() => {
             board.position(game.fen()); // Return back to position before the move
-          }, 400);
+            removeAllHighlights(boardElement); // Remove any highlights
+            highlightChecks(game, boardElement); // Check for any old checks
+          }, 300);
         }
       } catch {
         return 'snapback';

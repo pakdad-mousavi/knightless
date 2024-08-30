@@ -39,3 +39,17 @@ export const highlightSquare = (boardElement, square, cssClass = null) => {
   const highlightClass = box.classList.contains('white-1e1d7') ? 'highlighted-white' : 'highlighted-black';
   box.classList.add(highlightClass);
 };
+
+export const removeAllHighlights = (boardElement) => {
+  const sqrs = boardElement.querySelectorAll('.square-55d63');
+  sqrs.forEach((sqr) => {
+    sqr.classList.remove('inCheck');
+  });
+};
+
+export const highlightChecks = (game, boardElement) => {
+  if (game.inCheck()) {
+    const square = checkForPieces(game, 'k', game.turn());
+    highlightSquare(boardElement, square, 'inCheck');
+  }
+};

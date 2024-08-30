@@ -23,11 +23,11 @@
       {{!-- Board --}}
       <div class="w-3/5">
         <div class="w-full bg-red-400 aspect-square puzzle-board" data-pgn="{{dailyPuzzle.game.pgnArray}}"
-          data-solution="{{dailyPuzzle.puzzle.solution}}" id="{{dailyPuzzle.game.id}}"></div>
+          data-solution="{{dailyPuzzle.puzzle.solution}}" id="pz_{{dailyPuzzle.game.id}}"></div>
       </div>
 
       {{!-- PGN panel --}}
-      <div class="w-2/5 pgn-panel {{dailyPuzzle.game.id}}">
+      <div class="w-2/5 pgn-panel pz_{{dailyPuzzle.game.id}}">
         <div class="flex flex-col h-full bg-white border-2 border-spruce">
           {{!-- Title --}}
           <div>

@@ -46,6 +46,8 @@ export const getDailyPuzzle = async (req, res) => {
     },
   };
 
+  // dailyPuzzle.game.pgnArray = dailyPuzzle.game.pgn.split(' ');
+
   const model = {
     title: 'Daily Puzzle',
     dailyPuzzle,
