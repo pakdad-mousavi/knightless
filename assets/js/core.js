@@ -248,8 +248,11 @@ const setUpPuzzleBoards = (boardElements) => {
         removeAllHighlights(boardElement); // First, remove all current highlights
         highlightChecks(game, boardElement); // Then, check for a check on the next turns' player's king
 
+        // Logical game variables 
+        let isCorrectMove = move.lan === solution[movesUsed]; 
+
         // If the puzzle is over...
-        if (solution.length === movesUsed + 1 || game.isCheckmate()) {
+        if ((isCorrectMove && solution.length === movesUsed + 1) || game.isCheckmate()) {
           updatePgnPanel({ move, isCorrect: true, puzzleOver: true }); // Update pgn panel
           puzzleOver = true; // Update puzzleOver
           removeAllHighlights(boardElement); // Remove highlights
@@ -258,7 +261,7 @@ const setUpPuzzleBoards = (boardElements) => {
         }
 
         // If the move is correct...
-        if (move.lan === solution[movesUsed]) {
+        if (isCorrectMove) {
           updatePgnPanel({ move, isCorrect: true, puzzleOver: false }); // Update pgn panel
 
           // Make the opponents move
@@ -316,7 +319,7 @@ const setUpPuzzleBoards = (boardElements) => {
         } else {
           // Tell the player to keep going or to try again based on move
           const messageType = obj.isCorrect ? 'success' : 'fail';
-          const messageTitle = obj.isCorrect ? `<h4><span class="${messageType}">${obj.move.san}</span> is the best move.</h4>` : `<h4><span class="${messageType}">${obj.move.san}</span> is not the right move.</h4>`;
+          const messageTitle = obj.isCorrect ? `<h4><span class="${messageType}">${obj.move.san} is the best move.</span></h4>` : `<h4><span class="${messageType}">${obj.move.san} is not the right move.</span></h4>`;
           const messageText = obj.isCorrect ? `<span class="font-normal">Keep going...</span>` : `<span class="font-normal">Try again.</span>`;
           messageBox.innerHTML = messageTitle + messageText;
         }
