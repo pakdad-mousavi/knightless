@@ -1,7 +1,6 @@
 import { SQUARES } from '/chessjs/chess.js';
 const HIGHLIGHTCLASSES = ['in-check-black', 'in-check-white', 'highlighted-black', 'highlighted-white', 'move-highlight-black', 'move-highlight-white'];
 
-
 export const createGameFen = (fen, turn = 'w', castling = {}, enPassant = '-', halfmoves = '0', fullmoves = '0') => {
   //Handle castling notation
   let castlingNotation = '';
@@ -58,4 +57,10 @@ export const highlightChecks = (game, boardElement) => {
     const square = checkForPieces(game, 'k', game.turn());
     highlightSquare(boardElement, square, 'in-check');
   }
+};
+
+export const playMoveAudio = (moveType, volume) => {
+  const audio = new Audio(`/sounds/${moveType}.mp3`);
+  audio.volume = volume;
+  audio.play();
 };
