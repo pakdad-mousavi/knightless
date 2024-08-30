@@ -36,7 +36,7 @@ const removeActiveFilter = (filterName) => {
 };
 
 const watchActiveFilters = (filterBox) => {
-  filterBox?.addEventListener('click', (e) => {
+  filterBox.addEventListener('click', (e) => {
     const element = e.target;
     if (element.tagName === 'A') {
       const filterName = element.nextElementSibling.innerText;
@@ -46,8 +46,6 @@ const watchActiveFilters = (filterBox) => {
 };
 
 const resetFilters = (checkboxes, ranges) => {
-  if (!checkboxes.length || !ranges.length) return;
-
   const resetBtn = document.querySelector('button[type=reset]');
   const form = document.querySelector('form');
 
@@ -215,7 +213,6 @@ const setUpPuzzleBoards = (boardElements) => {
     let pgn = boardElement.dataset.pgn.replaceAll(',', ' ').split(' ');
     const lastMove = pgn.splice(pgn.length - 1, 1)[0];
     pgn = pgn.join(' ');
-    console.log(pgn);
 
     const solution = boardElement.dataset.solution.split(',');
 
@@ -351,14 +348,20 @@ const setUpPuzzleBoards = (boardElements) => {
 
 const sliders = document.querySelectorAll('.slider > input');
 const displayElement = document.querySelector('.rating-range-values');
-watchSliders(sliders, displayElement);
+if (sliders && displayElement) {
+  watchSliders(sliders, displayElement);
+}
 
 const activeFiltersContainer = document.querySelector('.active-filters');
-watchActiveFilters(activeFiltersContainer);
+if (activeFiltersContainer) {
+  watchActiveFilters(activeFiltersContainer);
+}
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const ranges = document.querySelectorAll('input[type=range]');
-resetFilters(checkboxes, ranges);
+if (checkboxes.length && ranges.length) {
+  resetFilters(checkboxes, ranges);
+}
 
 const sampleBoards = document.querySelectorAll('.sample-board');
 setUpSampleBoards(sampleBoards);
