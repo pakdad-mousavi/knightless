@@ -212,7 +212,11 @@ const setUpPuzzleBoards = (boardElements) => {
 
   boardElements.forEach((boardElement) => {
     // Get the game position and the puzzle solution
-    const pgn = boardElement.dataset.pgn.replaceAll(',', ' ');
+    let pgn = boardElement.dataset.pgn.replaceAll(',', ' ').split(' ');
+    const lastMove = pgn.splice(pgn.length - 1, 1)[0];
+    pgn = pgn.join(' ');
+    console.log(pgn);
+
     const solution = boardElement.dataset.solution.split(',');
 
     // Get the move box and message box elements for the respective board
@@ -332,6 +336,16 @@ const setUpPuzzleBoards = (boardElements) => {
 
     // Give the pgn panel its initial message
     updatePgnPanel({ orientation });
+
+    // Make the last move
+    window.setTimeout(() => {
+      const move = game.move(lastMove);
+      board.position(game.fen());
+      removeAllHighlights(boardElement); // Remove any highlights
+      highlightChecks(game, boardElement); // Highlight any new checks
+      highlightSquare(boardElement, move.from, 'move-highlight'); // Highlight the "from" move
+      highlightSquare(boardElement, move.to, 'move-highlight'); // Highlight the "to" move
+    }, 400);
   });
 };
 
