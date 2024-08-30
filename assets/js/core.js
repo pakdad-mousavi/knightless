@@ -1,5 +1,5 @@
 import { Chess } from '/chessjs/chess.js';
-import { createGameFen, checkForPieces, highlightSquare, removeAllHighlights, highlightChecks } from './chessUtils.mjs';
+import { createGameFen, checkForPieces, highlightSquare, removeAllHighlights, highlightChecks, playMoveAudio } from './chessUtils.mjs';
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
@@ -246,6 +246,16 @@ const setUpPuzzleBoards = (boardElements) => {
         // Make the move (checks if it is legal or not)
         const move = game.move({ from, to });
 
+        const isNonCapture = move.flags.search('e') === -1 && move.flags.search('c') === -1;
+        const isCheck = game.inCheck();
+        if (isCheck) {
+          playMoveAudio('check', 1);
+        } else if (isNonCapture) {
+          playMoveAudio('move', 0.5);
+        } else {
+          playMoveAudio('capture', 0.5);
+        }
+
         removeAllHighlights(boardElement); // First, remove all current highlights
         highlightChecks(game, boardElement); // Then, check for a check on the next turns' player's king
         highlightSquare(boardElement, move.from, 'move-highlight'); // Highlight the "from" move
@@ -291,6 +301,7 @@ const setUpPuzzleBoards = (boardElements) => {
           }, 300);
         }
       } catch {
+        playMoveAudio('illegal', 1);
         return 'snapback';
       }
     };
