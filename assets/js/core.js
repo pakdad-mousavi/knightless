@@ -247,29 +247,33 @@ const setUpPuzzleBoards = (boardElements) => {
 
         removeAllHighlights(boardElement); // First, remove all current highlights
         highlightChecks(game, boardElement); // Then, check for a check on the next turns' player's king
+        highlightSquare(boardElement, move.from, 'move-highlight'); // Highlight the "from" move
+        highlightSquare(boardElement, move.to, 'move-highlight'); // Highlight the "to" move
 
-        // Logical game variables 
-        let isCorrectMove = move.lan === solution[movesUsed]; 
+        // Logical game variables
+        let isCorrectMove = move.lan === solution[movesUsed];
 
         // If the puzzle is over...
         if ((isCorrectMove && solution.length === movesUsed + 1) || game.isCheckmate()) {
           updatePgnPanel({ move, isCorrect: true, puzzleOver: true }); // Update pgn panel
           puzzleOver = true; // Update puzzleOver
-          removeAllHighlights(boardElement); // Remove highlights
-          highlightChecks(game, boardElement); // check for any checks
           return;
         }
 
         // If the move is correct...
         if (isCorrectMove) {
           updatePgnPanel({ move, isCorrect: true, puzzleOver: false }); // Update pgn panel
+          highlightSquare(boardElement, move.from, 'move-highlight'); // Highlight the "from" move
+          highlightSquare(boardElement, move.to, 'move-highlight'); // Highlight the "to" move
 
           // Make the opponents move
           window.setTimeout(() => {
-            game.move(solution[movesUsed + 1]); // Make the next move
+            const opponentMove = game.move(solution[movesUsed + 1]); // Make the next move
             board.position(game.fen()); // Set the board position
             removeAllHighlights(boardElement); // Remove highlights
             highlightChecks(game, boardElement); // Highlight any new checks
+            highlightSquare(boardElement, opponentMove.from, 'move-highlight'); // Highlight the "from" move
+            highlightSquare(boardElement, opponentMove.to, 'move-highlight'); // Highlight the "to" move
             movesUsed += 2; // Update movesUsed
           }, 400);
         }

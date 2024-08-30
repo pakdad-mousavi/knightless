@@ -118,10 +118,22 @@ body *.font-serif {
   @apply !bg-red-500;
 }
 
-.inCheck {
-  background-image: radial-gradient( red 0%, transparent 100%);
+.in-check-black {
+  background-image: radial-gradient(red 0%, transparent 100%);
+}
+
+.in-check-white {
+  background-image: radial-gradient(red 0%, transparent 100%);
+}
+
+.move-highlight-white {
+  background-color: rgba(155, 199, 0, 0.41) !important;
+}
+
+.move-highlight-black {
+  background-color: rgba(120, 150, 0, 0.41) !important;
 }
 
 .link {
-  @apply text-blue-600 active:text-blue-800
+  @apply text-blue-600 active:text-blue-800;
 }
