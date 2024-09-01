@@ -7,6 +7,13 @@ const MESSAGEBOXCLASS = 'message-box';
 const MOVEHIGHLIGHTCLASS = 'move-highlight';
 const MOVEBOXCLASS = 'move-box';
 const INDEXBOXCLASS = 'index-box';
+const PGNSCROLLERCLASS = 'pgn-scroller';
+const MOVEHIGHLIGHTCLASS = 'move-highlight';
+const MOVECLASS = 'move';
+const MOVENUMBERCLASS = 'move-number';
+const CORRECTMOVECLASS = 'correct';
+const INCORRECTMOVECLASS = 'incorrect';
+
 const COMPUTERMOVEDELAY = 400;
 const MOVETYPES = {
   move: 'move',
