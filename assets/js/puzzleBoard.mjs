@@ -4,7 +4,6 @@ import { playMoveAudio } from './sounds.mjs';
 
 const PGNPANELCLASS = 'pgn-panel';
 const MESSAGEBOXCLASS = 'message-box';
-const MOVEHIGHLIGHTCLASS = 'move-highlight';
 const MOVEBOXCLASS = 'move-box';
 const INDEXBOXCLASS = 'index-box';
 const PGNSCROLLERCLASS = 'pgn-scroller';
@@ -81,12 +80,16 @@ export const setUpPuzzleBoard = (boardElement) => {
   const initialPuzzleMove = pgnArray.splice(pgnArray.length - 1, 1)[0];
   const pgnString = pgnArray.join(' ');
 
+  // Re-insert the initial puzzle move
+  pgnArray.push(initialPuzzleMove);
+
   // Get the puzzle solution
   const solution = boardElement.dataset.solution.split(',');
 
-  // Get the move box and message box elements for the respective board
+  // Get the move, index, and message box elements and the scrollable pgn section for the respective board
   const id = boardElement.id;
   const pgnPanel = document.querySelector(`.${id}.${PGNPANELCLASS}`);
+  const pgnScroller = pgnPanel.querySelector(`.${PGNSCROLLERCLASS}`);
   const messageBox = pgnPanel.querySelector(`.${MESSAGEBOXCLASS}`);
   const moveBox = pgnPanel.querySelector(`.${MOVEBOXCLASS}`);
   const indexBox = pgnPanel.querySelector(`.${INDEXBOXCLASS}`);
@@ -145,21 +148,25 @@ export const setUpPuzzleBoard = (boardElement) => {
       const isCorrectMove = move.lan === solution[movesUsed];
       const areAllSolutionMovesFinished = solution.length === movesUsed + 1;
 
+      // Add the move to the list
+      addMove(move.san, orientation === 'black' ? game.moveNumber() - 1 : game.moveNumber(), isCorrectMove);
+
       // If the puzzle is over...
       if ((isCorrectMove && areAllSolutionMovesFinished) || game.isCheckmate()) {
         puzzleOver = true;
-        updatePgnPanel({ move, isCorrect: true, puzzleOver });
+        updateMessageBox({ move, isCorrect: true, puzzleOver });
         return;
       }
 
       // If the move is correct...
       if (isCorrectMove) {
-        updatePgnPanel({ move, isCorrect: true, puzzleOver: false });
+        updateMessageBox({ move, isCorrect: true, puzzleOver: false });
 
         window.setTimeout(() => {
           // Make the opponents move based on the solution
           const solutionMove = solution[movesUsed + 1];
           const opponentMove = makeComputerMove(board, game, solutionMove);
+          addMove(opponentMove.san, game.moveNumber(), null);
           const moveType = getMoveType(game, opponentMove);
 
           updateHighlights(boardElement, game, opponentMove);
@@ -172,10 +179,11 @@ export const setUpPuzzleBoard = (boardElement) => {
 
       // If the move is wrong...
       else {
-        updatePgnPanel({ move, isCorrect: false, puzzleOver });
+        updateMessageBox({ move, isCorrect: false, puzzleOver });
 
         window.setTimeout(() => {
           const previousMove = undoMove(board, game); // Undo the move
+          addMove(previousMove.san, orientation === 'black' ? game.moveNumber() : game.moveNumber() - 1, null);
           updateHighlights(boardElement, game, previousMove);
         }, COMPUTERMOVEDELAY);
       }
@@ -199,7 +207,7 @@ export const setUpPuzzleBoard = (boardElement) => {
   const board = new Chessboard(boardElement, config);
   board.orientation(orientation);
 
-  const updatePgnPanel = (obj) => {
+  const updateMessageBox = (obj) => {
     // Initial run, set the message to tell the player who's turn it is
     if (obj.orientation) {
       const message = [];
@@ -223,8 +231,45 @@ export const setUpPuzzleBoard = (boardElement) => {
     }
   };
 
+  const updatePgnPanel = () => {
+    indexBox.innerHTML = ''; // Clear current content
+    moveBox.innerHTML = ''; // Clear current content
+
+    const allMoves = [...pgnArray.map((move, index) => ({ move, moveNumber: Math.floor(index / 2) + 1, type: null })), ...newMoves];
+
+    // Populate the grids
+    allMoves.forEach((moveObj, index) => {
+      const { move, moveNumber, moveType } = moveObj;
+      // Create and append the move number
+      if (index % 2 === 0) {
+        const moveNumberClasses = [MOVENUMBERCLASS];
+        const moveNumberElement = createNewElement('div', `${moveNumber}.`, moveNumberClasses);
+        indexBox.appendChild(moveNumberElement);
+      }
+
+      // Create and append the move
+      const moveClasses = [MOVECLASS];
+      if (moveType || moveType !== null) {
+        moveClasses.push(moveObj.type);
+      }
+      const moveElement = createNewElement('div', move, moveClasses);
+      moveBox.appendChild(moveElement);
+    });
+
+    // Scroll to the bottom of the pgn panel
+    pgnScroller.scrollTop = pgnScroller.scrollHeight;
+  };
+
+  // Update the board when the page is resized
+  window.addEventListener('resize', () => {
+    board.resize();
+  });
+
+  // Scroll to the bottom of the pgn panel
+  updatePgnPanel();
+
   // Give the pgn panel its initial message based on the boards orientation
-  updatePgnPanel({ orientation });
+  updateMessageBox({ orientation });
 
   // Make the initial puzzle move
   window.setTimeout(() => {
