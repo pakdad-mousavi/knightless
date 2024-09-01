@@ -1,5 +1,6 @@
 import { Chess } from '/chessjs/chess.js';
-import { FLAGS, highlightSquare, removeAllHighlights, highlightChecks, playMoveAudio } from './chessUtils.mjs';
+import { FLAGS, highlightSquare, removeAllHighlights, highlightChecks } from './chessUtils.mjs';
+import { playMoveAudio } from './sounds.mjs';
 
 const PGNPANELCLASS = 'pgn-panel';
 const MESSAGEBOXCLASS = 'message-box';
