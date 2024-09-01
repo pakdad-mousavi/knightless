@@ -103,6 +103,23 @@ export const setUpPuzzleBoard = (boardElement) => {
   let movesUsed = 0;
   let puzzleOver = false;
 
+  // Keep track of the user's moves and the correct moves
+  let newMoves = [];
+
+  // Function to add a move after it is made
+  const addMove = (move, moveNumber, isCorrect) => {
+    console.log(moveNumber);
+    if (isCorrect === null) {
+      newMoves.push({ move, moveNumber, type: null });
+    } else if (isCorrect) {
+      newMoves.push({ move, moveNumber, type: CORRECTMOVECLASS }); // Add the correct move with its type
+    } else {
+      newMoves.push({ move, moveNumber, type: INCORRECTMOVECLASS }); // Add incorrect move with its type
+    }
+
+    updatePgnPanel();
+  };
+
   // Only allow the player to move their own pieces until the puzzle ends
   const onDragStart = (_, piece) => {
     const isWhiteMovingBlackPiece = orientation === 'white' && piece.search(/^w/) === -1;
