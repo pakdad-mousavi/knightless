@@ -12,6 +12,13 @@ const MOVETYPES = {
   check: 'check',
 };
 
+const createNewElement = (tag, content, classes) => {
+  const element = document.createElement(tag);
+  element.innerHTML = content;
+  element.classList.add(...classes);
+  return element;
+};
+
 const updateHighlights = (boardElement, game, move) => {
   removeAllHighlights(boardElement); // First, remove all current highlights
   highlightChecks(game, boardElement); // Then, check for a check on the next turns' player's king
