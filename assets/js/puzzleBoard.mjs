@@ -5,6 +5,8 @@ import { playMoveAudio } from './sounds.mjs';
 const PGNPANELCLASS = 'pgn-panel';
 const MESSAGEBOXCLASS = 'message-box';
 const MOVEHIGHLIGHTCLASS = 'move-highlight';
+const MOVEBOXCLASS = 'move-box';
+const INDEXBOXCLASS = 'index-box';
 const COMPUTERMOVEDELAY = 400;
 const MOVETYPES = {
   move: 'move',
@@ -79,7 +81,8 @@ export const setUpPuzzleBoard = (boardElement) => {
   const id = boardElement.id;
   const pgnPanel = document.querySelector(`.${id}.${PGNPANELCLASS}`);
   const messageBox = pgnPanel.querySelector(`.${MESSAGEBOXCLASS}`);
-  // const moveBox = pgnPanel.querySelector(`.move-box`);
+  const moveBox = pgnPanel.querySelector(`.${MOVEBOXCLASS}`);
+  const indexBox = pgnPanel.querySelector(`.${INDEXBOXCLASS}`);
 
   // Create the game with the pgn
   const game = new Chess();
@@ -181,6 +184,7 @@ export const setUpPuzzleBoard = (boardElement) => {
       messageBox.innerHTML = message.join('');
     }
 
+    // Update the panel based on the move
     if (obj.move) {
       // Set the message to tell the player the puzzle is over
       if (obj.puzzleOver && obj.isCorrect) {
