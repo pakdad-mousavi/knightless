@@ -142,11 +142,11 @@ body *.font-serif {
   @apply py-[2px] px-2 duration-75 hover:bg-dark-oak hover:text-cream border-spruce;
 }
 
-.move.correct-move {
+.move.correct {
   @apply bg-emerald-200 hover:bg-emerald-500 text-green-600 hover:text-green-100;
 }
 
-.move.incorrect-move {
+.move.incorrect {
   @apply bg-red-200 hover:bg-red-500 text-red-600 hover:text-red-100;
 }
 
