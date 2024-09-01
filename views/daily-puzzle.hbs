@@ -39,15 +39,15 @@
 
           {{!-- Moves --}}
           <div class="flex h-[400px] overflow-y-scroll border-y-[1px] bg-cream">
-            <div class="grid w-12 grid-cols-1 text-center">
+            <div class="grid w-12 grid-cols-1 text-center index-box">
               {{#each dailyPuzzle.game.pgnArray}}
-              <div class="even:hidden py-[2px] bg-white border-r-[1px]">{{getMoveNumberFromIndex (add @index 2)}}.
+              <div class="even:hidden move-number">{{getMoveNumberFromIndex (add @index 2)}}.
               </div>
               {{/each}}
             </div>
-            <div class="grid flex-1 grid-cols-2">
+            <div class="grid flex-1 grid-cols-2 move-box">
               {{#each dailyPuzzle.game.pgnArray}}
-              <div class="py-[2px] px-2 duration-75 hover:bg-dark-oak hover:text-cream border-spruce">{{this}}</div>
+              <div class="move">{{this}}</div>
               {{/each}}
             </div>
           </div>
