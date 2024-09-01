@@ -1,8 +1,6 @@
 import { SQUARES } from '/chessjs/chess.js';
 
 const HIGHLIGHTCLASSES = ['in-check-black', 'in-check-white', 'highlighted-black', 'highlighted-white', 'move-highlight-black', 'move-highlight-white'];
-const MAXVOLUME = 1;
-const HALFVOLUME = 0.5;
 
 export const FLAGS = {
   nonCapture: 'n',
@@ -67,15 +65,5 @@ export const highlightChecks = (game, boardElement) => {
   if (game.inCheck()) {
     const square = checkForPieces(game, 'k', game.turn());
     highlightSquare(boardElement, square, 'in-check');
-  }
-};
-
-export const playMoveAudio = async (moveType) => {
-  const audio = new Audio(`/sounds/${moveType}.mp3`);
-  audio.volume = moveType === 'check' ? MAXVOLUME : HALFVOLUME;
-  try {
-    await audio.play();
-  } catch (error) {
-    console.log('Redirect user to le faq page');
   }
 };
