@@ -2,7 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./views/**/*.{hbs,html}", "./assets/js/**/*.js"],
+  content: ["./views/**/*.{hbs,html}", "./assets/js/**/*.{js,mjs}"],
   theme: {
     fontFamily: {
       sans: ["Public Sans", ...defaultTheme.fontFamily.sans],
