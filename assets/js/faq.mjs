@@ -3,13 +3,6 @@ const ICONARROWCLASS = 'icon-arrow';
 const ROTATECLASS = 'rotate-180';
 const FAQQUESTIONCLASS = 'faq-question';
 
-// Function to close a given panel
-const closePanel = (panel) => {
-  panel.classList.remove(OPENEDCLASS);
-  panel.children[1].style.maxHeight = null; // Hide content
-  panel.querySelector(`.${ICONARROWCLASS}`).classList.remove(ROTATECLASS); // Rotate arrow back
-};
-
 // Function to toggle a given panel
 const togglePanel = (panel) => {
   const content = panel.children[1];
@@ -19,7 +12,20 @@ const togglePanel = (panel) => {
   panel.querySelector(`.${ICONARROWCLASS}`).classList.toggle(ROTATECLASS, !isOpen); // Rotate arrow
 };
 
+const updateHeight = (openPanel) => {
+  const content = openPanel.children[1];
+  content.style.maxHeight = `${content.scrollHeight}px`; // Update the max height
+};
+
 export const watchFaqPanel = (faqPanel) => {
+  // If the window is resized, then update the max height of the open panel (if open)
+  window.addEventListener('resize', () => {
+    const openPanel = faqPanel.querySelector(`.${FAQQUESTIONCLASS}.${OPENEDCLASS}`);
+    if (openPanel) {
+      updateHeight(openPanel);
+    }
+  });
+
   faqPanel.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -30,12 +36,15 @@ export const watchFaqPanel = (faqPanel) => {
     // Find the currently open FAQ question
     const openQuestion = faqPanel.querySelector(`.${FAQQUESTIONCLASS}.${OPENEDCLASS}`);
 
-    // If there is an open question and it's not the one clicked, close it
+    // If there is an open question and it's not the one clicked, toggle it
     if (openQuestion && openQuestion !== clickedQuestion) {
-      closePanel(openQuestion);
+      // closePanel(openQuestion);
+      togglePanel(openQuestion);
+      togglePanel(clickedQuestion);
     }
-
-    // Toggle the clicked FAQ question
-    togglePanel(clickedQuestion);
+    // If there's no open question or it's the one clicked, toggle it
+    else {
+      togglePanel(clickedQuestion);
+    }
   });
 };
