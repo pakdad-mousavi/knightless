@@ -1,6 +1,7 @@
 import { Chess } from '/chessjs/chess.js';
 import { createGameFen, checkForPieces, highlightSquare } from './chessUtils.mjs';
 import { setUpPuzzleBoard } from './puzzleBoard.mjs';
+import { watchFaqPanel } from './faq.mjs';
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
@@ -231,3 +232,9 @@ setUpPositionBoards(positionBoards);
 
 const puzzleBoards = document.querySelector('.puzzle-board');
 setUpPuzzleBoard(puzzleBoards);
+
+// Watch the faq panel (to open and close questions)
+const faqPanel = document.querySelector('.faq-panel');
+if (faqPanel) {
+  watchFaqPanel(faqPanel);
+}
