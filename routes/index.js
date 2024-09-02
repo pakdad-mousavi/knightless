@@ -6,6 +6,8 @@ import * as notationController from '../controllers/notation.js';
 import * as attributionsController from '../controllers/attributions.js';
 import * as contactController from '../controllers/contact.js';
 import * as puzzleController from '../controllers/puzzles.js';
+import * as timelineController from '../controllers/timeline.js';
+
 
 const router = express.Router();
 
@@ -31,5 +33,8 @@ router.route('/contact').get(contactController.index);
 
 // Daily puzzle
 router.route('/daily-puzzle').get(puzzleController.getDailyPuzzle);
+
+// Timeline
+router.route('/timeline').get(timelineController.index);
 
 export default router;
