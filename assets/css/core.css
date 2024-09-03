@@ -153,3 +153,11 @@ body *.font-serif {
 .move-number {
   @apply py-0.5 bg-white border-r-[1px];
 }
+
+.horizontal-timeline {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.horizontal-timeline::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
