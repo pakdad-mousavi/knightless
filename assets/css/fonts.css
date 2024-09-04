@@ -1,6 +1,6 @@
 @font-face {
   font-family: "chessless";
-  src: url("/fonts/chessless.ttf?jun6xe") format("truetype"), url("/fonts/chessless.woff?jun6xe") format("woff"), url("/fonts/chessless.svg?jun6xe#chessless") format("svg");
+  src: url("/fonts/chessless.ttf?7js3hg") format("truetype"), url("/fonts/chessless.woff?7js3hg") format("woff"), url("/fonts/chessless.svg?7js3hg#chessless") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -22,57 +22,99 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-bishop:before {
+.icon-atlas:before {
   content: "\e900";
 }
-.icon-chessboard:before {
+.icon-bishop:before {
   content: "\e901";
 }
-.icon-cross:before {
+.icon-bolt:before {
   content: "\e902";
 }
-.icon-down-arrow:before {
+.icon-book-skull:before {
   content: "\e903";
 }
-.icon-filter:before {
+.icon-brain:before {
   content: "\e904";
 }
-.icon-king:before {
+.icon-bulb:before {
   content: "\e905";
 }
-.icon-knight:before {
+.icon-chessboard:before {
   content: "\e906";
 }
-.icon-medal:before {
+.icon-cross:before {
   content: "\e907";
 }
-.icon-next-arrow:before {
+.icon-crossbones:before {
   content: "\e908";
 }
-.icon-path:before {
+.icon-down-arrow:before {
   content: "\e909";
 }
-.icon-pawn:before {
+.icon-filter:before {
   content: "\e90a";
 }
-.icon-people:before {
+.icon-fortress:before {
   content: "\e90b";
 }
-.icon-prev-arrow:before {
+.icon-king:before {
   content: "\e90c";
 }
-.icon-queen:before {
+.icon-knight:before {
   content: "\e90d";
 }
-.icon-rook:before {
+.icon-medal:before {
   content: "\e90e";
 }
-.icon-search:before {
+.icon-next-arrow:before {
   content: "\e90f";
 }
-.icon-suitcase:before {
+.icon-ninja:before {
   content: "\e910";
 }
-.icon-trophy:before {
+.icon-path:before {
   content: "\e911";
+}
+.icon-pawn:before {
+  content: "\e912";
+}
+.icon-pen-nib:before {
+  content: "\e913";
+}
+.icon-people:before {
+  content: "\e914";
+}
+.icon-person:before {
+  content: "\e915";
+}
+.icon-prev-arrow:before {
+  content: "\e916";
+}
+.icon-queen:before {
+  content: "\e917";
+}
+.icon-rank:before {
+  content: "\e918";
+}
+.icon-rook:before {
+  content: "\e919";
+}
+.icon-search:before {
+  content: "\e91a";
+}
+.icon-shield:before {
+  content: "\e91b";
+}
+.icon-strategic:before {
+  content: "\e91c";
+}
+.icon-suitcase:before {
+  content: "\e91d";
+}
+.icon-tactical:before {
+  content: "\e91e";
+}
+.icon-trophy:before {
+  content: "\e91f";
 }
