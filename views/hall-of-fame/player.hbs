@@ -25,10 +25,10 @@
           <li>{{placeOfDeath}}</li>
           <li class="flex lg:flex-row items-center font-bold !text-dark-oak">
             {{#if hasBeenChampion}}
-            <span class="block mr-2 md:mr-0 lg:mr-4"><img src="https://placeholder.co/80.png"></span>
+            <span class="block mr-4 text-5xl text-dark-oak lg:mr-3 icon-trophy"></span>
             Won World Chess Champion Title
             {{else}}
-            <span class="block mr-2 md:mr-0 lg:mr-4"><img src="https://placeholder.co/80.png"></span>
+            <span class="block mr-3 text-4xl text-dark-oak icon-medal"></span>
             Not Yet Won World Chess Champion Title
             {{/if}}
           </li>
@@ -47,10 +47,8 @@
     {{!-- Early Life --}}
     <section class="py-10 section-container">
       <div class="mb-8">
-        <div class="flex gap-x-2">
-          <div>
-            <img src="https://placeholder.co/50.png" alt="">
-          </div>
+        <div class="flex items-center gap-x-4">
+          <span class="text-4xl icon-person"></span>
           <div>
             <span class="italic">The Formative Years</span>
             <h3 class="font-serif text-xl font-bold uppercase">Early Life</h3>
@@ -66,10 +64,8 @@
     {{!-- Rise to prominence --}}
     <section class="py-10 section-container">
       <div class="mb-8">
-        <div class="flex gap-x-2">
-          <div>
-            <img src="https://placeholder.co/50.png" alt="">
-          </div>
+        <div class="flex items-center gap-x-4">
+          <span class="text-4xl icon-path"></span>
           <div>
             <span class="italic">The Path To Stardom</span>
             <h3 class="font-serif text-xl font-bold uppercase">Rise To Prominence</h3>
@@ -85,10 +81,8 @@
     {{!-- World Chess Champion --}}
     <section class="py-10 section-container">
       <div class="mb-8">
-        <div class="flex gap-x-2">
-          <div>
-            <img src="https://placeholder.co/50.png" alt="">
-          </div>
+        <div class="flex items-center gap-x-4">
+          <span class="text-5xl icon-trophy"></span>
           <div>
             <span class="italic">The Pinnacle Of Success</span>
             <h3 class="font-serif text-xl font-bold uppercase">World Chess Champion</h3>
@@ -104,10 +98,8 @@
     {{!-- Playing Style --}}
     <section class="py-10 section-container">
       <div class="mb-8">
-        <div class="flex gap-x-2">
-          <div>
-            <img src="https://placeholder.co/50.png" alt="">
-          </div>
+        <div class="flex items-center gap-x-4">
+          <span class="text-4xl icon-chessboard"></span>
           <div>
             <span class="italic">Mastering The Chessboard</span>
             <h3 class="font-serif text-xl font-bold uppercase">Playing Style</h3>
@@ -119,13 +111,13 @@
         {{#each playingStyle}}
         <div class="md:w-[calc(50%-1rem)] xl:w-[calc(33.333333%-1rem)]">
           <div class="p-4 bg-white rounded-lg xl:h-64">
-            <div class="flex items-center mb-6 gap-x-2">
-              <div class="flex-1">
+            <div class="flex items-center mb-6 gap-x-8 md:gap-x-2">
+              <div class="md:flex-1">
                 <span class="text-sm">{{subtitle}}</span>
                 <h4 class="font-serif text-lg font-bold uppercase">{{name}}</h4>
                 <hr class="w-3/4 border-[1px] border-spruce mt-2">
               </div>
-              <img src="https://placeholder.co/70.png" alt="">
+              <span class="text-6xl icon-{{icon}}"></span>
             </div>
             <p class="text-lg">{{description}}</p>
           </div>
@@ -137,10 +129,8 @@
     {{!-- Achievements and records section --}}
     <section class="py-10 section-container">
       <div class="mb-8">
-        <div class="flex gap-x-2">
-          <div>
-            <img src="https://placeholder.co/50.png" alt="">
-          </div>
+        <div class="flex items-center gap-x-4">
+          <span class="text-5xl icon-rank"></span>
           <div>
             <span class="italic">Milestones And Triumphs</span>
             <h3 class="font-serif text-xl font-bold uppercase">Achievements And Records</h3>
@@ -156,10 +146,8 @@
     {{!-- Off the board section --}}
     <section class="py-10 section-container">
       <div class="mb-8">
-        <div class="flex gap-x-2">
-          <div>
-            <img src="https://placeholder.co/50.png" alt="">
-          </div>
+        <div class="flex items-center gap-x-4">
+          <span class="text-4xl icon-suitcase"></span>
           <div>
             <span class="italic">Beyond The Game</span>
             <h3 class="font-serif text-xl font-bold uppercase">Off The Board</h3>
@@ -175,10 +163,8 @@
     {{!-- Personal life section --}}
     <section class="py-10 section-container">
       <div class="mb-8">
-        <div class="flex gap-x-2">
-          <div>
-            <img src="https://placeholder.co/50.png" alt="">
-          </div>
+        <div class="flex items-center gap-x-4">
+          <span class="text-5xl icon-people"></span>
           <div>
             <span class="italic">The Person Behind The Pawn</span>
             <h3 class="font-serif text-xl font-bold uppercase">Personal Life</h3>
@@ -194,10 +180,10 @@
     {{!-- Fun fact section --}}
     <section class="py-10 section-container bg-dark-oak text-cream">
       <div class="relative mb-4 space-y-2 text-center">
-        <div class="flex items-end justify-center mb-6 gap-x-4">
-          <img src="https://placeholder.co/30.png" alt="">
+        <div class="flex items-center justify-center mb-6 gap-x-6">
+          <span class="text-4xl icon-queen"></span>
           <h3 class="">Learn More About {{personalDetails.firstName}} {{personalDetails.lastName}}</h3>
-          <img src="https://placeholder.co/30.png" alt="">
+          <span class="text-4xl icon-queen"></span>
         </div>
         <div class="flex flex-col items-center justify-center mb-8">
           <hr class="w-full border-2 border-cream">
