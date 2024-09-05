@@ -1,6 +1,6 @@
 @font-face {
   font-family: "chessless";
-  src: url("/fonts/chessless.ttf?7js3hg") format("truetype"), url("/fonts/chessless.woff?7js3hg") format("woff"), url("/fonts/chessless.svg?7js3hg#chessless") format("svg");
+  src: url("/fonts/chessless.ttf?g96ptf") format("truetype"), url("/fonts/chessless.woff?g96ptf") format("woff"), url("/fonts/chessless.svg?g96ptf#chessless") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -49,72 +49,81 @@
 .icon-crossbones:before {
   content: "\e908";
 }
-.icon-down-arrow:before {
+.icon-direction:before {
   content: "\e909";
 }
-.icon-filter:before {
+.icon-down-arrow:before {
   content: "\e90a";
 }
-.icon-fortress:before {
+.icon-filter:before {
   content: "\e90b";
 }
-.icon-king:before {
+.icon-fortress:before {
   content: "\e90c";
 }
-.icon-knight:before {
+.icon-king:before {
   content: "\e90d";
 }
-.icon-medal:before {
+.icon-knight:before {
   content: "\e90e";
 }
-.icon-next-arrow:before {
+.icon-medal:before {
   content: "\e90f";
 }
-.icon-ninja:before {
+.icon-next-arrow:before {
   content: "\e910";
 }
-.icon-path:before {
+.icon-ninja:before {
   content: "\e911";
 }
-.icon-pawn:before {
+.icon-path:before {
   content: "\e912";
 }
-.icon-pen-nib:before {
+.icon-pawn:before {
   content: "\e913";
 }
-.icon-people:before {
+.icon-pen-nib:before {
   content: "\e914";
 }
-.icon-person:before {
+.icon-people:before {
   content: "\e915";
 }
-.icon-prev-arrow:before {
+.icon-person:before {
   content: "\e916";
 }
-.icon-queen:before {
+.icon-prev-arrow:before {
   content: "\e917";
 }
-.icon-rank:before {
+.icon-queen:before {
   content: "\e918";
 }
-.icon-rook:before {
+.icon-range:before {
   content: "\e919";
 }
-.icon-search:before {
+.icon-rank:before {
   content: "\e91a";
 }
-.icon-shield:before {
+.icon-rook:before {
   content: "\e91b";
 }
-.icon-strategic:before {
+.icon-search:before {
   content: "\e91c";
 }
-.icon-suitcase:before {
+.icon-shield:before {
   content: "\e91d";
 }
-.icon-tactical:before {
+.icon-strategic:before {
   content: "\e91e";
 }
-.icon-trophy:before {
+.icon-suitcase:before {
   content: "\e91f";
+}
+.icon-tactical:before {
+  content: "\e920";
+}
+.icon-trophy:before {
+  content: "\e921";
+}
+.icon-value:before {
+  content: "\e922";
 }
