@@ -1,31 +1,35 @@
 <div class="container px-4 py-20 mx-auto font-sans">
-  {{!-- Main title section --}}
-  <div class="mb-20 space-y-8">
-    <div class="flex items-center justify-center 2xl:justify-evenly">
-      <div class="lg:w-[300px] xl:w-auto">
-        <img src="https://placeholder.co/400x150.png" alt="">
+  <section class="section-container">
+    {{!-- Main title section --}}
+    <div class="mb-20 space-y-8">
+      <div class="flex items-center justify-center gap-x-10 lg:gap-x-20 xl:gap-x-0 2xl:justify-evenly">
+        <div class="w-[200px] xl:w-auto">
+          <img src="https://placeholder.co/350x150.png" alt="">
+        </div>
+        <div class="font-serif font-bold text-center uppercase xl:flex-1 2xl:flex-initial">
+          <h2 class="mb-4 text-2xl md:text-3xl whitespace-nowrap">Hall Of</h2>
+          <h1 class="text-4xl md:text-5xl">Fame</h1>
+        </div>
+        <div class="w-[200px] xl:w-auto">
+          <img src="https://placeholder.co/350x150.png" alt="">
+        </div>
       </div>
-      <div class="font-serif font-bold text-center uppercase xl:flex-1 2xl:flex-initial">
-        <h2 class="mb-4 text-3xl">Our Hall Of</h2>
-        <h1 class="text-5xl">Fame</h1>
-      </div>
-      <div class="lg:w-[300px] xl:w-auto">
-        <img src="https://placeholder.co/400x150.png" alt="">
+      <p class="w-3/5 mx-auto text-lg text-center">
+        Celebrate the legends of chess in our Hall of Fame. Discover the stories, achievements, and timeless
+        contributions
+        of the greatest players in history, from world champions to groundbreaking innovators.
+      </p>
+      <div class="searchbar">
+        <span class="text-xl icon-search"></span>
+        <input type="text" placeholder="Search For a Top-Rated Player...">
       </div>
     </div>
-    <p class="w-3/5 mx-auto text-lg text-center">
-      Celebrate the legends of chess in our Hall of Fame. Discover the stories, achievements, and timeless contributions
-      of the greatest players in history, from world champions to groundbreaking innovators.
-    </p>
-    <div class="searchbar">
-      <img src="https://placeholder.co/25.png" alt="">
-      <input type="text" placeholder="Search For a Top-Rated Player...">
-    </div>
-  </div>
+  </section>
+
 
   <div>
     {{!-- Top players bar --}}
-    <div class="w-4/5 pl-4 mb-4 ml-auto">
+    <div class="w-5/6 pl-4 mb-4 ml-auto">
       <div class="flex items-center gap-x-4">
         <h3 class="font-serif text-xl font-bold uppercase">Players</h3>
         <div class="bg-white px-2 py-1 rounded-md border-[1px] border-spruce">
@@ -51,7 +55,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-5">
+    <div class="grid grid-cols-6">
       {{!-- Filters side bar --}}
       <div class="col-span-1 border-r-[1px] border-spruce">
         <form action="/hall-of-fame" method="post">
@@ -150,7 +154,7 @@
           </div>
         </form>
       </div>
-      <div class="col-span-4 pl-4">
+      <div class="col-span-5 pl-4">
         <div class="grid grid-cols-2 gap-8">
           {{#each players}}
           <div>
