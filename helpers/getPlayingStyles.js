@@ -53,7 +53,7 @@ const playingStyles = {
     subtitle: 'Innovative Thinker',
     description: 'Challenges classical principles by controlling the center with pieces rather than pawns, to provoke weaknesses.',
   },
-  counterattacking: {
+  'counter-attacking': {
     name: 'Counter-Attacking',
     icon: 'ninja',
     subtitle: 'Counterattack Specialist',
@@ -82,8 +82,8 @@ const playingStyles = {
 export const getPlayingStyles = (styles) => {
   const requestedStyles = styles.map((style) => style.toLowerCase().trim().replace(' ', '-'));
 
-  const result = []
-  requestedStyles.forEach(style => {
+  const result = [];
+  requestedStyles.forEach((style) => {
     result.push(playingStyles[style]);
   });
 
