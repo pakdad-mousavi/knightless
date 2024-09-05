@@ -2,12 +2,12 @@
   <section class="section-container">
     {{!-- Main title section --}}
     <div class="mb-20 space-y-8">
-      <div class="flex items-center justify-center gap-x-10 lg:gap-x-20 xl:gap-x-0 2xl:justify-evenly">
+      <div class="flex items-center justify-center gap-x-5 md:gap-x-10 lg:gap-x-20 xl:gap-x-0 2xl:justify-evenly">
         <div class="w-[200px] xl:w-auto">
           <img src="https://placeholder.co/350x150.png" alt="">
         </div>
         <div class="font-serif font-bold text-center uppercase xl:flex-1 2xl:flex-initial">
-          <h2 class="mb-4 text-2xl md:text-3xl whitespace-nowrap">Hall Of</h2>
+          <h2 class="mb-4 text-2xl md:text-3xl md:whitespace-nowrap">Our Hall Of</h2>
           <h1 class="text-4xl md:text-5xl">Fame</h1>
         </div>
         <div class="w-[200px] xl:w-auto">
@@ -29,7 +29,7 @@
 
   <div>
     {{!-- Top players bar --}}
-    <div class="w-5/6 pl-4 mb-4 ml-auto">
+    <div class="mb-4 xl:w-5/6 xl:pl-4 xl:ml-auto">
       <div class="flex items-center gap-x-4">
         <h3 class="font-serif text-xl font-bold uppercase">Players</h3>
         <div class="bg-white px-2 py-1 rounded-md border-[1px] border-spruce">
@@ -55,24 +55,25 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-6">
+    <div class="flex flex-col items-start justify-center xl:flex-row">
       {{!-- Filters side bar --}}
-      <div class="col-span-1 border-r-[1px] border-spruce">
-        <form action="/hall-of-fame" method="post">
+      <div class="w-full xl:w-[16.6667%] xl:border-r-[1px] xl:border-spruce xl:mb-0 mb-10">
+        <form action="/hall-of-fame" method="post" class="flex py-4 overflow-x-scroll xl:flex-col gap-x-10">
           {{!-- Filters title --}}
-          <div class="flex items-center py-2 pr-4">
+          <div class="items-center hidden py-2 pr-4 xl:flex">
             <h3 class="flex-1 font-serif text-xl font-bold uppercase">Filters</h3>
             <span><img src="https://placeholder.co/25.png" alt=""></span>
           </div>
-          <hr class="border-spruce">
+          <hr class="hidden xl:block border-spruce">
 
           {{!-- Active Filters --}}
-          <div class="mb-4 mr-2 active-filters">
+          <div
+            class="shrink-0 w-[40%] md:w-[30%] xl:mb-4 xl:mr-2 xl:w-auto border-x-[1px] px-2 xl:px-0 xl:border-x-0 border-spruce active-filters">
             <div class="flex py-2 text-gray-500">
               <h3 class="mr-4">Active Filters</h3>
               <a href="#">^</a>
             </div>
-            <ul class="h-40 mb-4 overflow-scroll">
+            <ul class="h-40 mb-4 overflow-y-scroll">
               {{#each options.playingStyles}}
               {{#if this}}
               <li>
@@ -91,15 +92,16 @@
             <button type="submit" class="button !px-4 !py-1">Apply</button>
             <button type="reset" class="button !px-4 !py-1">Reset</button>
           </div>
-          <hr class="border-spruce">
+          <hr class="hidden xl:block border-spruce">
 
           {{!-- Playing styles --}}
-          <div class="mb-4 mr-2">
+          <div
+            class="shrink-0 w-[40%] md:w-[30%] xl:mb-4 xl:mr-2 xl:w-auto border-x-[1px] px-2 xl:px-0 xl:border-x-0 border-spruce">
             <div class="flex py-2 text-gray-500">
               <h3 class="mr-4">Playing Styles</h3>
               <a href="#">^</a>
             </div>
-            <ul class="h-40 overflow-scroll">
+            <ul class="overflow-y-scroll h-52 xl:h-40">
               {{#each options.playingStyles}}
               <li>
                 <input type="checkbox" name="playingStyles" id="{{@key}}" value="{{@key}}" class="mr-2" {{#if
@@ -111,7 +113,8 @@
           </div>
 
           {{!-- Peak rating --}}
-          <div class="mb-4 mr-2">
+          <div
+            class="shrink-0 w-[40%] md:w-[30%] xl:mb-4 xl:mr-2 xl:w-auto border-x-[1px] px-2 xl:px-0 xl:border-x-0 border-spruce">
             <div class="flex py-2 mb-2 text-gray-500">
               <h3 class="mr-4">Peak Rating (elo)</h3>
               <a href="#">^</a>
@@ -138,7 +141,8 @@
           </div>
 
           {{!-- Was world champion --}}
-          <div class="mb-4 mr-2">
+          <div
+            class="shrink-0 w-[40%] md:w-[30%] xl:mb-4 xl:mr-2 xl:w-auto border-x-[1px] px-2 xl:px-0 xl:border-x-0 border-spruce">
             <div class="flex py-2 text-gray-500">
               <h3 class="mr-4">Chess Champion</h3>
               <a href="#">^</a>
@@ -154,14 +158,14 @@
           </div>
         </form>
       </div>
-      <div class="col-span-5 pl-4">
-        <div class="grid grid-cols-2 gap-8">
+      <div class="w-full xl:w-[83.33333%] xl:pl-4">
+        <div class="grid gap-4 md:grid-cols-2">
           {{#each players}}
           <div>
             <a href="/hall-of-fame/{{this.id}}">
-              <div class="flex items-center h-48 p-2 bg-white rounded-lg">
-                <div class="flex items-center gap-x-4">
-                  <div>
+              <div class="flex items-center h-48 p-2 bg-white rounded-lg xl:py-4">
+                <div class="flex items-center gap-x-7 xl:gap-x-4">
+                  <div class="flex-1 overflow-hidden">
                     {{#if this.personalDetails.hasBeenChampion}}
                     <span class="text-xs">Won World Chess Champion</span>
                     <hr class="w-2/5 border-[1px] border-dark-oak">
@@ -171,12 +175,13 @@
                     <hr class="w-2/5 border-[1px] border-dark-oak">
                     {{/if}}
                     <div class="my-2 font-serif text-xl font-bold uppercase text-dark-oak">
-                      <h4>{{this.personalDetails.firstName}} {{this.personalDetails.lastName}}</h4>
+                      <h4 class="">{{this.personalDetails.firstName}} {{this.personalDetails.lastName}}</h4>
                     </div>
                     <p class="text-sm text-oak line-clamp-4">{{this.earlyLife}}</p>
                   </div>
-                  <div class="min-w-40">
-                    <img src="https://placeholder.co/600" alt="" class="rounded-lg border-[1px] border-spruce">
+                  <div class="ml-auto lg:block md:hidden sm:block">
+                    <img src="https://placeholder.co/600" alt=""
+                      class="rounded-lg border-[1px] border-spruce w-40 lg:block md:hidden sm:block">
                   </div>
                 </div>
               </div>

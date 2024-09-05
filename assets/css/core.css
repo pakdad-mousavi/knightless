@@ -4,8 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply w-full overflow-x-hidden;
+}
+
 body {
-  @apply bg-cream text-dark-oak;
+  @apply w-full overflow-x-hidden bg-cream text-dark-oak;
 }
 
 body *.font-sans {
@@ -61,7 +65,7 @@ body *.font-serif {
 }
 
 .slider input {
-  @apply absolute w-4/5;
+  @apply absolute w-full lg:w-4/5;
 }
 
 /* Make the slider points be on the same level, and both draggable */
