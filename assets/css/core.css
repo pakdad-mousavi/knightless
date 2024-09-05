@@ -48,7 +48,7 @@ body *.font-serif {
   @apply bg-white w-full px-4 py-2 rounded-lg border-[1px] border-spruce outline-none;
 }
 
-.searchbar > img {
+.searchbar > span {
   @apply absolute -translate-y-1/2 right-5 top-1/2;
 }
 
