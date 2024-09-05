@@ -1,5 +1,5 @@
 const OPENEDCLASS = 'opened';
-const ICONARROWCLASS = 'icon-arrow';
+const ICONARROWCLASS = 'icon-down-arrow';
 const ROTATECLASS = 'rotate-180';
 const FAQQUESTIONCLASS = 'faq-question';
 
