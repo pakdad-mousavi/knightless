@@ -3,66 +3,7 @@ import { createGameFen, checkForPieces, highlightSquare } from './chessUtils.mjs
 import { setUpPuzzleBoard } from './puzzleBoard.mjs';
 import { watchFaqPanel } from './faq.mjs';
 import { watchTimelineScroll } from './timeline.mjs';
-
-const getsliderValues = (sliders) => {
-  let sliderLeft = Number(sliders[0].value);
-  let sliderRight = Number(sliders[1].value);
-
-  // Slider 1 must always be less than slider 2
-  if (sliderLeft > sliderRight) {
-    let tmp = sliderRight;
-    sliderRight = sliderLeft;
-    sliderLeft = tmp;
-  }
-
-  return { sliderLeft, sliderRight };
-};
-
-const watchSliders = (sliders, displayElement) => {
-  if (!sliders || !displayElement) return;
-
-  sliders.forEach((slider) => {
-    slider.addEventListener('input', () => {
-      // Get slider values and display them
-      const { sliderLeft, sliderRight } = getsliderValues(sliders);
-      displayElement.innerText = `${sliderLeft} - ${sliderRight}`;
-    });
-  });
-};
-
-const removeActiveFilter = (filterName) => {
-  const filter = document.querySelector(`input[value="${filterName}"]`);
-  const form = document.querySelector('form');
-  filter.checked = false;
-
-  form.submit();
-};
-
-const watchActiveFilters = (filterBox) => {
-  filterBox.addEventListener('click', (e) => {
-    const element = e.target;
-    if (element.tagName === 'A') {
-      const filterName = element.nextElementSibling.innerText;
-      removeActiveFilter(filterName);
-    }
-  });
-};
-
-const resetFilters = (checkboxes, ranges) => {
-  const resetBtn = document.querySelector('button[type=reset]');
-  const form = document.querySelector('form');
-
-  resetBtn.addEventListener('click', () => {
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = false;
-    });
-
-    ranges[0].value = 2500;
-    ranges[1].value = 2900;
-
-    form.submit();
-  });
-};
+import { resetFilters, watchActiveFilters, watchSliders } from './filters.mjs';
 
 const setUpSampleBoards = (boardElements) => {
   if (!boardElements.length) return;
