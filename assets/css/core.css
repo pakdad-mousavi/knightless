@@ -65,7 +65,7 @@ body *.font-serif {
 }
 
 .slider input {
-  @apply absolute w-full lg:w-4/5;
+  @apply absolute w-full xl:w-4/5;
 }
 
 /* Make the slider points be on the same level, and both draggable */

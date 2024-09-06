@@ -62,16 +62,16 @@
           {{!-- Filters title --}}
           <div class="items-center hidden py-2 pr-4 xl:flex">
             <h3 class="flex-1 font-serif text-xl font-bold uppercase">Filters</h3>
-            <span><img src="https://placeholder.co/25.png" alt=""></span>
+            <span class="text-2xl icon-filter"></span>
           </div>
           <hr class="hidden xl:block border-spruce">
 
           {{!-- Active Filters --}}
           <div
             class="shrink-0 w-[40%] md:w-[30%] xl:mb-4 xl:mr-2 xl:w-auto border-x-[1px] px-2 xl:px-0 xl:border-x-0 border-spruce active-filters">
-            <div class="flex py-2 text-gray-500">
-              <h3 class="mr-4">Active Filters</h3>
-              <a href="#">^</a>
+            <div class="flex items-center py-2 text-gray-500">
+              <h3 class="mr-2">Active Filters</h3>
+              <a href="#" class="icon-down-arrow"></a>
             </div>
             <ul class="h-40 mb-4 overflow-y-scroll">
               {{#each options.playingStyles}}
@@ -97,9 +97,9 @@
           {{!-- Playing styles --}}
           <div
             class="shrink-0 w-[40%] md:w-[30%] xl:mb-4 xl:mr-2 xl:w-auto border-x-[1px] px-2 xl:px-0 xl:border-x-0 border-spruce">
-            <div class="flex py-2 text-gray-500">
-              <h3 class="mr-4">Playing Styles</h3>
-              <a href="#">^</a>
+            <div class="flex items-center py-2 text-gray-500">
+              <h3 class="mr-2">Playing Styles</h3>
+              <a href="#" class="icon-down-arrow"></a>
             </div>
             <ul class="overflow-y-scroll h-52 xl:h-40">
               {{#each options.playingStyles}}
@@ -115,9 +115,9 @@
           {{!-- Peak rating --}}
           <div
             class="shrink-0 w-[40%] md:w-[30%] xl:mb-4 xl:mr-2 xl:w-auto border-x-[1px] px-2 xl:px-0 xl:border-x-0 border-spruce">
-            <div class="flex py-2 mb-2 text-gray-500">
-              <h3 class="mr-4">Peak Rating (elo)</h3>
-              <a href="#">^</a>
+            <div class="flex items-center py-2 mb-2 text-gray-500">
+              <h3 class="mr-2">Peak Rating (elo)</h3>
+              <a href="#" class="icon-down-arrow"></a>
             </div>
             <div class="slider">
               <input type="range" min="2500" max="2900" step="50" value="{{options.ratingA}}" list="detents"
@@ -142,10 +142,10 @@
 
           {{!-- Was world champion --}}
           <div
-            class="shrink-0 w-[40%] md:w-[30%] xl:mb-4 xl:mr-2 xl:w-auto border-x-[1px] px-2 xl:px-0 xl:border-x-0 border-spruce">
-            <div class="flex py-2 text-gray-500">
-              <h3 class="mr-4">Chess Champion</h3>
-              <a href="#">^</a>
+            class="shrink-0 w-[40%] md:w-[30%] xl:mb-4 xl:mr-2 xl:w-auto border-x-[1px] border-r-2 px-2 xl:px-0 xl:border-x-0 border-spruce">
+            <div class="flex items-center py-2 text-gray-500">
+              <h3 class="mr-2">Chess Champion</h3>
+              <a href="#" class="icon-down-arrow"></a>
             </div>
             <label class="inline-flex items-center cursor-pointer">
               <input type="checkbox" name="formerChampion" value="Former Champion" {{#if
