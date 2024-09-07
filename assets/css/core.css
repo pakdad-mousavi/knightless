@@ -162,6 +162,11 @@ body *.font-serif {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
 }
+
 .horizontal-timeline::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
+}
+
+.paragraph {
+  @apply mx-auto mb-8 font-sans text-lg md:w-4/5 lg:w-3/5 text-center;
 }
