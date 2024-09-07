@@ -1,32 +1,36 @@
-<div class="container mx-auto font-sans">
-  {{!-- Banner title section --}}
-  <div
-    class="flex items-center h-[calc(100svh)] bg-spruce bg-[url('/images/king-focus-banner.jpg')] w-full bg-no-repeat bg-cover bg-center lg:bg-left-top px-8">
-    <div class="flex flex-col w-3/4 mt-10 lg:w-1/2 text-cream">
+{{!-- Banner title section --}}
+<div
+  class="flex items-center md:h-svh xl:h-[calc(100svh+100px)] bg-spruce bg-[url('/images/king-focus-banner.jpg')] w-full bg-no-repeat bg-cover bg-right-top lg:bg-left-top px-8 font-sans">
+  <div class="container mx-auto">
+    <div
+      class="flex flex-col p-10 py-12 sm:mt-28 mb-10 md:mt-20 text-center md:p-0 md:w-3/4 lg:w-1/2 text-cream md:text-left md:backdrop-blur-0 backdrop-blur-md bg-white/5 rounded-2xl md:rounded-none md:bg-white/0">
       <div class="mb-4"> {{!-- Pre-title --}}
-        <span>Mastering The Art Of Chess</span>
-        <hr class="mt-1 w-[12.5%] border-[1px]">
+        <span class="2xl:text-xl">Mastering The Art Of Chess</span>
+        <hr class="mt-1 w-[12.5%] border-[1px] md:mx-0 mx-auto">
       </div>
-      <div class="flex flex-col mb-12 font-serif font-bold uppercase gap-y-5 whitespace-nowrap"> {{!-- Title --}}
-        <h3 class="text-4xl">The</h3>
-        <h2 class="text-5xl">Quintessential</h2>
-        <h1 class="text-6xl">Chess Journey</h1>
+      <div class="flex flex-col mb-12 font-serif font-bold uppercase gap-y-5 md:whitespace-nowrap"> {{!-- Title --}}
+        <h3 class="text-3xl md:text-4xl 2xl:text-6xl">The</h3>
+        <h2 class="text-4xl md:text-5xl 2xl:text-7xl">Quintessential</h2>
+        <h1 class="text-5xl md:text-6xl 2xl:text-8xl">Chess Journey</h1>
       </div>
       <div class="mb-10"> {{!-- Description --}}
-        <p class="text-xl xl:w-4/5">
+        <p class="text-lg md:text-xl xl:w-4/5 2xl:w-full 2xl:text-2xl">
           Learn chess, understand basic tactics, solve daily puzzles and more. Not interested in playing? Explore the
           biographies of the top chess players in the world.
         </p>
       </div>
-      <div class="space-x-8 text-spruce"> {{!-- Buttons --}}
+      {{!-- Buttons --}}
+      <div class="flex flex-wrap justify-center mx-auto md:justify-start md:mx-0 gap-x-8 text-spruce">
         <a href="/notation" class="button">How To Play</a>
         <a href="/hall-of-fame" class="button">Worldwide Top Players</a>
       </div>
     </div>
   </div>
-  <div class="w-full h-10 mb-20 bg-spruce"></div>
+</div>
+<div class="w-full h-10 mb-20 bg-spruce"></div>
 
-  <div class="px-8">
+<div class="container mx-auto font-sans">
+  <section class="section-container">
     <div class="mb-20"> {{!-- Section title --}}
       <div class="relative space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
         <h3 class="mb-8 text-3xl">Learn About The</h3>
@@ -35,12 +39,14 @@
           <h2 class="px-4 text-4xl -translate-y-1/2 bg-cream">Pieces</h2>
         </div>
       </div>
-      <p class="w-3/5 mx-auto font-sans text-xl text-center">
+      <p class="paragraph">
         Begin your path by immersing yourself in the fascinating intricacies of how each piece navigates the chessboard,
         revealing the profound depths of their strategic power.
       </p>
     </div>
+  </section>
 
+  <section class="section-container">
     {{!-- Pieces section --}}
     <div class="grid md:grid-cols-2 lg:grid-cols-3 bg-white border-[0.5px] mb-28">
       <div class="px-4 py-6 border-[0.5px]">
@@ -152,7 +158,9 @@
         </div>
       </div>
     </div>
+  </section>
 
+  <section class="section-container">
     {{!-- Hall of fame section --}}
     <div class="mb-20"> {{!-- Section title --}}
       <div class="relative space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
@@ -261,25 +269,27 @@
         </div>
       </div>
     </div>
+  </section>
 
-    {{!-- Divider section --}}
-    <div class="px-8 py-10 mb-20 bg-dark-oak text-cream">
-      <div class="relative mb-4 space-y-2 font-serif font-bold text-center uppercase">
-        <h3 class="mb-8 text-3xl">Begin Your</h3>
-        <div class="flex flex-col items-center justify-center mb-8">
-          <hr class="w-full border-2 border-cream">
-          <h2 class="px-4 text-4xl -translate-y-1/2 bg-dark-oak">Chess Path</h2>
-        </div>
-      </div>
-      <p class="w-3/5 mx-auto font-sans text-xl text-center">
-        Explore the profound insights and timeless wisdom of some of the world's greatest players. Discover their
-        strategic brilliance and personal philosophies that have shaped the world of chess.
-      </p>
-      <div class="mt-10 text-center">
-        <a href="/notation" class="button">How To Play</a>
+  {{!-- Divider section --}}
+  <div class="px-8 py-10 mb-20 bg-dark-oak text-cream section-container">
+    <div class="relative mb-4 space-y-2 font-serif font-bold text-center uppercase">
+      <h3 class="mb-8 text-3xl">Begin Your</h3>
+      <div class="flex flex-col items-center justify-center mb-8">
+        <hr class="w-full border-2 border-cream">
+        <h2 class="px-4 text-4xl -translate-y-1/2 bg-dark-oak">Chess Path</h2>
       </div>
     </div>
+    <p class="w-3/5 mx-auto font-sans text-xl text-center">
+      Explore the profound insights and timeless wisdom of some of the world's greatest players. Discover their
+      strategic brilliance and personal philosophies that have shaped the world of chess.
+    </p>
+    <div class="mt-10 text-center">
+      <a href="/notation" class="button">How To Play</a>
+    </div>
+  </div>
 
+  <section class="section-container">
     {{!-- Zigzag section --}}
     <div
       class="grid items-center mx-auto mb-40 text-center md:text-left justify-items-center md:justify-items-start md:grid-cols-2 gap-x-10 lg:gap-x-20 xl:gap-x-0 gap-y-20 xl:w-5/6 2xl:w-4/5">
@@ -375,5 +385,5 @@
         <a href="/notation" class="button">Start Learning</a>
       </div>
     </div>
-  </div>
+  </section>
 </div>

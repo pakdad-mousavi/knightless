@@ -1,28 +1,31 @@
-<header class="container mx-auto font-sans {{#if isHomePage}}absolute{{/if}}">
-  <div class="flex flex-wrap items-center px-8 py-6 lg:flex-nowrap {{#unless isHomePage}}bg-spruce{{/unless}} {{#if isHomePage}}bg-black/30 backdrop-blur-md{{/if}} text-cream">
-    <div class="flex items-center flex-1">
-      <a href="/" class="inline-flex items-center gap-2">
-        <img src="https://placehold.co/25.png" alt="">
-        <h1 class="font-semibold">Chessless</h1>
-      </a>
-    </div>
-    <label for="menu-toggle" class="cursor-pointer lg:hidden">
-      <svg class="text-gray-100 fill-current" width="20" height="20" viewBox="0 0 20 20">
-        <title>menu</title>
-        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-      </svg>
-    </label>
-    <input class="hidden" type="checkbox" id="menu-toggle" />
-    <div class="hidden mt-6 lg:block basis-full lg:basis-auto lg:mt-0" id="menu">
-      <ul class="flex flex-col items-center text-center gap-x-7 gap-y-2 lg:flex-row">
-        <hr class="w-full border-cream border-1 lg:hidden">
-        <li class="w-full lg:w-auto"><a href="/notation" class="header-item">Learning Chess</a></li>
-        <li class="w-full lg:w-auto"><a href="/timeline" class="header-item">Timeline</a></li>
-        <li class="w-full lg:w-auto"><a href="/hall-of-fame" class="header-item">Hall Of Fame</a></li>
-        <li class="w-full lg:w-auto"><a href="/daily-puzzle" class="header-item">Daily Puzzle</a></li>
-        <li class="w-full lg:w-auto xl:ml-20"><a href="/attributions" class="header-item">Attributions</a></li>
-        <li class="w-full lg:w-auto"><a href="/contact" class="header-item">Contact Us</a></li>
-      </ul>
+<header class="mx-auto font-sans{{#if isHomePage}} w-full absolute left-1/2 -translate-x-1/2{{/if}} z-10">
+  <div
+    class="{{#unless isHomePage}}bg-spruce{{/unless}} {{#if isHomePage}}bg-black/30 backdrop-blur-md{{/if}} text-cream">
+    <div class="container flex flex-wrap items-center px-8 py-6 mx-auto lg:flex-nowrap">
+      <div class="flex items-center flex-1">
+        <a href="/" class="inline-flex items-center gap-2">
+          <img src="https://placehold.co/25.png" alt="">
+          <h1 class="font-semibold">Chessless</h1>
+        </a>
+      </div>
+      <label for="menu-toggle" class="cursor-pointer lg:hidden">
+        <svg class="text-gray-100 fill-current" width="20" height="20" viewBox="0 0 20 20">
+          <title>menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+        </svg>
+      </label>
+      <input class="hidden" type="checkbox" id="menu-toggle" />
+      <div class="hidden mt-6 lg:block basis-full lg:basis-auto lg:mt-0" id="menu">
+        <ul class="flex flex-col items-center text-center gap-x-7 gap-y-2 lg:flex-row">
+          <hr class="w-full border-cream border-1 lg:hidden">
+          <li class="w-full lg:w-auto"><a href="/notation" class="header-item">Learning Chess</a></li>
+          <li class="w-full lg:w-auto"><a href="/timeline" class="header-item">Timeline</a></li>
+          <li class="w-full lg:w-auto"><a href="/hall-of-fame" class="header-item">Hall Of Fame</a></li>
+          <li class="w-full lg:w-auto"><a href="/daily-puzzle" class="header-item">Daily Puzzle</a></li>
+          <li class="w-full lg:w-auto xl:ml-20"><a href="/attributions" class="header-item">Attributions</a></li>
+          <li class="w-full lg:w-auto"><a href="/contact" class="header-item">Contact Us</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </header>

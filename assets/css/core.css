@@ -29,7 +29,7 @@ body *.font-serif {
 }
 
 .button {
-  @apply px-8 py-2 rounded-md bg-birch border-[1px] border-spruce active:bg-cream duration-100 text-spruce whitespace-nowrap;
+  @apply px-8 py-2 2xl:text-xl rounded-md bg-birch border-[1px] border-spruce active:bg-cream duration-100 text-spruce whitespace-nowrap;
 }
 
 .details-list {
@@ -168,5 +168,5 @@ body *.font-serif {
 }
 
 .paragraph {
-  @apply mx-auto mb-8 font-sans text-lg md:w-4/5 lg:w-3/5 text-center;
+  @apply mx-auto mb-8 font-sans text-xl md:w-4/5 lg:w-3/5 text-center;
 }
