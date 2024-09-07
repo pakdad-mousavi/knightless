@@ -185,4 +185,6 @@ if (faqPanel) {
 }
 
 const timeline = document.querySelector('.horizontal-timeline');
-watchTimelineScroll(timeline);
+if (timeline) {
+  watchTimelineScroll(timeline);
+}
