@@ -5,6 +5,7 @@ export const getPlayers = async (req, res) => {
   const cookieFilters = req.signedCookies?.filters;
 
   const playingStyles = cookieFilters?.playingStyles || [];
+  const search = cookieFilters?.search || '';
   let ratingA = cookieFilters?.ratingA || false;
   let ratingB = cookieFilters?.ratingB || false;
   const hasBeenChampion = cookieFilters?.hasBeenChampion === true;
@@ -22,12 +23,19 @@ export const getPlayers = async (req, res) => {
     }
     filter['personalDetails.peakFideRating'] = { $gte: ratingA, $lte: ratingB };
   }
+  if (search && search.length) {
+    filter['$or'] = [
+      { 'personalDetails.firstName': { $regex: `\\Q${encodeURIComponent(search)}\\E`, $options: 'i' } }, // Case-insensitive match
+      { 'personalDetails.lastName': { $regex: `\\Q${encodeURIComponent(search)}\\E`, $options: 'i' } },
+    ];
+  }
   if (hasBeenChampion) {
     filter['personalDetails.hasBeenChampion'] = true;
   }
 
   const options = {
     playingStyles: {},
+    search: search || '',
     ratingA: ratingA || 2500,
     ratingB: ratingB || 2900,
     hasBeenChampion,
@@ -77,14 +85,15 @@ export const getPlayers = async (req, res) => {
 };
 
 export const applySearchFilters = (req, res) => {
-  const { playingStyles: styles, ratingA: rtA, ratingB: rtB, formerChampion: chmp } = req.body;
+  const { playingStyles: styles, search, ratingA: rtA, ratingB: rtB, formerChampion: chmp } = req.body;
 
   if (!Number.isInteger(Number(rtA)) || !Number.isInteger(Number(rtB))) {
-    res.send('Ratings need to be numbers.');
+    return res.send('Ratings need to be numbers.');
   }
 
   const filters = {
     playingStyles: styles ? [].concat(styles) : [],
+    search: search?.toString().trim(),
     ratingA: rtA,
     ratingB: rtB,
     hasBeenChampion: chmp === 'Former Champion',
