@@ -162,8 +162,9 @@ if (activeFiltersContainer) {
 
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
 const ranges = document.querySelectorAll('input[type=range]');
-if (checkboxes.length && ranges.length) {
-  resetFilters(checkboxes, ranges);
+const searchbar = document.querySelector('.searchbar > input[type=text]');
+if (checkboxes.length && ranges.length && searchbar) {
+  resetFilters(checkboxes, ranges, searchbar);
 }
 
 const sampleBoards = document.querySelectorAll('.sample-board');

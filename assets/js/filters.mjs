@@ -46,19 +46,25 @@ export const watchActiveFilters = (filterBox) => {
   });
 };
 
-export const resetFilters = (checkboxes, ranges) => {
+export const resetFilters = (checkboxes, ranges, searchbar) => {
   const resetBtn = document.querySelector('button[type=reset]');
   const form = document.querySelector('form');
 
   resetBtn.addEventListener('click', (e) => {
     e.preventDefault();
+
+    // Uncheck all checkboxes and switches
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
 
+    // Reset ranges to original values
     ranges[0].value = MINRANGEVALUE;
     ranges[1].value = MAXRANGEVALUE;
 
+    // Empty the searchbar
+    searchbar.value = '';
+    
     form.submit();
   });
 };
