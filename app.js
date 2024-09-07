@@ -5,7 +5,7 @@ import helpers from './views/helpers.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import dotenv from 'dotenv';
-// import mongoose from 'mongoose';
+import nosqlSanitizer from 'express-nosql-sanitizer';
 
 import defaultRouter from './routes/index.js';
 
@@ -35,6 +35,9 @@ app.use(
 // Set up the body parser:
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Sanitize requests:
+app.use(nosqlSanitizer());
 
 // Set up the cookie parser:
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
