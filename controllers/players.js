@@ -87,15 +87,17 @@ export const getPlayers = async (req, res) => {
 export const applySearchFilters = (req, res) => {
   const { playingStyles: styles, search, ratingA: rtA, ratingB: rtB, formerChampion: chmp } = req.body;
 
-  if (!Number.isInteger(Number(rtA)) || !Number.isInteger(Number(rtB))) {
-    return res.send('Ratings need to be numbers.');
+  let numRtA = Number(rtA);
+  let numRtB = Number(rtB);
+  if (!Number.isInteger(numRtA) || !Number.isInteger(numRtB)) {
+    numRtA = 2500;
+    numRtB = 2900;
   }
-
   const filters = {
     playingStyles: styles ? [].concat(styles) : [],
     search: search?.toString().trim(),
-    ratingA: rtA,
-    ratingB: rtB,
+    ratingA: numRtA || 2500,
+    ratingB: numRtB || 2900,
     hasBeenChampion: chmp === 'Former Champion',
   };
 
@@ -106,7 +108,7 @@ export const applySearchFilters = (req, res) => {
     signed: true,
   });
 
-  res.redirect('/hall-of-fame');
+  return res.redirect('/hall-of-fame');
 };
 
 export const getPlayerById = async (req, res) => {
