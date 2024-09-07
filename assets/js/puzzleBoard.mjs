@@ -34,7 +34,7 @@ const updateHighlights = (boardElement, game, move) => {
   highlightSquare(boardElement, move.to, MOVEHIGHLIGHTCLASS); // Highlight the "to" move
 };
 
-const getMoveType = (game, move) => {
+export const getMoveType = (game, move) => {
   const isEnPassant = move.flags.search(FLAGS.enPassant) !== -1; // is the move an en passant?
   const isNormalCapture = move.flags.search(FLAGS.capture) !== -1; // is the move a normal capture?
   const isNonCapture = !isEnPassant && !isNormalCapture; // Is the move anything else besides a capture?

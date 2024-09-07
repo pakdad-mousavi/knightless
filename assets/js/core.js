@@ -1,9 +1,10 @@
 import { Chess } from '/chessjs/chess.js';
 import { createGameFen, checkForPieces, highlightSquare } from './chessUtils.mjs';
-import { setUpPuzzleBoard } from './puzzleBoard.mjs';
+import { getMoveType, setUpPuzzleBoard } from './puzzleBoard.mjs';
 import { watchFaqPanel } from './faq.mjs';
 import { watchTimelineScroll } from './timeline.mjs';
 import { resetFilters, watchActiveFilters, watchSliders } from './filters.mjs';
+import { playMoveAudio } from './sounds.mjs';
 
 const setUpSampleBoards = (boardElements) => {
   if (!boardElements.length) return;
@@ -49,6 +50,13 @@ const setUpSampleBoards = (boardElements) => {
           promotion: 'q',
         });
 
+        const moveType = getMoveType(game, move);
+        if (moveType !== 'check') {
+          playMoveAudio(moveType);
+        } else {
+          playMoveAudio('move');
+        }
+
         // Update the move counter
         moveCounter++;
         updateMovePanel();
@@ -71,6 +79,9 @@ const setUpSampleBoards = (boardElements) => {
       onDrop,
       onDragStart,
       onSnapEnd,
+      moveSpeed: 150,
+      snapbackSpeed: 0,
+      snapSpeed: 0,
     };
 
     const board = new Chessboard(boardElement, config);
