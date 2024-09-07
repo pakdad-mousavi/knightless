@@ -24,10 +24,26 @@ export const getPlayers = async (req, res) => {
     filter['personalDetails.peakFideRating'] = { $gte: ratingA, $lte: ratingB };
   }
   if (search && search.length) {
-    filter['$or'] = [
-      { 'personalDetails.firstName': { $regex: `\\Q${encodeURIComponent(search)}\\E`, $options: 'i' } }, // Case-insensitive match
-      { 'personalDetails.lastName': { $regex: `\\Q${encodeURIComponent(search)}\\E`, $options: 'i' } },
-    ];
+    // Break the name into different parts
+    const nameParts = search.split(' ');
+
+    // If the search is only one word, search for the whole thing in both firstName and lastName
+    if (nameParts.length === 1) {
+      filter['$or'] = [
+        { 'personalDetails.firstName': { $regex: `\\Q${encodeURIComponent(search)}\\E`, $options: 'i' } }, // Case-insensitive match
+        { 'personalDetails.lastName': { $regex: `\\Q${encodeURIComponent(search)}\\E`, $options: 'i' } },
+      ];
+    }
+    // If there are two or more parts, search first part and rest as firstName and lastName
+    else if (nameParts.length >= 2) {
+      const firstName = nameParts[0];
+      const lastName = nameParts.slice(1).join(' ');
+
+      filter['$or'] = [
+        { 'personalDetails.firstName': { $regex: `\\Q${encodeURIComponent(firstName)}\\E`, $options: 'i' } }, // Case-insensitive match
+        { 'personalDetails.lastName': { $regex: `\\Q${encodeURIComponent(lastName)}\\E`, $options: 'i' } },
+      ];
+    }
   }
   if (hasBeenChampion) {
     filter['personalDetails.hasBeenChampion'] = true;
