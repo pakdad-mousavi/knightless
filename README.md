@@ -6,3 +6,4 @@ Website that both teaches chess and allows you to read about other chess aspects
 
 1. Fix header positioning in homepage, should be in the center.
 2. Change the word "instrumental" in mitra's description.
+3. Cache the daily puzzle.
