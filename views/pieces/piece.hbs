@@ -1,22 +1,22 @@
-<div class="container py-20 mx-auto font-sans">
-  <div class="space-y-20">
+<div class="container pt-10 pb-20 mx-auto font-sans">
+  <div class="space-y-10">
     {{#with piece}}
-    <section class="flex items-center justify-center gap-x-10 lg:gap-x-0 section-container "> {{!-- Section title --}}
-      <div>
-        <img src="https://placehold.co/200x400" alt="">
+    <section class="flex items-center justify-center gap-x-10 lg:gap-x-0 section-container"> {{!-- Section title --}}
+      <div class="w-1/5 xl:w-1/6 p-4">
+        <img src="/images/piece-images/beta/{{id}}.webp" alt="{{name}}" class="-scale-x-100">
       </div>
-      <div class="relative font-serif font-bold text-center uppercase lg:flex-1 text-dark-oak">
+      <div class="w-3/5 xl:w-2/3 relative font-serif font-bold text-center uppercase lg:flex-1 text-dark-oak">
         <div class="flex flex-col items-center justify-center">
           <hr class="w-full border-2 md:w-3/4 border-oak">
-          <h2 class="px-6 text-5xl -translate-y-1/2 bg-cream">The</h2>
+          <h2 class="px-6 text-3xl -translate-y-1/2 bg-cream">The</h2>
         </div>
-        <h1 class="mb-8 text-7xl">{{name}}</h1>
+        <h1 class="mb-8 text-5xl">{{name}}</h1>
         <hr class="w-full mx-auto border-2 sm:w-4/5 border-oak">
         <h3 class="my-4 text-xl">{{subtitle}}</h3>
         <hr class="w-4/5 mx-auto border-2 sm:w-1/2 border-oak">
       </div>
-      <div>
-        <img src="https://placehold.co/200x400" alt="">
+      <div class="w-1/5 xl:w-1/6 p-4">
+        <img src="/images/piece-images/beta/{{id}}.webp" alt="{{name}}">
       </div>
     </section>
 
