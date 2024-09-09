@@ -57,7 +57,7 @@ body *.font-serif {
 }
 
 .section-container {
-  @apply px-10 md:px-10 lg:px-20 xl:px-28;
+  @apply px-10 md:px-5 lg:px-10 xl:px-28;
 }
 
 .slider {
