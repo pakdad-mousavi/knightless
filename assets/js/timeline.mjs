@@ -1,4 +1,5 @@
 const PROGRESSBARCLASS = 'scroll-progress-bar';
+
 export const watchTimelineScroll = (timeline) => {
   const progressBar = document.querySelector(`.${PROGRESSBARCLASS}`);
   timeline.addEventListener('scroll', () => {
