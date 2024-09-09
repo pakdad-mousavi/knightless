@@ -70,6 +70,11 @@ export const watchActiveFilters = (filterBox) => {
   if (!items.length) {
     arrow.classList.add('hidden');
   }
+  // If there are active filters, open the panel, rotate the arrow
+  else {
+    filterBox.classList.add('open');
+    arrow.classList.add(ROTATECLASS);
+  }
 };
 
 export const resetFilters = (checkboxes, ranges, searchbar) => {
@@ -98,7 +103,7 @@ export const resetFilters = (checkboxes, ranges, searchbar) => {
 export const watchFilterPanel = (panel) => {
   // Define variables
   let openHeight;
-  let closed = true;
+  let closed = !panel.classList.contains('open');
 
   // Used to update the panel height
   const updatePanelHeight = () => {
