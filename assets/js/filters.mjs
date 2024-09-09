@@ -4,6 +4,22 @@ const HEADERHEIGHTCLASS = 'max-h-16';
 const MINRANGEVALUE = 2500;
 const MAXRANGEVALUE = 2900;
 
+function debounce(func) {
+  let timeoutId;
+
+  return function (...args) {
+    // Clear the previous timeout if it exists
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    // Set a new timeout
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, 100);
+  };
+}
+
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
   let sliderRight = Number(sliders[1].value);
@@ -80,13 +96,20 @@ export const resetFilters = (checkboxes, ranges, searchbar) => {
 };
 
 export const watchFilterPanel = (panel) => {
-  // Get the panel height 
-  let openHeight = panel.scrollHeight;
-  window.addEventListener('resize', () => {
-    openHeight = panel.scrollHeight; // Get the new height if window is resized
-  });
-
+  // Define variables
+  let openHeight;
   let closed = true;
+
+  // Used to update the panel height
+  const updatePanelHeight = () => {
+    openHeight = panel.scrollHeight;
+    panel.style.maxHeight = closed ? null : `${openHeight}px`;
+  };
+
+  updatePanelHeight(); // Set initial panel height
+
+  // Get new panel height if window is resized
+  window.addEventListener('resize', debounce(updatePanelHeight));
 
   // Start off with completely minimized panels
   const arrow = panel.querySelector('a.icon-down-arrow');
