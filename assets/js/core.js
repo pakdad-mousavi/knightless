@@ -3,7 +3,7 @@ import { createGameFen, checkForPieces, highlightSquare } from './chessUtils.mjs
 import { getMoveType, setUpPuzzleBoard } from './puzzleBoard.mjs';
 import { watchFaqPanel } from './faq.mjs';
 import { watchTimelineScroll } from './timeline.mjs';
-import { resetFilters, watchActiveFilters, watchSliders } from './filters.mjs';
+import { resetFilters, watchActiveFilters, watchFilterPanel, watchSliders } from './filters.mjs';
 import { playMoveAudio } from './sounds.mjs';
 
 const setUpSampleBoards = (boardElements) => {
@@ -198,4 +198,9 @@ if (faqPanel) {
 const timeline = document.querySelector('.horizontal-timeline');
 if (timeline) {
   watchTimelineScroll(timeline);
+}
+
+const filterPanels = document.querySelectorAll('.filter-panel');
+for (let panel of filterPanels) {
+  watchFilterPanel(panel);
 }

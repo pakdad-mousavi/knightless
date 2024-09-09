@@ -1,4 +1,6 @@
 const DOWNARROWCLASS = 'icon-down-arrow';
+const ROTATECLASS = '-rotate-180';
+const HEADERHEIGHTCLASS = 'max-h-16';
 const MINRANGEVALUE = 2500;
 const MAXRANGEVALUE = 2900;
 
@@ -37,6 +39,7 @@ const removeActiveFilter = (filterName) => {
 };
 
 export const watchActiveFilters = (filterBox) => {
+  // Remove filters on click
   filterBox.addEventListener('click', (e) => {
     const element = e.target;
     if (element.tagName === 'A' && !element.classList.contains(DOWNARROWCLASS)) {
@@ -44,6 +47,13 @@ export const watchActiveFilters = (filterBox) => {
       removeActiveFilter(filterName);
     }
   });
+
+  // If there are no active filters, hide the arrow
+  const items = filterBox.querySelectorAll('ul > li');
+  const arrow = filterBox.querySelector('.icon-down-arrow');
+  if (!items.length) {
+    arrow.classList.add('hidden');
+  }
 };
 
 export const resetFilters = (checkboxes, ranges, searchbar) => {
@@ -64,7 +74,30 @@ export const resetFilters = (checkboxes, ranges, searchbar) => {
 
     // Empty the searchbar
     searchbar.value = '';
-    
+
     form.submit();
+  });
+};
+
+export const watchFilterPanel = (panel) => {
+  // Get the panel height 
+  let openHeight = panel.scrollHeight;
+  window.addEventListener('resize', () => {
+    openHeight = panel.scrollHeight; // Get the new height if window is resized
+  });
+
+  let closed = true;
+
+  // Start off with completely minimized panels
+  const arrow = panel.querySelector('a.icon-down-arrow');
+  panel.classList.add(HEADERHEIGHTCLASS);
+
+  // toggle the panel on click
+  arrow.addEventListener('click', (e) => {
+    e.preventDefault();
+    panel.style.maxHeight = closed ? `${openHeight}px` : null;
+    arrow.classList.toggle(ROTATECLASS);
+
+    closed = closed ? false : true; // Update variable
   });
 };
