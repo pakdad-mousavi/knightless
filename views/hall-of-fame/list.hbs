@@ -30,17 +30,17 @@
     <div>
       {{!-- Top players bar --}}
       <div class="flex flex-col mb-4 xl:w-5/6 xl:pl-4 xl:ml-auto gap-y-4">
-        <div class="flex md:items-center gap-4 flex-col md:flex-row">
+        <div class="flex flex-col gap-4 md:items-center md:flex-row">
           <h3 class="font-serif text-xl font-bold uppercase">Players</h3>
-          <div class="flex items-center gap-4 flex-wrap">
+          <div class="flex flex-wrap items-center gap-4">
             <div class="flex items-center gap-x-4">
               <button type="submit" class="button !px-4 !py-1">Apply</button>
               <button type="reset" class="button !px-4 !py-1">Reset</button>
             </div>
             <div class="flex items-center">
-            <div class="bg-white px-2 py-1 rounded-md border-[1px] border-spruce mr-4">
-              {{paging.totalRecords}} results
-            </div>
+              <div class="bg-white px-2 py-1 rounded-md border-[1px] border-spruce mr-4">
+                {{paging.totalRecords}} results
+              </div>
               {{#if paging.hasPrev}}
               <a href="/hall-of-fame?page={{sub paging.currentPage 1}}"
                 class="bg-white px-3 py-1 rounded-md border-[1px] border-spruce flex gap-x-2 items-center">
@@ -97,7 +97,7 @@
 
           {{!-- Active Filters --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl active-filters filter-panel">
+            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl active-filters filter-panel border-[1px] border-gray-200 xl:border-0">
             <div class="pb-4 xl:py-4">
               <div class="flex items-center h-8 xl:pr-3">
                 <h3 class="mr-auto text-gray-500 border-b-[1px] border-gray-500 inline-block">Active Filters</h3>
@@ -125,7 +125,7 @@
 
           {{!-- Playing styles --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl filter-panel">
+            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl filter-panel border-[1px] border-gray-200 xl:border-0">
             <div class="pb-4 xl:py-4">
               <div class="flex items-center h-8 xl:pr-3">
                 <h3 class="mr-auto text-gray-500 border-b-[1px] border-gray-500 inline-block">Playing Styles</h3>
@@ -145,7 +145,7 @@
 
           {{!-- Peak rating --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl filter-panel">
+            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl filter-panel border-[1px] border-gray-200 xl:border-0">
             <div class="pb-4 xl:py-4 xl:pb-6">
               <div class="flex items-center h-8 xl:pr-3">
                 <h3 class="mr-auto text-gray-500 border-b-[1px] border-gray-500 inline-block">Peak Rating (elo)</h3>
@@ -175,7 +175,7 @@
 
           {{!-- Was world champion --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto rounded-xl xl:p-0 filter-panel">
+            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto rounded-xl xl:p-0 filter-panel border-[1px] border-gray-200 xl:border-0">
             <div class="pb-4 xl:py-4">
               <div class="flex items-center h-8 xl:pr-3">
                 <h3 class="mr-auto text-gray-500 border-b-[1px] border-gray-500 inline-block">Chess Champion</h3>
@@ -198,7 +198,7 @@
           {{#each players}}
           <div>
             <a href="/hall-of-fame/{{this.id}}">
-              <div class="flex items-center h-48 p-2 bg-white rounded-lg xl:py-4">
+              <div class="flex items-center h-48 p-2 bg-white rounded-lg xl:py-4 border-gray-200 border-[1px]">
                 <div class="flex items-center gap-x-7 xl:gap-x-4">
                   <div class="flex-1 overflow-hidden">
                     {{#if this.personalDetails.hasBeenChampion}}
