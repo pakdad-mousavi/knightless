@@ -42,7 +42,11 @@ const helper = {
 
   getMoveNumberFromIndex(index) {
     return Math.floor(index / 2);
-  }
+  },
+
+  ne(value, comparee) {
+    return value !== comparee;
+  },
 };
 
 export default helper;

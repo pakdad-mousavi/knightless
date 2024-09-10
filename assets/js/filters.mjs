@@ -46,10 +46,20 @@ export const watchSliders = (sliders, displayElement) => {
   });
 };
 
-const removeActiveFilter = (filterName) => {
-  const filter = document.querySelector(`input[value="${filterName}"]`);
+const removeActiveFilter = (filterName, isRange = false) => {
   const form = document.querySelector('form');
-  filter.checked = false;
+
+  // If it's the range, reset the range values
+  if (isRange) {
+    const sliders = form.querySelectorAll(`input[type="range"]`);
+    sliders[0].value = MINRANGEVALUE;
+    sliders[1].value = MAXRANGEVALUE;
+  }
+  // If not, then just uncheck the filter
+  else {
+    const filter = form.querySelector(`input[value="${filterName}"]`);
+    filter.checked = false;
+  }
 
   form.submit();
 };
@@ -60,7 +70,8 @@ export const watchActiveFilters = (filterBox) => {
     const element = e.target;
     if (element.tagName === 'A' && !element.classList.contains(DOWNARROWCLASS)) {
       const filterName = element.nextElementSibling.innerText;
-      removeActiveFilter(filterName);
+      const isRange = filterName.includes('rating');
+      removeActiveFilter(filterName, isRange);
     }
   });
 

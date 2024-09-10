@@ -113,6 +113,19 @@
               </li>
               {{/if}}
               {{/each}}
+              {{#if (ne options.ratingA 2500) }}
+              <li>
+                <a href="#" class="mr-2 font-bold">X</a>
+                <span>{{options.ratingA}} - {{options.ratingB}} rating</span>
+              </li>
+              {{else}}
+              {{#if (ne options.ratingB 2900)}}
+              <li>
+                <a href="#" class="mr-2 font-bold">X</a>
+                <span>{{options.ratingA}} - {{options.ratingB}} rating</span>
+              </li>
+              {{/if}}
+              {{/if}}
               {{#if options.hasBeenChampion}}
               <li>
                 <a href="#" class="mr-2 font-bold">X</a>
