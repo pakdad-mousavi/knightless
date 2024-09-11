@@ -1,24 +1,10 @@
+import { debounce } from "./chessUtils.mjs";
+
 const DOWNARROWCLASS = 'icon-down-arrow';
 const ROTATECLASS = '-rotate-180';
 const HEADERHEIGHTCLASS = 'max-h-16';
 const MINRANGEVALUE = 2500;
 const MAXRANGEVALUE = 2900;
-
-function debounce(func) {
-  let timeoutId;
-
-  return function (...args) {
-    // Clear the previous timeout if it exists
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-
-    // Set a new timeout
-    timeoutId = setTimeout(() => {
-      func.apply(this, args);
-    }, 100);
-  };
-}
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);

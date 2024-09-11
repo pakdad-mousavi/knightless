@@ -10,6 +10,22 @@ export const FLAGS = {
   promotion: 'p',
 };
 
+export const debounce = (func) => {
+  let timeoutId;
+
+  return function (...args) {
+    // Clear the previous timeout if it exists
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    // Set a new timeout
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, 100);
+  };
+}
+
 export const createGameFen = (fen, turn = 'w', castling = {}, enPassant = '-', halfmoves = '0', fullmoves = '0') => {
   //Handle castling notation
   let castlingNotation = '';
