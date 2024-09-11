@@ -1,4 +1,4 @@
-import { Chess } from '/chessjs/chess.js';
+import { Chess } from 'chess.js';
 import { FLAGS, highlightSquare, removeAllHighlights, highlightChecks, debounce } from './chessUtils.mjs';
 import { playMoveAudio } from './sounds.mjs';
 

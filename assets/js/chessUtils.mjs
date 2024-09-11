@@ -1,4 +1,4 @@
-import { SQUARES } from '/chessjs/chess.js';
+import { SQUARES } from 'chess.js';
 
 const HIGHLIGHTCLASSES = ['in-check-black', 'in-check-white', 'highlighted-black', 'highlighted-white', 'move-highlight-black', 'move-highlight-white'];
 
