@@ -131,11 +131,11 @@ body *.font-serif {
 }
 
 .move-highlight-white {
-  background-color: rgba(155, 199, 0, 0.41) !important;
+  background-color: rgb(205, 210, 123) !important;
 }
 
 .move-highlight-black {
-  background-color: rgba(120, 150, 0, 0.41) !important;
+  background-color: rgb(172, 162, 73) !important;
 }
 
 .link {
