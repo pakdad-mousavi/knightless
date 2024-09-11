@@ -1,5 +1,5 @@
 import { Chess } from '/chessjs/chess.js';
-import { FLAGS, highlightSquare, removeAllHighlights, highlightChecks } from './chessUtils.mjs';
+import { FLAGS, highlightSquare, removeAllHighlights, highlightChecks, debounce } from './chessUtils.mjs';
 import { playMoveAudio } from './sounds.mjs';
 
 const PGN_PANEL_CLASS = 'pgn-panel';
@@ -109,9 +109,11 @@ export const setUpPuzzleBoard = (boardElement) => {
   // Keep track of the user's moves and the correct moves
   let newMoves = [];
 
+  // Keep track of the move obj to highlight if window is resized
+  let lastMove;
+
   // Function to add a move after it is made
   const addMove = (move, moveNumber, isCorrect) => {
-    console.log(moveNumber);
     if (isCorrect === null) {
       newMoves.push({ move, moveNumber, type: null });
     } else if (isCorrect) {
@@ -153,8 +155,12 @@ export const setUpPuzzleBoard = (boardElement) => {
 
       // If the puzzle is over...
       if ((isCorrectMove && areAllSolutionMovesFinished) || game.isCheckmate()) {
+        // Update the message box
         puzzleOver = true;
         updateMessageBox({ move, isCorrect: true, puzzleOver });
+
+        // Update the last move to highlight
+        lastMove = move;
         return;
       }
 
@@ -166,6 +172,7 @@ export const setUpPuzzleBoard = (boardElement) => {
           // Make the opponents move based on the solution
           const solutionMove = solution[movesUsed + 1];
           const opponentMove = makeComputerMove(board, game, solutionMove);
+          lastMove = opponentMove;
           addMove(opponentMove.san, game.moveNumber(), null);
           const moveType = getMoveType(game, opponentMove);
 
@@ -260,10 +267,13 @@ export const setUpPuzzleBoard = (boardElement) => {
     pgnScroller.scrollTop = pgnScroller.scrollHeight;
   };
 
-  // Update the board when the page is resized
-  window.addEventListener('resize', () => {
+  const resizeBoard = () => {
     board.resize();
-  });
+    updateHighlights(boardElement, game, lastMove);
+  };
+
+  // Update the board when the page is resized
+  window.addEventListener('resize', debounce(resizeBoard));
 
   // Scroll to the bottom of the pgn panel
   updatePgnPanel();
@@ -274,6 +284,10 @@ export const setUpPuzzleBoard = (boardElement) => {
   // Make the initial puzzle move
   window.setTimeout(() => {
     const move = makeComputerMove(board, game, initialPuzzleMove);
+
+    // Keep track of the last move played
+    lastMove = move;
+
     const moveType = getMoveType(game, move);
     updateHighlights(boardElement, game, move);
     playMoveAudio(moveType);
