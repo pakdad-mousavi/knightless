@@ -1,3 +1,5 @@
+import '../css/core.css';
+
 import { Chess } from 'chess.js';
 import { createGameFen, checkForPieces, highlightSquare, debounce } from './chessUtils.mjs';
 import { getMoveType, setUpPuzzleBoard } from './puzzleBoard.mjs';
