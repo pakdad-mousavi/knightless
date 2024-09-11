@@ -1,5 +1,5 @@
 import { Chess } from '/chessjs/chess.js';
-import { createGameFen, checkForPieces, highlightSquare } from './chessUtils.mjs';
+import { createGameFen, checkForPieces, highlightSquare, debounce } from './chessUtils.mjs';
 import { getMoveType, setUpPuzzleBoard } from './puzzleBoard.mjs';
 import { watchFaqPanel } from './faq.mjs';
 import { watchTimelineScroll } from './timeline.mjs';
@@ -119,10 +119,12 @@ const setUpSampleBoards = (boardElements) => {
       }
     };
 
-    // Handle dynamic board resizing
-    window.addEventListener('resize', () => {
+    const resizeBoard = () => {
       board.resize();
-    });
+    };
+
+    // Handle dynamic board resizing
+    window.addEventListener('resize', debounce(resizeBoard));
   });
 };
 
@@ -153,10 +155,12 @@ const setUpPositionBoards = (boardElements) => {
     highlightAllSquares();
 
     // Handle dynamic board resizing
-    window.addEventListener('resize', () => {
+    const resizeBoard = () => {
       board.resize();
       highlightAllSquares(); // Re-highlight the squares
-    });
+    };
+
+    window.addEventListener('resize', debounce(resizeBoard));
   });
 };
 
