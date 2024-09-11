@@ -2,19 +2,19 @@ import { Chess } from '/chessjs/chess.js';
 import { FLAGS, highlightSquare, removeAllHighlights, highlightChecks } from './chessUtils.mjs';
 import { playMoveAudio } from './sounds.mjs';
 
-const PGNPANELCLASS = 'pgn-panel';
-const MESSAGEBOXCLASS = 'message-box';
-const MOVEBOXCLASS = 'move-box';
-const INDEXBOXCLASS = 'index-box';
-const PGNSCROLLERCLASS = 'pgn-scroller';
-const MOVEHIGHLIGHTCLASS = 'move-highlight';
-const MOVECLASS = 'move';
-const MOVENUMBERCLASS = 'move-number';
-const CORRECTMOVECLASS = 'correct';
-const INCORRECTMOVECLASS = 'incorrect';
+const PGN_PANEL_CLASS = 'pgn-panel';
+const MESSAGE_BOX_CLASS = 'message-box';
+const MOVE_BOX_CLASS = 'move-box';
+const INDEX_BOX_CLASS = 'index-box';
+const PGN_SCROLLER_CLASS = 'pgn-scroller';
+const MOVE_HIGHLIGHT_CLASS = 'move-highlight';
+const MOVE_CLASS = 'move';
+const MOVE_NUMBER_CLASS = 'move-number';
+const CORRECT_MOVE_CLASS = 'correct';
+const INCORRECT_MOVE_CLASS = 'incorrect';
 
-const COMPUTERMOVEDELAY = 400;
-const MOVETYPES = {
+const COMPUTER_MOVE_DELAY = 400;
+const MOVE_TYPES = {
   move: 'move',
   capture: 'capture',
   check: 'check',
@@ -30,8 +30,8 @@ const createNewElement = (tag, content, classes) => {
 const updateHighlights = (boardElement, game, move) => {
   removeAllHighlights(boardElement); // First, remove all current highlights
   highlightChecks(game, boardElement); // Then, check for a check on the next turns' player's king
-  highlightSquare(boardElement, move.from, MOVEHIGHLIGHTCLASS); // Highlight the "from" move
-  highlightSquare(boardElement, move.to, MOVEHIGHLIGHTCLASS); // Highlight the "to" move
+  highlightSquare(boardElement, move.from, MOVE_HIGHLIGHT_CLASS); // Highlight the "from" move
+  highlightSquare(boardElement, move.to, MOVE_HIGHLIGHT_CLASS); // Highlight the "to" move
 };
 
 export const getMoveType = (game, move) => {
@@ -41,11 +41,11 @@ export const getMoveType = (game, move) => {
   const isCheck = game.inCheck(); // Are either one of the kings in check?
 
   if (isCheck) {
-    return MOVETYPES.check;
+    return MOVE_TYPES.check;
   } else if (isNonCapture) {
-    return MOVETYPES.move;
+    return MOVE_TYPES.move;
   } else {
-    return MOVETYPES.capture;
+    return MOVE_TYPES.capture;
   }
 };
 
@@ -88,11 +88,11 @@ export const setUpPuzzleBoard = (boardElement) => {
 
   // Get the move, index, and message box elements and the scrollable pgn section for the respective board
   const id = boardElement.id;
-  const pgnPanel = document.querySelector(`.${id}.${PGNPANELCLASS}`);
-  const pgnScroller = pgnPanel.querySelector(`.${PGNSCROLLERCLASS}`);
-  const messageBox = pgnPanel.querySelector(`.${MESSAGEBOXCLASS}`);
-  const moveBox = pgnPanel.querySelector(`.${MOVEBOXCLASS}`);
-  const indexBox = pgnPanel.querySelector(`.${INDEXBOXCLASS}`);
+  const pgnPanel = document.querySelector(`.${id}.${PGN_PANEL_CLASS}`);
+  const pgnScroller = pgnPanel.querySelector(`.${PGN_SCROLLER_CLASS}`);
+  const messageBox = pgnPanel.querySelector(`.${MESSAGE_BOX_CLASS}`);
+  const moveBox = pgnPanel.querySelector(`.${MOVE_BOX_CLASS}`);
+  const indexBox = pgnPanel.querySelector(`.${INDEX_BOX_CLASS}`);
 
   // Create the game with the pgn
   const game = new Chess();
@@ -115,9 +115,9 @@ export const setUpPuzzleBoard = (boardElement) => {
     if (isCorrect === null) {
       newMoves.push({ move, moveNumber, type: null });
     } else if (isCorrect) {
-      newMoves.push({ move, moveNumber, type: CORRECTMOVECLASS }); // Add the correct move with its type
+      newMoves.push({ move, moveNumber, type: CORRECT_MOVE_CLASS }); // Add the correct move with its type
     } else {
-      newMoves.push({ move, moveNumber, type: INCORRECTMOVECLASS }); // Add incorrect move with its type
+      newMoves.push({ move, moveNumber, type: INCORRECT_MOVE_CLASS }); // Add incorrect move with its type
     }
 
     updatePgnPanel();
@@ -174,7 +174,7 @@ export const setUpPuzzleBoard = (boardElement) => {
 
           // Update the moves used variable
           movesUsed += 2;
-        }, COMPUTERMOVEDELAY);
+        }, COMPUTER_MOVE_DELAY);
       }
 
       // If the move is wrong...
@@ -185,7 +185,7 @@ export const setUpPuzzleBoard = (boardElement) => {
           const previousMove = undoMove(board, game); // Undo the move
           addMove(previousMove.san, orientation === 'black' ? game.moveNumber() : game.moveNumber() - 1, null);
           updateHighlights(boardElement, game, previousMove);
-        }, COMPUTERMOVEDELAY);
+        }, COMPUTER_MOVE_DELAY);
       }
     } catch {
       return 'snapback';
@@ -242,13 +242,13 @@ export const setUpPuzzleBoard = (boardElement) => {
       const { move, moveNumber, moveType } = moveObj;
       // Create and append the move number
       if (index % 2 === 0) {
-        const moveNumberClasses = [MOVENUMBERCLASS];
+        const moveNumberClasses = [MOVE_NUMBER_CLASS];
         const moveNumberElement = createNewElement('div', `${moveNumber}.`, moveNumberClasses);
         indexBox.appendChild(moveNumberElement);
       }
 
       // Create and append the move
-      const moveClasses = [MOVECLASS];
+      const moveClasses = [MOVE_CLASS];
       if (moveType || moveType !== null) {
         moveClasses.push(moveObj.type);
       }
@@ -277,5 +277,5 @@ export const setUpPuzzleBoard = (boardElement) => {
     const moveType = getMoveType(game, move);
     updateHighlights(boardElement, game, move);
     playMoveAudio(moveType);
-  }, COMPUTERMOVEDELAY);
+  }, COMPUTER_MOVE_DELAY);
 };
