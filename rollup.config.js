@@ -17,7 +17,7 @@ const moveAndHashCss = {
 
     // Generate hash based on CSS content
     const content = fs.readFileSync(srcPath, 'utf-8');
-    const cssHash = crypto.createHash('md5').update(content).digest('hex').slice(0, 8);
+    const cssHash = crypto.createHash('md5').update(content).digest('base64').slice(0, 10);
     const destPath = path.join(destDir, `core.min.${cssHash}.css`);
 
     // Create the destination directory if it doesn't exist
@@ -36,8 +36,15 @@ const moveAndHashCss = {
     manifest['core.min.css'] = `core.min.${cssHash}.css`;
 
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-    console.log('Manifest updated with CSS file.');
+    console.log('Add css file to manifest.');
   },
+};
+
+const keyValueDecorator = (key, value, opt) => {
+  // Rename 'core.js' to 'core.min.js'
+  if (key === 'core') {
+    return { 'core.min.js': value };
+  }
 };
 
 export default {
@@ -48,7 +55,7 @@ export default {
   output: {
     dir: './assets/js',
     format: 'es',
-    entryFileNames: 'core.min.[hash].js', // Add a hash to JS file
+    entryFileNames: 'core.min.[hash:10].js', // Add a hash to JS file
   },
 
   // Watch options
@@ -64,6 +71,7 @@ export default {
     }),
     outputManifest({
       fileName: '../manifest.json', // Manifest in /assets/manifest.json
+      keyValueDecorator, // Replace core.js with core.min.js
     }),
     moveAndHashCss, // Move and hash the CSS file, update manifest
   ],
