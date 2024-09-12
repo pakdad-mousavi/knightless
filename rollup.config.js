@@ -8,31 +8,30 @@ import crypto from 'crypto';
 
 const { default: outputManifest } = pluginManifest;
 
+const removeFiles = async (dir, pattern) => {
+  const resolvedDir = path.resolve(dir);
+  try {
+    (await fs.readdir(resolvedDir))
+      .filter((f) => pattern.test(f))
+      .map(async (f) => {
+        const filePath = path.join(resolvedDir, f);
+        await fs.unlink(filePath);
+        console.log(filePath);
+      });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 // Delete the previous min files
 const deleteOldMinFiles = {
   name: 'delete-old-min-files',
   async buildStart() {
-    // Define directories to clean
-    const dirs = [path.resolve('assets/css'), path.resolve('assets/js')];
-
-    for (const dir of dirs) {
-      try {
-        // Read all files in the directory
-        const files = await fs.readdir(dir);
-
-        for (const file of files) {
-          // Check if the file name contains 'min'
-          if (file.includes('min')) {
-            const filePath = path.join(dir, file);
-            await fs.unlink(filePath); // Delete the file
-            console.log(`Deleted: ${filePath}`);
-          }
-        }
-      } catch (error) {
-        console.error(`Error processing directory ${dir}:`, error);
-      }
-    }
-    console.log(); // Empty line for neat console
+    await Promise.all([
+      // Define directories to clean
+      removeFiles('assets/css', /core\.min\..*\.css/),
+      removeFiles('assets/js', /core\.min\..*\.js/),
+    ]);
   },
 };
 
