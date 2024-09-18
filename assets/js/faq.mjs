@@ -1,11 +1,12 @@
 const OPENEDCLASS = 'opened';
+const CONTENT_CLASS = 'content';
 const ICONARROWCLASS = 'icon-down-arrow';
 const ROTATECLASS = 'rotate-180';
 const FAQQUESTIONCLASS = 'faq-question';
 
 // Function to toggle a given panel
 const togglePanel = (panel) => {
-  const content = panel.children[1];
+  const content = panel.querySelector(`.${CONTENT_CLASS}`);
   const isOpen = panel.classList.contains(OPENEDCLASS);
   panel.classList.toggle(OPENEDCLASS, !isOpen); // Toggle opened state
   content.style.maxHeight = isOpen ? null : `${content.scrollHeight}px`; // Show or hide content
@@ -13,7 +14,7 @@ const togglePanel = (panel) => {
 };
 
 const updateHeight = (openPanel) => {
-  const content = openPanel.children[1];
+  const content = openPanel.querySelector(`.${CONTENT_CLASS}`);
   content.style.maxHeight = `${content.scrollHeight}px`; // Update the max height
 };
 

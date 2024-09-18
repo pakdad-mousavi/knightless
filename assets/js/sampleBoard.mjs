@@ -2,6 +2,9 @@ import { Chess } from 'chess.js';
 import { createGameFen, checkForPieces, debounce, getMoveType } from './chessUtils.mjs';
 import { playMoveAudio } from './sounds.mjs';
 
+const RESET_BUTTON_SELECTOR = 'a[href="#retry"]';
+const MOVE_COUNTER_PANEL_SELECTOR = '.move-counter';
+
 export const setUpSampleBoard = (boardElement) => {
   // Get respective data from the webpage
   const boardName = boardElement.dataset.boardName;
@@ -11,8 +14,8 @@ export const setUpSampleBoard = (boardElement) => {
 
   // Get the game board's panel (all sampleBoards have a reset button and a move counter panel)
   const panel = document.querySelector(`.${boardName}`);
-  const resetBtn = panel.children[0];
-  const moveCounterPanel = panel.children[1];
+  const resetBtn = panel.querySelector(RESET_BUTTON_SELECTOR);
+  const moveCounterPanel = panel.querySelector(MOVE_COUNTER_PANEL_SELECTOR);
 
   // Keep track of moves gone
   let moveCounter = 0;
