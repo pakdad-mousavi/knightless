@@ -13,10 +13,10 @@ const setUpSampleBoards = (boardElements) => {
 
   boardElements.forEach((boardElement) => {
     // Get respective data from the webpage
-    const boardName = boardElement.dataset['board-name'];
+    const boardName = boardElement.dataset.boardName;
     const posFen = boardElement.dataset.fen;
     const gameFen = createGameFen(posFen);
-    const maxMoves = Number(boardElement.dataset['max-moves']);
+    const maxMoves = Number(boardElement.dataset.maxMoves);
 
     // Get the game board's panel (all sampleBoards have a reset button and a move counter panel)
     const panel = document.querySelector(`.${boardName}`);
@@ -136,7 +136,7 @@ const setUpPositionBoards = (boardElements) => {
   boardElements.forEach((boardElement) => {
     // Get respective data from the webpage
     const posFen = boardElement.dataset.fen;
-    let squaresToHighlight = boardElement.dataset['highlight-squares'];
+    let squaresToHighlight = boardElement.dataset.highlightSquares;
     if (squaresToHighlight.length) squaresToHighlight = squaresToHighlight.split(',');
 
     const config = {
