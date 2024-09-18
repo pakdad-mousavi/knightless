@@ -1,5 +1,5 @@
 import { Chess } from 'chess.js';
-import { highlightSquare, removeAllHighlights, highlightChecks, debounce, getMoveType } from './chessUtils.mjs';
+import { highlightSquare, removeAllHighlights, highlightChecks, debounce, getMoveType, MOVE_TYPES } from './chessUtils.mjs';
 import { playMoveAudio } from './sounds.mjs';
 
 const PGN_PANEL_CLASS = 'pgn-panel';
@@ -14,11 +14,6 @@ const CORRECT_MOVE_CLASS = 'correct';
 const INCORRECT_MOVE_CLASS = 'incorrect';
 
 const COMPUTER_MOVE_DELAY = 400;
-const MOVE_TYPES = {
-  move: 'move',
-  capture: 'capture',
-  check: 'check',
-};
 
 const createNewElement = (tag, content, classes) => {
   const element = document.createElement(tag);

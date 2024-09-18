@@ -4,7 +4,6 @@ import { playMoveAudio } from './sounds.mjs';
 
 export const setUpSampleBoard = (boardElement) => {
   // Get respective data from the webpage
-  console.log(boardElement);
   const boardName = boardElement.dataset.boardName;
   const posFen = boardElement.dataset.fen;
   const gameFen = createGameFen(posFen);

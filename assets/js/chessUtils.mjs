@@ -2,12 +2,18 @@ import { SQUARES } from 'chess.js';
 
 const HIGHLIGHTCLASSES = ['in-check-black', 'in-check-white', 'highlighted-black', 'highlighted-white', 'move-highlight-black', 'move-highlight-white'];
 
-export const FLAGS = {
+const FLAGS = {
   nonCapture: 'n',
   twoSquarePawnPush: 'b',
   enPassant: 'e',
   capture: 'c',
   promotion: 'p',
+};
+
+export const MOVE_TYPES = {
+  move: 'move',
+  capture: 'capture',
+  check: 'check',
 };
 
 export const debounce = (func) => {
