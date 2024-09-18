@@ -24,7 +24,22 @@ export const debounce = (func) => {
       func.apply(this, args);
     }, 100);
   };
-}
+};
+
+export const getMoveType = (game, move) => {
+  const isEnPassant = move.flags.search(FLAGS.enPassant) !== -1; // is the move an en passant?
+  const isNormalCapture = move.flags.search(FLAGS.capture) !== -1; // is the move a normal capture?
+  const isNonCapture = !isEnPassant && !isNormalCapture; // Is the move anything else besides a capture?
+  const isCheck = game.inCheck(); // Are either one of the kings in check?
+
+  if (isCheck) {
+    return MOVE_TYPES.check;
+  } else if (isNonCapture) {
+    return MOVE_TYPES.move;
+  } else {
+    return MOVE_TYPES.capture;
+  }
+};
 
 export const createGameFen = (fen, turn = 'w', castling = {}, enPassant = '-', halfmoves = '0', fullmoves = '0') => {
   //Handle castling notation

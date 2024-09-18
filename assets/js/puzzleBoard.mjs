@@ -1,5 +1,5 @@
 import { Chess } from 'chess.js';
-import { FLAGS, highlightSquare, removeAllHighlights, highlightChecks, debounce } from './chessUtils.mjs';
+import { highlightSquare, removeAllHighlights, highlightChecks, debounce, getMoveType } from './chessUtils.mjs';
 import { playMoveAudio } from './sounds.mjs';
 
 const PGN_PANEL_CLASS = 'pgn-panel';
@@ -32,21 +32,6 @@ const updateHighlights = (boardElement, game, move) => {
   highlightChecks(game, boardElement); // Then, check for a check on the next turns' player's king
   highlightSquare(boardElement, move.from, MOVE_HIGHLIGHT_CLASS); // Highlight the "from" move
   highlightSquare(boardElement, move.to, MOVE_HIGHLIGHT_CLASS); // Highlight the "to" move
-};
-
-export const getMoveType = (game, move) => {
-  const isEnPassant = move.flags.search(FLAGS.enPassant) !== -1; // is the move an en passant?
-  const isNormalCapture = move.flags.search(FLAGS.capture) !== -1; // is the move a normal capture?
-  const isNonCapture = !isEnPassant && !isNormalCapture; // Is the move anything else besides a capture?
-  const isCheck = game.inCheck(); // Are either one of the kings in check?
-
-  if (isCheck) {
-    return MOVE_TYPES.check;
-  } else if (isNonCapture) {
-    return MOVE_TYPES.move;
-  } else {
-    return MOVE_TYPES.capture;
-  }
 };
 
 const makeComputerMove = (board, game, move) => {

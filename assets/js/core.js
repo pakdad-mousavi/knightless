@@ -1,134 +1,11 @@
 import '../css/core.css';
 
-import { Chess } from 'chess.js';
-import { createGameFen, checkForPieces, highlightSquare, debounce } from './chessUtils.mjs';
-import { getMoveType, setUpPuzzleBoard } from './puzzleBoard.mjs';
+import { highlightSquare, debounce } from './chessUtils.mjs';
+import { setUpPuzzleBoard } from './puzzleBoard.mjs';
 import { watchFaqPanel } from './faq.mjs';
 import { watchTimelineScroll } from './timeline.mjs';
 import { resetFilters, watchActiveFilters, watchFilterPanel, watchSliders } from './filters.mjs';
-import { playMoveAudio } from './sounds.mjs';
-
-const setUpSampleBoards = (boardElements) => {
-  if (!boardElements.length) return;
-
-  boardElements.forEach((boardElement) => {
-    // Get respective data from the webpage
-    const boardName = boardElement.dataset.boardName;
-    const posFen = boardElement.dataset.fen;
-    const gameFen = createGameFen(posFen);
-    const maxMoves = Number(boardElement.dataset.maxMoves);
-
-    // Get the game board's panel (all sampleBoards have a reset button and a move counter panel)
-    const panel = document.querySelector(`.${boardName}`);
-    const resetBtn = panel.children[0];
-    const moveCounterPanel = panel.children[1];
-
-    // Keep track of moves gone
-    let moveCounter = 0;
-
-    // Create the game
-    const game = new Chess();
-    game.load(gameFen, { skipValidation: true });
-
-    // Only allow white pieces to be moved
-    const onDragStart = (_, piece) => {
-      if (piece.search(/^w/) === -1) {
-        return false;
-      }
-    };
-
-    // For promotions or en passants, to load in the new position on the board
-    const onSnapEnd = () => {
-      board.position(game.fen());
-    };
-
-    // Integrate the board move with the game move
-    const onDrop = (from, to) => {
-      // Make the move in the game
-      try {
-        const move = game.move({
-          from,
-          to,
-          promotion: 'q',
-        });
-
-        const moveType = getMoveType(game, move);
-        if (moveType !== 'check') {
-          playMoveAudio(moveType);
-        } else {
-          playMoveAudio('move');
-        }
-
-        // Update the move counter
-        moveCounter++;
-        updateMovePanel();
-
-        // Load in the new position, but as white's turn again
-        const newPosFen = move.after.split(' ')[0];
-        const newGameFen = createGameFen(newPosFen, 'w');
-        game.load(newGameFen, { skipValidation: true });
-      } catch {
-        //If it was an illegal move, just snap back
-        return 'snapback';
-      }
-    };
-
-    // Create the config object for the gameboard
-    const config = {
-      draggable: true,
-      position: gameFen,
-      pieceTheme: '/chesspieces/{piece}.svg',
-      onDrop,
-      onDragStart,
-      onSnapEnd,
-      moveSpeed: 150,
-      snapbackSpeed: 0,
-      snapSpeed: 0,
-    };
-
-    const board = new Chessboard(boardElement, config);
-
-    // Handle the reset button
-    resetBtn.addEventListener('click', (e) => {
-      // Reset both the game and chessboard positions
-      e.preventDefault();
-      board.position(gameFen);
-      game.load(gameFen, { skipValidation: true });
-
-      // Reset move counter
-      moveCounter = 0;
-      updateMovePanel();
-    });
-
-    // Update the counter panel
-    const updateMovePanel = () => {
-      moveCounterPanel.innerHTML = `Moves Used: ${moveCounter}`;
-
-      // If the move limit is hit, check to see if all black pawns are captured
-      if (moveCounter === maxMoves) {
-        const allBlackPawnsCaptured = !checkForPieces(game, 'p', 'b');
-
-        if (allBlackPawnsCaptured) {
-          moveCounterPanel.classList.add('success-panel');
-        } else {
-          moveCounterPanel.classList.add('fail-panel');
-        }
-      }
-
-      if (moveCounter === 0) {
-        moveCounterPanel.classList.remove('success-panel');
-        moveCounterPanel.classList.remove('fail-panel');
-      }
-    };
-
-    const resizeBoard = () => {
-      board.resize();
-    };
-
-    // Handle dynamic board resizing
-    window.addEventListener('resize', debounce(resizeBoard));
-  });
-};
+import { setUpSampleBoard } from './sampleBoard.mjs';
 
 const setUpPositionBoards = (boardElements) => {
   if (!boardElements.length) return;
@@ -185,14 +62,17 @@ if (checkboxes.length && ranges.length && searchbar) {
 }
 
 const sampleBoards = document.querySelectorAll('.sample-board');
-setUpSampleBoards(sampleBoards);
+for (const board of sampleBoards) {
+  console.log(board)
+  if (board) setUpSampleBoard(board);
+}
 
 const positionBoards = document.querySelectorAll('.position-board');
 setUpPositionBoards(positionBoards);
 
-const puzzleBoards = document.querySelector('.puzzle-board');
-if (puzzleBoards) {
-  setUpPuzzleBoard(puzzleBoards);
+const puzzleBoard = document.querySelector('.puzzle-board');
+if (puzzleBoard) {
+  setUpPuzzleBoard(puzzleBoard);
 }
 
 // Watch the faq panel (to open and close questions)
@@ -207,6 +87,6 @@ if (timeline) {
 }
 
 const filterPanels = document.querySelectorAll('.filter-panel');
-for (let panel of filterPanels) {
+for (const panel of filterPanels) {
   watchFilterPanel(panel);
 }
