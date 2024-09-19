@@ -1,17 +1,9 @@
+
+
 module.exports = {
-  plugins: {
-    "postcss-import": {},
-    tailwindcss: {},
-    autoprefixer: {},
-    cssnano: {
-      preset: [
-        "default",
-        {
-          discardComments: {
-            removeAll: true,
-          },
-        },
-      ],
-    },
-  },
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+    require('cssnano')({ preset: 'default' }),
+  ],
 };
