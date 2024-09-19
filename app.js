@@ -18,7 +18,14 @@ const PORT = process.env.PORT || 3000;
 const dirname = path.resolve();
 
 // Render static files:
-app.use(express.static(`${dirname}/assets/`));
+app.use(
+  express.static(`${dirname}/assets/`, {
+    setHeaders: (res, path) => {
+      // Set Cache-Control to no-cache for all static files
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+    }
+  })
+);
 
 // Render static chessboardjs and chess.js files from node modules:
 app.use('/chessboardjs', express.static(`${dirname}/node_modules/@chrisoakman/chessboardjs/dist`));
