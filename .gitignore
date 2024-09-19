@@ -11,10 +11,10 @@ dist
 build
 
 #Generated CSS
-assets/css/*.min.*.css
+assets/css/*.min.css
 
 #Generated JS
-assets/js/*.min.*.js
+assets/js/*.min.js
 
 #manifest file
 assets/manifest.json

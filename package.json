@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "DEBUG=\"app\" node ./app.js",
-    "build-dev": "npx rollup -c -w"
+    "build-dev": "rollup -c -w"
   },
   "keywords": [],
   "author": "Pakdad Mousavi (and dad)",
@@ -26,10 +26,10 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "autoprefixer": "^10.4.20",
-    "postcss-import": "^16.1.0",
-    "rollup": "^4.21.2",
-    "rollup-plugin-output-manifest": "^2.0.0",
+    "cssnano": "^7.0.6",
+    "postcss": "^8.4.47",
+    "rollup": "^4.21.3",
     "rollup-plugin-postcss": "^4.0.2",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.12"
   }
 }
