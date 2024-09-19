@@ -1,16 +1,6 @@
 import Handlebars from 'handlebars';
-import path from 'path';
-import fs from 'fs';
 
 const helper = {
-  assetPath(filename) {
-    const manifestPath = path.resolve('assets', 'manifest.json');
-    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
-
-    // Return respective file
-    return manifest[filename] || filename.replace('.min', '');
-  },
-
   makeParagraphs(str) {
     const data = Handlebars.Utils.escapeExpression(str);
 
