@@ -23,7 +23,7 @@ app.use(
     setHeaders: (res, path) => {
       // Set Cache-Control to no-cache for all static files
       res.setHeader('Cache-Control', 'no-cache, must-revalidate');
-    }
+    },
   })
 );
 
