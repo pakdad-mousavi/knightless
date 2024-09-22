@@ -20,23 +20,23 @@
         </p>
       </div>
       {{!-- Buttons --}}
-      <div class="flex flex-wrap justify-center mx-auto md:justify-start md:mx-0 gap-x-8 text-spruce">
+      <div class="flex flex-wrap justify-center mx-auto md:justify-start md:mx-0 gap-x-8">
         <a href="/notation" class="button">How To Play</a>
         <a href="/hall-of-fame" class="button">Worldwide Top Players</a>
       </div>
     </div>
   </div>
 </div>
-<div class="w-full h-10 mb-20 bg-spruce"></div>
+<div class="w-full h-10 mb-20 bg-neutral-900"></div>
 
-<div class="container mx-auto font-sans">
-  <section class="section-container">
+<div class="container px-10 mx-auto font-sans">
+  <section>
     <div class="mb-20"> {{!-- Section title --}}
-      <div class="relative space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
-        <h3 class="mb-8 text-3xl">Learn About The</h3>
+      <div class="relative space-y-2 font-serif font-bold text-center uppercase text-oak">
+        <h3 class="mb-8 text-3xl sm:text-4xl">Learn About The</h3>
         <div class="flex flex-col items-center justify-center mb-8">
           <hr class="w-full border-2 border-oak">
-          <h2 class="px-4 text-4xl -translate-y-1/2 bg-cream">Pieces</h2>
+          <h2 class="px-4 text-4xl -translate-y-1/2 sm:text-5xl bg-spruce">Pieces</h2>
         </div>
       </div>
       <p class="paragraph">
@@ -46,113 +46,119 @@
     </div>
   </section>
 
-  <section class="section-container">
+  <section>
     {{!-- Pieces section --}}
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 bg-white border-[0.5px] mb-28">
-      <div class="px-4 py-6 border-[0.5px]">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 mb-28">
+      <div
+        class="px-4 py-6 bg-birch bg-[url('/images/checkered-background.png')] bg-repeat md:aspect-square flex order-1">
         <div class="flex items-center gap-x-4">
-          <div class="w-3/4 md:w-4/6 xl:w-[67.5%]">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-dark-oak">
             <div class="mb-4 font-serif font-bold uppercase">
-              <h3 class="text-2xl">The</h3>
-              <h4 class="text-3xl">King</h4>
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">King</h4>
+              <hr class="w-1/2 border-[1px] mt-2 border-dark-oak">
             </div>
-            <p class="mb-6 line-clamp-5">
+            <p class="text-lg line-clamp-6">
               The King is the most vital piece on the chessboard, embodying the ultimate objective of the game- Its
               presence commands the battlefield.
             </p>
-            <a href="/pieces/king" class="button">Learn More</a>
           </div>
-          <div class="w-1/4 md:w-2/6 xl:w-[32.5%]">
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
             <img src="/images/piece-images/alpha/king.webp" alt="The King">
           </div>
         </div>
       </div>
-      <div class="px-4 py-6 border-[0.5px]">
+      <div
+        class="px-4 py-6 bg-oak bg-[url('/images/checkered-background.png')] bg-repeat md:aspect-square flex order-2">
         <div class="flex items-center gap-x-4">
-          <div class="w-3/4 md:w-4/6 xl:w-[67.5%]">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-cream">
             <div class="mb-4 font-serif font-bold uppercase">
-              <h3 class="text-2xl">The</h3>
-              <h4 class="text-3xl">Queen</h4>
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Queen</h4>
+              <hr class="w-1/2 border-[1px] mt-2">
             </div>
-            <p class="mb-6 line-clamp-5">
+            <p class="text-lg line-clamp-6">
               The Queen is the most powerful piece, combining the strengths of the rook and bishop, dominating the board
               with unmatched versatility and range.
             </p>
-            <a href="/pieces/queen" class="button">Learn More</a>
           </div>
-          <div class="w-1/4 md:w-2/6 xl:w-[32.5%]">
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
             <img src="/images/piece-images/alpha/queen.webp" alt="The Queen">
           </div>
         </div>
       </div>
-      <div class="px-4 py-6 border-[0.5px]">
+      <div
+        class="px-4 py-6 bg-birch bg-[url('/images/checkered-background.png')] bg-repeat md:aspect-square flex order-3 md:order-4 lg:order-3">
         <div class="flex items-center gap-x-4">
-          <div class="w-3/4 md:w-4/6 xl:w-[67.5%]">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-dark-oak">
             <div class="mb-4 font-serif font-bold uppercase">
-              <h3 class="text-2xl">The</h3>
-              <h4 class="text-3xl">Bishop</h4>
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Bishop</h4>
+              <hr class="w-1/2 border-[1px] mt-2 border-dark-oak">
             </div>
-            <p class="mb-6 line-clamp-5">
+            <p class="text-lg line-clamp-6">
               The Bishop is a long-range piece that excels in open positions, strategically influencing the board
               through its extremely powerful diagonal control.
             </p>
-            <a href="/pieces/bishop" class="button">Learn More</a>
           </div>
-          <div class="w-1/4 md:w-2/6 xl:w-[32.5%]">
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
             <img src="/images/piece-images/alpha/bishop.webp" alt="The Bishop">
           </div>
         </div>
       </div>
-      <div class="px-4 py-6 border-[0.5px]">
+      <div
+        class="px-4 py-6 bg-oak bg-[url('/images/checkered-background.png')] bg-repeat md:aspect-square flex order-4 md:order-3 lg:order-4">
         <div class="flex items-center gap-x-4">
-          <div class="w-3/4 md:w-4/6 xl:w-[67.5%]">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-cream">
             <div class="mb-4 font-serif font-bold uppercase">
-              <h3 class="text-2xl">The</h3>
-              <h4 class="text-3xl">Knight</h4>
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Knight</h4>
+              <hr class="w-1/2 border-[1px] mt-2">
             </div>
-            <p class="mb-6 line-clamp-5">
+            <p class="text-lg line-clamp-6">
               The Knight is a versatile piece known for its unique movement and ability to jump over others. This
               unpredictable piece can prove to be quite dangerous.
             </p>
-            <a href="/pieces/knight" class="button">Learn More</a>
           </div>
-          <div class="w-1/4 md:w-2/6 xl:w-[32.5%]">
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
             <img src="/images/piece-images/alpha/knight.webp" alt="The Knight">
           </div>
         </div>
       </div>
-      <div class="px-4 py-6 border-[0.5px]">
+      <div
+        class="px-4 py-6 bg-birch bg-[url('/images/checkered-background.png')] bg-repeat md:aspect-square flex order-5">
         <div class="flex items-center gap-x-4">
-          <div class="w-3/4 md:w-4/6 xl:w-[67.5%]">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-dark-oak">
             <div class="mb-4 font-serif font-bold uppercase">
-              <h3 class="text-2xl">The</h3>
-              <h4 class="text-3xl">Rook</h4>
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Rook</h4>
+              <hr class="w-1/2 border-[1px] mt-2 border-dark-oak">
             </div>
-            <p class="mb-6 line-clamp-5">
+            <p class="text-lg line-clamp-6">
               The Rook is a powerful piece that excels in controlling open lines and supporting other pieces. Its
               strength lies in its ability to dominate entire files and ranks.
             </p>
-            <a href="/pieces/rook" class="button">Learn More</a>
           </div>
-          <div class="w-1/4 md:w-2/6 xl:w-[32.5%]">
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
             <img src="/images/piece-images/alpha/rook.webp" alt="The Rook">
           </div>
         </div>
       </div>
-      <div class="px-4 py-6 border-[0.5px]">
+      <div
+        class="px-4 py-6 bg-oak bg-[url('/images/checkered-background.png')] bg-repeat md:aspect-square flex order-6">
         <div class="flex items-center gap-x-4">
-          <div class="w-3/4 md:w-4/6 xl:w-[67.5%]">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-cream">
             <div class="mb-4 font-serif font-bold uppercase">
-              <h3 class="text-2xl">The</h3>
-              <h4 class="text-3xl">Pawn</h4>
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Pawn</h4>
+              <hr class="w-1/2 border-[1px] mt-2">
             </div>
-            <p class="mb-6 line-clamp-5">
+            <p class="text-lg line-clamp-6">
               The Pawn is the most numerous piece on the chessboard, often seen as the backbone of a player's strategy.
               Their strength is in their numbers.
             </p>
-            <a href="/pieces/pawn" class="button">Learn More</a>
           </div>
-          <div class="w-1/4 md:w-2/6 xl:w-[32.5%]">
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
             <img src="/images/piece-images/alpha/pawn.webp" alt="The Pawn">
           </div>
         </div>
@@ -160,14 +166,14 @@
     </div>
   </section>
 
-  <section class="section-container">
+  <section>
     {{!-- Hall of fame section --}}
     <div class="mb-20"> {{!-- Section title --}}
       <div class="relative space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
-        <h3 class="mb-8 text-3xl">Wisdom From</h3>
+        <h3 class="mb-8 text-3xl sm:text-4xl">Wisdom From</h3>
         <div class="flex flex-col items-center justify-center mb-8">
           <hr class="w-full border-2 border-oak">
-          <h2 class="px-4 text-4xl -translate-y-1/2 bg-cream">Chess Masters</h2>
+          <h2 class="px-4 text-4xl -translate-y-1/2 sm:text-5xl bg-spruce">Chess Masters</h2>
         </div>
       </div>
       <p class="paragraph">
@@ -272,12 +278,12 @@
   </section>
 
   {{!-- Divider section --}}
-  <div class="px-8 py-10 mb-20 bg-dark-oak text-cream section-container">
+  <div class="px-8 py-10 mb-20 bg-dark-oak text-cream">
     <div class="relative mb-4 space-y-2 font-serif font-bold text-center uppercase">
-      <h3 class="mb-8 text-3xl">Begin Your</h3>
+      <h3 class="mb-8 text-4xl">Begin Your</h3>
       <div class="flex flex-col items-center justify-center mb-8">
         <hr class="w-full border-2 border-cream">
-        <h2 class="px-4 text-4xl -translate-y-1/2 bg-dark-oak">Chess Path</h2>
+        <h2 class="px-4 text-5xl -translate-y-1/2 bg-dark-oak">Chess Path</h2>
       </div>
     </div>
     <p class="paragraph">
@@ -289,7 +295,7 @@
     </div>
   </div>
 
-  <section class="section-container">
+  <section>
     {{!-- Zigzag section --}}
     <div
       class="grid items-center mx-auto mb-40 text-center lg:text-left justify-items-center lg:justify-items-start lg:grid-cols-2 gap-x-10 lg:gap-x-20 xl:gap-x-0 gap-y-20">
@@ -375,10 +381,10 @@
     {{!-- Epilogue section --}}
     <div class="mb-32">
       <div class="relative space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
-        <h3 class="mb-8 text-3xl">Start</h3>
+        <h3 class="mb-8 text-3xl sm:text-4xl">Start</h3>
         <div class="flex flex-col items-center justify-center mb-8">
           <hr class="w-full border-2 border-oak">
-          <h2 class="px-4 text-4xl -translate-y-1/2 bg-cream">Right Now</h2>
+          <h2 class="px-4 text-4xl -translate-y-1/2 sm:text-5xl bg-spruce">Right Now</h2>
         </div>
       </div>
       <p class="paragraph">

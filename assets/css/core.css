@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  @apply w-full overflow-x-hidden bg-cream text-dark-oak;
+  @apply w-full overflow-x-hidden bg-spruce text-birch;
 }
 
 body *.font-sans {
@@ -29,7 +29,7 @@ body *.font-serif {
 }
 
 .button {
-  @apply px-8 py-2 2xl:text-xl rounded-md bg-birch border-[1px] border-spruce active:bg-cream duration-100 text-spruce whitespace-nowrap;
+  @apply px-8 py-2 2xl:text-xl rounded-md bg-neutral-700 border-[1px] border-cream duration-100 text-cream whitespace-nowrap;
 }
 
 .details-list {
