@@ -30,6 +30,7 @@
 <div class="w-full h-10 mb-20 bg-neutral-900"></div>
 
 <div class="container px-10 mx-auto font-sans">
+  {{!-- Carousel section --}}
   <section class="mb-28">
     <div class="mb-20">
       <div class="relative space-y-2 font-serif font-bold text-center uppercase text-oak">
@@ -49,317 +50,32 @@
       {{!-- Carousel one --}}
       <div class="carousel-container">
         <ul class="carousel to-left">
-          <li>
-            <a href="/hall-of-fame/magnus-carlsen" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/magnus-carlsen.webp" alt="Magnus Carlsen"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Magnus</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Carlsen</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/garry-kasparov" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/garry-kasparov.webp" alt="Garry Kasparov"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Garry</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Kasparov</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/vladimir-kramnik" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/vladimir-kramnik.webp" alt="Vladimir Kramnik"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Vladimir</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Kramnik</h2>
-                </div>
-              </div>
-            </a>
-          </li>
+          {{>carousel-item firstName="Garry" lastName="Kasparov" slug="garry-kasparov" subtitle="1985-2000 Champion"}}
+          {{>carousel-item firstName="Magnus" lastName="Carlsen" slug="magnus-carlsen" subtitle="2013-2023 Champion"}}
+          {{>carousel-item firstName="Vladimir" lastName="Kramnik" slug="vladimir-kramnik" subtitle="2000-2007
+          Champion"}}
         </ul>
-
         <ul class="carousel to-left">
-          <li>
-            <a href="/hall-of-fame/magnus-carlsen" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/magnus-carlsen.webp" alt="Magnus Carlsen"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Magnus</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Carlsen</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/garry-kasparov" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/garry-kasparov.webp" alt="Garry Kasparov"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Garry</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Kasparov</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/vladimir-kramnik" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/vladimir-kramnik.webp" alt="Vladimir Kramnik"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Vladimir</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Kramnik</h2>
-                </div>
-              </div>
-            </a>
-          </li>
+          {{>carousel-item firstName="Garry" lastName="Kasparov" slug="garry-kasparov" subtitle="1985-2000 Champion"}}
+          {{>carousel-item firstName="Magnus" lastName="Carlsen" slug="magnus-carlsen" subtitle="2013-2023 Champion"}}
+          {{>carousel-item firstName="Vladimir" lastName="Kramnik" slug="vladimir-kramnik" subtitle="2000-2007
+          Champion"}}
         </ul>
       </div>
 
       {{!-- Carousel two --}}
       <div class="carousel-container">
         <ul class="carousel to-right">
-          <li>
-            <a href="/hall-of-fame/robert-fischer" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/robert-fischer.webp" alt="Robert Fischer"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Robert</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Fischer</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/veselin-topalov" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/veselin-topalov.webp" alt="Veselin Topalov"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Veselin</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Topalov</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/anatoly-karpov" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/anatoly-karpov.webp" alt="Anatoly Karpov"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Anatoly</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Karpov</h2>
-                </div>
-              </div>
-            </a>
-          </li>
+          {{>carousel-item firstName="Robert" lastName="Fischer" slug="robert-fischer" subtitle="1972-1975 Champion"}}
+          {{>carousel-item firstName="Veselin" lastName="Topalov" slug="veselin-topalov" subtitle="2005-2006 Champion"}}
+          {{>carousel-item firstName="Anatoly" lastName="Karpov" slug="anatoly-karpov" subtitle="1975-1985 Champion"}}
         </ul>
-
         <ul class="carousel to-right">
-          <li>
-            <a href="/hall-of-fame/robert-fischer" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/robert-fischer.webp" alt="Robert Fischer"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Robert</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Fischer</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/veselin-topalov" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/veselin-topalov.webp" alt="Veselin Topalov"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Veselin</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Topalov</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/anatoly-karpov" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/anatoly-karpov.webp" alt="Anatoly Karpov"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Anatoly</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Karpov</h2>
-                </div>
-              </div>
-            </a>
-          </li>
+          {{>carousel-item firstName="Robert" lastName="Fischer" slug="robert-fischer" subtitle="1972-1975 Champion"}}
+          {{>carousel-item firstName="Veselin" lastName="Topalov" slug="veselin-topalov" subtitle="2005-2006 Champion"}}
+          {{>carousel-item firstName="Anatoly" lastName="Karpov" slug="anatoly-karpov" subtitle="1975-1985 Champion"}}
         </ul>
       </div>
-
-      {{!-- Carousel three --}}
-      {{!-- <div class="carousel-container">
-        <ul class="carousel to-left">
-          <li>
-            <a href="/hall-of-fame/ding-liren" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/ding-liren.webp" alt="Ding Liren"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Ding</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Liren</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/hou-yifan" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/hou-yifan.webp" alt="Hou Yifan"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Hou</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Yifan</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/mikhail-tal" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/mikhail-tal.webp" alt="Mikhail Tal"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Mikhail</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Tal</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-
-        <ul class="carousel to-left">
-          <li>
-            <a href="/hall-of-fame/ding-liren" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/ding-liren.webp" alt="Ding Liren"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Ding</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Liren</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/hou-yifan" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/hou-yifan.webp" alt="Hou Yifan"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Hou</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Yifan</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/hall-of-fame/mikhail-tal" class="flex p-2 rounded-md sm:py-4 sm:px-2 md:p-4 bg-dark-oak">
-              <div class="flex items-center justify-center gap-4 lg:justify-start">
-                <div class="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3">
-                  <img src="/images/player-images/mikhail-tal.webp" alt="Mikhail Tal"
-                    class="rounded-md border-[1px] border-spruce">
-                </div>
-                <div class="flex-col hidden w-1/2 lg:flex xl:w-2/3">
-                  <h4>World Chess Champion</h4>
-                  <hr class="border-[1px] border-birch w-1/3 mt-1">
-                  <h3 class="mt-2 font-serif text-xl font-bold uppercase 2xl:text-2xl">Mikhail</h3>
-                  <h2 class="font-serif text-xl font-bold uppercase 2xl:text-3xl">Tal</h2>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div> --}}
     </div>
   </section>
 
@@ -492,116 +208,6 @@
       </div>
     </div>
   </section>
-
-  {{!-- <section>
-    <div class="mb-20">
-      <div class="relative space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
-        <h3 class="mb-8 text-3xl sm:text-4xl">Wisdom From</h3>
-        <div class="flex flex-col items-center justify-center mb-8">
-          <hr class="w-full border-2 border-oak">
-          <h2 class="px-4 text-4xl -translate-y-1/2 sm:text-5xl bg-spruce">Chess Masters</h2>
-        </div>
-      </div>
-      <p class="paragraph">
-        Explore the profound insights and timeless wisdom of some of the world's greatest players. Discover their
-        strategic brilliance and personal philosophies that have shaped the world of chess.
-      </p>
-    </div>
-
-    <div class="grid mb-20 md:px-20 lg:px-0 lg:grid-cols-2 gap-x-24 gap-y-20">
-      <div>
-        <div class="flex items-center gap-x-5">
-          <div class="w-2/3 md:w-3/5 lg:w-1/2 xl:w-2/3">
-            <div class="mb-2">
-              <span>World Chess Champion 2013-2023</span>
-              <hr class="border-[1px] border-spruce w-1/5">
-            </div>
-            <div class="mb-4">
-              <h4 class="font-serif text-2xl font-bold uppercase">Magnus <br>Carlsen</h4>
-            </div>
-            <div>
-              <p class="w-11/12 font-sans text-oak">
-                “Some people think that if their opponent plays a beautiful game, it's okay to lose. I don't. You have
-                to be merciless.”
-              </p>
-            </div>
-          </div>
-          <a href="/hall-of-fame/magnus-carlsen" class="w-1/3 md:w-2/5 lg:w-1/2 xl:w-1/3">
-            <img src="/images/player-images/magnus-carlsen.webp" alt="Magnus Carlsen"
-              class="rounded-2xl border-spruce border-[1px] w-full">
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="flex items-center gap-x-5">
-          <div class="w-2/3 md:w-3/5 lg:w-1/2 xl:w-2/3">
-            <div class="mb-2">
-              <span>World Chess Champion 1985-2000</span>
-              <hr class="border-[1px] border-spruce w-1/5">
-            </div>
-            <div class="mb-4">
-              <h4 class="font-serif text-2xl font-bold uppercase">Garry <br>Kasparov</h4>
-            </div>
-            <div>
-              <p class="w-11/12 font-sans text-oak">
-                “You should have a solid and well-developed position before going on the attack, is applicable to every
-                field of battle.”
-              </p>
-            </div>
-          </div>
-          <a href="/hall-of-fame/garry-kasparov" class="w-1/3 md:w-2/5 lg:w-1/2 xl:w-1/3">
-            <img src="/images/player-images/garry-kasparov.webp" alt="Garry Kasparov"
-              class="rounded-2xl border-spruce border-[1px] w-full">
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="flex items-center gap-x-5">
-          <div class="w-2/3 md:w-3/5 lg:w-1/2 xl:w-2/3">
-            <div class="mb-2">
-              <span>World Chess Champion 1972-1975</span>
-              <hr class="border-[1px] border-spruce w-1/5">
-            </div>
-            <div class="mb-4">
-              <h4 class="font-serif text-2xl font-bold uppercase">Bobby <br>Fischer</h4>
-            </div>
-            <div>
-              <p class="w-11/12 font-sans text-oak">
-                “Chess is a matter of delicate judgement, knowing when to punch and how to duck.”
-              </p>
-            </div>
-          </div>
-          <a href="/hall-of-fame/robert-fischer" class="w-1/3 md:w-2/5 lg:w-1/2 xl:w-1/3">
-            <img src="/images/player-images/robert-fischer.webp" alt="Bobby Fischer"
-              class="rounded-2xl border-spruce border-[1px] w-full">
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="flex items-center gap-x-5">
-          <div class="w-2/3 md:w-3/5 lg:w-1/2 xl:w-2/3">
-            <div class="mb-2">
-              <span>World Chess Champion 2000-2006</span>
-              <hr class="border-[1px] border-spruce w-1/5">
-            </div>
-            <div class="mb-4">
-              <h4 class="font-serif text-2xl font-bold uppercase">Vladimir <br>Kramnik</h4>
-            </div>
-            <div>
-              <p class="w-11/12 font-sans text-oak">
-                “For me, art and chess are closely related, both are forms in which the self finds beauty and
-                expression.”
-              </p>
-            </div>
-          </div>
-          <a href="/hall-of-fame/vladimir-kramnik" class="w-1/3 md:w-2/5 lg:w-1/2 xl:w-1/3">
-            <img src="/images/player-images/vladimir-kramnik.webp" alt="Vladimir Kramnik"
-              class="rounded-2xl border-spruce border-[1px] w-full">
-          </a>
-        </div>
-      </div>
-    </div>
-  </section> --}}
 
   {{!-- Divider section --}}
   <div class="px-8 py-10 mb-20 bg-dark-oak text-cream">
