@@ -32,6 +32,39 @@ body *.font-serif {
   @apply px-8 py-2 2xl:text-xl rounded-md bg-neutral-700 border-[1px] border-cream duration-100 text-cream whitespace-nowrap;
 }
 
+/* Carousel section */
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}
+
+.carousel.to-left {
+  animation: 20s slide linear infinite;
+}
+
+.carousel.to-right {
+  animation: 20s slide reverse infinite linear;
+}
+
+.carousel-container {
+  will-change: transform;
+  transform: translateZ(0);
+  user-select: none;
+  @apply relative flex items-center gap-x-4 overflow-hidden;
+}
+
+.carousel {
+  @apply flex w-full gap-x-4 shrink-0;
+}
+
+.carousel-container:hover .carousel {
+  animation-play-state: paused;
+}
+
 .details-list {
   @apply [&>*:nth-child(even)]:!font-bold [&>*:nth-child(even)]:!mb-6 text-lg [&>*:nth-child(odd)]:text-oak;
 }
