@@ -29,7 +29,7 @@ body *.font-serif {
 }
 
 .button {
-  @apply px-8 py-2 2xl:text-xl rounded-md bg-neutral-700 border-[1px] border-cream duration-100 text-cream whitespace-nowrap;
+  @apply px-8 py-2 2xl:text-xl rounded-md bg-light-spruce border-[1px] border-cream duration-100 text-cream whitespace-nowrap;
 }
 
 /* Carousel section */
@@ -169,6 +169,11 @@ body *.font-serif {
 
 .move-highlight-black {
   background-color: rgb(172, 162, 73) !important;
+}
+
+/* To rounded the corner of the chessboards */
+.board-b72b1 {
+  @apply rounded-md overflow-hidden mx-auto;
 }
 
 .link {
