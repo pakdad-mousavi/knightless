@@ -61,6 +61,10 @@ body *.font-serif {
   @apply flex w-full gap-x-4 shrink-0;
 }
 
+.round-icon-button {
+  @apply flex items-center justify-center w-12 h-12 rounded-full text-2xl bg-light-spruce border-[1px] border-transparent hover:border-birch duration-300;
+}
+
 .carousel-container:hover .carousel {
   animation-play-state: paused;
 }
@@ -82,7 +86,7 @@ body *.font-serif {
 }
 
 .searchbar > input {
-  @apply bg-white w-full px-4 py-2 rounded-lg border-[1px] border-spruce outline-none;
+  @apply bg-light-spruce w-full px-4 py-2 rounded-lg border-[1px] border-birch text-birch outline-none;
 }
 
 .searchbar > span {
