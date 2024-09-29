@@ -13,6 +13,7 @@ export default {
         birch: '#CCBFA6',
         'light-spruce': '#323334',
         spruce: '#20211D',
+        'dark-spruce': '#191818',
         'dark-oak': '#5B4F47',
         oak: '#8B7151',
         cream: '#F8F7F4',
