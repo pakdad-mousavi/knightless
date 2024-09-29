@@ -29,7 +29,7 @@ body *.font-serif {
 }
 
 .button {
-  @apply px-8 py-2 2xl:text-xl rounded-md bg-light-spruce border-[1px] border-cream duration-100 text-cream whitespace-nowrap;
+  @apply px-8 py-2 2xl:text-xl rounded-md bg-ash border-[1px] border-cream duration-100 text-cream whitespace-nowrap;
 }
 
 /* Carousel section */
@@ -62,7 +62,7 @@ body *.font-serif {
 }
 
 .round-icon-button {
-  @apply flex items-center justify-center w-12 h-12 rounded-full text-2xl bg-light-spruce border-[1px] border-transparent hover:border-birch duration-300;
+  @apply flex items-center justify-center w-12 h-12 rounded-full text-2xl bg-ash border-[1px] border-transparent hover:border-birch duration-300;
 }
 
 .carousel-container:hover .carousel {
@@ -86,7 +86,7 @@ body *.font-serif {
 }
 
 .searchbar > input {
-  @apply bg-light-spruce w-full px-4 py-2 rounded-lg border-[1px] border-birch text-birch outline-none;
+  @apply bg-ash w-full px-4 py-2 rounded-lg border-[1px] border-birch text-birch outline-none;
 }
 
 .searchbar > span {
