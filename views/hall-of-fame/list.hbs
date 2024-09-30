@@ -34,36 +34,36 @@
           <h3 class="font-serif text-xl font-bold uppercase">Players</h3>
           <div class="flex flex-wrap items-center gap-4">
             <div class="flex items-center gap-x-4">
-              <button type="submit" class="button !px-4 !py-1">Apply</button>
-              <button type="reset" class="button !px-4 !py-1">Reset</button>
+              <button type="submit" class="button beta !px-4 !py-1">Apply</button>
+              <button type="reset" class="button beta !px-4 !py-1">Reset</button>
             </div>
             <div class="flex items-center">
-              <div class="bg-white px-2 py-1 rounded-md border-[1px] border-spruce mr-4">
+              <div class="bg-ash px-2 py-1 rounded-md border-[1px] border-dark-oak mr-4">
                 {{paging.totalRecords}} results
               </div>
               {{#if paging.hasPrev}}
               <a href="/hall-of-fame?page={{sub paging.currentPage 1}}"
-                class="bg-white px-3 py-1 rounded-md border-[1px] border-spruce flex gap-x-2 items-center">
+                class="bg-ash px-3 py-1 rounded-md border-[1px] border-birch flex gap-x-2 items-center">
                 <span class="icon-prev-arrow"></span>
                 <span>Prev.</span>
               </a>
               {{else}}
               <div
-                class="flex gap-x-2 items-center bg-white px-3 py-1 rounded-md border-[1px] border-gray-400 text-gray-400">
+                class="flex gap-x-2 items-center bg-ash px-3 py-1 rounded-md border-[1px] border-charcoal text-gray-400">
                 <span class="icon-prev-arrow"></span>
                 <span>Prev.</span>
               </div>
               {{/if}}
-              <hr class="w-28 border-[1px] border-spruce">
+              <hr class="w-28 border-[1px] border-birch">
               {{#if paging.hasNext}}
               <a href="/hall-of-fame?page={{add paging.currentPage 1}}"
-                class="bg-white px-3 py-1 rounded-md border-[1px] border-spruce flex gap-x-2 items-center">
+                class="bg-ash px-3 py-1 rounded-md border-[1px] border-birch flex gap-x-2 items-center">
                 <span>Next</span>
                 <span class="icon-next-arrow"></span>
               </a>
               {{else}}
               <div
-                class="bg-white px-3 py-1 rounded-md border-[1px] border-gray-400 text-gray-400 flex gap-x-2 items-center">
+                class="bg-ash px-3 py-1 rounded-md border-[1px] border-gray-400 text-gray-400 flex gap-x-2 items-center">
                 <span>Next</span>
                 <span class="icon-next-arrow"></span>
               </div>
@@ -85,22 +85,22 @@
 
     <div class="flex flex-col items-start justify-center xl:flex-row">
       {{!-- Filters side bar --}}
-      <div class="w-full xl:w-[16.6667%] xl:border-r-[1px] xl:border-spruce xl:mb-0 mb-10">
-        <div class="grid grid-cols-2 gap-4 py-4 overflow-x-scroll xl:grid-cols-none xl:flex-col xl:gap-0">
+      <div class="w-full xl:w-[16.6667%] xl:border-r-[1px] xl:border-dark-oak xl:mb-0 mb-10 text-oak">
+        <div class="grid grid-cols-2 gap-4 py-4 xl:py-0 overflow-x-scroll xl:grid-cols-none xl:flex-col xl:gap-0">
 
           {{!-- Filters title --}}
           <div class="items-center hidden py-2 pr-4 xl:flex">
             <h3 class="flex-1 font-serif text-xl font-bold uppercase">Filters</h3>
             <span class="text-2xl icon-filter"></span>
           </div>
-          <hr class="hidden xl:block border-spruce">
+          <hr class="hidden xl:block border-dark-oak">
 
           {{!-- Active Filters --}}
           <div
             class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl active-filters filter-panel border-[1px] border-gray-200 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-gray-500 border-b-[1px] border-gray-500 inline-block">Active Filters</h3>
+                <h3 class="mr-auto text-birch border-b-[1px] border-birch inline-block">Active Filters</h3>
                 <a href="#" class="duration-300 icon-down-arrow"></a>
               </div>
             </div>
@@ -134,23 +134,28 @@
               {{/if}}
             </ul>
           </div>
-          <hr class="hidden xl:block border-spruce">
+          <hr class="hidden xl:block border-dark-oak">
 
           {{!-- Playing styles --}}
           <div
             class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl filter-panel border-[1px] border-gray-200 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-gray-500 border-b-[1px] border-gray-500 inline-block">Playing Styles</h3>
+                <h3 class="mr-auto text-birch border-b-[1px] border-birch inline-block">Playing Styles</h3>
                 <a href="#" class="duration-300 icon-down-arrow"></a>
               </div>
             </div>
-            <ul class="overflow-y-scroll h-52 xl:h-40">
+            <ul class="space-y-1 overflow-y-scroll h-52 xl:h-40">
               {{#each options.playingStyles}}
-              <li>
-                <input type="checkbox" name="playingStyles" id="{{@key}}" value="{{@key}}" class="mr-2" {{#if
-                  this}}checked{{/if}}>
-                <label for="{{@key}}">{{@key}}</label>
+              <li class="flex items-center">
+                <label for="{{@key}}" class="flex items-center w-full cursor-pointer group">
+                  <div class="checkbox-container group-hover:bg-neutral-800">
+                    <input type="checkbox" name="playingStyles" id="{{@key}}" value="{{@key}}" class="checkbox"
+                      {{#if this}}checked{{/if}}>
+                    <span class="tickmark icon-cross"></span>
+                  </div>
+                  <span class="ml-2">{{@key}}</span>
+                </label>
               </li>
               {{/each}}
             </ul>
@@ -161,7 +166,7 @@
             class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl filter-panel border-[1px] border-gray-200 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-gray-500 border-b-[1px] border-gray-500 inline-block">Peak Rating (elo)</h3>
+                <h3 class="mr-auto text-birch border-b-[1px] border-birch inline-block">Peak Rating (elo)</h3>
                 <a href="#" class="duration-300 icon-down-arrow"></a>
               </div>
             </div>
@@ -191,7 +196,7 @@
             class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto rounded-xl xl:p-0 filter-panel border-[1px] border-gray-200 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-gray-500 border-b-[1px] border-gray-500 inline-block">Chess Champion</h3>
+                <h3 class="mr-auto text-birch border-b-[1px] border-birch inline-block">Chess Champion</h3>
                 <a href="#" class="duration-300 icon-down-arrow"></a>
               </div>
             </div>
@@ -230,7 +235,7 @@
                   <div class="ml-auto lg:block md:hidden sm:block">
                     <img src="/images/player-images/{{this.id}}.webp"
                       alt="{{this.personalDetails.firstName}} {{this.personalDetails.lastName}}"
-                      class="rounded-lg border-[1px] border-spruce w-40 lg:block md:hidden sm:block">
+                      class="rounded-lg border-[1px] border-dark-oak w-40 lg:block md:hidden sm:block">
                   </div>
                 </div>
               </div>

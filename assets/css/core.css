@@ -29,7 +29,15 @@ body *.font-serif {
 }
 
 .button {
-  @apply px-8 py-2 2xl:text-xl rounded-md bg-ash border-[1px] border-cream duration-100 text-cream whitespace-nowrap;
+  @apply px-8 py-2 2xl:text-xl rounded-md bg-ash border-[1px] duration-100 whitespace-nowrap;
+}
+
+.button.alpha {
+  @apply border-cream text-cream;
+}
+
+.button.beta {
+  @apply border-birch text-birch;
 }
 
 /* Carousel section */
@@ -133,6 +141,28 @@ body *.font-serif {
   -moz-appearance: none;
   background: none transparent;
   border: 0;
+}
+
+.checkbox-container {
+  @apply cursor-pointer w-5 h-5 relative flex items-center bg-ash border-neutral-600 border-[1px] rounded-md overflow-hidden duration-150;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser checkbox */
+.checkbox-container .checkbox {
+  @apply absolute w-0 h-0 opacity-0 cursor-pointer;
+}
+
+.checkbox-container .tickmark {
+  @apply w-full h-full justify-center items-center flex bg-birch opacity-0 z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute text-xs text-dark-oak duration-75;
+}
+
+/* Select the box when clicked */
+.checkbox-container .checkbox:checked + span.tickmark {
+  @apply opacity-100;
 }
 
 .fail-panel {
