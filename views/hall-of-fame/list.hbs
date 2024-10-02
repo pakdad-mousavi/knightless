@@ -200,13 +200,13 @@
                 <a href="#" class="duration-300 icon-down-arrow"></a>
               </div>
             </div>
-            <label class="inline-flex items-center cursor-pointer">
-              <input type="checkbox" name="formerChampion" value="Former Champion" {{#if
-                options.hasBeenChampion}}checked{{/if}} class="sr-only peer">
-              <div
-                class="relative w-11 mr-4 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dark-oak">
+            <label for="formerChampion" class="flex items-center gap-x-2">
+              <div class="switch">
+                <input type="checkbox" name="formerChampion" id="formerChampion" value="Former Champion" {{#if
+                  options.hasBeenChampion}}checked{{/if}} class="">
+                <span class="switch-slider"></span>
               </div>
-              <span>Former Champion</span>
+              <span class="text-birch">Former Champion</span>
             </label>
           </div>
         </div>

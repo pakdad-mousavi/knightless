@@ -165,6 +165,32 @@ body *.font-serif {
   @apply opacity-100;
 }
 
+/* Toggle button classes */
+.switch {
+  @apply cursor-pointer min-w-10 h-5 bg-ash flex items-center rounded-full relative border-[1px] border-neutral-600;
+}
+
+.switch input {
+  @apply opacity-0 w-0 h-0;
+}
+
+.switch .switch-slider {
+  @apply absolute top-0 left-0 right-0 bottom-0 duration-150 rounded-full;
+}
+
+.switch .switch-slider:before {
+  content: "";
+  @apply absolute left-[calc((20px-16px)/2)] top-1/2 -translate-y-1/2 w-[15px] h-[15px] rounded-full bg-neutral-400 transition-all duration-150;
+}
+
+.switch input:checked + .switch-slider {
+  @apply bg-birch;
+}
+
+.switch input:checked + .switch-slider:before {
+  @apply translate-x-[19px] bg-dark-oak;
+}
+
 .fail-panel {
   @apply !text-rose-500 !border-rose-600;
 }
