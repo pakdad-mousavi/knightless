@@ -1,7 +1,7 @@
 import { setUpPuzzleBoard } from './puzzleBoard.mjs';
 import { watchFaqPanel } from './faq.mjs';
 import { watchTimelineScroll } from './timeline.mjs';
-import { resetFilters, watchActiveFilters, watchFilterPanel, watchSliders } from './filters.mjs';
+import { resetFilters, watchActiveFilters, watchSliders } from './filters.mjs';
 import { setUpSampleBoard } from './sampleBoard.mjs';
 import { setUpPositionBoard } from './positionBoard.mjs';
 
@@ -10,12 +10,6 @@ const sliders = document.querySelectorAll('.slider > input');
 const displayElement = document.querySelector('.rating-range-values');
 if (sliders && displayElement) {
   watchSliders(sliders, displayElement);
-}
-
-// Watch filter panels (to open and close)
-const filterPanels = document.querySelectorAll('.filter-panel');
-for (const panel of filterPanels) {
-  watchFilterPanel(panel);
 }
 
 // Watch active filters

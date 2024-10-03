@@ -38,7 +38,7 @@
               <button type="reset" class="button beta !px-4 !py-1">Reset</button>
             </div>
             <div class="flex items-center">
-              <div class="bg-ash px-2 py-1 rounded-md border-[1px] border-dark-oak mr-4">
+              <div class="bg-ash px-2 py-1 rounded-md border-[1px] border-ash mr-4">
                 {{paging.totalRecords}} results
               </div>
               {{#if paging.hasPrev}}
@@ -97,14 +97,14 @@
 
           {{!-- Active Filters --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl active-filters filter-panel border-[1px] border-gray-200 xl:border-0">
+            class="p-4 overflow-hidden transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md lg:rounded-none active-filters border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-birch border-b-[1px] border-birch inline-block">Active Filters</h3>
-                <a href="#" class="duration-300 icon-down-arrow"></a>
+                <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Active Filters</h3>
+                {{!-- <a href="#" class="duration-300 icon-down-arrow"></a> --}}
               </div>
             </div>
-            <ul class="h-40 mb-4 overflow-y-scroll">
+            <ul class="mb-4 text-birch">
               {{#each options.playingStyles}}
               {{#if this}}
               <li>
@@ -138,14 +138,14 @@
 
           {{!-- Playing styles --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl filter-panel border-[1px] border-gray-200 xl:border-0">
+            class="p-4 overflow-hidden transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md lg:rounded-none border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-birch border-b-[1px] border-birch inline-block">Playing Styles</h3>
-                <a href="#" class="duration-300 icon-down-arrow"></a>
+                <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Playing Styles</h3>
+                {{!-- <a href="#" class="duration-300 icon-down-arrow"></a> --}}
               </div>
             </div>
-            <ul class="space-y-1 overflow-y-scroll h-52 xl:h-40">
+            <ul class="space-y-1 text-birch">
               {{#each options.playingStyles}}
               <li class="flex items-center">
                 <label for="{{@key}}" class="flex items-center w-full cursor-pointer group">
@@ -163,11 +163,11 @@
 
           {{!-- Peak rating --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-xl filter-panel border-[1px] border-gray-200 xl:border-0">
+            class="p-4 overflow-hidden transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md lg:rounded-none border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-birch border-b-[1px] border-birch inline-block">Peak Rating (elo)</h3>
-                <a href="#" class="duration-300 icon-down-arrow"></a>
+                <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Peak Rating (elo)</h3>
+                {{!-- <a href="#" class="duration-300 icon-down-arrow"></a> --}}
               </div>
             </div>
             <div class="slider">
@@ -187,17 +187,18 @@
                 <option value="2900">
               </datalist>
             </div>
-            <p class="text-sm">Range: <span class="ml-2 font-semibold rating-range-values">{{options.ratingA}} -
+            <p class="text-sm text-birch">Range: <span
+                class="ml-2 font-semibold rating-range-values">{{options.ratingA}} -
                 {{options.ratingB}}</span></p>
           </div>
 
           {{!-- Was world champion --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-white xl:bg-transparent xl:mr-2 xl:w-auto rounded-xl xl:p-0 filter-panel border-[1px] border-gray-200 xl:border-0">
+            class="p-4 overflow-hidden transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto rounded-md lg:rounded-none xl:p-0 border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-birch border-b-[1px] border-birch inline-block">Chess Champion</h3>
-                <a href="#" class="duration-300 icon-down-arrow"></a>
+                <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Chess Champion</h3>
+                {{!-- <a href="#" class="duration-300 icon-down-arrow"></a> --}}
               </div>
             </div>
             <label for="formerChampion" class="flex items-center gap-x-2">
