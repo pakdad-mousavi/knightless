@@ -1,4 +1,4 @@
-<div class="container px-4 py-20 mx-auto font-sans">
+<div class="container px-8 py-20 mx-auto font-sans">
   <form action="/hall-of-fame" method="post">
     <section>
       {{!-- Main title section --}}
@@ -201,7 +201,7 @@
                 {{!-- <a href="#" class="duration-300 icon-down-arrow"></a> --}}
               </div>
             </div>
-            <label for="formerChampion" class="flex items-center gap-x-2">
+            <label for="formerChampion" class="flex items-center cursor-pointer gap-x-2">
               <div class="switch">
                 <input type="checkbox" name="formerChampion" id="formerChampion" value="Former Champion" {{#if
                   options.hasBeenChampion}}checked{{/if}} class="">
@@ -218,26 +218,28 @@
           <div>
             <a href="/hall-of-fame/{{this.id}}">
               <div
-                class="flex items-center h-48 p-2 bg-ash bg-[url(/images/checkered-background.png)] rounded-md xl:py-4 border-charcoal border-[1px]">
-                <div class="flex items-center gap-x-7 xl:gap-x-4">
-                  <div class="flex-1 overflow-hidden">
+                class="flex items-center md:h-48 lg:h-auto p-4 bg-ash bg-[url(/images/checkered-background.png)] rounded-md border-charcoal border-[1px]">
+                <div class="flex flex-col items-center sm:flex-row gap-x-4 sm:gap-x-6 xl:gap-x-4">
+                  <div class="flex-1 overflow-hidden text-center sm:text-left">
                     {{#if this.personalDetails.hasBeenChampion}}
-                    <span class="text-xs">Won World Chess Champion</span>
-                    <hr class="w-1/5 border-[1px] border-birch">
+                    <span class="text-sm sm:text-xs">Won World Chess Champion</span>
+                    <hr class="w-2/5 sm:w-1/5 border-[1px] border-birch mx-auto sm:mx-0 mt-1 sm:mt-0">
                     {{else}}
-                    <span class="text-xs">Peak Rating: <b
+                    <span class="text-sm sm:text-xs">Peak Rating: <b
                         class="ml-1 font-bold">{{this.personalDetails.peakFideRating}}</b></span>
-                    <hr class="w-1/5 border-[1px] border-birch">
+                    <hr class="w-2/5 sm:w-1/5 border-[1px] border-birch mx-auto sm:mx-0 mt-1 sm:mt-0">
                     {{/if}}
-                    <div class="my-2 font-serif text-xl font-bold uppercase text-oak">
-                      <h4 class="">{{this.personalDetails.firstName}} {{this.personalDetails.lastName}}</h4>
+                    <div class="my-2 font-serif font-bold uppercase text-oak">
+                      <h4 class="text-center sm:text-left"><span
+                          class="block text-2xl sm:inline sm:text-xl">{{this.personalDetails.firstName}}</span> <span
+                          class="block text-xl sm:inline">{{this.personalDetails.lastName}}</span></h4>
                     </div>
-                    <p class="text-sm text-birch line-clamp-3 xl:line-clamp-4">{{this.earlyLife}}</p>
+                    <p class="sm:text-sm text-birch line-clamp-3 2xl:line-clamp-4">{{this.earlyLife}}</p>
                   </div>
-                  <div class="ml-auto lg:block md:hidden sm:block">
+                  <div class="mt-4 sm:mt-0 sm:ml-auto lg:block md:hidden sm:block">
                     <img src="/images/player-images/{{this.id}}.webp"
                       alt="{{this.personalDetails.firstName}} {{this.personalDetails.lastName}}"
-                      class="rounded-md border-[1px] border-charcoal w-40 lg:block md:hidden sm:block">
+                      class="rounded-md border-[1px] border-charcoal w-52 sm:w-40 lg:block md:hidden sm:block">
                   </div>
                 </div>
               </div>
