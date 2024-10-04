@@ -106,45 +106,27 @@ body *.font-serif {
 }
 
 .slider {
-  @apply relative w-full h-5;
+  @apply w-full mb-2;
 }
 
 .slider input {
-  @apply absolute w-full xl:w-4/5;
-}
-
-/* Make the slider points be on the same level, and both draggable */
-.slider input::-webkit-slider-thumb {
-  pointer-events: all;
-  position: relative;
-  z-index: 1;
-  outline: 0;
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  @apply w-full bg-ash h-3 outline-none rounded-md duration-150 transition-all cursor-pointer hover:bg-neutral-800 border-[1px] border-neutral-600;
 }
 
 .slider input::-moz-range-thumb {
-  pointer-events: all;
-  position: relative;
-  z-index: 10;
-  -moz-appearance: none;
-  width: 20px;
+  @apply w-5 h-5 rounded-full bg-neutral-400 border-none cursor-pointer;
 }
 
-/* Mozilla styles */
-.slider input::-moz-range-track {
-  position: relative;
-  z-index: -1;
-  background-color: rgba(0, 0, 0, 1);
-  border: 0;
-}
-
-.slider input:last-of-type::-moz-range-track {
-  -moz-appearance: none;
-  background: none transparent;
-  border: 0;
+.slider input::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  @apply w-5 h-5 rounded-full bg-neutral-400 border-none cursor-pointer;
 }
 
 .checkbox-container {
-  @apply cursor-pointer w-5 h-5 relative flex items-center bg-ash border-neutral-600 border-[1px] rounded-md overflow-hidden duration-150;
+  @apply cursor-pointer w-5 h-5 relative flex items-center bg-ash border-neutral-600 border-[1px] rounded-md overflow-hidden duration-150 group-hover:bg-neutral-800;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

@@ -149,7 +149,7 @@
               {{#each options.playingStyles}}
               <li class="flex items-center">
                 <label for="{{@key}}" class="flex items-center w-full cursor-pointer group">
-                  <div class="checkbox-container group-hover:bg-neutral-800">
+                  <div class="checkbox-container">
                     <input type="checkbox" name="playingStyles" id="{{@key}}" value="{{@key}}" class="checkbox" {{#if
                       this}}checked{{/if}}>
                     <span class="tickmark icon-cross"></span>
@@ -163,7 +163,7 @@
 
           {{!-- Peak rating --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md lg:rounded-none border-[1px] border-neutral-700 xl:border-0">
+            class="p-4 transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md lg:rounded-none border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
                 <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Peak Rating (elo)</h3>
