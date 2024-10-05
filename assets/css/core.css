@@ -126,7 +126,7 @@ body *.font-serif {
 }
 
 .checkbox-container {
-  @apply cursor-pointer w-5 h-5 relative flex items-center bg-ash border-neutral-600 border-[1px] rounded-md overflow-hidden duration-150 group-hover:bg-neutral-800;
+  @apply cursor-pointer min-w-5 min-h-5 relative flex items-center bg-ash border-neutral-600 border-[1px] rounded-md overflow-hidden duration-150 group-hover:bg-neutral-800;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -149,7 +149,7 @@ body *.font-serif {
 
 /* Toggle button classes */
 .switch {
-  @apply cursor-pointer min-w-10 h-5 bg-ash flex items-center rounded-full relative border-[1px] border-neutral-600;
+  @apply cursor-pointer min-w-10 h-5 bg-ash flex items-center rounded-full relative border-[1px] border-neutral-600 group-hover:bg-neutral-800;
 }
 
 .switch input {

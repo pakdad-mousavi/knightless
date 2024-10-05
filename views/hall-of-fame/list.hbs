@@ -86,7 +86,7 @@
     <div class="flex flex-col items-start justify-center xl:flex-row">
       {{!-- Filters side bar --}}
       <div class="w-full xl:w-[16.6667%] xl:border-r-[1px] xl:border-dark-oak xl:mb-0 mb-10 text-oak">
-        <div class="grid grid-cols-2 gap-4 py-4 overflow-x-scroll xl:py-0 xl:grid-cols-none xl:flex-col xl:gap-0">
+        <div class="grid gap-4 py-4 overflow-x-scroll sm:grid-cols-2 xl:py-0 xl:grid-cols-none xl:flex-col xl:gap-0">
 
           {{!-- Filters title --}}
           <div class="items-center hidden py-2 pr-4 xl:flex">
@@ -97,13 +97,13 @@
 
           {{!-- Active Filters --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
+            class="p-4 sm:col-span-2 lg:col-span-1 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0 text-sm sm:text-base">
             <div class="mb-4 xl:my-4">
-              <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Active Filters</h3>
+              <div class="flex items-center xl:pr-3">
+                <h3 class="text-oak border-b-[1px] border-oak text-base">Active Filters</h3>
               </div>
             </div>
-            <ul class="grid grid-cols-2 mb-4 xl:block text-birch active-filters">
+            <ul class="grid grid-cols-2 mb-4 gap-y-2 sm:gap-y-1 xl:block text-birch active-filters">
               {{#each options.playingStyles}}
               {{#if this}}
               <li>
@@ -145,13 +145,13 @@
 
           {{!-- Playing styles --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
+            class="p-4 sm:col-span-2 lg:col-span-1 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
-              <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Playing Styles</h3>
+              <div class="flex xl:pr-3">
+                <h3 class="text-oak border-b-[1px] border-oak">Playing Styles</h3>
               </div>
             </div>
-            <ul class="grid grid-cols-2 space-y-1 text-birch xl:block">
+            <ul class="grid grid-cols-2 gap-y-2 sm:gap-y-1 text-sm text-birch xl:grid-cols-1 sm:text-base">
               {{#each options.playingStyles}}
               <li class="flex items-center">
                 <label for="{{@key}}" class="flex items-center w-full cursor-pointer group">
@@ -169,10 +169,10 @@
 
           {{!-- Peak rating --}}
           <div
-            class="p-4 transition-all duration-300 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
+            class="p-4 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
-              <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Peak Rating (elo)</h3>
+              <div class="flex xl:pr-3">
+                <h3 class="text-oak border-b-[1px] border-oak">Peak Rating (elo)</h3>
               </div>
             </div>
             <div class="slider player-ratings">
@@ -199,13 +199,13 @@
 
           {{!-- Was world champion --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto rounded-md xl:rounded-none xl:p-0 border-[1px] border-neutral-700 xl:border-0">
+            class="p-4 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto rounded-md xl:rounded-none xl:p-0 border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
-              <div class="flex items-center h-8 xl:pr-3">
-                <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Chess Champion</h3>
+              <div class="flex xl:pr-3">
+                <h3 class="text-oak border-b-[1px] border-oak">Chess Champion</h3>
               </div>
             </div>
-            <label for="formerChampion" class="flex items-center cursor-pointer gap-x-2">
+            <label for="formerChampion" class="flex items-center cursor-pointer gap-x-2 group">
               <div class="switch">
                 <input type="checkbox" name="formerChampion" id="formerChampion" value="Former Champion" {{#if
                   options.hasBeenChampion}}checked{{/if}} class="">
