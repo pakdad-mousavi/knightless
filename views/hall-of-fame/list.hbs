@@ -1,5 +1,5 @@
 <div class="container px-8 py-20 mx-auto font-sans">
-  <form action="/hall-of-fame" method="post">
+  <form action="/hall-of-fame" method="post" class="players-query-form">
     <section>
       {{!-- Main title section --}}
       <div class="mb-20 space-y-8">
@@ -97,39 +97,46 @@
 
           {{!-- Active Filters --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md lg:rounded-none active-filters border-[1px] border-neutral-700 xl:border-0">
+            class="p-4 overflow-hidden transition-all duration-300 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
                 <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Active Filters</h3>
-                {{!-- <a href="#" class="duration-300 icon-down-arrow"></a> --}}
               </div>
             </div>
-            <ul class="mb-4 text-birch">
+            <ul class="grid grid-cols-2 mb-4 xl:block text-birch active-filters">
               {{#each options.playingStyles}}
               {{#if this}}
               <li>
-                <a href="#" class="mr-2 font-bold">X</a>
-                <span>{{@key}}</span>
+                <a href="#" data-filter-name="{{@key}}" class="active-filter">
+                  <span class="mr-2 icon-cross"></span>
+                  <span>{{@key}}</span>
+                </a>
               </li>
               {{/if}}
               {{/each}}
               {{#if (ne options.ratingA 2500) }}
               <li>
-                <a href="#" class="mr-2 font-bold">X</a>
-                <span>{{options.ratingA}} - {{options.ratingB}} rating</span>
+                <a href="#" data-filter-name="player-rating" class="active-filter">
+                  <span class="mr-2 icon-cross"></span>
+                  <span>{{options.ratingA}} - {{options.ratingB}} rating</span>
+                </a>
               </li>
               {{else}}
               {{#if (ne options.ratingB 2900)}}
               <li>
-                <a href="#" class="mr-2 font-bold">X</a>
-                <span>{{options.ratingA}} - {{options.ratingB}} rating</span>
+                <a href="#" data-filter-name="player-rating" class="active-filter">
+                  <span class="mr-2 icon-cross"></span>
+                  <span>{{options.ratingA}} - {{options.ratingB}} rating</span>
+                </a>
               </li>
               {{/if}}
               {{/if}}
               {{#if options.hasBeenChampion}}
               <li>
-                <a href="#" class="mr-2 font-bold">X</a>
-                <span>Former Champion</span>
+                <a href="#" data-filter-name="Former Champion" class="active-filter">
+                  <span class="mr-2 icon-cross"></span>
+                  <span>Former Champion</span>
+                </a>
               </li>
               {{/if}}
             </ul>
@@ -138,14 +145,13 @@
 
           {{!-- Playing styles --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md lg:rounded-none border-[1px] border-neutral-700 xl:border-0">
+            class="p-4 overflow-hidden transition-all duration-300 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
                 <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Playing Styles</h3>
-                {{!-- <a href="#" class="duration-300 icon-down-arrow"></a> --}}
               </div>
             </div>
-            <ul class="space-y-1 text-birch">
+            <ul class="grid grid-cols-2 space-y-1 text-birch xl:block">
               {{#each options.playingStyles}}
               <li class="flex items-center">
                 <label for="{{@key}}" class="flex items-center w-full cursor-pointer group">
@@ -163,14 +169,13 @@
 
           {{!-- Peak rating --}}
           <div
-            class="p-4 transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md lg:rounded-none border-[1px] border-neutral-700 xl:border-0">
+            class="p-4 transition-all duration-300 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
                 <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Peak Rating (elo)</h3>
-                {{!-- <a href="#" class="duration-300 icon-down-arrow"></a> --}}
               </div>
             </div>
-            <div class="slider">
+            <div class="slider player-ratings">
               <input type="range" min="2500" max="2900" step="50" value="{{options.ratingA}}" list="detents"
                 name="ratingA">
               <input type="range" min="2500" max="2900" step="50" value="{{options.ratingB}}" list="detents"
@@ -194,11 +199,10 @@
 
           {{!-- Was world champion --}}
           <div
-            class="p-4 overflow-hidden transition-all duration-300 bg-ash xl:bg-transparent xl:mr-2 xl:w-auto rounded-md lg:rounded-none xl:p-0 border-[1px] border-neutral-700 xl:border-0">
+            class="p-4 overflow-hidden transition-all duration-300 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto rounded-md xl:rounded-none xl:p-0 border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex items-center h-8 xl:pr-3">
                 <h3 class="mr-auto text-oak border-b-[1px] border-oak inline-block">Chess Champion</h3>
-                {{!-- <a href="#" class="duration-300 icon-down-arrow"></a> --}}
               </div>
             </div>
             <label for="formerChampion" class="flex items-center cursor-pointer gap-x-2">

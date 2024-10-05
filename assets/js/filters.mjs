@@ -1,5 +1,8 @@
-const MINRANGEVALUE = 2500;
-const MAXRANGEVALUE = 2900;
+const MIN_RANGE_VALUE = 2500;
+const MAX_RANGE_VALUE = 2900;
+const ACTIVE_FILTER_CLASS = 'active-filter';
+const FILTER_NAME_DATASET = 'filterName';
+const PLAYER_QUERY_FORM = 'form.players-query-form';
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
@@ -27,14 +30,14 @@ export const watchSliders = (sliders, displayElement) => {
   });
 };
 
-const removeActiveFilter = (filterName, isRange = false) => {
-  const form = document.querySelector('form');
+const removeActiveFilter = (filterName) => {
+  const form = document.querySelector(PLAYER_QUERY_FORM);
 
   // If it's the range, reset the range values
-  if (isRange) {
-    const sliders = form.querySelectorAll(`input[type="range"]`);
-    sliders[0].value = MINRANGEVALUE;
-    sliders[1].value = MAXRANGEVALUE;
+  if (filterName === 'player-rating') {
+    const sliders = form.querySelector(`.player-ratings`).children;
+    sliders[0].value = MIN_RANGE_VALUE;
+    sliders[1].value = MAX_RANGE_VALUE;
   }
   // If not, then just uncheck the filter
   else {
@@ -45,21 +48,52 @@ const removeActiveFilter = (filterName, isRange = false) => {
   form.submit();
 };
 
-export const watchActiveFilters = (filterBox) => {
-  // Remove filters on click
-  filterBox.addEventListener('click', (e) => {
-    const element = e.target;
-    if (element.tagName === 'A') {
-      const filterName = element.nextElementSibling.innerText;
-      const isRange = filterName.includes('rating');
-      removeActiveFilter(filterName, isRange);
+// Call the callback func when an active filter is clicked
+const onClickActiveFilter = (activeFilterContainer, callback) => {
+  activeFilterContainer.addEventListener('click', (e) => {
+    e.preventDefault();
+    const element = e.target.closest(`a.${ACTIVE_FILTER_CLASS}`); // Find the nearest 'a' tag with 'active-filter' class
+
+    if (!element) return; // If no 'a.active-filter' was found, exit
+
+    const isActiveFilter = element.classList.contains(ACTIVE_FILTER_CLASS);
+
+    // If the element clicked is an active filter, then call callback with filterName param
+    if (isActiveFilter) {
+      const filterName = element.dataset[FILTER_NAME_DATASET];
+      return callback(filterName);
     }
   });
 };
 
+const createEmptyFilterMessage = () => {
+  const emptyFilterElement = document.createElement('div');
+  emptyFilterElement.innerHTML = '<p>No active filters yet, maybe try adding some?</p>';
+  emptyFilterElement.classList.add('text-birch');
+  return emptyFilterElement;
+};
+
+const hasActiveFilters = (activeFilterContainer) => {
+  return activeFilterContainer.children.length === 0;
+};
+
+const displayEmptyFilterMessageIfEmpty = (activeFilterContainer) => {
+  const isEmpty = hasActiveFilters(activeFilterContainer);
+  if (isEmpty) {
+    const emptyFilterMessage = createEmptyFilterMessage();
+    activeFilterContainer.insertAdjacentElement('beforebegin', emptyFilterMessage);
+  }
+};
+
+// Watch active filters
+export const watchActiveFilters = (activeFilterContainer) => {
+  onClickActiveFilter(activeFilterContainer, removeActiveFilter);
+  displayEmptyFilterMessageIfEmpty(activeFilterContainer);
+};
+
 export const resetFilters = (checkboxes, ranges, searchbar) => {
   const resetBtn = document.querySelector('button[type=reset]');
-  const form = document.querySelector('form');
+  const form = document.querySelector(PLAYER_QUERY_FORM);
 
   resetBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -70,8 +104,8 @@ export const resetFilters = (checkboxes, ranges, searchbar) => {
     });
 
     // Reset ranges to original values
-    ranges[0].value = MINRANGEVALUE;
-    ranges[1].value = MAXRANGEVALUE;
+    ranges[0].value = MIN_RANGE_VALUE;
+    ranges[1].value = MAX_RANGE_VALUE;
 
     // Empty the searchbar
     searchbar.value = '';
