@@ -32,42 +32,44 @@
       <div class="flex flex-col mb-4 xl:w-5/6 xl:pl-4 xl:ml-auto gap-y-4">
         <div class="flex flex-col gap-4 md:items-center md:flex-row">
           <h3 class="font-serif text-xl font-bold uppercase">Players</h3>
-          <div class="flex flex-wrap items-center gap-4">
-            <div class="flex items-center gap-x-4">
+          <div class="flex flex-wrap items-center flex-1 gap-4">
+            <div class="flex items-center flex-1 gap-x-4">
               <button type="submit" class="button beta !px-4 !py-1">Apply</button>
               <button type="reset" class="button beta !px-4 !py-1">Reset</button>
-            </div>
-            <div class="flex items-center">
-              <div class="bg-ash px-2 py-1 rounded-md border-[1px] border-ash mr-4">
+              <div class="bg-ash px-2 py-1 rounded-md border-[1px] border-ash mr-4 whitespace-nowrap">
                 {{paging.totalRecords}} results
               </div>
-              {{#if paging.hasPrev}}
-              <a href="/hall-of-fame?page={{sub paging.currentPage 1}}"
-                class="bg-ash px-3 py-1 rounded-md border-[1px] border-birch flex gap-x-2 items-center">
-                <span class="icon-prev-arrow"></span>
-                <span>Prev.</span>
-              </a>
-              {{else}}
-              <div
-                class="flex gap-x-2 items-center bg-ash px-3 py-1 rounded-md border-[1px] border-charcoal text-gray-400">
-                <span class="icon-prev-arrow"></span>
-                <span>Prev.</span>
+            </div>
+            <div class="flex-wrap items-center hidden xl:flex gap-y-4 sm:gap-0">
+              <div class="flex items-center">
+                {{#if paging.hasPrev}}
+                <a href="/hall-of-fame?page={{sub paging.currentPage 1}}"
+                  class="bg-ash px-3 py-1 rounded-md border-[1px] border-birch flex gap-x-2 items-center">
+                  <span class="icon-prev-arrow"></span>
+                  <span>Prev.</span>
+                </a>
+                {{else}}
+                <div
+                  class="flex gap-x-2 items-center bg-ash px-3 py-1 rounded-md border-[1px] border-charcoal text-gray-400">
+                  <span class="icon-prev-arrow"></span>
+                  <span>Prev.</span>
+                </div>
+                {{/if}}
+                <hr class="w-24 border-[1px] border-birch">
+                {{#if paging.hasNext}}
+                <a href="/hall-of-fame?page={{add paging.currentPage 1}}"
+                  class="bg-ash px-3 py-1 rounded-md border-[1px] border-birch flex gap-x-2 items-center">
+                  <span>Next</span>
+                  <span class="icon-next-arrow"></span>
+                </a>
+                {{else}}
+                <div
+                  class="bg-ash px-3 py-1 rounded-md border-[1px] border-gray-400 text-gray-400 flex gap-x-2 items-center">
+                  <span>Next</span>
+                  <span class="icon-next-arrow"></span>
+                </div>
+                {{/if}}
               </div>
-              {{/if}}
-              <hr class="w-28 border-[1px] border-birch">
-              {{#if paging.hasNext}}
-              <a href="/hall-of-fame?page={{add paging.currentPage 1}}"
-                class="bg-ash px-3 py-1 rounded-md border-[1px] border-birch flex gap-x-2 items-center">
-                <span>Next</span>
-                <span class="icon-next-arrow"></span>
-              </a>
-              {{else}}
-              <div
-                class="bg-ash px-3 py-1 rounded-md border-[1px] border-gray-400 text-gray-400 flex gap-x-2 items-center">
-                <span>Next</span>
-                <span class="icon-next-arrow"></span>
-              </div>
-              {{/if}}
             </div>
           </div>
         </div>
@@ -151,7 +153,7 @@
                 <h3 class="text-oak border-b-[1px] border-oak">Playing Styles</h3>
               </div>
             </div>
-            <ul class="grid grid-cols-2 gap-y-2 sm:gap-y-1 text-sm text-birch xl:grid-cols-1 sm:text-base">
+            <ul class="grid grid-cols-2 text-sm gap-y-2 sm:gap-y-1 text-birch xl:grid-cols-1 sm:text-base">
               {{#each options.playingStyles}}
               <li class="flex items-center">
                 <label for="{{@key}}" class="flex items-center w-full cursor-pointer group">
@@ -215,6 +217,33 @@
             </label>
           </div>
         </div>
+      </div>
+      <div class="flex items-center justify-center w-full mb-4 sm:justify-start xl:hidden">
+        {{#if paging.hasPrev}}
+        <a href="/hall-of-fame?page={{sub paging.currentPage 1}}"
+          class="bg-ash px-3 py-1 rounded-md border-[1px] border-birch flex gap-x-2 items-center">
+          <span class="icon-prev-arrow"></span>
+          <span>Prev.</span>
+        </a>
+        {{else}}
+        <div class="flex gap-x-2 items-center bg-ash px-3 py-1 rounded-md border-[1px] border-charcoal text-gray-400">
+          <span class="icon-prev-arrow"></span>
+          <span>Prev.</span>
+        </div>
+        {{/if}}
+        <hr class="w-24 border-[1px] border-birch">
+        {{#if paging.hasNext}}
+        <a href="/hall-of-fame?page={{add paging.currentPage 1}}"
+          class="bg-ash px-3 py-1 rounded-md border-[1px] border-birch flex gap-x-2 items-center">
+          <span>Next</span>
+          <span class="icon-next-arrow"></span>
+        </a>
+        {{else}}
+        <div class="bg-ash px-3 py-1 rounded-md border-[1px] border-gray-400 text-gray-400 flex gap-x-2 items-center">
+          <span>Next</span>
+          <span class="icon-next-arrow"></span>
+        </div>
+        {{/if}}
       </div>
       <div class="w-full xl:w-[83.33333%] xl:pl-4">
         <div class="grid gap-4 md:grid-cols-2">
