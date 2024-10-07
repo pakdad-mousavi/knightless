@@ -3,7 +3,7 @@ export const RATINGS = Object.freeze({
   '2500-2550': [2500, 2550],
   '2550-2600': [2550, 2600],
   '2600-2650': [2600, 2650],
-  '2660-2700': [2660, 2700],
+  '2650-2700': [2650, 2700],
   '2700-2750': [2700, 2750],
   '2750-2800': [2750, 2800],
   '2800-2850': [2800, 2850],
@@ -11,7 +11,7 @@ export const RATINGS = Object.freeze({
 });
 
 export const getDistinctRatingKeys = () => {
-  return Object.keys(RATINGS).map(key => String(key));
+  return Object.keys(RATINGS);
 };
 
 
