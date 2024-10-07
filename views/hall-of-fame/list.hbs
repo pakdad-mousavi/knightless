@@ -173,8 +173,8 @@
               <li class="flex items-center">
                 <label for="{{this}}" class="flex items-center w-full cursor-pointer group">
                   <div class="radio-container">
-                    <input type="radio" name="rating" id="{{this}}" class="radio" value="{{this}}" {{#if (eq
-                      ../options.selectedRatingRange this)}}checked{{/if}}>
+                    <input type="radio" name="rating" class="radio {{#if (eq this " 2500-2900")}}default-value{{/if}}"
+                      id="{{this}}" value="{{this}}" {{#if (eq ../options.selectedRatingRange this)}}checked{{/if}}>
                     <span class="dot"></span>
                   </div>
                   <span class="ml-2">{{this}}</span>

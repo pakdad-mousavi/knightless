@@ -45,13 +45,18 @@ const helper = {
   },
 
   eq(value, comparee) {
+    if (typeof value === 'string') {
+      value = value.trim();
+    }
+    if (typeof comparee === 'string') {
+      comparee = comparee.trim();
+    }
     return value === comparee;
   },
 
   neq(value, comparee) {
     return value !== comparee;
   },
-
 };
 
 export default helper;
