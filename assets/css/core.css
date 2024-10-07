@@ -105,26 +105,6 @@ body *.font-serif {
   @apply px-10 md:px-5 lg:px-10 xl:px-28;
 }
 
-.slider {
-  @apply w-full mb-2;
-}
-
-.slider input {
-  -webkit-appearance: none; /* Override default CSS styles */
-  appearance: none;
-  @apply w-full bg-ash h-3 outline-none rounded-md duration-150 transition-all cursor-pointer hover:bg-neutral-800 border-[1px] border-neutral-600;
-}
-
-.slider input::-moz-range-thumb {
-  @apply w-5 h-5 rounded-full bg-neutral-400 border-none cursor-pointer;
-}
-
-.slider input::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  @apply w-5 h-5 rounded-full bg-neutral-400 border-none cursor-pointer;
-}
-
 .checkbox-container {
   @apply cursor-pointer min-w-5 min-h-5 relative flex items-center bg-ash border-neutral-600 border-[1px] rounded-md overflow-hidden duration-150 group-hover:bg-neutral-800;
   -webkit-user-select: none;
