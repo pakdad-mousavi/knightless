@@ -44,9 +44,14 @@ const helper = {
     return Math.floor(index / 2);
   },
 
-  ne(value, comparee) {
+  eq(value, comparee) {
+    return value === comparee;
+  },
+
+  neq(value, comparee) {
     return value !== comparee;
   },
+
 };
 
 export default helper;
