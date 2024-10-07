@@ -116,22 +116,13 @@
               </li>
               {{/if}}
               {{/each}}
-              {{#if (ne options.ratingA 2500) }}
+              {{#if (neq options.selectedRatingRange "2500-2900") }}
               <li>
                 <a href="#" data-filter-name="player-rating" class="active-filter">
                   <span class="mr-2 icon-cross"></span>
-                  <span>{{options.ratingA}} - {{options.ratingB}} rating</span>
+                  <span>{{options.selectedRatingRange}} rating</span>
                 </a>
               </li>
-              {{else}}
-              {{#if (ne options.ratingB 2900)}}
-              <li>
-                <a href="#" data-filter-name="player-rating" class="active-filter">
-                  <span class="mr-2 icon-cross"></span>
-                  <span>{{options.ratingA}} - {{options.ratingB}} rating</span>
-                </a>
-              </li>
-              {{/if}}
               {{/if}}
               {{#if options.hasBeenChampion}}
               <li>
@@ -171,13 +162,27 @@
 
           {{!-- Peak rating --}}
           <div
-            class="p-4 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
+            class="sm:col-span-2 md:col-span-1 p-4 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto xl:p-0 rounded-md xl:rounded-none border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex xl:pr-3">
                 <h3 class="text-oak border-b-[1px] border-oak">Peak Rating (elo)</h3>
               </div>
             </div>
-            <div class="slider player-ratings">
+            <ul class="grid grid-cols-2 text-sm gap-y-2 sm:gap-y-1 text-birch xl:grid-cols-1 sm:text-base">
+              {{#each options.ratings}}
+              <li class="flex items-center">
+                <label for="{{this}}" class="flex items-center w-full cursor-pointer group">
+                  <div class="radio-container">
+                    <input type="radio" name="rating" id="{{this}}" class="radio" value="{{this}}" {{#if (eq
+                      ../options.selectedRatingRange this)}}checked{{/if}}>
+                    <span class="dot"></span>
+                  </div>
+                  <span class="ml-2">{{this}}</span>
+                </label>
+              </li>
+              {{/each}}
+            </ul>
+            {{!-- <div class="slider player-ratings">
               <input type="range" min="2500" max="2900" step="50" value="{{options.ratingA}}" list="detents"
                 name="ratingA">
               <input type="range" min="2500" max="2900" step="50" value="{{options.ratingB}}" list="detents"
@@ -196,12 +201,12 @@
             </div>
             <p class="text-sm text-birch">Range: <span
                 class="ml-2 font-semibold rating-range-values">{{options.ratingA}} -
-                {{options.ratingB}}</span></p>
+                {{options.ratingB}}</span></p> --}}
           </div>
 
           {{!-- Was world champion --}}
           <div
-            class="p-4 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto rounded-md xl:rounded-none xl:p-0 border-[1px] border-neutral-700 xl:border-0">
+            class="sm:col-span-2 md:col-span-1 p-4 bg-[url(/images/checkered-background.png)] xl:bg-none bg-neutral-800 xl:bg-transparent xl:mr-2 xl:w-auto rounded-md xl:rounded-none xl:p-0 border-[1px] border-neutral-700 xl:border-0">
             <div class="mb-4 xl:my-4">
               <div class="flex xl:pr-3">
                 <h3 class="text-oak border-b-[1px] border-oak">Chess Champion</h3>

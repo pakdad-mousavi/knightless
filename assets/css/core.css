@@ -147,6 +147,37 @@ body *.font-serif {
   @apply opacity-100;
 }
 
+.radio-container {
+  @apply cursor-pointer min-w-5 min-h-5 relative flex items-center bg-ash border-neutral-600 border-[1px] rounded-full overflow-hidden duration-150 group-hover:bg-neutral-800;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser checkbox */
+.radio-container .radio {
+  @apply absolute w-0 h-0 opacity-0 cursor-pointer;
+}
+
+.radio-container .dot {
+  @apply w-full h-full justify-center items-center flex opacity-0 z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute text-[10px] text-dark-oak duration-75;
+}
+
+.radio-container .dot:before {
+  content: "";
+  @apply absolute bg-birch w-3 h-3 rounded-full;
+}
+
+/* Select the box when clicked */
+.radio-container .radio:checked + span.dot {
+  @apply opacity-100;
+}
+
+.radio-container:has(.radio:checked) {
+  @apply border-birch;
+}
+
 /* Toggle button classes */
 .switch {
   @apply cursor-pointer min-w-10 h-5 bg-ash flex items-center rounded-full relative border-[1px] border-neutral-600 group-hover:bg-neutral-800;
