@@ -20,10 +20,10 @@ if (activeFiltersContainer) {
 
 // Reset all filters
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
-const ranges = document.querySelectorAll('input[type=range]');
+const radios = document.querySelectorAll('input[type=radio]');
 const searchbar = document.querySelector('.searchbar > input[type=text]');
-if (checkboxes.length && ranges.length && searchbar) {
-  resetFilters(checkboxes, ranges, searchbar);
+if (checkboxes.length && radios.length && searchbar) {
+  resetFilters(checkboxes, radios, searchbar);
 }
 
 // Set up all sample boards

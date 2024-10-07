@@ -3,6 +3,7 @@ const MAX_RANGE_VALUE = 2900;
 const ACTIVE_FILTER_CLASS = 'active-filter';
 const FILTER_NAME_DATASET = 'filterName';
 const PLAYER_QUERY_FORM = 'form.players-query-form';
+const DEFAULT_RATING = 'input[type="radio"].default-value';
 
 const getsliderValues = (sliders) => {
   let sliderLeft = Number(sliders[0].value);
@@ -35,9 +36,8 @@ const removeActiveFilter = (filterName) => {
 
   // If it's the range, reset the range values
   if (filterName === 'player-rating') {
-    const sliders = form.querySelector(`.player-ratings`).children;
-    sliders[0].value = MIN_RANGE_VALUE;
-    sliders[1].value = MAX_RANGE_VALUE;
+    const defaultRadio = form.querySelector(DEFAULT_RATING);
+    defaultRadio.checked = true;
   }
   // If not, then just uncheck the filter
   else {
@@ -91,7 +91,7 @@ export const watchActiveFilters = (activeFilterContainer) => {
   displayEmptyFilterMessageIfEmpty(activeFilterContainer);
 };
 
-export const resetFilters = (checkboxes, ranges, searchbar) => {
+export const resetFilters = (checkboxes, radios, searchbar) => {
   const resetBtn = document.querySelector('button[type=reset]');
   const form = document.querySelector(PLAYER_QUERY_FORM);
 
@@ -103,9 +103,9 @@ export const resetFilters = (checkboxes, ranges, searchbar) => {
       checkbox.checked = false;
     });
 
-    // Reset ranges to original values
-    ranges[0].value = MIN_RANGE_VALUE;
-    ranges[1].value = MAX_RANGE_VALUE;
+    radios.forEach((radio) => {
+      if (radio.classList.contains('default-value')) radio.checked = true;
+    });
 
     // Empty the searchbar
     searchbar.value = '';
