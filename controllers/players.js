@@ -1,28 +1,36 @@
 import { Player } from '../models/player.js';
 import { getPlayingStyles, getDistinctPlayingStyles } from '../helpers/getPlayingStyles.js';
+import { RATINGS, getDistinctRatingKeys } from '../helpers/getRatings.js';
 
 export const getPlayers = async (req, res) => {
   const cookieFilters = req.signedCookies?.filters;
 
   const playingStyles = cookieFilters?.playingStyles || [];
   const search = cookieFilters?.search || '';
-  let ratingA = cookieFilters?.ratingA || false;
-  let ratingB = cookieFilters?.ratingB || false;
+  let rating = cookieFilters?.rating || '2500-2900';
   const hasBeenChampion = cookieFilters?.hasBeenChampion === true;
 
+  // Update rating value if a valid and different rating is selected, update the rating
+  let ratingValues;
+
+  const isRatingValid = Object.keys(RATINGS).includes(rating);
+  // If invalid, just use the default value
+  if (!isRatingValid) {
+    rating = '2500-2900';
+  }
+  
+  ratingValues = RATINGS[rating];
+
   const filter = {};
+  // Ratings
+  filter['personalDetails.peakFideRating'] = { $gte: ratingValues[0], $lte: ratingValues[1] };
+
+  // Playing styles
   if (playingStyles.length) {
     filter['playingStyle'] = { $in: playingStyles };
   }
-  if (ratingA && ratingB) {
-    // Make sure ratingA is always lower than ratingB
-    if (ratingA > ratingB) {
-      const temp = ratingA;
-      ratingA = ratingB;
-      ratingB = temp;
-    }
-    filter['personalDetails.peakFideRating'] = { $gte: ratingA, $lte: ratingB };
-  }
+
+  // Search
   if (search && search.length) {
     // Break the name into different parts
     const nameParts = search.split(' ');
@@ -45,22 +53,28 @@ export const getPlayers = async (req, res) => {
       ];
     }
   }
+
+  // Former champion
   if (hasBeenChampion) {
     filter['personalDetails.hasBeenChampion'] = true;
   }
 
+  // hbs template options needed
   const options = {
     playingStyles: {},
+    ratings: getDistinctRatingKeys(),
+    selectedRatingRange: rating,
     search: search || '',
-    ratingA: ratingA || 2500,
-    ratingB: ratingB || 2900,
     hasBeenChampion,
   };
 
-  const distinctPlayingStyles = getDistinctPlayingStyles();
+  console.log(options.selectedRatingRange);
 
+  // used to identify which checkboxes were ticked
+  const distinctPlayingStyles = getDistinctPlayingStyles();
   distinctPlayingStyles.forEach((style) => (options.playingStyles[style] = playingStyles.includes(style)));
 
+  // Get the total number of records found
   const totalRecords = (await Player.find(filter).lean()).length;
 
   const { page } = req.query;
@@ -101,22 +115,17 @@ export const getPlayers = async (req, res) => {
 };
 
 export const applySearchFilters = (req, res) => {
-  const { playingStyles: styles, search, ratingA: rtA, ratingB: rtB, formerChampion: chmp } = req.body;
+  const { playingStyles: styles, search, rating: rts, formerChampion: chmp } = req.body;
 
-  let numRtA = Number(rtA);
-  let numRtB = Number(rtB);
-  if (!Number.isInteger(numRtA) || !Number.isInteger(numRtB)) {
-    numRtA = 2500;
-    numRtB = 2900;
-  }
+  // Create filters object
   const filters = {
     playingStyles: styles ? [].concat(styles) : [],
     search: search?.toString().trim(),
-    ratingA: numRtA || 2500,
-    ratingB: numRtB || 2900,
+    rating: rts || RATINGS['2500-2900'],
     hasBeenChampion: chmp === 'Former Champion',
   };
 
+  // Create filters cookie and sign it
   res.cookie('filters', filters, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
