@@ -18,7 +18,7 @@ export const getPlayers = async (req, res) => {
   if (!isRatingValid) {
     rating = '2500-2900';
   }
-  
+
   ratingValues = RATINGS[rating];
 
   const filter = {};
@@ -67,8 +67,6 @@ export const getPlayers = async (req, res) => {
     search: search || '',
     hasBeenChampion,
   };
-
-  console.log(options.selectedRatingRange);
 
   // used to identify which checkboxes were ticked
   const distinctPlayingStyles = getDistinctPlayingStyles();
