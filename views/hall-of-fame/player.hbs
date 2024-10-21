@@ -1,4 +1,21 @@
-<div class="container py-20 mx-auto font-sans">
+<div class="container px-8 pt-10 pb-20 mx-auto font-sans">
+  {{!-- Navbar --}}
+  <div class="flex items-center mb-10">
+    <a href="#"
+      class="bg-ash px-6 py-1 rounded-md border-birch border-[1px] whitespace-nowrap flex items-center gap-x-3">
+      <span class="block rotate-180 icon-next-arrow"></span>
+      <p>Prev.</p>
+    </a>
+    <hr class="w-full border-birch">
+    <a href="#" class="bg-ash px-8 py-1 rounded-md border-birch border-[1px] whitespace-nowrap">Back To Hall of Fame</a>
+    <hr class="w-full border-birch">
+    <a href="#"
+      class="bg-ash px-6 py-1 rounded-md border-birch border-[1px] whitespace-nowrap flex items-center gap-x-3">
+      <p>Next</p>
+      <span class="block icon-next-arrow"></span>
+    </a>
+  </div>
+  
   {{!-- Personal details --}}
   {{#with player}}
   {{#with personalDetails}}
