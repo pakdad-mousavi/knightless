@@ -76,7 +76,8 @@
       </div>
     </div>
     <div class="flex flex-col justify-center mx-auto sm:w-3/4 md:w-2/3 lg:w-full lg:pl-8 lg:col-span-2 2xl:px-20">
-      <img src="/images/player-images/{{../id}}.webp" alt="{{firstName}} {{lastName}}" class="rounded-md border-[1px] border-charcoal">
+      <img src="/images/player-images/{{../id}}.webp" alt="{{firstName}} {{lastName}}"
+        class="rounded-md border-[1px] border-charcoal">
       <div class="flex flex-wrap justify-center gap-2 mt-2 text-sm lg:justify-normal">
         {{#if hasBeenChampion}}
         <a href="#"
@@ -107,7 +108,7 @@
               <span class="text-lg italic">The Formative Years</span>
               <h3 class="font-serif text-2xl font-bold uppercase">Early Life</h3>
             </div>
-            <span class="order-1 text-6xl icon-person lg:order-none"></span>
+            <span class="order-1 text-5xl xl:text-6xl icon-person lg:order-none"></span>
           </div>
           <hr class="w-1/2 border-[1px] border-oak mt-2">
         </div>
@@ -124,7 +125,7 @@
               <span class="text-lg italic">The Path To Stardom</span>
               <h3 class="font-serif text-2xl font-bold uppercase">Rise To Prominence</h3>
             </div>
-            <span class="order-1 text-6xl icon-path lg:order-none"></span>
+            <span class="order-1 text-5xl xl:text-6xl icon-path lg:order-none"></span>
           </div>
           <hr class="w-1/2 border-[1px] border-oak mt-2">
         </div>
@@ -140,8 +141,8 @@
         <div class="flex items-center gap-x-4 text-oak">
           <span class="text-5xl icon-trophy"></span>
           <div>
-            <span class="italic">The Pinnacle Of Success</span>
-            <h3 class="font-serif text-xl font-bold uppercase">World Chess Champion</h3>
+            <span class="text-lg italic">The Pinnacle Of Success</span>
+            <h3 class="font-serif text-2xl font-bold uppercase">World Chess Champion</h3>
           </div>
         </div>
         <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
@@ -155,10 +156,10 @@
     <section class="py-5">
       <div class="mb-8">
         <div class="flex items-center gap-x-4 text-oak">
-          <span class="text-4xl icon-chessboard"></span>
+          <span class="text-5xl icon-chessboard"></span>
           <div>
-            <span class="italic">Mastering The Chessboard</span>
-            <h3 class="font-serif text-xl font-bold uppercase">Playing Style</h3>
+            <span class="text-lg italic">Mastering The Chessboard</span>
+            <h3 class="font-serif text-2xl font-bold uppercase">Playing Style</h3>
           </div>
         </div>
         <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
@@ -184,14 +185,14 @@
     {{!-- Achievements and records section --}}
     <section class="py-5">
       <div class="mb-8">
-        <div class="flex items-center gap-x-4">
-          <span class="text-5xl icon-rank"></span>
+        <div class="flex items-center gap-x-4 text-oak">
+          <span class="text-6xl icon-rank"></span>
           <div>
-            <span class="italic">Milestones And Triumphs</span>
-            <h3 class="font-serif text-xl font-bold uppercase">Achievements And Records</h3>
+            <span class="text-lg italic">Milestones And Triumphs</span>
+            <h3 class="font-serif text-2xl font-bold uppercase">Achievements And Records</h3>
           </div>
         </div>
-        <hr class="w-1/4 border-[1px] border-spruce mt-2">
+        <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
       </div>
       <div class="paragraphs-container">
         {{#makeParagraphs achievementsAndRecords}}{{/makeParagraphs}}
@@ -201,14 +202,14 @@
     {{!-- Off the board section --}}
     <section class="py-5">
       <div class="mb-8">
-        <div class="flex items-center gap-x-4">
-          <span class="text-4xl icon-suitcase"></span>
+        <div class="flex items-center gap-x-4 text-oak">
+          <span class="text-5xl icon-suitcase"></span>
           <div>
-            <span class="italic">Beyond The Game</span>
-            <h3 class="font-serif text-xl font-bold uppercase">Off The Board</h3>
+            <span class="text-lg italic">Beyond The Game</span>
+            <h3 class="font-serif text-2xl font-bold uppercase">Off The Board</h3>
           </div>
         </div>
-        <hr class="w-1/4 border-[1px] border-spruce mt-2">
+        <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
       </div>
       <div class="paragraphs-container">
         {{#makeParagraphs offTheBoard}}{{/makeParagraphs}}
@@ -218,14 +219,14 @@
     {{!-- Personal life section --}}
     <section class="py-5">
       <div class="mb-8">
-        <div class="flex items-center gap-x-4">
+        <div class="flex items-center gap-x-4 text-oak">
           <span class="text-5xl icon-people"></span>
           <div>
-            <span class="italic">The Person Behind The Pawn</span>
-            <h3 class="font-serif text-xl font-bold uppercase">Personal Life</h3>
+            <span class="text-lg italic">The Person Behind The Pawn</span>
+            <h3 class="font-serif text-2xl font-bold uppercase">Personal Life</h3>
           </div>
         </div>
-        <hr class="w-1/4 border-[1px] border-spruce mt-2">
+        <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
       </div>
       <div class="paragraphs-container">
         {{#makeParagraphs personalLife}}{{/makeParagraphs}}
@@ -236,9 +237,9 @@
     <section class="py-5 bg-dark-oak text-cream">
       <div class="relative mb-4 space-y-2 text-center">
         <div class="flex items-center justify-center mb-6 gap-x-6">
-          <span class="text-4xl icon-queen"></span>
+          <span class="text-5xl icon-queen"></span>
           <h3 class="">Learn More About {{personalDetails.firstName}} {{personalDetails.lastName}}</h3>
-          <span class="text-4xl icon-queen"></span>
+          <span class="text-5xl icon-queen"></span>
         </div>
         <div class="flex flex-col items-center justify-center mb-8">
           <hr class="w-full border-2 border-cream">
