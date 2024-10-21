@@ -93,94 +93,58 @@
       </div>
     </div>
   </div>
-  {{!-- <div class="flex flex-col items-center section-container lg:flex-row gap-y-10 lg:gap-x-20 justify-evenly">
-    <div class="lg:w-1/2">
-      <div class="mb-10 font-serif font-bold text-center uppercase lg:text-left">
-        <h2 class="mb-2 text-3xl">{{firstName}}</h2>
-        <h1 class="text-4xl">{{lastName}}</h1>
-        <hr class="w-1/2 lg:w-1/4 border-[1px] border-spruce mt-4 mx-auto lg:mx-0">
-      </div>
-      <div class="flex justify-center text-center lg:text-left gap-x-2 lg:gap-x-0">
-        <ul class="w-1/2 details-list">
-          <li>Date Of Birth:</li>
-          <li>{{dateOfBirth}}</li>
-          <li>Place Of Birth:</li>
-          <li>{{placeOfBirth}}</li>
-          <li>Peak FIDE Rating:</li>
-          <li>{{peakFideRating}}</li>
-        </ul>
-        <ul class="w-1/2 details-list">
-          <li>Date Of Death:</li>
-          <li>{{dateOfDeath}}</li>
-          <li>Place Of Death:</li>
-          <li>{{placeOfDeath}}</li>
-          <li class="flex lg:flex-row items-center font-bold !text-dark-oak">
-            {{#if hasBeenChampion}}
-            <span class="block mr-4 text-5xl text-dark-oak lg:mr-3 icon-trophy"></span>
-            Won World Chess Champion Title
-            {{else}}
-            <span class="block mr-3 text-4xl text-dark-oak icon-medal"></span>
-            Not Yet Won World Chess Champion Title
-            {{/if}}
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="lg:w-1/2">
-      <img src="/images/player-images/{{../id}}.webp" alt="{{firstName}} {{lastName}}"
-        class="ml-auto rounded-2xl border-[1px] border-spruce">
-    </div>
-  </div> --}}
   {{/with}}
   {{/with}}
 
   {{#with player}}
-  <div class="mt-10 space-y-5 [&>*:nth-child(odd)]:bg-white mb-20">
-    {{!-- Early Life --}}
-    <section class="py-10 section-container">
-      <div class="mb-8">
-        <div class="flex items-center gap-x-4">
-          <span class="text-4xl icon-person"></span>
-          <div>
-            <span class="italic">The Formative Years</span>
-            <h3 class="font-serif text-xl font-bold uppercase">Early Life</h3>
+  <div class="mb-20 space-y-5">
+    <div class="justify-center lg:flex gap-x-16">
+      {{!-- Early Life --}}
+      <section class="py-10">
+        <div class="mb-8">
+          <div class="flex items-center gap-x-4 text-oak">
+            <div class="flex-1 order-2 lg:order-none">
+              <span class="text-lg italic">The Formative Years</span>
+              <h3 class="font-serif text-2xl font-bold uppercase">Early Life</h3>
+            </div>
+            <span class="order-1 text-6xl icon-person lg:order-none"></span>
           </div>
+          <hr class="w-1/2 border-[1px] border-oak mt-2">
         </div>
-        <hr class="w-1/4 border-[1px] border-spruce mt-2">
-      </div>
-      <div class="paragraphs-container">
-        {{#makeParagraphs earlyLife}}{{/makeParagraphs}}
-      </div>
-    </section>
+        <div class="paragraphs-container">
+          {{#makeParagraphs earlyLife}}{{/makeParagraphs}}
+        </div>
+      </section>
 
-    {{!-- Rise to prominence --}}
-    <section class="py-10 section-container">
-      <div class="mb-8">
-        <div class="flex items-center gap-x-4">
-          <span class="text-4xl icon-path"></span>
-          <div>
-            <span class="italic">The Path To Stardom</span>
-            <h3 class="font-serif text-xl font-bold uppercase">Rise To Prominence</h3>
+      {{!-- Rise to prominence --}}
+      <section class="py-10">
+        <div class="mb-8">
+          <div class="flex items-center gap-x-4 text-oak">
+            <div class="flex-1 order-2 lg:order-none">
+              <span class="text-lg italic">The Path To Stardom</span>
+              <h3 class="font-serif text-2xl font-bold uppercase">Rise To Prominence</h3>
+            </div>
+            <span class="order-1 text-6xl icon-path lg:order-none"></span>
           </div>
+          <hr class="w-1/2 border-[1px] border-oak mt-2">
         </div>
-        <hr class="w-1/4 border-[1px] border-spruce mt-2">
-      </div>
-      <div class="paragraphs-container">
-        {{#makeParagraphs riseToProminence}}{{/makeParagraphs}}
-      </div>
-    </section>
+        <div class="paragraphs-container">
+          {{#makeParagraphs riseToProminence}}{{/makeParagraphs}}
+        </div>
+      </section>
+    </div>
 
     {{!-- World Chess Champion --}}
-    <section class="py-10 section-container">
+    <section class="py-5">
       <div class="mb-8">
-        <div class="flex items-center gap-x-4">
+        <div class="flex items-center gap-x-4 text-oak">
           <span class="text-5xl icon-trophy"></span>
           <div>
             <span class="italic">The Pinnacle Of Success</span>
             <h3 class="font-serif text-xl font-bold uppercase">World Chess Champion</h3>
           </div>
         </div>
-        <hr class="w-1/4 border-[1px] border-spruce mt-2">
+        <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
       </div>
       <div class="paragraphs-container">
         {{#makeParagraphs worldChessChampion}}{{/makeParagraphs}}
@@ -188,38 +152,37 @@
     </section>
 
     {{!-- Playing Style --}}
-    <section class="py-10 section-container">
+    <section class="py-5">
       <div class="mb-8">
-        <div class="flex items-center gap-x-4">
+        <div class="flex items-center gap-x-4 text-oak">
           <span class="text-4xl icon-chessboard"></span>
           <div>
             <span class="italic">Mastering The Chessboard</span>
             <h3 class="font-serif text-xl font-bold uppercase">Playing Style</h3>
           </div>
         </div>
-        <hr class="w-1/4 border-[1px] border-spruce mt-2">
+        <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
       </div>
-      <div class="flex flex-wrap items-center gap-4 mx-auto lg:items-start lg:justify-center">
+      <div class="flex flex-wrap justify-center gap-4">
         {{#each playingStyle}}
-        <div class="md:w-[calc(50%-1rem)] xl:w-[calc(33.333333%-1rem)]">
-          <div class="p-4 bg-white rounded-lg xl:h-64">
-            <div class="flex items-center mb-6 gap-x-8 md:gap-x-2">
-              <div class="md:flex-1">
-                <span class="text-sm">{{subtitle}}</span>
-                <h4 class="font-serif text-lg font-bold uppercase">{{name}}</h4>
-                <hr class="w-3/4 border-[1px] border-spruce mt-2">
-              </div>
-              <span class="text-6xl icon-{{icon}}"></span>
+        <div
+          class="p-4 bg-ash bg-[url(/images/checkered-background.png)] rounded-lg xl:h-56 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)]">
+          <div class="flex items-center mb-6 gap-x-4 md:gap-x-0 text-oak">
+            <div class="order-2 md:order-none md:flex-1">
+              <span class="text-sm">{{subtitle}}</span>
+              <h4 class="font-serif text-lg font-bold uppercase">{{name}}</h4>
+              <hr class="w-1/2 sm:w-3/4 2xl:w-1/2 border-[1px] border-oak mt-2">
             </div>
-            <p class="text-lg">{{description}}</p>
+            <span class="text-6xl icon-{{icon}} order-1 md:order-none"></span>
           </div>
+          <p class="text-lg">{{description}}</p>
         </div>
         {{/each}}
       </div>
     </section>
 
     {{!-- Achievements and records section --}}
-    <section class="py-10 section-container">
+    <section class="py-5">
       <div class="mb-8">
         <div class="flex items-center gap-x-4">
           <span class="text-5xl icon-rank"></span>
@@ -236,7 +199,7 @@
     </section>
 
     {{!-- Off the board section --}}
-    <section class="py-10 section-container">
+    <section class="py-5">
       <div class="mb-8">
         <div class="flex items-center gap-x-4">
           <span class="text-4xl icon-suitcase"></span>
@@ -253,7 +216,7 @@
     </section>
 
     {{!-- Personal life section --}}
-    <section class="py-10 section-container">
+    <section class="py-5">
       <div class="mb-8">
         <div class="flex items-center gap-x-4">
           <span class="text-5xl icon-people"></span>
@@ -270,7 +233,7 @@
     </section>
 
     {{!-- Fun fact section --}}
-    <section class="py-10 section-container bg-dark-oak text-cream">
+    <section class="py-5 bg-dark-oak text-cream">
       <div class="relative mb-4 space-y-2 text-center">
         <div class="flex items-center justify-center mb-6 gap-x-6">
           <span class="text-4xl icon-queen"></span>
@@ -290,7 +253,7 @@
   {{/with}}
 
   {{!-- Search for more section --}}
-  <section class="py-10 mb-10 text-center section-container"> {{!-- Section title --}}
+  <section class="py-5 mb-10 text-center"> {{!-- Section title --}}
     <div class="relative space-y-2 font-serif font-bold uppercase text-dark-oak">
       <h3 class="mb-8 text-3xl">Find More</h3>
       <div class="flex flex-col items-center justify-center mb-8">

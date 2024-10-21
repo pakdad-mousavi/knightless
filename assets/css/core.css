@@ -82,7 +82,7 @@ body *.font-serif {
 }
 
 .paragraphs-container {
-  @apply space-y-6 text-lg text-oak;
+  @apply space-y-6 text-lg;
 }
 
 .paragraphs-container b {

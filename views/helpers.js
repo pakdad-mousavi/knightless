@@ -88,6 +88,10 @@ const helper = {
   neq(value, comparee) {
     return value !== comparee;
   },
+
+  mod(value, divisor) {
+    return value % divisor;
+  }
 };
 
 export default helper;
