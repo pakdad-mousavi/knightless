@@ -33,37 +33,37 @@
       {{!-- Details --}}
       <div class="grid grid-cols-2 gap-5 text-lg text-center">
         <div>
-          <div class="px-6 py-3 ml-auto rounded-md bg-ash lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div class="px-6 py-3 ml-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Date Of Birth</h4>
             <span class="font-bold">{{dateOfBirth}}</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 mr-auto rounded-md bg-ash lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div class="px-6 py-3 mr-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Place Of Birth</h4>
             <span class="font-bold">{{placeOfBirth}}</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 ml-auto rounded-md bg-ash lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div class="px-6 py-3 ml-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Date Of Death</h4>
             <span class="font-bold">{{dateOfDeath}}</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 mr-auto rounded-md bg-ash lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div class="px-6 py-3 mr-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Place Of Death</h4>
             <span class="font-bold">{{placeOfDeath}}</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 ml-auto rounded-md bg-ash lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div class="px-6 py-3 ml-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Peak FIDE Rating</h4>
             <span class="font-bold">{{peakFideRating}} Elo</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 mr-auto rounded-md bg-ash lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div class="px-6 py-3 mr-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <span class="font-bold">
               {{#if hasBeenChampion}}
               Has Been World Chess Champion
@@ -200,7 +200,7 @@
     </section>
 
     {{!-- Off the board section --}}
-    <section class="py-5">
+    <section class="py-5 bg-ash bg-[url(/images/checkered-background.png)] p-4 rounded-md">
       <div class="mb-8">
         <div class="flex items-center gap-x-4 text-oak">
           <span class="text-5xl icon-suitcase"></span>
@@ -211,7 +211,7 @@
         </div>
         <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
       </div>
-      <div class="paragraphs-container">
+      <div class="paragraphs-container grid grid-cols-3 gap-8 !space-y-0">
         {{#makeParagraphs offTheBoard}}{{/makeParagraphs}}
       </div>
     </section>
