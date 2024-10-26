@@ -33,37 +33,43 @@
       {{!-- Details --}}
       <div class="grid grid-cols-2 gap-5 text-lg text-center">
         <div>
-          <div class="px-6 py-3 ml-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div
+            class="px-6 py-3 ml-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Date Of Birth</h4>
             <span class="font-bold">{{dateOfBirth}}</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 mr-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div
+            class="px-6 py-3 mr-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Place Of Birth</h4>
             <span class="font-bold">{{placeOfBirth}}</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 ml-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div
+            class="px-6 py-3 ml-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Date Of Death</h4>
             <span class="font-bold">{{dateOfDeath}}</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 mr-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div
+            class="px-6 py-3 mr-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Place Of Death</h4>
             <span class="font-bold">{{placeOfDeath}}</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 ml-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div
+            class="px-6 py-3 ml-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <h4>Peak FIDE Rating</h4>
             <span class="font-bold">{{peakFideRating}} Elo</span>
           </div>
         </div>
         <div>
-          <div class="px-6 py-3 mr-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
+          <div
+            class="px-6 py-3 mr-auto rounded-md bg-ash bg-[url(/images/checkered-background.png)] lg:w-11/12 xl:w-3/4 2xl:w-2/3">
             <span class="font-bold">
               {{#if hasBeenChampion}}
               Has Been World Chess Champion
@@ -234,32 +240,32 @@
     </section>
 
     {{!-- Fun fact section --}}
-    <section class="py-5 bg-dark-oak text-cream">
-      <div class="relative mb-4 space-y-2 text-center">
-        <div class="flex items-center justify-center mb-6 gap-x-6">
-          <span class="text-5xl icon-queen"></span>
-          <h3 class="">Learn More About {{personalDetails.firstName}} {{personalDetails.lastName}}</h3>
-          <span class="text-5xl icon-queen"></span>
+    <section class="py-5">
+      <div class="bg-birch bg-[url(/images/checkered-background.png)] py-8 px-4 rounded-md">
+        <div class="mb-8 space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
+          <h3 class="mb-2 text-3xl sm:text-4xl">Learn More About</h3>
+          <div class="flex items-center sm:px-10 xl:px-16">
+            <hr class="w-1/2 border-2 border-dark-oak">
+            <h2 class="inline-block px-4 text-4xl sm:text-5xl">{{personalDetails.lastName}}</h2>
+            <hr class="w-1/2 border-2 border-dark-oak">
+          </div>
         </div>
-        <div class="flex flex-col items-center justify-center mb-8">
-          <hr class="w-full border-2 border-cream">
-          <h2 class="px-4 font-serif text-3xl font-bold uppercase -translate-y-1/2 bg-dark-oak">Fun Fact</h2>
+        <div class="gap-8 text-lg text-center paragraphs-container text-dark-oak">
+          {{#makeParagraphs funFact}}{{/makeParagraphs}}
         </div>
-      </div>
-      <div class="paragraphs-container text-center !text-cream">
-        {{#makeParagraphs funFact}}{{/makeParagraphs}}
       </div>
     </section>
+
   </div>
   {{/with}}
 
   {{!-- Search for more section --}}
-  <section class="py-5 mb-10 text-center"> {{!-- Section title --}}
-    <div class="relative space-y-2 font-serif font-bold uppercase text-dark-oak">
-      <h3 class="mb-8 text-3xl">Find More</h3>
+  <div class="mb-20">
+    <div class="relative space-y-2 font-serif font-bold text-center uppercase text-oak">
+      <h3 class="mb-8 text-3xl sm:text-4xl">Find More Chess</h3>
       <div class="flex flex-col items-center justify-center mb-8">
         <hr class="w-full border-2 border-oak">
-        <h2 class="px-4 text-4xl -translate-y-1/2 bg-cream">Chess Talents</h2>
+        <h2 class="px-4 text-4xl -translate-y-1/2 sm:text-5xl bg-spruce">Talents</h2>
       </div>
     </div>
     <p class="paragraph">
@@ -272,6 +278,5 @@
         <input type="text" placeholder="Search For a Top-Rated Player..." name="search">
       </div>
     </form>
-  </section>
-
+  </div>
 </div>
