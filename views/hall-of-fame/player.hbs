@@ -1,16 +1,19 @@
 <div class="container px-8 pt-10 pb-20 mx-auto font-sans">
   {{!-- Navbar --}}
-  <div class="flex items-center mb-10">
+  <div class="flex flex-wrap items-center justify-center gap-4 mb-10 sm:justify-normal sm:flex-nowrap sm:gap-0">
     <a href="#"
-      class="bg-ash px-6 py-1 rounded-md border-birch border-[1px] whitespace-nowrap flex items-center gap-x-3">
+      class="bg-ash px-6 py-1 rounded-md border-birch border-[1px] whitespace-nowrap flex items-center gap-x-3 sm:order-none order-2">
       <span class="block rotate-180 icon-next-arrow"></span>
       <p>Prev.</p>
     </a>
-    <hr class="w-full border-birch border-[1px]">
-    <a href="#" class="bg-ash px-8 py-1 rounded-md border-birch border-[1px] whitespace-nowrap">Back To Hall of Fame</a>
-    <hr class="w-full border-birch border-[1px]">
+    <hr class="w-full border-birch border-[1px] sm:block hidden">
     <a href="#"
-      class="bg-ash px-6 py-1 rounded-md border-birch border-[1px] whitespace-nowrap flex items-center gap-x-3">
+      class="bg-ash px-8 py-1 rounded-md border-birch border-[1px] whitespace-nowrap sm:order-none order-1 mx-[100%] sm:mx-0">Back
+      To Hall
+      of Fame</a>
+    <hr class="w-full border-birch border-[1px] sm:block hidden">
+    <a href="#"
+      class="bg-ash px-6 py-1 rounded-md border-birch border-[1px] whitespace-nowrap flex items-center gap-x-3 sm:order-none order-3">
       <p>Next</p>
       <span class="block icon-next-arrow"></span>
     </a>
@@ -148,7 +151,8 @@
           <span class="text-5xl icon-trophy"></span>
           <div>
             <span class="text-lg italic">The Pinnacle Of Success</span>
-            <h3 class="font-serif text-2xl font-bold uppercase">World Chess Champion</h3>
+            <h3 class="font-serif text-2xl font-bold uppercase"><span class="hidden sm:inline">World</span> Chess
+              Champion</h3>
           </div>
         </div>
         <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
@@ -195,7 +199,7 @@
           <span class="text-6xl icon-rank"></span>
           <div>
             <span class="text-lg italic">Milestones And Triumphs</span>
-            <h3 class="font-serif text-2xl font-bold uppercase">Achievements And Records</h3>
+            <h3 class="font-serif text-2xl font-bold uppercase">Incredible Records</h3>
           </div>
         </div>
         <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
@@ -217,8 +221,8 @@
         </div>
         <hr class="w-1/2 lg:w-1/4 border-[1px] border-oak mt-2">
       </div>
-      <div class="paragraphs-container grid grid-cols-3 gap-8 !space-y-0">
-        {{#makeParagraphs offTheBoard}}{{/makeParagraphs}}
+      <div class="paragraphs-container grid md:grid-cols-2 xl:grid-cols-3 gap-8 !space-y-0">
+        {{#makeParagraphs offTheBoard "md:last:col-span-2 xl:last:col-span-1"}}{{/makeParagraphs}}
       </div>
     </section>
 

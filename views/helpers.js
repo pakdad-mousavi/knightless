@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 const helper = {
-  makeParagraphs(str) {
+  makeParagraphs(str, classStr) {
     const data = Handlebars.Utils.escapeExpression(str);
 
     const result = [];
@@ -9,7 +9,7 @@ const helper = {
     paragraphs.forEach((paragraph) => {
       paragraph = paragraph.trim();
       if (paragraph.length) {
-        result.push(`<p>${paragraph}</p>`);
+        result.push(`<p${' class="' + classStr + '"'}>${paragraph}</p>`);
       }
     });
 
@@ -91,7 +91,7 @@ const helper = {
 
   mod(value, divisor) {
     return value % divisor;
-  }
+  },
 };
 
 export default helper;
