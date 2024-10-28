@@ -25,7 +25,7 @@ body *.font-serif {
 }
 
 .header-item {
-  @apply block w-full p-3 rounded-md lg:inline hover:bg-slate-600 lg:p-0 lg:hover:bg-transparent;
+  @apply block w-full p-3 rounded-md lg:inline hover:bg-slate-600 lg:p-0 lg:hover:bg-transparent duration-100;
 }
 
 .button {
