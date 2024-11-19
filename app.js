@@ -28,7 +28,7 @@ app.use(
 );
 
 // Render static chessboardjs and chess.js files from node modules:
-app.use('/chessboardjs', express.static(`${dirname}/node_modules/@chrisoakman/chessboardjs/dist`));
+app.use('/chessground', express.static(`${dirname}/node_modules/chessground`));
 
 // Render static chesspieces files from images folder:
 app.use(
