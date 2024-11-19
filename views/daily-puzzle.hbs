@@ -3,9 +3,10 @@
   <section class="py-10 section-container">
     <div class="flex flex-col items-center lg:flex-row gap-x-10 gap-y-10">
       {{!-- Board --}}
-      <div class="w-full md:w-5/6 lg:w-3/5">
-        <div class="w-full aspect-square puzzle-board" data-pgn="{{dailyPuzzle.game.pgnArray}}"
-          data-solution="{{dailyPuzzle.puzzle.solution}}" id="pz_{{dailyPuzzle.game.id}}"></div>
+      <div class="relative w-full md:w-5/6 lg:w-3/5">
+        <div class="relative w-full aspect-square puzzle-board" data-pgn="{{dailyPuzzle.game.pgnArray}}"
+          data-solution="{{dailyPuzzle.puzzle.solution}}" id="pz_{{dailyPuzzle.game.id}}">
+        </div>
       </div>
 
       {{!-- PGN panel --}}
