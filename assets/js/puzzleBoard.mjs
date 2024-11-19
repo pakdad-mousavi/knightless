@@ -1,275 +1,232 @@
-import { Chess } from 'chess.js';
-import { highlightSquare, removeAllHighlights, highlightChecks, debounce, getMoveType, MOVE_TYPES } from './chessUtils.mjs';
-import { playMoveAudio } from './sounds.mjs';
+import { Chess, SQUARES } from 'chess.js';
+import { Chessground } from '/chessground/dist/chessground.min.js';
+import { files } from '/chessground/dist/types.js';
 
-const PGN_PANEL_CLASS = 'pgn-panel';
-const MESSAGE_BOX_CLASS = 'message-box';
-const MOVE_BOX_CLASS = 'move-box';
-const INDEX_BOX_CLASS = 'index-box';
-const PGN_SCROLLER_CLASS = 'pgn-scroller';
-const MOVE_HIGHLIGHT_CLASS = 'move-highlight';
-const MOVE_CLASS = 'move';
-const MOVE_NUMBER_CLASS = 'move-number';
-const CORRECT_MOVE_CLASS = 'correct';
-const INCORRECT_MOVE_CLASS = 'incorrect';
-
-const COMPUTER_MOVE_DELAY = 400;
-
-const createNewElement = (tag, content, classes) => {
-  const element = document.createElement(tag);
-  element.innerHTML = content;
-  element.classList.add(...classes);
-  return element;
+// Helper function to parse LAN strings into move objects
+const getMoveFromLan = (moveLan) => {
+  const from = moveLan.slice(0, 2);
+  const to = moveLan.slice(2, 4);
+  const promotion = moveLan.length > 4 ? moveLan[4].toLowerCase() : undefined;
+  const move = { from, to };
+  if (promotion) {
+    move.promotion = promotion;
+  }
+  return move;
 };
 
-const updateHighlights = (boardElement, game, move) => {
-  removeAllHighlights(boardElement); // First, remove all current highlights
-  highlightChecks(game, boardElement); // Then, check for a check on the next turns' player's king
-  highlightSquare(boardElement, move.from, MOVE_HIGHLIGHT_CLASS); // Highlight the "from" move
-  highlightSquare(boardElement, move.to, MOVE_HIGHLIGHT_CLASS); // Highlight the "to" move
-};
-
-const makeComputerMove = (board, game, move) => {
-  // Make the next move and set the board position
-  const opponentMove = game.move(move);
-  board.position(game.fen());
-
-  // Return the move that was made
-  return opponentMove;
-};
-
-const undoMove = (board, game) => {
-  // Undo the move
-  game.undo();
-
-  // Get the previous move before the undo
-  const history = game.history({ verbose: true });
-  const previousMove = history[history.length - 1];
-
-  // Return back to position before the move
-  board.position(game.fen());
-
-  // Return the previous move
-  return previousMove;
-};
-
-export const setUpPuzzleBoard = (boardElement) => {
-  // Get the game position and the last move played
+// Function to get puzzle information from the board element
+const getPuzzleInfo = (boardElement) => {
   const dataPgn = boardElement.dataset.pgn;
-  const pgnArray = dataPgn.replaceAll(',', ' ').split(' ');
-  const initialPuzzleMove = pgnArray.splice(pgnArray.length - 1, 1)[0];
-  const pgnString = pgnArray.join(' ');
+  const pgnArray = dataPgn ? dataPgn.split(',') : [];
+  const initialPuzzleMove = pgnArray.pop(); // Remove the last move from the PGN
 
-  // Re-insert the initial puzzle move
-  pgnArray.push(initialPuzzleMove);
-
-  // Get the puzzle solution
+  // The solution moves should be in LAN format
   const solution = boardElement.dataset.solution.split(',');
 
-  // Get the move, index, and message box elements and the scrollable pgn section for the respective board
-  const id = boardElement.id;
-  const pgnPanel = document.querySelector(`.${id}.${PGN_PANEL_CLASS}`);
-  const pgnScroller = pgnPanel.querySelector(`.${PGN_SCROLLER_CLASS}`);
-  const messageBox = pgnPanel.querySelector(`.${MESSAGE_BOX_CLASS}`);
-  const moveBox = pgnPanel.querySelector(`.${MOVE_BOX_CLASS}`);
-  const indexBox = pgnPanel.querySelector(`.${INDEX_BOX_CLASS}`);
-
-  // Create the game with the pgn
-  const game = new Chess();
-  game.loadPgn(pgnString);
-
-  // Deduce the board orientation based on number of moves done
-  const gameLength = game.moveNumber();
-  const orientation = gameLength % 2 === 0 ? 'white' : 'black';
-
-  // Keep track of the moves used by the player
-  let movesUsed = 0;
-  let puzzleOver = false;
-
-  // Keep track of the user's moves and the correct moves
-  let newMoves = [];
-
-  // Keep track of the move obj to highlight if window is resized
-  let lastMove;
-
-  // Function to add a move after it is made
-  const addMove = (move, moveNumber, isCorrect) => {
-    if (isCorrect === null) {
-      newMoves.push({ move, moveNumber, type: null });
-    } else if (isCorrect) {
-      newMoves.push({ move, moveNumber, type: CORRECT_MOVE_CLASS }); // Add the correct move with its type
-    } else {
-      newMoves.push({ move, moveNumber, type: INCORRECT_MOVE_CLASS }); // Add incorrect move with its type
-    }
-
-    updatePgnPanel();
+  const puzzleInfo = {
+    positionPgn: pgnArray.join(' '),
+    initialPuzzleMove,
+    solutionInfo: {
+      solution, // Array of moves in LAN format
+      currentSolutionIdx: 0,
+      getCurrentMove: () => {
+        return puzzleInfo.solutionInfo.solution[puzzleInfo.solutionInfo.currentSolutionIdx];
+      },
+    },
   };
 
-  // Only allow the player to move their own pieces until the puzzle ends
-  const onDragStart = (_, piece) => {
-    const isWhiteMovingBlackPiece = orientation === 'white' && piece.search(/^w/) === -1;
-    const isBlackMovingWhitePiece = orientation === 'black' && piece.search(/^b/) === -1;
-    if (isWhiteMovingBlackPiece || isBlackMovingWhitePiece || puzzleOver) {
-      return false;
+  return puzzleInfo;
+};
+
+const getOppositeColor = (color) => {
+  return color === 'w' || color === 'white' ? 'black' : 'white';
+};
+
+const getDestsFromGame = (game) => {
+  const dests = new Map();
+  SQUARES.forEach((square) => {
+    const possibleMoves = game.moves({ square, verbose: true });
+    if (possibleMoves.length) {
+      const possibleDests = possibleMoves.map((move) => move.to);
+      dests.set(square, possibleDests);
     }
-  };
+  });
+  return dests;
+};
 
-  const onDrop = (from, to) => {
-    try {
-      // Make the move (checks if it is legal or not)
-      const move = game.move({ from, to });
+const createPromotionMenu = (offset) => {
+  const promotionMenu = document.createElement('div');
+  promotionMenu.classList.add('promotion-menu');
+  promotionMenu.style.left = `${offset}%`;
+  promotionMenu.innerHTML = `
+    <div class="promotion-choice bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NSIgaGVpZ2h0PSI0NSI+PGcgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxnIHN0cm9rZT0ibm9uZSI+PGNpcmNsZSBjeD0iNiIgY3k9IjEyIiByPSIyLjc1Ii8+PGNpcmNsZSBjeD0iMTQiIGN5PSI5IiByPSIyLjc1Ii8+PGNpcmNsZSBjeD0iMjIuNSIgY3k9IjgiIHI9IjIuNzUiLz48Y2lyY2xlIGN4PSIzMSIgY3k9IjkiIHI9IjIuNzUiLz48Y2lyY2xlIGN4PSIzOSIgY3k9IjEyIiByPSIyLjc1Ii8+PC9nPjxwYXRoIGQ9Ik05IDI2YzguNS0xLjUgMjEtMS41IDI3IDBsMi41LTEyLjVMMzEgMjVsLS4zLTE0LjEtNS4yIDEzLjYtMy0xNC41LTMgMTQuNS01LjItMTMuNkwxNCAyNSA2LjUgMTMuNSA5IDI2eiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiLz48cGF0aCBkPSJNOSAyNmMwIDIgMS41IDIgMi41IDQgMSAxLjUgMSAxIC41IDMuNS0xLjUgMS0xLjUgMi41LTEuNSAyLjUtMS41IDEuNS41IDIuNS41IDIuNSA2LjUgMSAxNi41IDEgMjMgMCAwIDAgMS41LTEgMC0yLjUgMCAwIC41LTEuNS0xLTIuNS0uNS0yLjUtLjUtMiAuNS0zLjUgMS0yIDIuNS0yIDIuNS00LTguNS0xLjUtMTguNS0xLjUtMjcgMHoiIHN0cm9rZS1saW5lY2FwPSJidXR0Ii8+PHBhdGggZD0iTTExIDM4LjVhMzUgMzUgMSAwIDAgMjMgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiLz48cGF0aCBkPSJNMTEgMjlhMzUgMzUgMSAwIDEgMjMgMG0tMjEuNSAyLjVoMjBtLTIxIDNhMzUgMzUgMSAwIDAgMjIgMG0tMjMgM2EzNSAzNSAxIDAgMCAyNCAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlY2VjZWMiLz48L2c+PC9zdmc+')] bg-cover" data-piece="q"></div>
+    <div class="promotion-choice bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NSIgaGVpZ2h0PSI0NSI+PGcgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik05IDM5aDI3di0zSDl2M3ptMy41LTdsMS41LTIuNWgxN2wxLjUgMi41aC0yMHptLS41IDR2LTRoMjF2NEgxMnoiIHN0cm9rZS1saW5lY2FwPSJidXR0Ii8+PHBhdGggZD0iTTE0IDI5LjV2LTEzaDE3djEzSDE0eiIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiLz48cGF0aCBkPSJNMTQgMTYuNUwxMSAxNGgyM2wtMyAyLjVIMTR6TTExIDE0VjloNHYyaDVWOWg1djJoNVY5aDR2NUgxMXoiIHN0cm9rZS1saW5lY2FwPSJidXR0Ii8+PHBhdGggZD0iTTEyIDM1LjVoMjFtLTIwLTRoMTltLTE4LTJoMTdtLTE3LTEzaDE3TTExIDE0aDIzIiBmaWxsPSJub25lIiBzdHJva2U9IiNlY2VjZWMiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIvPjwvZz48L3N2Zz4=')] bg-cover" data-piece="r"></div>
+    <div class="promotion-choice bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NSIgaGVpZ2h0PSI0NSI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxnIGZpbGw9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJidXR0Ij48cGF0aCBkPSJNOSAzNmMzLjM5LS45NyAxMC4xMS40MyAxMy41LTIgMy4zOSAyLjQzIDEwLjExIDEuMDMgMTMuNSAyIDAgMCAxLjY1LjU0IDMgMi0uNjguOTctMS42NS45OS0zIC41LTMuMzktLjk3LTEwLjExLjQ2LTEzLjUtMS0zLjM5IDEuNDYtMTAuMTEuMDMtMTMuNSAxLTEuMzU0LjQ5LTIuMzIzLjQ3LTMtLjUgMS4zNTQtMS45NCAzLTIgMy0yeiIvPjxwYXRoIGQ9Ik0xNSAzMmMyLjUgMi41IDEyLjUgMi41IDE1IDAgLjUtMS41IDAtMiAwLTIgMC0yLjUtMi41LTQtMi41LTQgNS41LTEuNSA2LTExLjUtNS0xNS41LTExIDQtMTAuNSAxNC01IDE1LjUgMCAwLTIuNSAxLjUtMi41IDQgMCAwLS41LjUgMCAyeiIvPjxwYXRoIGQ9Ik0yNSA4YTIuNSAyLjUgMCAxIDEtNSAwIDIuNSAyLjUgMCAxIDEgNSAweiIvPjwvZz48cGF0aCBkPSJNMTcuNSAyNmgxME0xNSAzMGgxNW0tNy41LTE0LjV2NU0yMCAxOGg1IiBzdHJva2U9IiNlY2VjZWMiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiLz48L2c+PC9zdmc+')] bg-cover" data-piece="b"></div>
+    <div class="promotion-choice bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NSIgaGVpZ2h0PSI0NSI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0yMiAxMGMxMC41IDEgMTYuNSA4IDE2IDI5SDE1YzAtOSAxMC02LjUgOC0yMSIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik0yNCAxOGMuMzggMi45MS01LjU1IDcuMzctOCA5LTMgMi0yLjgyIDQuMzQtNSA0LTEuMDQyLS45NCAxLjQxLTMuMDQgMC0zLTEgMCAuMTkgMS4yMy0xIDItMSAwLTQuMDAzIDEtNC00IDAtMiA2LTEyIDYtMTJzMS44OS0xLjkgMi0zLjVjLS43My0uOTk0LS41LTItLjUtMyAxLTEgMyAyLjUgMyAyLjVoMnMuNzgtMS45OTIgMi41LTNjMSAwIDEgMyAxIDMiIGZpbGw9IiMwMDAiLz48cGF0aCBkPSJNOS41IDI1LjVhLjUuNSAwIDEgMS0xIDAgLjUuNSAwIDEgMSAxIDB6bTUuNDMzLTkuNzVhLjUgMS41IDMwIDEgMS0uODY2LS41LjUgMS41IDMwIDEgMSAuODY2LjV6IiBmaWxsPSIjZWNlY2VjIiBzdHJva2U9IiNlY2VjZWMiLz48cGF0aCBkPSJNMjQuNTUgMTAuNGwtLjQ1IDEuNDUuNS4xNWMzLjE1IDEgNS42NSAyLjQ5IDcuOSA2Ljc1UzM1Ljc1IDI5LjA2IDM1LjI1IDM5bC0uMDUuNWgyLjI1bC4wNS0uNWMuNS0xMC4wNi0uODgtMTYuODUtMy4yNS0yMS4zNC0yLjM3LTQuNDktNS43OS02LjY0LTkuMTktNy4xNmwtLjUxLS4xeiIgZmlsbD0iI2VjZWNlYyIgc3Ryb2tlPSJub25lIi8+PC9nPjwvc3ZnPg==')] bg-cover" data-piece="n"></div>
+  `;
+  return promotionMenu;
+};
 
-      // Play the respective move type sound
-      const moveType = getMoveType(game, move);
-      playMoveAudio(moveType);
+const calculateMenuOffset = (promotionSquare, isWhite) => {
+  const file = promotionSquare[0];
+  const idx = files.indexOf(file);
+  const pos = isWhite ? idx : 7 - idx;
+  return pos * 12.5 - 0.2; // subtract 0.2 for cg-wrap offset
+};
 
-      // Update the highlights on the board
-      updateHighlights(boardElement, game, move);
+const showPromotionMenu = (boardElement, game, dest) => {
+  // Display overlay
+  boardElement.classList.add('puzzle-board-overlay');
 
-      // Logical game variables
-      const isCorrectMove = move.lan === solution[movesUsed];
-      const areAllSolutionMovesFinished = solution.length === movesUsed + 1;
+  // Display menu
+  const offset = calculateMenuOffset(dest, game.turn() === 'w');
+  const menu = createPromotionMenu(offset);
+  boardElement.insertAdjacentElement('afterend', menu);
 
-      // Add the move to the list
-      addMove(move.san, orientation === 'black' ? game.moveNumber() - 1 : game.moveNumber(), isCorrectMove);
-
-      // If the puzzle is over...
-      if ((isCorrectMove && areAllSolutionMovesFinished) || game.isCheckmate()) {
-        // Update the message box
-        puzzleOver = true;
-        updateMessageBox({ move, isCorrect: true, puzzleOver });
-
-        // Update the last move to highlight
-        lastMove = move;
-        return;
-      }
-
-      // If the move is correct...
-      if (isCorrectMove) {
-        updateMessageBox({ move, isCorrect: true, puzzleOver: false });
-
-        window.setTimeout(() => {
-          // Make the opponents move based on the solution
-          const solutionMove = solution[movesUsed + 1];
-          const opponentMove = makeComputerMove(board, game, solutionMove);
-          lastMove = opponentMove;
-          addMove(opponentMove.san, game.moveNumber(), null);
-          const moveType = getMoveType(game, opponentMove);
-
-          updateHighlights(boardElement, game, opponentMove);
-          playMoveAudio(moveType);
-
-          // Update the moves used variable
-          movesUsed += 2;
-        }, COMPUTER_MOVE_DELAY);
-      }
-
-      // If the move is wrong...
-      else {
-        updateMessageBox({ move, isCorrect: false, puzzleOver });
-
-        window.setTimeout(() => {
-          const previousMove = undoMove(board, game); // Undo the move
-          addMove(previousMove.san, orientation === 'black' ? game.moveNumber() : game.moveNumber() - 1, null);
-          updateHighlights(boardElement, game, previousMove);
-        }, COMPUTER_MOVE_DELAY);
-      }
-    } catch {
-      return 'snapback';
-    }
-  };
-
-  // Create the chessboard
-  const config = {
-    position: game.fen() || 'start',
-    draggable: true,
-    onDrop,
-    onDragStart,
-    moveSpeed: 150,
-    snapbackSpeed: 0,
-    snapSpeed: 0,
-    pieceTheme: '/chesspieces/{piece}.svg',
-  };
-
-  const board = new Chessboard(boardElement, config);
-  board.orientation(orientation);
-
-  const updateMessageBox = (obj) => {
-    // Initial run, set the message to tell the player who's turn it is
-    if (obj.orientation) {
-      const message = [];
-      message.push(`<h4>It's your turn.</h4>`);
-      message.push(`<span class="font-normal">Find the best move for ${obj.orientation}.</span>`);
-      messageBox.innerHTML = message.join('');
-    }
-
-    // Update the panel based on the move
-    if (obj.move) {
-      // Set the message to tell the player the puzzle is over
-      if (obj.puzzleOver && obj.isCorrect) {
-        messageBox.innerHTML = `<h4>Puzzle solved!</h4><span class="font-normal">Great job.</span>`;
-      } else {
-        // Tell the player to keep going or to try again based on move
-        const messageType = obj.isCorrect ? 'success' : 'fail';
-        const messageTitle = obj.isCorrect ? `<h4><span class="${messageType}">${obj.move.san} is the best move.</span></h4>` : `<h4><span class="${messageType}">${obj.move.san} is not the right move.</span></h4>`;
-        const messageText = obj.isCorrect ? `<span class="font-normal">Keep going...</span>` : `<span class="font-normal">Try again.</span>`;
-        messageBox.innerHTML = messageTitle + messageText;
-      }
-    }
-  };
-
-  const updatePgnPanel = () => {
-    indexBox.innerHTML = ''; // Clear current content
-    moveBox.innerHTML = ''; // Clear current content
-
-    const allMoves = [...pgnArray.map((move, index) => ({ move, moveNumber: Math.floor(index / 2) + 1, type: null })), ...newMoves];
-
-    // Populate the grids
-    allMoves.forEach((moveObj, index) => {
-      const { move, moveNumber, moveType } = moveObj;
-      // Create and append the move number
-      if (index % 2 === 0) {
-        const moveNumberClasses = [MOVE_NUMBER_CLASS];
-        const moveNumberElement = createNewElement('div', `${moveNumber}.`, moveNumberClasses);
-        indexBox.appendChild(moveNumberElement);
-      }
-
-      // Create and append the move
-      const moveClasses = [MOVE_CLASS];
-      if (moveType || moveType !== null) {
-        moveClasses.push(moveObj.type);
-      }
-      const moveElement = createNewElement('div', move, moveClasses);
-      moveBox.appendChild(moveElement);
+  // Promise, so that the game waits for promotion result
+  const res = new Promise((resolve, reject) => {
+    menu.addEventListener('click', (e) => {
+      // Remove promotion menu
+      boardElement.classList.remove('puzzle-board-overlay');
+      menu.remove();
+      // Resolve
+      const piece = e.target.dataset.piece;
+      resolve(piece);
     });
+  });
 
-    // Scroll to the bottom of the pgn panel
-    pgnScroller.scrollTop = pgnScroller.scrollHeight;
+  return res;
+};
+const endPuzzle = () => {
+  alert('Finished');
+};
+
+const makeOpponentMove = (boardElement, cg, game, solutionInfo, playerColor) => {
+  cg.set({
+    movable: {
+      color: 'white',
+    },
+  });
+  const moveObj = getMoveFromLan(solutionInfo.solution[solutionInfo.currentSolutionIdx]);
+  game.move(moveObj);
+  cg.set({
+    fen: game.fen(),
+    turnColor: playerColor,
+    lastMove: [moveObj.from, moveObj.to],
+    check: game.isCheck(),
+    movable: {
+      free: false,
+      color: playerColor,
+      dests: getDestsFromGame(game),
+      events: {
+        after: handlePlayerInput(boardElement, cg, game, solutionInfo, playerColor),
+      },
+    },
+  });
+  solutionInfo.currentSolutionIdx++;
+};
+
+const undoMove = (boardElement, cg, game, solutionInfo, playerColor) => {
+  game.undo();
+  const history = game.history({ verbose: true });
+  const previousMove = history[history.length - 1];
+  cg.set({
+    fen: game.fen(),
+    turnColor: playerColor,
+    lastMove: [previousMove.from, previousMove.to],
+    check: game.isCheck(),
+    movable: {
+      free: false,
+      color: playerColor,
+      dests: getDestsFromGame(game),
+      events: {
+        after: handlePlayerInput(boardElement, cg, game, solutionInfo, playerColor),
+      },
+    },
+  });
+};
+
+const verifyMove = (boardElement, cg, game, move, solutionInfo, playerColor) => {
+  if (move === solutionInfo.solution[solutionInfo.currentSolutionIdx]) {
+    solutionInfo.currentSolutionIdx++;
+    cg.set({
+      turnColor: getOppositeColor(playerColor),
+    });
+    setTimeout(makeOpponentMove, 600, boardElement, cg, game, solutionInfo, playerColor);
+    if (solutionInfo.currentSolutionIdx >= solutionInfo.solution.length) {
+      endPuzzle();
+    }
+  } else {
+    setTimeout(undoMove, 600, boardElement, cg, game, solutionInfo, playerColor);
+  }
+};
+
+const handlePlayerInput = (boardElement, cg, game, solutionInfo, playerColor) => {
+  return async (orig, dest) => {
+    let promotionPiece = '';
+    try {
+      // Try to make the move
+      game.move({ from: orig, to: dest });
+    } catch {
+      // Error occured, must be promotion
+      promotionPiece = await showPromotionMenu(boardElement, game, dest);
+      game.move({ from: orig, to: dest, promotion: promotionPiece });
+    }
+
+    const move = orig + dest + promotionPiece;
+    // Set new board position
+    const newConfig = {
+      fen: game.fen(),
+      check: game.isCheck(),
+      movable: {
+        dests: getDestsFromGame(game),
+      },
+    };
+    cg.set(newConfig);
+
+    // Verify whether the move made is correct or not
+    verifyMove(boardElement, cg, game, move, solutionInfo, playerColor);
+  };
+};
+
+// Main function to set up the puzzle board
+export const setUpPuzzleBoard = (boardElement) => {
+  const puzzleInfo = getPuzzleInfo(boardElement);
+
+  const solutionInfo = puzzleInfo.solutionInfo;
+  const game = new Chess();
+  const playerColor = getOppositeColor(game.turn());
+  game.loadPgn(puzzleInfo.positionPgn);
+
+  const config = {
+    fen: game.fen(),
+    orientation: playerColor,
+    turnColor: playerColor,
+    movable: {
+      free: false,
+      color: playerColor,
+    },
+    premovable: {
+      enabled: false,
+    },
   };
 
-  const resizeBoard = () => {
-    board.resize();
-    updateHighlights(boardElement, game, lastMove);
-  };
+  const cg = Chessground(boardElement, config);
 
-  // Update the board when the page is resized
-  window.addEventListener('resize', debounce(resizeBoard));
-
-  // Scroll to the bottom of the pgn panel
-  updatePgnPanel();
-
-  // Give the pgn panel its initial message based on the boards orientation
-  updateMessageBox({ orientation });
-
-  // Make the initial puzzle move
-  window.setTimeout(() => {
-    const move = makeComputerMove(board, game, initialPuzzleMove);
-
-    // Keep track of the last move played
-    lastMove = move;
-
-    const moveType = getMoveType(game, move);
-    updateHighlights(boardElement, game, move);
-    playMoveAudio(moveType);
-  }, COMPUTER_MOVE_DELAY);
+  setTimeout(() => {
+    const move = game.move(puzzleInfo.initialPuzzleMove);
+    cg.set({
+      fen: game.fen(),
+      check: game.isCheck(),
+      lastMove: [move.from, move.to],
+      movable: {
+        free: false,
+        color: playerColor,
+        dests: getDestsFromGame(game),
+        events: {
+          after: handlePlayerInput(boardElement, cg, game, solutionInfo, playerColor),
+        },
+      },
+    });
+  }, 500);
 };
