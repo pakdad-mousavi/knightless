@@ -1,42 +1,70 @@
-<div class="container mx-auto font-sans">
+<div class="container px-10 mx-auto font-sans">
   {{!-- Puzzle --}}
-  <section class="py-10 section-container">
-    <div class="flex flex-col items-center lg:flex-row gap-x-10 gap-y-10">
+  <section class="py-10">
+    <div class="grid xl:px-16 lg:grid-cols-5 gap-x-10 gap-y-10">
       {{!-- Board --}}
-      <div class="relative w-full md:w-5/6 lg:w-3/5">
+      <div class="relative w-full lg:col-span-3">
         <div class="relative w-full aspect-square puzzle-board" data-pgn="{{dailyPuzzle.game.pgnArray}}"
           data-solution="{{dailyPuzzle.puzzle.solution}}" id="pz_{{dailyPuzzle.game.id}}">
         </div>
       </div>
 
-      {{!-- PGN panel --}}
-      <div class="w-full md:w-5/6 lg:w-2/5 pgn-panel pz_{{dailyPuzzle.game.id}}">
-        <div class="flex flex-col h-full bg-white border-2 border-spruce">
-          {{!-- Title --}}
-          <div>
-            <div class="flex flex-col items-start justify-center mt-7">
-              <hr class="w-11/12 mx-auto border-2 border-oak">
-              <h2 class="px-4 font-serif text-xl font-bold uppercase -translate-y-1/2 bg-white">PGN Panel</h2>
+      {{!-- info panels --}}
+      <div class="lg:col-span-2">
+        <div class="grid h-full gap-10 grid-cols-1 lg:grid-rows-2 xl:grid-rows-5">
+          <div class="xl:row-span-2 bg-ash bg-[url(/images/checkered-background.png)] rounded-md p-4">
+            <div class="flex flex-col h-full">
+              <div class="flex-1">
+                <div class="flex items-center gap-x-4 text-oak">
+                  <span class="text-3xl xl:text-4xl icon-trophy"></span>
+                  <div>
+                    <h3 class="font-serif text-xl font-bold uppercase xl:text-2xl">Daily Puzzle</h3>
+                  </div>
+                </div>
+                <hr class="w-1/2 lg:w-3/5 border-[1px] border-oak mt-2">
+                <p class="mt-5">
+                  <span class="mr-2">Puzzle rating:</span>
+                  <span class="font-bold">2475</span>
+                </p>
+                <p>
+                  <span class="mr-2">Puzzle Difficulty:</span>
+                  <span class="icon-star"></span>
+                  <span class="icon-star"></span>
+                  <span class="icon-star"></span>
+                  <span class="icon-star"></span>
+                  <span class="icon-star"></span>
+                </p>
+              </div>
+              <div class="flex flex-wrap sm:flex-nowrap gap-2 mt-5 text-sm xl:text-base">
+                <a href="/" class="button alpha !bg-charcoal lg:!px-4">Solving a Chess Puzzle</a>
+                <a href="/" class="button alpha !bg-charcoal lg:!px-4">FAQ</a>
+              </div>
             </div>
           </div>
 
-          {{!-- Moves --}}
-          <div class="flex h-[400px] overflow-y-scroll border-y-[1px] bg-cream pgn-scroller">
-            <div class="grid w-12 grid-cols-1 text-center index-box"></div>
-            <div class="grid flex-1 grid-cols-2 move-box"></div>
-          </div>
-
-          {{!-- Message box --}}
-          <div class="flex w-full">
-            <div class="px-12 py-10 text-xl font-bold message-box"></div>
+          <div class="xl:row-span-3 bg-ash bg-[url(/images/checkered-background.png)] rounded-md p-4">
+            <div class="flex flex-col h-full">
+              <div class="flex-1">
+                <div class="text-oak">
+                  <h3 class="font-serif text-xl font-bold uppercase xl:text-2xl">Instructions</h3>
+                </div>
+                <hr class="w-1/2 lg:w-3/5 border-[1px] border-oak mt-2">
+                <p class="mt-5">
+                  Any other move besides the correct puzzle move will result in a losing or significantly worse
+                  position.
+                </p>
+                <p class="mt-5 puzzle-msg-panel">Find the best move for <span class="font-bold">black</span>.</p>
+              </div>
+              <div class="flex gap-2 mt-5 text-sm xl:text-base">
+                <a href="/" class="button alpha !bg-charcoal lg:!px-4">Reveal Hint</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
   </section>
 
   {{!-- Title --}}
-  <section class="py-20 section-container">
+  <section class="py-20">
     <div class="relative space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
       <h3 class="mb-8 text-3xl">Frequently</h3>
       <div class="flex flex-col items-center justify-center mb-8">
