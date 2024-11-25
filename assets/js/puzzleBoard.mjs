@@ -109,14 +109,20 @@ const showPromotionMenu = (boardElement, game, dest) => {
 
   return res;
 };
-const endPuzzle = (feedbackMessage) => {
+const endPuzzle = (cg, feedbackMessage) => {
+  completed = true;
   feedbackMessage.innerHTML = FEEDBACK_MESSAGES.solved;
+  cg.set({
+    movable: {
+      free: false,
+    },
+  });
 };
 
 const makeOpponentMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor) => {
   cg.set({
     movable: {
-      color: 'white',
+      color: getOppositeColor(playerColor),
     },
   });
   const moveObj = getMoveFromLan(solutionInfo.solution[solutionInfo.currentSolutionIdx]);
@@ -160,15 +166,15 @@ const undoMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerC
 
 const verifyMove = (boardElement, feedbackMessage, cg, game, move, solutionInfo, playerColor) => {
   if (move === solutionInfo.solution[solutionInfo.currentSolutionIdx]) {
-    feedbackMessage.innerHTML = FEEDBACK_MESSAGES.correct.replace('%%', getCurrentMove(game));
     solutionInfo.currentSolutionIdx++;
+    if (solutionInfo.currentSolutionIdx >= solutionInfo.solution.length || game.isCheckmate()) {
+      return endPuzzle(cg, feedbackMessage);
+    }
+    feedbackMessage.innerHTML = FEEDBACK_MESSAGES.correct.replace('%%', getCurrentMove(game));
     cg.set({
       turnColor: getOppositeColor(playerColor),
     });
     setTimeout(makeOpponentMove, 600, boardElement, feedbackMessage, cg, game, solutionInfo, playerColor);
-    if (solutionInfo.currentSolutionIdx >= solutionInfo.solution.length) {
-      endPuzzle(feedbackMessage);
-    }
   } else {
     feedbackMessage.innerHTML = FEEDBACK_MESSAGES.wrong.replace('%%', getCurrentMove(game));
     setTimeout(undoMove, 600, boardElement, feedbackMessage, cg, game, solutionInfo, playerColor);
@@ -206,7 +212,6 @@ const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo
 // Main function to set up the puzzle board
 export const setUpPuzzleBoard = (boardElement, feedbackMessage) => {
   const puzzleInfo = getPuzzleInfo(boardElement);
-  console.log(feedbackMessage);
 
   const solutionInfo = puzzleInfo.solutionInfo;
   const game = new Chess();
