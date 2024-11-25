@@ -40,7 +40,8 @@ for (const board of positionBoards) {
 
 // Set up puzzle board
 const puzzleBoard = document.querySelector('.puzzle-board');
-if (puzzleBoard) setUpPuzzleBoard(puzzleBoard);
+const feedbackMessage = document.querySelector('.feedback-message');
+if (puzzleBoard && feedbackMessage) setUpPuzzleBoard(puzzleBoard, feedbackMessage);
 
 // Watch the faq panel (to open and close questions)
 const faqPanel = document.querySelector('.faq-panel');

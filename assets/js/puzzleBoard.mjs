@@ -2,6 +2,18 @@ import { Chess, SQUARES } from 'chess.js';
 import { Chessground } from '/chessground/dist/chessground.min.js';
 import { files } from '/chessground/dist/types.js';
 
+const FEEDBACK_MESSAGES = {
+  correct: `<b class="text-green-500 font-medium">%%</b> is the best move, keep going...`,
+  wrong: `<b class="text-rose-500 font-medium">%%</b> isn't right, try again.`,
+  hint: `The piece on <b>%%</b> needs to move.`,
+  solved: `<b class="font-medium">You solved the puzzle! Try the next one?</b>`,
+};
+
+const getCurrentMove = (game) => {
+  const moves = game.history();
+  return moves[moves.length - 1];
+};
+
 // Helper function to parse LAN strings into move objects
 const getMoveFromLan = (moveLan) => {
   const from = moveLan.slice(0, 2);
@@ -97,11 +109,11 @@ const showPromotionMenu = (boardElement, game, dest) => {
 
   return res;
 };
-const endPuzzle = () => {
-  alert('Finished');
+const endPuzzle = (feedbackMessage) => {
+  feedbackMessage.innerHTML = FEEDBACK_MESSAGES.solved;
 };
 
-const makeOpponentMove = (boardElement, cg, game, solutionInfo, playerColor) => {
+const makeOpponentMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor) => {
   cg.set({
     movable: {
       color: 'white',
@@ -119,14 +131,14 @@ const makeOpponentMove = (boardElement, cg, game, solutionInfo, playerColor) => 
       color: playerColor,
       dests: getDestsFromGame(game),
       events: {
-        after: handlePlayerInput(boardElement, cg, game, solutionInfo, playerColor),
+        after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor),
       },
     },
   });
   solutionInfo.currentSolutionIdx++;
 };
 
-const undoMove = (boardElement, cg, game, solutionInfo, playerColor) => {
+const undoMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor) => {
   game.undo();
   const history = game.history({ verbose: true });
   const previousMove = history[history.length - 1];
@@ -140,28 +152,30 @@ const undoMove = (boardElement, cg, game, solutionInfo, playerColor) => {
       color: playerColor,
       dests: getDestsFromGame(game),
       events: {
-        after: handlePlayerInput(boardElement, cg, game, solutionInfo, playerColor),
+        after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor),
       },
     },
   });
 };
 
-const verifyMove = (boardElement, cg, game, move, solutionInfo, playerColor) => {
+const verifyMove = (boardElement, feedbackMessage, cg, game, move, solutionInfo, playerColor) => {
   if (move === solutionInfo.solution[solutionInfo.currentSolutionIdx]) {
+    feedbackMessage.innerHTML = FEEDBACK_MESSAGES.correct.replace('%%', getCurrentMove(game));
     solutionInfo.currentSolutionIdx++;
     cg.set({
       turnColor: getOppositeColor(playerColor),
     });
-    setTimeout(makeOpponentMove, 600, boardElement, cg, game, solutionInfo, playerColor);
+    setTimeout(makeOpponentMove, 600, boardElement, feedbackMessage, cg, game, solutionInfo, playerColor);
     if (solutionInfo.currentSolutionIdx >= solutionInfo.solution.length) {
-      endPuzzle();
+      endPuzzle(feedbackMessage);
     }
   } else {
-    setTimeout(undoMove, 600, boardElement, cg, game, solutionInfo, playerColor);
+    feedbackMessage.innerHTML = FEEDBACK_MESSAGES.wrong.replace('%%', getCurrentMove(game));
+    setTimeout(undoMove, 600, boardElement, feedbackMessage, cg, game, solutionInfo, playerColor);
   }
 };
 
-const handlePlayerInput = (boardElement, cg, game, solutionInfo, playerColor) => {
+const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor) => {
   return async (orig, dest) => {
     let promotionPiece = '';
     try {
@@ -185,13 +199,14 @@ const handlePlayerInput = (boardElement, cg, game, solutionInfo, playerColor) =>
     cg.set(newConfig);
 
     // Verify whether the move made is correct or not
-    verifyMove(boardElement, cg, game, move, solutionInfo, playerColor);
+    verifyMove(boardElement, feedbackMessage, cg, game, move, solutionInfo, playerColor);
   };
 };
 
 // Main function to set up the puzzle board
-export const setUpPuzzleBoard = (boardElement) => {
+export const setUpPuzzleBoard = (boardElement, feedbackMessage) => {
   const puzzleInfo = getPuzzleInfo(boardElement);
+  console.log(feedbackMessage);
 
   const solutionInfo = puzzleInfo.solutionInfo;
   const game = new Chess();
@@ -224,7 +239,7 @@ export const setUpPuzzleBoard = (boardElement) => {
         color: playerColor,
         dests: getDestsFromGame(game),
         events: {
-          after: handlePlayerInput(boardElement, cg, game, solutionInfo, playerColor),
+          after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor),
         },
       },
     });
