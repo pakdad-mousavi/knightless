@@ -268,3 +268,11 @@ body *.font-serif {
 .promotion-menu .promotion-choice:nth-child(2n) {
   @apply bg-[#c0ae91];
 }
+
+.cg-wrap coords.ranks {
+  @apply !-top-[4%];
+}
+
+.cg-wrap coords.files {
+  @apply !left-[4.5%];
+}
