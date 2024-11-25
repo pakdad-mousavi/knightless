@@ -110,7 +110,6 @@ const showPromotionMenu = (boardElement, game, dest) => {
   return res;
 };
 const endPuzzle = (cg, feedbackMessage) => {
-  completed = true;
   feedbackMessage.innerHTML = FEEDBACK_MESSAGES.solved;
   cg.set({
     movable: {
