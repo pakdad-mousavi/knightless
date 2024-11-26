@@ -1,0 +1,36 @@
+.cg-wrap piece.pawn.white {
+  background-image: url('/images/chesspieces/wP.svg');
+}
+.cg-wrap piece.bishop.white {
+  background-image: url('/images/chesspieces/wB.svg');
+}
+.cg-wrap piece.knight.white {
+  background-image: url('/images/chesspieces/wN.svg');
+}
+.cg-wrap piece.rook.white {
+  background-image: url('/images/chesspieces/wR.svg');
+}
+.cg-wrap piece.queen.white {
+  background-image: url('/images/chesspieces/wQ.svg');
+}
+.cg-wrap piece.king.white {
+  background-image: url('/images/chesspieces/wK.svg');
+}
+.cg-wrap piece.pawn.black {
+  background-image: url('/images/chesspieces/bP.svg');
+}
+.cg-wrap piece.bishop.black {
+  background-image: url('/images/chesspieces/bB.svg');
+}
+.cg-wrap piece.knight.black {
+  background-image: url('/images/chesspieces/bN.svg');
+}
+.cg-wrap piece.rook.black {
+  background-image: url('/images/chesspieces/bR.svg');
+}
+.cg-wrap piece.queen.black {
+  background-image: url('/images/chesspieces/bQ.svg');
+}
+.cg-wrap piece.king.black {
+  background-image: url('/images/chesspieces/bK.svg');
+}
