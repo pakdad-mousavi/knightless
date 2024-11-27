@@ -267,7 +267,7 @@ body *.font-serif {
 }
 
 .promotion-menu .promotion-choice:nth-child(2n) {
-  @apply bg-[#c0ae91];
+  @apply bg-[#b58863];
 }
 
 .cg-wrap coords.ranks {
@@ -276,4 +276,8 @@ body *.font-serif {
 
 .cg-wrap coords.files {
   @apply !left-[4.5%];
+}
+
+cg-board {
+  @apply !bg-[url('/images/board-dark-squares.png')];
 }
