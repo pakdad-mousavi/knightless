@@ -7,6 +7,7 @@ import * as attributionsController from '../controllers/attributions.js';
 import * as contactController from '../controllers/contact.js';
 import * as puzzleController from '../controllers/puzzles.js';
 import * as timelineController from '../controllers/timeline.js';
+import * as faqController from '../controllers/faq.js';
 
 
 const router = express.Router();
@@ -33,6 +34,7 @@ router.route('/contact').get(contactController.index);
 
 // Daily puzzle
 router.route('/daily-puzzle').get(puzzleController.getDailyPuzzle);
+router.route('/faq').get(faqController.getFaqPage);
 
 // Timeline
 router.route('/timeline').get(timelineController.index);
