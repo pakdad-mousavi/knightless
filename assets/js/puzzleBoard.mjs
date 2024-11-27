@@ -229,6 +229,10 @@ export const setUpPuzzleBoard = (boardElement, feedbackMessage) => {
     premovable: {
       enabled: false,
     },
+    drawable: {
+      enabled: false,
+      visible: false,
+    },
   };
 
   const cg = Chessground(boardElement, config);
