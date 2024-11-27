@@ -1,6 +1,8 @@
 import { Chess, SQUARES } from 'chess.js';
 import { Chessground } from '/chessground/dist/chessground.min.js';
 import { files } from '/chessground/dist/types.js';
+import { getMoveType } from './chessUtils.mjs';
+import { playMoveAudio } from './sounds.mjs';
 
 const FEEDBACK_MESSAGES = {
   correct: `<b class="text-green-500 font-medium">%%</b> is the best move, keep going...`,
@@ -184,16 +186,19 @@ const verifyMove = (boardElement, feedbackMessage, cg, game, move, solutionInfo,
 const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor) => {
   return async (orig, dest) => {
     let promotionPiece = '';
+    let move = '';
     try {
       // Try to make the move
-      game.move({ from: orig, to: dest });
+      move = game.move({ from: orig, to: dest });
     } catch {
       // Error occured, must be promotion
       promotionPiece = await showPromotionMenu(boardElement, game, dest, playerColor);
-      game.move({ from: orig, to: dest, promotion: promotionPiece });
+      move = game.move({ from: orig, to: dest, promotion: promotionPiece });
     }
 
-    const move = orig + dest + promotionPiece;
+    const moveType = getMoveType(game, move);
+    playMoveAudio(moveType);
+
     // Set new board position
     const newConfig = {
       fen: game.fen(),
@@ -205,7 +210,7 @@ const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo
     cg.set(newConfig);
 
     // Verify whether the move made is correct or not
-    verifyMove(boardElement, feedbackMessage, cg, game, move, solutionInfo, playerColor);
+    verifyMove(boardElement, feedbackMessage, cg, game, move.lan, solutionInfo, playerColor);
   };
 };
 
@@ -239,6 +244,9 @@ export const setUpPuzzleBoard = (boardElement, feedbackMessage) => {
 
   setTimeout(() => {
     const move = game.move(puzzleInfo.initialPuzzleMove);
+    const moveType = getMoveType(game, move);
+    playMoveAudio(moveType);
+
     cg.set({
       fen: game.fen(),
       check: game.isCheck(),
