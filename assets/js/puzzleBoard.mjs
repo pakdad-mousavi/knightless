@@ -128,7 +128,10 @@ const makeOpponentMove = (boardElement, feedbackMessage, cg, game, solutionInfo,
     },
   });
   const moveObj = getMoveFromLan(solutionInfo.solution[solutionInfo.currentSolutionIdx]);
-  game.move(moveObj);
+  const move = game.move(moveObj);
+  const moveType = getMoveType(game, move);
+  playMoveAudio(moveType);
+
   cg.set({
     fen: game.fen(),
     turnColor: playerColor,
