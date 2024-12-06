@@ -4,6 +4,13 @@ import { watchTimelineScroll } from './timeline.mjs';
 import { resetFilters, watchActiveFilters, watchSliders } from './filters.mjs';
 import { setUpSampleBoard } from './sampleBoard.mjs';
 import { setUpPositionBoard } from './positionBoard.mjs';
+import { watchMegaMenu } from './megaMenu.mjs';
+
+// Watch mega menus in the header
+const megaMenus = document.querySelectorAll('.mega-menu-panel');
+for (const megaMenu of megaMenus) {
+  watchMegaMenu(megaMenu, true);
+}
 
 // Keep track of slider values
 const sliders = document.querySelectorAll('.slider > input');

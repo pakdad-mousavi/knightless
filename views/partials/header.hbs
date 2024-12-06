@@ -13,15 +13,57 @@
       </svg>
     </label>
     <input class="hidden" type="checkbox" id="menu-toggle" />
-    <div class="hidden mt-6 lg:block basis-full lg:basis-auto lg:mt-0 z-10 rounded-md bg-black/50 backdrop-blur-md" id="menu">
+    <div class="z-10 hidden mt-6 rounded-md lg:block basis-full lg:basis-auto lg:mt-0 bg-black/50 backdrop-blur-md"
+      id="menu">
       <ul class="flex flex-col items-center text-center gap-x-7 gap-y-2 lg:flex-row">
         <hr class="w-full border-cream border-1 lg:hidden">
-        <li class="w-full lg:w-auto"><a href="/notation" class="header-item">Learning Chess</a></li>
-        <li class="w-full lg:w-auto"><a href="/timeline" class="header-item">Timeline</a></li>
-        <li class="w-full lg:w-auto"><a href="/hall-of-fame" class="header-item">Hall Of Fame</a></li>
-        <li class="w-full lg:w-auto"><a href="/daily-puzzle" class="header-item">Daily Puzzle</a></li>
-        <li class="w-full lg:w-auto xl:ml-20"><a href="/attributions" class="header-item">Attributions</a></li>
-        <li class="w-full lg:w-auto"><a href="/contact" class="header-item">Contact Us</a></li>
+        <li class="relative w-full lg:w-auto mega-menu-panel group">
+          <a href="/notation" class="header-item mega-menu-btn">
+            <span>Learn</span>
+            <span class="text-xs ms-2 icon-down-arrow"></span>
+          </a>
+          <hr class="hidden w-0 duration-200 lg:block group-hover:w-full">
+          <ul
+            class="absolute grid grid-cols-2 gap-4 p-4 translate-x-1/2 rounded-md w-3/5 lg:w-80 bg-ash/80 bg-[url(/images/checkered-background.png)] z-30 top-12 lg:top-10 right-1/2 duration-300 transition-all mega-menu-box">
+            <li><a href="#">The Pieces</a></li>
+            <li><a href="#">Board Setup</a></li>
+            <li><a href="#">Basic Terms</a></li>
+            <li><a href="#">Simple Checkmates</a></li>
+          </ul>
+        </li>
+        <li class="relative w-full lg:w-auto mega-menu-panel group">
+          <a href="/daily-puzzle" class="header-item mega-menu-btn">
+            <span>Puzzles</span>
+            <span class="text-xs ms-2 icon-down-arrow"></span>
+          </a>
+          <hr class="hidden w-0 duration-200 lg:block group-hover:w-full">
+          <ul
+            class="absolute grid grid-cols-2 gap-4 p-4 translate-x-1/2 rounded-md w-3/5 lg:w-80 bg-ash/80 bg-[url(/images/checkered-background.png)] z-30 top-12 lg:top-10 right-1/2 duration-300 transition-all mega-menu-box">
+            <li><a href="#">Puzzle Forge</a></li>
+            <li><a href="#">Puzzle FAQ</a></li>
+          </ul>
+        </li>
+        <li class="w-full lg:w-auto group">
+          <a href="/hall-of-fame" class="header-item">Hall Of Fame</a>
+          <hr class="hidden w-0 duration-200 lg:block group-hover:w-full">
+        </li>
+        <li class="w-full lg:w-auto group">
+          <a href="/attributions" class="header-item">Attributions</a>
+          <hr class="hidden w-0 duration-200 lg:block group-hover:w-full">
+        </li>
+        <li class="w-full lg:w-auto group">
+          <a href="/contact" class="header-item">Contact Us</a>
+          <hr class="hidden w-0 duration-200 lg:block group-hover:w-full">
+        </li>
+        <li class="w-full lg:w-auto xl:ml-20"><a href="/contact"
+            class="header-item !px-6 !py-2 lg:!px-8 lg:!py-2 rounded-md lg:bg-ash lg:border-[1px] whitespace-nowrap lg:hover:bg-charcoal focus:!text-gray-200">Sign
+            Up</a>
+        </li>
+        <li class="w-full lg:w-auto"><a href="/contact"
+            class="header-item lg:!px-6 lg:!py-2 rounded-md lg:bg-ash lg:border-[1px] whitespace-nowrap lg:hover:bg-charcoal focus:!text-gray-200 lg:border-birch lg:text-birch">Sign
+            In</a>
+        </li>
+
       </ul>
     </div>
   </div>
