@@ -16,6 +16,10 @@ const helper = {
     return result.join(' ');
   },
 
+  getCssClass(str, value, yes, no) {
+    return str === value ? yes : no;
+  },
+
   sub(minuend, subtrahend) {
     if (minuend && subtrahend) {
       return minuend - subtrahend;
