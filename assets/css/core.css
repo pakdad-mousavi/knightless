@@ -283,5 +283,5 @@ body *.font-serif {
 }
 
 cg-board {
-  @apply !bg-[url('/images/board-dark-squares.png')];
+  @apply !bg-[url('/images/board-dark-squares.png')] rounded-md overflow-hidden;
 }
