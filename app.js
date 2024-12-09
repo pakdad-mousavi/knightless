@@ -6,8 +6,13 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import dotenv from 'dotenv';
 import nosqlSanitizer from 'express-nosql-sanitizer';
+import passport from 'passport';
+import { initializePassport } from './passport-config.js';
+import session from 'express-session';
 
+// Import routers
 import defaultRouter from './routes/index.js';
+import authRouter from './routes/auth.js';
 
 // Configurate dotenv file:
 dotenv.config();
@@ -61,7 +66,18 @@ app.engine(
 app.set('view engine', '.hbs');
 app.set('views', './views');
 
+// Initialize express session
+app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
+
+// Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//  Set up the strategy and serialization/deserialization
+initializePassport();
+
 // Set up routes:
+app.use('/auth', authRouter);
 app.use('/', defaultRouter);
 
 // Connect to database:
