@@ -5,11 +5,18 @@ import { resetFilters, watchActiveFilters, watchSliders } from './filters.mjs';
 import { setUpSampleBoard } from './sampleBoard.mjs';
 import { setUpPositionBoard } from './positionBoard.mjs';
 import { watchMegaMenu } from './megaMenu.mjs';
+import { watchHomePageBanner } from './watchHomePageBanner.mjs';
 
 // Watch mega menus in the header
 const megaMenus = document.querySelectorAll('.mega-menu-panel');
 for (const megaMenu of megaMenus) {
   watchMegaMenu(megaMenu, true);
+}
+
+const homePageVideo = document.querySelector('.banner-video');
+const homePageTitle = document.querySelector('.banner-title');
+if (homePageVideo && homePageTitle) {
+  watchHomePageBanner(homePageVideo, homePageTitle);
 }
 
 // Keep track of slider values
