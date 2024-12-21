@@ -1,7 +1,11 @@
 import express from 'express';
 import passport from 'passport';
+import * as loginController from '../controllers/login.js';
 
 const router = express.Router();
+
+// Add route for login page
+router.route('/login').get(loginController.index);
 
 // Authentication via google
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
