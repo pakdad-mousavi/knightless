@@ -11,7 +11,6 @@ export const initializePassport = () => {
         callbackURL: 'http://localhost:3000/auth/google/callback',
       },
       async (accessToken, refreshToken, profile, done) => {
-        // Optionally save user profile to your database
         const user = await User.findOneAndUpdate(
           { googleId: profile.id }, // Match on Google ID
           { $set: { name: profile.displayName, email: profile.emails[0].value } }, // Only update these fields
