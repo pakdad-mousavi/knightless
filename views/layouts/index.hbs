@@ -12,9 +12,13 @@
 </head>
 
 <body>
+  {{#if (neq pageCategory "authentication")}}
   {{> header}}
+  {{/if}}
   {{{body}}}
+  {{#if (neq pageCategory "authentication")}}
   {{> footer}}
+  {{/if}}
   <script src="/js/core.min.js" type="module"></script>
 </body>
 
