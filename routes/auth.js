@@ -4,15 +4,23 @@ import * as loginController from '../controllers/login.js';
 
 const router = express.Router();
 
+// Authentication middleware
+const ensureNotAuthenticated = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/home');
+};
+
 // Add route for login page
-router.route('/login').get(loginController.index);
+router.route('/login').get(ensureNotAuthenticated, loginController.index);
 
 // Authentication via google
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google', ensureNotAuthenticated, passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 // Callback after user is authenticated with google
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
-  res.redirect('/daily-puzzle');
+router.get('/google/callback', ensureNotAuthenticated, passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+  res.redirect('/home');
 });
 
 router.get('/logout', (req, res, next) => {

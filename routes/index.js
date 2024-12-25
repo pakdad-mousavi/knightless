@@ -1,4 +1,5 @@
 import express from 'express';
+import * as indexController from '../controllers/index.js';
 import * as homeController from '../controllers/home.js';
 import * as playersController from '../controllers/players.js';
 import * as piecesController from '../controllers/pieces.js';
@@ -9,11 +10,28 @@ import * as puzzleController from '../controllers/puzzles.js';
 import * as timelineController from '../controllers/timeline.js';
 import * as faqController from '../controllers/faq.js';
 
-
 const router = express.Router();
 
+// Authentication middleware
+const ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/auth/login');
+};
+
+const ensureNotAuthenticated = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/home');
+};
+
+// Index
+router.route('/').get(ensureNotAuthenticated, indexController.index);
+
 // Home
-router.route('/').get(homeController.index);
+router.route('/home').get(ensureAuthenticated, homeController.index);
 
 // Hall of fame
 router.route('/hall-of-fame').get(playersController.getPlayers);

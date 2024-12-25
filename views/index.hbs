@@ -1,0 +1,287 @@
+{{!-- Banner title section --}}
+<div class="w-full relative overflow-hidden h-[580px] 2xl:h-[calc(100vh-72px)]">
+  <div class="w-full">
+    <video src="/videos/banner.mp4" type="video/mp4" autoplay
+      class="absolute object-cover min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 banner-video"></video>
+  </div>
+  <div
+    class="absolute z-10 flex items-center w-full font-sans -translate-y-1/2 bg-no-repeat bg-cover top-1/2 lg:bg-center">
+    <div class="container px-4 mx-auto font-sans md:px-10">
+      <div
+        class="relative flex flex-col p-4 text-center md:w-3/4 lg:w-3/5 xl:w-[45%] 2xl:w-3/5 text-cream md:text-left bg-black/20 rounded-2xl duration-[2s] -left-1/2 opacity-0 banner-title">
+        <div class="mb-4">
+          <span class="2xl:text-xl">Mastering The Art Of Chess</span>
+          <hr class="mt-1 w-[12.5%] border-[1px] md:mx-0 mx-auto">
+        </div>
+        <div class="flex flex-col mb-12 font-serif font-bold uppercase gap-y-5 md:whitespace-nowrap">
+          <h3 class="text-3xl md:text-4xl 2xl:text-6xl">The</h3>
+          <h2 class="text-4xl md:text-5xl 2xl:text-7xl">Ultimate</h2>
+          <h1 class="text-5xl md:text-6xl 2xl:text-8xl">Chess Path</h1>
+        </div>
+        <div class="mb-10">
+          <p class="text-lg md:text-xl xl:w-11/12 2xl:w-full 2xl:text-2xl">
+            Welcome to Knightless—a realm where strategy meets legend. Master chess, conquer puzzles, and forge your
+            army in an epic story mode.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center mx-auto md:justify-start md:mx-0 gap-x-8 gap-y-2">
+          <a href="/notation" class="button alpha">How To Play</a>
+          <a href="/hall-of-fame" class="button alpha">Worldwide Top Players</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="w-full h-10 mb-20 bg-neutral-900"></div>
+
+<div class="container px-10 mx-auto font-sans">
+  {{!-- Carousel section --}}
+  <section class="mb-28">
+    <div class="mb-20">
+      <div class="relative space-y-2 font-serif font-bold text-center uppercase text-oak">
+        <h3 class="mb-8 text-3xl sm:text-4xl">Wisdom From Chess</h3>
+        <div class="flex flex-col items-center justify-center mb-8">
+          <hr class="w-0 duration-1000 border-2 border-oak title-divider">
+          <h2 class="px-4 text-4xl -translate-y-1/2 sm:text-5xl bg-spruce">Masters</h2>
+        </div>
+      </div>
+      <p class="paragraph">
+        Explore the profound insights and timeless wisdom of some of the world's greatest players. Discover their
+        strategic brilliance and personal philosophies that have shaped the world of chess.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {{!-- Carousel one --}}
+      <div class="carousel-container">
+        <ul class="carousel to-left">
+          {{>carousel-item firstName="Garry" lastName="Kasparov" slug="garry-kasparov" subtitle="1985-2000 Champion"}}
+          {{>carousel-item firstName="Magnus" lastName="Carlsen" slug="magnus-carlsen" subtitle="2013-2023 Champion"}}
+          {{>carousel-item firstName="Vladimir" lastName="Kramnik" slug="vladimir-kramnik" subtitle="2000-2007
+          Champion"}}
+        </ul>
+        <ul class="carousel to-left">
+          {{>carousel-item firstName="Garry" lastName="Kasparov" slug="garry-kasparov" subtitle="1985-2000 Champion"}}
+          {{>carousel-item firstName="Magnus" lastName="Carlsen" slug="magnus-carlsen" subtitle="2013-2023 Champion"}}
+          {{>carousel-item firstName="Vladimir" lastName="Kramnik" slug="vladimir-kramnik" subtitle="2000-2007
+          Champion"}}
+        </ul>
+      </div>
+
+      {{!-- Carousel two --}}
+      <div class="carousel-container">
+        <ul class="carousel to-right">
+          {{>carousel-item firstName="Robert" lastName="Fischer" slug="robert-fischer" subtitle="1972-1975 Champion"}}
+          {{>carousel-item firstName="Veselin" lastName="Topalov" slug="veselin-topalov" subtitle="2005-2006 Champion"}}
+          {{>carousel-item firstName="Anatoly" lastName="Karpov" slug="anatoly-karpov" subtitle="1975-1985 Champion"}}
+        </ul>
+        <ul class="carousel to-right">
+          {{>carousel-item firstName="Robert" lastName="Fischer" slug="robert-fischer" subtitle="1972-1975 Champion"}}
+          {{>carousel-item firstName="Veselin" lastName="Topalov" slug="veselin-topalov" subtitle="2005-2006 Champion"}}
+          {{>carousel-item firstName="Anatoly" lastName="Karpov" slug="anatoly-karpov" subtitle="1975-1985 Champion"}}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {{!-- Pieces section --}}
+  <section class="mb-28">
+    <div class="mb-20">
+      <div class="relative space-y-2 font-serif font-bold text-center uppercase text-oak">
+        <h3 class="mb-8 text-3xl sm:text-4xl">Learn About The</h3>
+        <div class="flex flex-col items-center justify-center mb-8">
+          <hr class="w-0 duration-1000 border-2 border-oak title-divider">
+          <h2 class="px-4 text-4xl -translate-y-1/2 sm:text-5xl bg-spruce">Pieces</h2>
+        </div>
+      </div>
+      <p class="paragraph">
+        Begin your path by immersing yourself in the fascinating intricacies of how each piece navigates the chessboard,
+        revealing the profound depths of their strategic power.
+      </p>
+    </div>
+
+    <div class="grid overflow-hidden rounded-md md:grid-cols-2 lg:grid-cols-3">
+      <div class="px-4 py-6 bg-birch bg-[url('/images/checkered-background.png')] bg-repeat flex order-1">
+        <div class="flex items-center gap-x-4">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-dark-oak">
+            <div class="mb-4 font-serif font-bold uppercase">
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">King</h4>
+              <hr class="w-1/2 border-[1px] mt-2 border-dark-oak">
+            </div>
+            <p class="text-lg line-clamp-6">
+              The King is the most vital piece on the chessboard, embodying the ultimate objective of the game- Its
+              presence commands the battlefield.
+            </p>
+          </div>
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
+            <img src="/images/piece-images/alpha/king.webp" alt="The King">
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-6 bg-oak bg-[url('/images/checkered-background.png')] bg-repeat flex order-2">
+        <div class="flex items-center gap-x-4">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-cream">
+            <div class="mb-4 font-serif font-bold uppercase">
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Queen</h4>
+              <hr class="w-1/2 border-[1px] mt-2">
+            </div>
+            <p class="text-lg line-clamp-6">
+              The Queen is the most powerful piece, combining the strengths of the rook and bishop, dominating the board
+              with unmatched versatility and range.
+            </p>
+          </div>
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
+            <img src="/images/piece-images/alpha/queen.webp" alt="The Queen">
+          </div>
+        </div>
+      </div>
+      <div
+        class="px-4 py-6 bg-birch bg-[url('/images/checkered-background.png')] bg-repeat flex order-3 md:order-4 lg:order-3">
+        <div class="flex items-center gap-x-4">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-dark-oak">
+            <div class="mb-4 font-serif font-bold uppercase">
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Bishop</h4>
+              <hr class="w-1/2 border-[1px] mt-2 border-dark-oak">
+            </div>
+            <p class="text-lg line-clamp-6">
+              The Bishop is a long-range piece that excels in open positions, strategically influencing the board
+              through its extremely powerful diagonal control.
+            </p>
+          </div>
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
+            <img src="/images/piece-images/alpha/bishop.webp" alt="The Bishop">
+          </div>
+        </div>
+      </div>
+      <div
+        class="px-4 py-6 bg-oak bg-[url('/images/checkered-background.png')] bg-repeat flex order-4 md:order-3 lg:order-4">
+        <div class="flex items-center gap-x-4">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-cream">
+            <div class="mb-4 font-serif font-bold uppercase">
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Knight</h4>
+              <hr class="w-1/2 border-[1px] mt-2">
+            </div>
+            <p class="text-lg line-clamp-6">
+              The Knight is a versatile piece known for its unique movement and ability to jump over others. This
+              unpredictable piece can prove to be quite dangerous.
+            </p>
+          </div>
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
+            <img src="/images/piece-images/alpha/knight.webp" alt="The Knight">
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-6 bg-birch bg-[url('/images/checkered-background.png')] bg-repeat flex order-5">
+        <div class="flex items-center gap-x-4">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-dark-oak">
+            <div class="mb-4 font-serif font-bold uppercase">
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Rook</h4>
+              <hr class="w-1/2 border-[1px] mt-2 border-dark-oak">
+            </div>
+            <p class="text-lg line-clamp-6">
+              The Rook is a powerful piece that excels in controlling open lines and supporting other pieces. Its
+              strength lies in its ability to dominate entire files and ranks.
+            </p>
+          </div>
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
+            <img src="/images/piece-images/alpha/rook.webp" alt="The Rook">
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-6 bg-oak bg-[url('/images/checkered-background.png')] bg-repeat flex order-6">
+        <div class="flex items-center gap-x-4">
+          <div class="w-[70%] sm:w-3/4 md:w-4/6 xl:w-[67.5%] text-cream">
+            <div class="mb-4 font-serif font-bold uppercase">
+              <h3 class="text-3xl">The</h3>
+              <h4 class="text-4xl">Pawn</h4>
+              <hr class="w-1/2 border-[1px] mt-2">
+            </div>
+            <p class="text-lg line-clamp-6">
+              The Pawn is the most numerous piece on the chessboard, often seen as the backbone of a player's strategy.
+              Their strength is in their numbers.
+            </p>
+          </div>
+          <div class="w-[30%] sm:w-1/4 md:w-2/6 xl:w-[32.5%]">
+            <img src="/images/piece-images/alpha/pawn.webp" alt="The Pawn">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{!-- Daily puzzle section --}}
+  <section class="mb-28">
+    <div class="mb-20">
+      <div class="relative space-y-2 font-serif font-bold text-center uppercase text-oak">
+        <h3 class="mb-8 text-3xl sm:text-4xl">Daily Chess</h3>
+        <div class="flex flex-col items-center justify-center mb-8">
+          <hr class="w-0 duration-1000 border-2 border-oak title-divider">
+          <h2 class="px-4 text-4xl -translate-y-1/2 sm:text-5xl bg-spruce">Puzzles</h2>
+        </div>
+      </div>
+      <p class="paragraph">
+        Sharpen your skills and challenge your mind with our daily chess puzzles. Each day, you'll encounter a new
+        puzzle designed to test your tactical acumen and improve your strategic thinking.
+      </p>
+      <div class="flex justify-center">
+        <a href="/daily-puzzle" class="button alpha">Try Today's Puzzle</a>
+      </div>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {{#each puzzles}}
+      <div class="p-4 rounded-md bg-ash">
+        <div class="mt-2 mb-6 text-xl">
+          <div class="flex items-center mb-2">
+            <h4 class="flex-1">Puzzle rating:</h4>
+            <h4 class="font-semibold">{{this.rating}}</h4>
+          </div>
+          <div class="flex items-center">
+            <h4 class="flex-1">Difficulty:</h4>
+            <div class="flex items-center gap-x-1">
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+            </div>
+          </div>
+        </div>
+        <div class="w-full border-[1px] border-spruce rounded-md">
+          <div class="w-full mx-auto aspect-square position-board" data-fen="{{this.fen}}"
+            data-last-move="{{this.moves}}" data-highlight-squares="">
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+
+  {{!-- Begin your journey section --}}
+  <section class="mb-28">
+    <div class="bg-birch bg-[url(/images/checkered-background.png)] py-8 px-4 rounded-md">
+      <div class="mb-8 space-y-2 font-serif font-bold text-center uppercase text-dark-oak">
+        <h3 class="mb-2 text-3xl sm:text-4xl">Begin Your Chess</h3>
+        <div class="flex items-center justify-center sm:px-10 xl:px-16">
+          <hr class="w-0 border-2 border-dark-oak duration-[4s] title-divider">
+          <h2 class="inline-block px-4 text-4xl sm:text-5xl">Path</h2>
+          <hr class="w-0 border-2 border-dark-oak duration-[4s] title-divider">
+        </div>
+      </div>
+      <p class="paragraph text-dark-oak">
+        Explore the profound insights and timeless wisdom of some of the world's greatest players. Discover their
+        strategic brilliance and personal philosophies that have shaped the world of chess.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/notation" class="button alpha">How To Play</a>
+        <a href="/hall-of-fame" class="button alpha">Hall of Fame</a>
+      </div>
+    </div>
+  </section>
+</div>
