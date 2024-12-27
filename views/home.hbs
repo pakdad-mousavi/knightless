@@ -1,0 +1,117 @@
+<div class="container px-10 mx-auto font-sans">
+  <section class="my-20">
+    <div class="mb-20">
+      <div class="relative space-y-2 font-serif font-bold text-center uppercase text-oak">
+        <h3 class="mb-8 text-3xl sm:text-4xl">Your</h3>
+        <div class="flex flex-col items-center justify-center mb-8">
+          <hr class="w-0 duration-1000 border-2 border-oak title-divider">
+          <h2 class="px-4 text-4xl -translate-y-1/2 sm:text-5xl bg-spruce">Castle</h2>
+        </div>
+      </div>
+      <p class="paragraph">
+        Welcome, young traveler. This will be your base of operations; from your castle, you can plan your next attacks,
+        see the items you've collected, or purchase new ones.
+      </p>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-flow-col xl:grid-cols-4 xl:grid-rows-2">
+      {{!-- Profile --}}
+      <div class="bg-ash bg-[url(/images/checkered-background.png)] sm:aspect-square rounded-md p-4 order-1">
+        <div class="mb-4 font-serif font-bold uppercase text-oak">
+          <h3 class="text-lg sm:text-xl 2xl:text-2xl">Your</h3>
+          <h4 class="text-xl sm:text-2xl 2xl:text-3xl">Profile</h4>
+          <hr class="w-1/2 border-[1px] mt-2 border-oak">
+        </div>
+        <div class="flex gap-2">
+          <div class="flex items-center justify-center w-20 h-20 border-4 rounded-md aspect-square bg-birch border-oak">
+            <img src="/images/chesspieces/bp.svg" alt="Avatar">
+          </div>
+          <div>
+            <b class="font-semibold">{{user.name}}</b>
+            <div class="flex items-center mb-2 gap-x-1">
+              <img src="/images/ranks/rank-1.png" alt="" class="w-4">
+              <p class="text-[8px] font-semibold font-serif uppercase text-orange-400">Footsoldier</p>
+            </div>
+            <b class="text-sm font-semibold">Level 1</b>
+          </div>
+        </div>
+        <div class="flex mt-8">
+          <a href="/profile" class="button alpha text-sm !bg-charcoal !py-1.5">View Profile</a>
+        </div>
+      </div>
+
+      {{!-- Badges --}}
+      <div class="bg-ash bg-[url(/images/checkered-background.png)] sm:aspect-square rounded-md p-4 order-4 xl:order-2">
+        <div class="mb-4 font-serif font-bold uppercase text-oak">
+          <h3 class="text-lg sm:text-xl 2xl:text-2xl">Your</h3>
+          <h4 class="text-xl sm:text-2xl 2xl:text-3xl">Badges</h4>
+          <hr class="w-1/2 border-[1px] mt-2 border-oak">
+        </div>
+      </div>
+
+      {{!-- Puzzle Forge --}}
+      <div class="bg-ash bg-[url(/images/checkered-background.png)] sm:aspect-square rounded-md p-4 order-2 xl:order-3">
+        <div class="mb-4 font-serif font-bold uppercase text-oak">
+          <h3 class="text-lg sm:text-xl 2xl:text-2xl">Puzzle</h3>
+          <h4 class="text-xl sm:text-2xl 2xl:text-3xl">Forge</h4>
+          <hr class="w-1/2 border-[1px] mt-2 border-oak">
+        </div>
+        <div class="flex items-center gap-x-2">
+          <div class="w-24 h-24 aspect-square">
+            <img src="/images/forge.png" alt="Forge Icon" class="">
+          </div>
+          <div>
+            <p class="font-semibold">Classic: 0</p>
+            <p class="font-semibold">Puzzle Rush: 0</p>
+            <p class="font-semibold">Daily Puzzle: 0</p>
+          </div>
+        </div>
+        <div class="flex mt-4">
+          <a href="/profile" class="button alpha text-sm !bg-charcoal !py-1.5">Visit The Forge</a>
+        </div>
+      </div>
+
+      {{!-- Map --}}
+      <div
+        class="sm:col-span-2 bg-ash bg-[url(/images/map-thumbnail.png)] bg-cover rounded-md order-5 xl:order-4 aspect-[3/2] sm:aspect-[2/1] lg:aspect-auto">
+        <a href="/map" class="block w-full h-full p-4 rounded-md">
+          <div class="mb-4 font-serif font-bold uppercase text-dark-oak">
+            <h3 class="text-lg sm:text-xl 2xl:text-2xl">Map of</h3>
+            <h4 class="text-xl sm:text-2xl 2xl:text-3xl">Vestra</h4>
+            <hr class="w-1/2 sm:w-1/4 border-[1px] mt-2 border-dark-oak">
+          </div>
+        </a>
+      </div>
+
+      {{!-- Marketplace --}}
+      <div class="bg-ash bg-[url(/images/checkered-background.png)] sm:aspect-square rounded-md p-4 order-3 xl:order-5">
+        <div class="mb-4 font-serif font-bold uppercase text-oak">
+          <h3 class="text-lg sm:text-xl 2xl:text-2xl">The</h3>
+          <h4 class="text-xl sm:text-2xl 2xl:text-3xl">Marketplace</h4>
+          <hr class="w-1/2 border-[1px] mt-2 border-oak">
+        </div>
+        <div class="flex items-center gap-x-2">
+          <div class="w-24 h-24 aspect-square">
+            <img src="/images/market.png" alt="Marketplace Icon" class="">
+          </div>
+          <div>
+            <p class="font-semibold">Coins: 100</p>
+            <p class="font-semibold">Forge Tokens: 0</p>
+          </div>
+        </div>
+        <div class="flex mt-4">
+          <a href="/marketplace" class="button alpha text-sm !bg-charcoal !py-1.5">View Marketplace</a>
+        </div>
+      </div>
+      <div
+        class="sm:col-span-2 lg:col-span-3 xl:row-span-2 bg-ash bg-[url(/images/checkered-background.png)] rounded-md p-4 order-6 sm:aspect-[2/1] lg:aspect-[3/1] xl:aspect-auto">
+        <div class="mb-4 font-serif font-bold uppercase text-oak">
+          <h3 class="text-lg sm:text-xl 2xl:text-2xl">Your</h3>
+          <h4 class="text-xl sm:text-2xl 2xl:text-3xl">Inventory</h4>
+          <hr class="w-1/2 border-[1px] mt-2 border-oak">
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
