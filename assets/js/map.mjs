@@ -48,8 +48,11 @@ const hexagonPath = (x, y, radius) => {
 };
 
 export const createMap = () => {
+  const mapWidth = 2000;
+  const mapHeight = 2000;
+  // Select the SVG element and set its size
   const svg = d3.select('svg');
-  console.log(svg);
+  svg.attr('width', mapWidth).attr('height', mapHeight);
 
   // Define hexagon size and properties
   const hexRadius = 55; // Radius of the hexagon
@@ -81,4 +84,80 @@ export const createMap = () => {
       .attr('href', `/images/biomes/${biomes[hex.biome]}.png`)
       .attr('transform', `rotate(30 ${x} ${y})`);
   }
+
+  // Add drag behavior
+  let currentX = 0, // Current mouse X position
+    currentY = 0, // Current mouse Y position
+    dx = 0, // Change in X position
+    dy = 0, // Change in Y position
+    pastdx = 0, // Past change in X position
+    pastdy = 0; // Past change in Y position
+
+  const drag = d3
+    .drag()
+    .on('start', (event) => {
+      // Initial mouse position
+      currentX = event.x;
+      currentY = event.y;
+
+      // Change the cursor style
+      svg.style('cursor', 'grabbing');
+    })
+    .on('drag', (event) => {
+      // Calculate the change in mouse position
+      dx = event.x - currentX;
+      dy = event.y - currentY;
+
+      // Calculate the position of the SVG element, keep track of the past change in position
+      let updatedPosX = pastdx + dx;
+      let updatedPosY = pastdy + dy;
+
+      // If the SVG element is moving off the left side of the screen
+      if (updatedPosX > 0) {
+        currentX = event.x;
+        dx = event.x - currentX;
+        pastdx = dx;
+        updatedPosX = pastdx + dx;
+      }
+
+      // If the SVG element is moving off the right side of the screen
+      else if (updatedPosX < window.innerWidth - mapWidth) {
+        currentX = event.x;
+        dx = event.x - currentX;
+        pastdx = window.innerWidth - mapWidth;
+        updatedPosX = pastdx + dx;
+      }
+
+      // If the SVG element is moving off the top of the screen
+      if (updatedPosY > 0) {
+        currentY = event.y;
+        dy = event.y - currentY;
+        pastdy = dy;
+        updatedPosY = pastdy + dy;
+      }
+
+      // If the SVG element is moving off the bottom of the screen
+      else if (updatedPosY < window.innerHeight - mapHeight) {
+        currentY = event.y;
+        dy = event.y - currentY;
+
+        pastdy = window.innerHeight - mapHeight;
+        updatedPosY = pastdy + dy;
+      }
+
+      // Update the position of the SVG element
+      svg.attr('transform', `translate(${updatedPosX}, ${updatedPosY})`);
+    })
+    .on('end', (event) => {
+      // Update the current mouse position and the past change in position
+      currentX = event.x;
+      currentY = event.y;
+      pastdx += dx;
+      pastdy += dy;
+
+      // Reset the cursor style
+      svg.style('cursor', 'grab');
+    });
+
+  svg.call(drag);
 };
