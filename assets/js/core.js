@@ -7,6 +7,7 @@ import { setUpPositionBoard } from './positionBoard.mjs';
 import { watchMegaMenu } from './megaMenu.mjs';
 import { watchHomePageBanner } from './watchHomePageBanner.mjs';
 import { watchTitleDividers } from './watchTitleDividers.mjs';
+import { createMap } from './map.mjs';
 
 // Watch mega menus in the header
 const megaMenus = document.querySelectorAll('.mega-menu-panel');
@@ -72,3 +73,6 @@ if (faqPanel) watchFaqPanel(faqPanel);
 // Watch the timeline (to update progress bar)
 const timeline = document.querySelector('.horizontal-timeline');
 if (timeline) watchTimelineScroll(timeline);
+
+const mapContainer = document.querySelector('.map-container');
+if (mapContainer) createMap();
