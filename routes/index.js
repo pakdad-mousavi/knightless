@@ -9,6 +9,7 @@ import * as contactController from '../controllers/contact.js';
 import * as puzzleController from '../controllers/puzzles.js';
 import * as timelineController from '../controllers/timeline.js';
 import * as faqController from '../controllers/faq.js';
+import * as mapController from '../controllers/map.js';
 
 const router = express.Router();
 
@@ -32,6 +33,9 @@ router.route('/').get(ensureNotAuthenticated, indexController.index);
 
 // Home
 router.route('/home').get(ensureAuthenticated, homeController.index);
+
+// Map
+router.route('/map').get(ensureAuthenticated, mapController.index);
 
 // Hall of fame
 router.route('/hall-of-fame').get(playersController.getPlayers);
