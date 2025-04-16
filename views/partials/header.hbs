@@ -17,20 +17,9 @@
       id="menu">
       <ul class="flex flex-col items-center text-center gap-x-7 gap-y-2 lg:flex-row">
         <hr class="w-full border-cream border-1 lg:hidden">
-        <li
-          class="relative w-full lg:w-auto mega-menu-panel group {{getCssClass pageCategory 'learn' 'active-header-item' ''}}">
-          <a href="/notation" class="header-item mega-menu-btn">
-            <span>Learn</span>
-            <span class="text-xs ms-2 icon-down-arrow"></span>
-          </a>
+        <li class="w-full lg:w-auto group {{getCssClass pageCategory 'learn' 'active-header-item' ''}}">
+          <a href="/learn" class="header-item">Learn</a>
           <hr class="hidden w-0 duration-200 lg:block group-hover:w-full">
-          <ul
-            class="absolute grid sm:grid-cols-2 gap-x-4 gap-y-8 lg:gap-y-4 p-4 translate-x-1/2 rounded-md w-full lg:w-96 bg-ash/80 bg-[url(/images/checkered-background.png)] z-30 top-12 lg:top-10 right-1/2 duration-300 transition-all mega-menu-box">
-            <li><a href="#">The Pieces</a></li>
-            <li><a href="#">Board Setup</a></li>
-            <li><a href="#">Basic Terms</a></li>
-            <li><a href="#">Simple Checkmates</a></li>
-          </ul>
         </li>
         <li
           class="relative w-full lg:w-auto mega-menu-panel group {{getCssClass pageCategory 'puzzles' 'active-header-item' ''}}">
@@ -40,7 +29,7 @@
           </a>
           <hr class="hidden w-0 duration-200 lg:block group-hover:w-full">
           <ul
-            class="absolute grid sm:grid-cols-2 gap-x-4 gap-y-8 lg:gap-y-4 p-4 translate-x-1/2 rounded-md w-full lg:w-96 bg-ash/80 bg-[url(/images/checkered-background.png)] z-30 top-12 lg:top-10 right-1/2 duration-300 transition-all mega-menu-box">
+            class="mg-menu">
             <li><a href="/puzzle-forge">Puzzle Forge</a></li>
             <li><a href="/daily-puzzle">Daily Puzzle</a></li>
             <li><a href="/faq">Puzzle FAQ</a></li>

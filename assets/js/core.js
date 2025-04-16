@@ -4,16 +4,14 @@ import { watchTimelineScroll } from './timeline.mjs';
 import { resetFilters, watchActiveFilters, watchSliders } from './filters.mjs';
 import { setUpSampleBoard } from './sampleBoard.mjs';
 import { setUpPositionBoard } from './positionBoard.mjs';
-import { watchMegaMenu } from './megaMenu.mjs';
+import { watchMegaMenus } from './megaMenu.mjs';
 import { watchHomePageBanner } from './watchHomePageBanner.mjs';
 import { watchTitleDividers } from './watchTitleDividers.mjs';
 import { createMap } from './map.mjs';
 
 // Watch mega menus in the header
 const megaMenus = document.querySelectorAll('.mega-menu-panel');
-for (const megaMenu of megaMenus) {
-  watchMegaMenu(megaMenu, true);
-}
+watchMegaMenus(megaMenus);
 
 // Watch homepage banner
 const homePageVideo = document.querySelector('.banner-video');
