@@ -1,36 +1,309 @@
-const biomes = ['forest', 'desert', 'mountain', 'plains', 'swamp', 'tundra', 'volcano', 'water'];
-const regions = ['heartland', 'shatteredPlains', 'Ironspire'];
+const biomes = ['plains', 'forest', 'cactus', 'desert', 'metallic-gears', 'metallic-rust', 'lava', 'lava-cracks', 'snowy-mountain', 'snowy-trees'];
+const territories = [{ type: 'land' }, { type: 'boss', name: 'Alaric' }, { type: 'demiboss', name: 'Jaden' }, { type: 'mine', resource: 'wood' }];
 
 const hexGrid = [
-  { c: 0, r: 0, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: 2, r: 1, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: 0, r: 1, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: 1, r: 1, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: -1, r: 1, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: -1, r: 2, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: 0, r: 2, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: 1, r: 2, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: 2, r: 2, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: -2, r: 3, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: -1, r: 3, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: 0, r: 3, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: 1, r: 3, conquered: true, biome: 0, mine: false, region: 0 },
-  { c: 2, r: 3, conquered: true, biome: 1, mine: false, region: 0 },
-  { c: 3, r: 3, conquered: true, biome: 1, mine: false, region: 0 },
+  { c: 0, r: 0, conquered: true, biome: 0, region: 0, territory: 0 },
+  { c: -1, r: 1, conquered: true, biome: 0, region: 0, territory: 0 },
+  { c: 0, r: 1, conquered: true, biome: 1, region: 0, territory: 0 },
+  { c: 1, r: 1, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 2, r: 1, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 6, r: 1, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 7, r: 1, conquered: false, biome: 1, region: 0, territory: 0 },
+  { c: 8, r: 1, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 9, r: 1, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 10, r: 1, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 11, r: 1, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 13, r: 1, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 14, r: 1, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 15, r: 1, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 16, r: 1, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 0, r: 2, conquered: false, biome: 1, region: 0, territory: 0 },
+  { c: 1, r: 2, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 2, r: 2, conquered: false, biome: 1, region: 2, territory: 0 },
+  { c: 3, r: 2, conquered: false, biome: 1, region: 2, territory: 0 },
+  { c: 4, r: 2, conquered: false, biome: 1, region: 0, territory: 0 },
+  { c: 5, r: 2, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 6, r: 2, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 7, r: 2, conquered: false, biome: 1, region: 0, territory: 0 },
+  { c: 8, r: 2, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 9, r: 2, conquered: false, biome: 1, region: 0, territory: 0 },
+  { c: 10, r: 2, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 11, r: 2, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 12, r: 2, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 13, r: 2, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 14, r: 2, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 15, r: 2, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 16, r: 2, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 17, r: 2, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 18, r: 2, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: -1, r: 3, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 0, r: 3, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 1, r: 3, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 2, r: 3, conquered: false, biome: 1, region: 2, territory: 0 },
+  { c: 3, r: 3, conquered: false, biome: 0, region: 1, territory: 0 },
+  { c: 4, r: 3, conquered: false, biome: 0, region: 1, territory: 0 },
+  { c: 5, r: 3, conquered: false, biome: 1, region: 0, territory: 0 },
+  { c: 6, r: 3, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 7, r: 3, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 8, r: 3, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 9, r: 3, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 10, r: 3, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 11, r: 3, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 12, r: 3, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 13, r: 3, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 14, r: 3, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 15, r: 3, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 16, r: 3, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 17, r: 3, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 18, r: 3, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 19, r: 3, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 20, r: 3, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 1, r: 4, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 2, r: 4, conquered: false, biome: 1, region: 0, territory: 0 },
+  { c: 3, r: 4, conquered: false, biome: 0, region: 1, territory: 0 },
+  { c: 4, r: 4, conquered: false, biome: 0, region: 1, territory: 0 },
+  { c: 5, r: 4, conquered: false, biome: 1, region: 1, territory: 0 },
+  { c: 6, r: 4, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 7, r: 4, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 8, r: 4, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 9, r: 4, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 10, r: 4, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 11, r: 4, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 12, r: 4, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 13, r: 4, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 14, r: 4, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 15, r: 4, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 16, r: 4, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 17, r: 4, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 18, r: 4, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 19, r: 4, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 20, r: 4, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 0, r: 5, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 1, r: 5, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 2, r: 5, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 3, r: 5, conquered: false, biome: 0, region: 1, territory: 0 },
+  { c: 4, r: 5, conquered: false, biome: 1, region: 1, territory: 0 },
+  { c: 5, r: 5, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 6, r: 5, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 7, r: 5, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 8, r: 5, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 9, r: 5, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 10, r: 5, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 11, r: 5, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 12, r: 5, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 13, r: 5, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 14, r: 5, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 15, r: 5, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 16, r: 5, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 17, r: 5, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 18, r: 5, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 19, r: 5, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 1, r: 6, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 2, r: 6, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 3, r: 6, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 4, r: 6, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 5, r: 6, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 6, r: 6, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 7, r: 6, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 8, r: 6, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 9, r: 6, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 10, r: 6, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 11, r: 6, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 12, r: 6, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 13, r: 6, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 14, r: 6, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 15, r: 6, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 16, r: 6, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 17, r: 6, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 18, r: 6, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 19, r: 6, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 20, r: 6, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 0, r: 7, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 1, r: 7, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 2, r: 7, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 3, r: 7, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 4, r: 7, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 5, r: 7, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 6, r: 7, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 7, r: 7, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 8, r: 7, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 9, r: 7, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 10, r: 7, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 11, r: 7, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 12, r: 7, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 13, r: 7, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 14, r: 7, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 15, r: 7, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 16, r: 7, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 17, r: 7, conquered: false, biome: 7, region: 0, territory: 0 },
+  { c: 18, r: 7, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 19, r: 7, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 0, r: 8, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 1, r: 8, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 2, r: 8, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 3, r: 8, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 4, r: 8, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 5, r: 8, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 6, r: 8, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 7, r: 8, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 8, r: 8, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 9, r: 8, conquered: false, biome: 3, region: 0, territory: 0 },
+  { c: 10, r: 8, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 11, r: 8, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 12, r: 8, conquered: false, biome: 0, region: 0, territory: 0 },
+  { c: 13, r: 8, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 14, r: 8, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 15, r: 8, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 16, r: 8, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 17, r: 8, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 18, r: 8, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 19, r: 8, conquered: false, biome: 6, region: 0, territory: 0 },
+  { c: 20, r: 8, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 0, r: 9, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 1, r: 9, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 2, r: 9, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 3, r: 9, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 4, r: 9, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 5, r: 9, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 6, r: 9, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 7, r: 9, conquered: false, biome: 2, region: 0, territory: 0 },
+  { c: 8, r: 9, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 9, r: 9, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 10, r: 9, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 11, r: 9, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 12, r: 9, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 13, r: 9, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 14, r: 9, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 15, r: 9, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 16, r: 9, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 17, r: 9, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 18, r: 9, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 19, r: 9, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 20, r: 9, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 1, r: 10, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 2, r: 10, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 3, r: 10, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 4, r: 10, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 5, r: 10, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 6, r: 10, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 7, r: 10, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 8, r: 10, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 9, r: 10, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 10, r: 10, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 11, r: 10, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 12, r: 10, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 13, r: 10, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 14, r: 10, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 15, r: 10, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 16, r: 10, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 17, r: 10, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 18, r: 10, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 19, r: 10, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 20, r: 10, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 1, r: 11, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 2, r: 11, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 3, r: 11, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 4, r: 11, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 5, r: 11, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 6, r: 11, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 7, r: 11, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 8, r: 11, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 9, r: 11, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 10, r: 11, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 11, r: 11, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 12, r: 11, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 13, r: 11, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 14, r: 11, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 15, r: 11, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 16, r: 11, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 16, r: 11, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 17, r: 11, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 18, r: 11, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 19, r: 11, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 1, r: 12, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 2, r: 12, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 3, r: 12, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 4, r: 12, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 5, r: 12, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 6, r: 12, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 7, r: 12, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 8, r: 12, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 9, r: 12, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 10, r: 12, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 11, r: 12, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 12, r: 12, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 13, r: 12, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 14, r: 12, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 15, r: 12, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 16, r: 12, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 17, r: 12, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 18, r: 12, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 19, r: 12, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 20, r: 12, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 3, r: 13, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 4, r: 13, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 5, r: 13, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 6, r: 13, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 7, r: 13, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 8, r: 13, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 9, r: 13, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 10, r: 13, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 11, r: 13, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 12, r: 13, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 13, r: 13, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 14, r: 13, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 15, r: 13, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 16, r: 13, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 17, r: 13, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 18, r: 13, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 19, r: 13, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 20, r: 13, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 4, r: 14, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 5, r: 14, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 6, r: 14, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 7, r: 14, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 8, r: 14, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 9, r: 14, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 10, r: 14, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 11, r: 14, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 12, r: 14, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 13, r: 14, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 14, r: 14, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 15, r: 14, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 16, r: 14, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 17, r: 14, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 18, r: 14, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 19, r: 14, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 5, r: 15, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 6, r: 15, conquered: false, biome: 5, region: 0, territory: 0 },
+  { c: 7, r: 15, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 9, r: 15, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 10, r: 15, conquered: false, biome: 4, region: 0, territory: 0 },
+  { c: 11, r: 15, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 12, r: 15, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 13, r: 15, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 14, r: 15, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 16, r: 15, conquered: false, biome: 9, region: 0, territory: 0 },
+  { c: 17, r: 15, conquered: false, biome: 8, region: 0, territory: 0 },
+  { c: 18, r: 15, conquered: false, biome: 9, region: 0, territory: 0 },
 ];
 
-const hexToPixel = (q, r, hexRadius, gap = 10) => {
+const hexToPixel = (c, r, hexRadius, gap = 10) => {
   // Calculate spacing factors
   const initialXGap = 200; // Initial horizontal gap
   const initialYGap = 100; // Initial vertical gap
   const hexWidth = Math.sqrt(3) * hexRadius; // Width of a hexagon
   const hexHeight = 2 * hexRadius; // Height of a hexagon
   const xGap = gap; // Horizontal gap
-  const yGap = gap * (3 / 4); // Vertical gap (adjusted for staggering)
+  const yGap = gap * (9 / 10); // Vertical gap (adjusted for staggering)
 
-  // Adjust coordinates with the gap
-  const x = initialXGap + (hexWidth + xGap) * (q + r / 2); // Add gap to hex width
+  // Adjust the horizontal position for odd rows
+  const offset = r % 2 === 0 ? 0 : hexWidth / Math.sqrt(4); // Only odd rows shift
+
+  // Calculate positions
+  const x = initialXGap + (hexWidth + xGap) * c + offset; // Add stagger for odd rows
   const y = initialYGap + (hexHeight * (3 / 4) + yGap) * r; // Add gap to hex height
+
   return { x, y };
 };
 
@@ -48,41 +321,49 @@ const hexagonPath = (x, y, radius) => {
 };
 
 export const createMap = () => {
-  const mapWidth = 2000;
-  const mapHeight = 2000;
+  const mapWidth = 2300;
+  const mapHeight = 1500;
   // Select the SVG element and set its size
-  const svg = d3.select('svg');
+  const svg = d3.select('#map');
   svg.attr('width', mapWidth).attr('height', mapHeight);
 
   // Define hexagon size and properties
   const hexRadius = 55; // Radius of the hexagon
-  const gap = 5; // Gap size between the outline and the fill
+  const innerGap = 1; // Gap size between the outline and the fill
+  const outerGap = 0; // Gap size between the shade and the outline
 
   for (const hex of hexGrid) {
-    const { x, y } = hexToPixel(hex.c, hex.r, hexRadius);
+    const { x, y } = hexToPixel(hex.c, hex.r, hexRadius, 0);
+    const shadePoints = hexagonPath(x, y, hexRadius + outerGap); // Hexagon with the shade
     const outerPoints = hexagonPath(x, y, hexRadius); // Outer hexagon (for the outline)
-    const innerPoints = hexagonPath(x, y, hexRadius - gap); // Inner hexagon (for the fill)
+
+    const group = svg.append('g').attr('class', 'hexagon');
 
     // Draw the outer hexagon
-    svg
+    group
       .append('polygon')
       .attr('points', outerPoints.map((point) => point.join(',')).join(' '))
-      .attr('stroke', 'red')
-      .attr('stroke-width', 2)
+      // .attr('stroke', hex.conquered ? '#047f85' : 'red')
+      // .attr('stroke-width', 2)
       .attr('fill', 'none'); // No fill for the outer hexagon
 
-    // Draw the inner hexagon
-    svg.append('polygon').attr('points', innerPoints.map((point) => point.join(',')).join(' '));
-
     // Add background image to the inner hexagon
-    svg
+    group
       .append('image')
-      .attr('x', x - hexRadius + gap)
-      .attr('y', y - hexRadius + gap)
-      .attr('width', (hexRadius - gap) * 2)
-      .attr('height', (hexRadius - gap) * 2)
-      .attr('href', `/images/biomes/${biomes[hex.biome]}.png`)
-      .attr('transform', `rotate(30 ${x} ${y})`);
+      .attr('x', x - hexRadius + innerGap)
+      .attr('y', y - hexRadius + innerGap)
+      .attr('width', (hexRadius - innerGap) * 2)
+      .attr('height', (hexRadius - innerGap) * 2)
+      .attr('href', `/images/biomes/${biomes[hex.biome]}.png`);
+
+    // // Draw the shade hexagon
+    // const shadeColor = territories[hex.region].type === 'boss' ? 'red' : territories[hex.region].type === 'demiboss' ? 'orange' : 'transparent';
+    // const shadeOpacity = territories[hex.region].type === 'boss' || territories[hex.region].type === 'demiboss' ? 0.3 : 0;
+    // group
+    //   .append('polygon')
+    //   .attr('points', shadePoints.map((point) => point.join(',')).join(' '))
+    //   .attr('fill', shadeColor)
+    //   .attr('fill-opacity', shadeOpacity); // Semi-transparent fill
   }
 
   // Add drag behavior
@@ -161,3 +442,49 @@ export const createMap = () => {
 
   svg.call(drag);
 };
+
+// For even rows
+const evenRowOffsets = [
+  { dc: 1, dr: 0 }, // Right
+  { dc: -1, dr: 0 }, // Left
+  { dc: 0, dr: 1 }, // Bottom-right
+  { dc: -1, dr: 1 }, // Bottom-left
+  { dc: 0, dr: -1 }, // Top-right
+  { dc: -1, dr: -1 }, // Top-left
+];
+
+// For odd rows
+const oddRowOffsets = [
+  { dc: 1, dr: 0 }, // Right
+  { dc: -1, dr: 0 }, // Left
+  { dc: 1, dr: 1 }, // Bottom-right
+  { dc: 0, dr: 1 }, // Bottom-left
+  { dc: 1, dr: -1 }, // Top-right
+  { dc: 0, dr: -1 }, // Top-left
+];
+
+function findNeighbors(hexGrid, targetHex) {
+  const { c, r } = targetHex; // Target hex's coordinates
+  const isOddRow = r % 2 === 1;
+
+  // Choose the correct neighbor offsets based on row parity
+  const neighborOffsets = isOddRow ? oddRowOffsets : evenRowOffsets;
+
+  const neighbors = neighborOffsets
+    .map(({ dc, dr }) => {
+      // Calculate neighbor's coordinates
+      const neighborC = c + dc;
+      const neighborR = r + dr;
+      // Find the neighbor in the hexGrid
+      return hexGrid.find((hex) => hex.c === neighborC && hex.r === neighborR);
+    })
+    .filter(Boolean); // Remove undefined (non-existent neighbors)
+
+  return neighbors;
+}
+
+// Example usage
+const targetHex = { c: 0, r: 1, conquered: true, biome: 0, region: 0 };
+const neighbors = findNeighbors(hexGrid, targetHex);
+
+console.log(neighbors);
