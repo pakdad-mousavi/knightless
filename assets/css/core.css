@@ -96,15 +96,15 @@ body *.font-serif {
 }
 
 .searchbar {
-  @apply relative mx-auto md:w-3/5 lg:w-2/5;
+  @apply flex mx-auto md:w-3/5 lg:w-2/5 bg-ash px-4 py-2 rounded-lg border-[1px] border-birch text-birch;
 }
 
 .searchbar > input {
-  @apply bg-ash w-full px-4 py-2 rounded-lg border-[1px] border-birch text-birch outline-none;
+  @apply  bg-ash flex-1 outline-none pr-2;
 }
 
 .searchbar > span {
-  @apply absolute -translate-y-1/2 right-5 top-1/2;
+  @apply block;
 }
 
 .section-container {
