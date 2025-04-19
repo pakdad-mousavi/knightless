@@ -2,8 +2,8 @@
     <div class="grid xl:px-16 lg:grid-cols-5 gap-x-10 gap-y-10">
       {{!-- Board --}}
       <div class="relative w-full lg:col-span-3">
-        <div class="relative w-full aspect-square puzzle-board" data-puzzle="{{randomPuzzle.fen}}"
-          data-solution="{{randomPuzzle.moves}}" id="pz_{{randomPuzzle.id}}" data-type="fen">
+        <div class="relative w-full aspect-square puzzle-board" data-puzzle="{{currentPuzzle.fen}}"
+          data-solution="{{currentPuzzle.moves}}" id="pz_{{currentPuzzle.id}}" data-type="fen">
         </div>
       </div>
 

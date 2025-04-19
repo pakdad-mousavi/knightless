@@ -132,6 +132,8 @@ const endPuzzle = (cg, feedbackMessage) => {
       free: false,
     },
   });
+  const pastDate = 'Thu, 18 Dec 2013 12:00:00 UTC;';
+  document.cookie = document.cookie + '; expires=' + pastDate;
 };
 
 const makeOpponentMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor) => {
