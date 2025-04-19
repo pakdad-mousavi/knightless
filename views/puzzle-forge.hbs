@@ -1,12 +1,9 @@
-<div class="container px-10 mx-auto font-sans">
-  {{user.name}}
-  {{!-- Puzzle --}}
   <section class="py-10">
     <div class="grid xl:px-16 lg:grid-cols-5 gap-x-10 gap-y-10">
       {{!-- Board --}}
       <div class="relative w-full lg:col-span-3">
-        <div class="relative w-full aspect-square puzzle-board" data-puzzle="{{dailyPuzzle.game.pgnArray}}"
-          data-solution="{{dailyPuzzle.puzzle.solution}}" id="pz_{{dailyPuzzle.game.id}}" data-type="pgn">
+        <div class="relative w-full aspect-square puzzle-board" data-puzzle="{{randomPuzzle.fen}}"
+          data-solution="{{randomPuzzle.moves}}" id="pz_{{randomPuzzle.id}}" data-type="fen">
         </div>
       </div>
 
@@ -65,4 +62,3 @@
           </div>
         </div>
   </section>
-</div>

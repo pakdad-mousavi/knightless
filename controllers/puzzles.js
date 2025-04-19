@@ -1,3 +1,5 @@
+import { Puzzle } from '../models/puzzle.js';
+
 export const getDailyPuzzle = async (req, res) => {
   const headers = {
     Authorization: 'Bearer ' + process.env.LICHESS_TOKEN,
@@ -60,4 +62,23 @@ export const getDailyPuzzle = async (req, res) => {
   };
 
   res.render('daily-puzzle', model);
+};
+
+export const getRandomPuzzle = async (req, res) => {
+  try {
+    const puzzleCount = await Puzzle.countDocuments();
+    const randomId = Math.round(Math.random() * puzzleCount);
+    const randomPuzzle = await Puzzle.findOne({ id: randomId }).lean();
+
+    const model = {
+      title: 'Daily Puzzle',
+      randomPuzzle,
+      isHomePage: false,
+      user: req.session.passport ? req.session.passport.user : null,
+    };
+
+    return res.render('puzzle-forge', model);
+  } catch (e) {
+    console.log(e);
+  }
 };

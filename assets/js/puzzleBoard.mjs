@@ -30,15 +30,28 @@ const getMoveFromLan = (moveLan) => {
 
 // Function to get puzzle information from the board element
 const getPuzzleInfo = (boardElement) => {
-  const dataPgn = boardElement.dataset.pgn;
-  const pgnArray = dataPgn ? dataPgn.split(',') : [];
-  const initialPuzzleMove = pgnArray.pop(); // Remove the last move from the PGN
+  const puzzleData = boardElement.dataset.puzzle;
+  const isPuzzlePgnOrFen = boardElement.dataset.type;
+  const pgnArray = puzzleData ? puzzleData.split(',') : [];
 
+  let solution;
+  let initialPuzzleMove;
+  if (isPuzzlePgnOrFen === 'pgn') {
+    solution = boardElement.dataset.solution.split(',');
+
+    // Remove the last move from the PGN
+    initialPuzzleMove = pgnArray.pop();
+  } else {
+    solution = boardElement.dataset.solution.split(' ');
+    solution.reverse();
+    initialPuzzleMove = solution.pop();
+    solution.reverse();
+  }
   // The solution moves should be in LAN format
-  const solution = boardElement.dataset.solution.split(',');
 
   const puzzleInfo = {
     positionPgn: pgnArray.join(' '),
+    positionFen: isPuzzlePgnOrFen === 'fen' ? puzzleData : null,
     initialPuzzleMove,
     solutionInfo: {
       solution, // Array of moves in LAN format
@@ -220,10 +233,14 @@ const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo
 // Main function to set up the puzzle board
 export const setUpPuzzleBoard = (boardElement, feedbackMessage) => {
   const puzzleInfo = getPuzzleInfo(boardElement);
-
   const solutionInfo = puzzleInfo.solutionInfo;
   const game = new Chess();
-  game.loadPgn(puzzleInfo.positionPgn);
+
+  if (puzzleInfo.positionFen) {
+    game.load(puzzleInfo.positionFen);
+  } else {
+    game.loadPgn(puzzleInfo.positionPgn);
+  }
   const playerColor = getOppositeColor(game.turn());
 
   const config = {

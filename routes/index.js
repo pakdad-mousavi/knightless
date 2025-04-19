@@ -34,8 +34,8 @@ router.route('/').get(ensureNotAuthenticated, indexController.index);
 // Home
 router.route('/home').get(ensureAuthenticated, homeController.index);
 
-// Map
-router.route('/map').get(ensureAuthenticated, mapController.index);
+// // Map
+// router.route('/map').get(ensureAuthenticated, mapController.index);
 
 // Hall of fame
 router.route('/hall-of-fame').get(playersController.getPlayers);
@@ -58,7 +58,7 @@ router.route('/contact').get(contactController.index);
 router.route('/daily-puzzle').get(puzzleController.getDailyPuzzle);
 router.route('/faq').get(faqController.getFaqPage);
 
-// Timeline
-router.route('/timeline').get(timelineController.index);
+// Puzzle forge
+router.route('/puzzle-forge').get(puzzleController.getRandomPuzzle);
 
 export default router;
