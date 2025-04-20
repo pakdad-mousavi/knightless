@@ -98,6 +98,7 @@ export const getRandomPuzzle = async (req, res) => {
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'Lax',
         signed: true,
+        path: "/puzzle-forge"
       });
 
       // Return the puzzle to the client

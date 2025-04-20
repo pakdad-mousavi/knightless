@@ -138,18 +138,21 @@ const showPromotionMenu = (boardElement, game, dest, playerColor) => {
 
   return res;
 };
-const endPuzzle = (cg, feedbackMessage) => {
+const endPuzzle = (cg, feedbackMessage, nextPuzzleBtn) => {
   feedbackMessage.innerHTML = FEEDBACK_MESSAGES.solved;
+  nextPuzzleBtn.classList.remove('hidden');
   cg.set({
     movable: {
       free: false,
     },
   });
-  const pastDate = 'Thu, 18 Dec 2013 12:00:00 UTC;';
-  document.cookie = document.cookie + '; expires=' + pastDate;
+  if (document.cookie.includes('')) {
+    const pastDate = 'Thu, 18 Dec 2013 12:00:00 UTC;';
+    document.cookie = document.cookie + '; expires=' + pastDate + '; path=/puzzle-forge;';
+  }
 };
 
-const makeOpponentMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor) => {
+const makeOpponentMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor, nextPuzzleBtn) => {
   cg.set({
     movable: {
       color: getOppositeColor(playerColor),
@@ -170,14 +173,14 @@ const makeOpponentMove = (boardElement, feedbackMessage, cg, game, solutionInfo,
       color: playerColor,
       dests: getDestsFromGame(game),
       events: {
-        after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor),
+        after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor, nextPuzzleBtn),
       },
     },
   });
   solutionInfo.currentSolutionIdx++;
 };
 
-const undoMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor) => {
+const undoMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor, nextPuzzleBtn) => {
   game.undo();
   const history = game.history({ verbose: true });
   const previousMove = history[history.length - 1];
@@ -191,30 +194,30 @@ const undoMove = (boardElement, feedbackMessage, cg, game, solutionInfo, playerC
       color: playerColor,
       dests: getDestsFromGame(game),
       events: {
-        after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor),
+        after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor, nextPuzzleBtn),
       },
     },
   });
 };
 
-const verifyMove = (boardElement, feedbackMessage, cg, game, move, solutionInfo, playerColor) => {
-  if (move === solutionInfo.solution[solutionInfo.currentSolutionIdx]) {
+const verifyMove = (boardElement, feedbackMessage, cg, game, move, solutionInfo, playerColor, nextPuzzleBtn) => {
+  if (move === solutionInfo.solution[solutionInfo.currentSolutionIdx] || game.isCheckmate()) {
     solutionInfo.currentSolutionIdx++;
     if (solutionInfo.currentSolutionIdx >= solutionInfo.solution.length || game.isCheckmate()) {
-      return endPuzzle(cg, feedbackMessage);
+      return endPuzzle(cg, feedbackMessage, nextPuzzleBtn);
     }
     feedbackMessage.innerHTML = FEEDBACK_MESSAGES.correct.replace('%%', getCurrentMove(game));
     cg.set({
       turnColor: getOppositeColor(playerColor),
     });
-    setTimeout(makeOpponentMove, 600, boardElement, feedbackMessage, cg, game, solutionInfo, playerColor);
+    setTimeout(makeOpponentMove, 600, boardElement, feedbackMessage, cg, game, solutionInfo, playerColor, nextPuzzleBtn);
   } else {
     feedbackMessage.innerHTML = FEEDBACK_MESSAGES.wrong.replace('%%', getCurrentMove(game));
-    setTimeout(undoMove, 600, boardElement, feedbackMessage, cg, game, solutionInfo, playerColor);
+    setTimeout(undoMove, 600, boardElement, feedbackMessage, cg, game, solutionInfo, playerColor, nextPuzzleBtn);
   }
 };
 
-const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor) => {
+const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo, playerColor, nextPuzzleBtn) => {
   return async (orig, dest) => {
     let promotionPiece = '';
     let move = '';
@@ -239,7 +242,7 @@ const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo
             color: playerColor,
             dests: getDestsFromGame(game),
             events: {
-              after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor),
+              after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor, nextPuzzleBtn),
             },
           },
         });
@@ -260,7 +263,7 @@ const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo
     cg.set(newConfig);
 
     // Verify whether the move made is correct or not
-    verifyMove(boardElement, feedbackMessage, cg, game, move.lan, solutionInfo, playerColor);
+    verifyMove(boardElement, feedbackMessage, cg, game, move.lan, solutionInfo, playerColor, nextPuzzleBtn);
   };
 };
 
@@ -312,7 +315,7 @@ export const setUpPuzzleBoard = (boardElement, feedbackMessage, nextPuzzleBtn) =
         color: playerColor,
         dests: getDestsFromGame(game),
         events: {
-          after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor),
+          after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor, nextPuzzleBtn),
         },
       },
     });
