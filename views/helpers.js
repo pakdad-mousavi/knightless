@@ -96,6 +96,22 @@ const helper = {
   mod(value, divisor) {
     return value % divisor;
   },
+
+  getDifficulty(rating) {
+    
+    const star = `<span class="icon-star"></span> `;
+    if (rating > 2500) {
+      return star.repeat(5);
+    } else if (rating >= 2000) {
+      return star.repeat(4);
+    } else if (rating >= 1600) {
+      return star.repeat(3);
+    } else if (rating >= 1200) {
+      return star.repeat(2);
+    } else {
+      return star.repeat(1);
+    }
+  },
 };
 
 export default helper;

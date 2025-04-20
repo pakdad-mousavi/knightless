@@ -1,64 +1,60 @@
-  <section class="py-10">
-    <div class="grid xl:px-16 lg:grid-cols-5 gap-x-10 gap-y-10">
-      {{!-- Board --}}
-      <div class="relative w-full lg:col-span-3">
-        <div class="relative w-full aspect-square puzzle-board" data-puzzle="{{currentPuzzle.fen}}"
-          data-solution="{{currentPuzzle.moves}}" id="pz_{{currentPuzzle.id}}" data-type="fen">
+<section class="py-10">
+  <div class="grid xl:px-16 lg:grid-cols-5 gap-x-10 gap-y-10">
+    {{!-- Board --}}
+    <div class="relative w-full lg:col-span-3">
+      <div class="relative w-full aspect-square puzzle-board" data-puzzle="{{currentPuzzle.fen}}"
+        data-solution="{{currentPuzzle.moves}}" id="pz_{{currentPuzzle.id}}" data-type="fen">
+      </div>
+    </div>
+
+    {{!-- info panels --}}
+    <div class="lg:col-span-2">
+      <div class="grid h-full grid-cols-1 gap-10 lg:grid-rows-2 xl:grid-rows-5">
+        <div class="xl:row-span-2 bg-ash bg-[url(/images/checkered-background.png)] rounded-md p-4">
+          <div class="flex flex-col h-full">
+            <div class="flex-1">
+              <div class="flex items-center gap-x-4 text-oak">
+                <span class="text-3xl xl:text-4xl icon-trophy"></span>
+                <div>
+                  <h3 class="font-serif text-xl font-bold uppercase xl:text-2xl">Daily Puzzle</h3>
+                </div>
+              </div>
+              <hr class="w-1/2 lg:w-3/5 border-[1px] border-oak mt-2">
+              <p class="mt-5">
+                <span class="mr-2">Puzzle rating:</span>
+                <span class="font-bold">{{currentPuzzle.rating}}</span>
+              </p>
+              <p>
+                <span class="mr-2">Puzzle Difficulty:</span>
+                {{{getDifficulty currentPuzzle.rating}}}
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-5 text-sm sm:flex-nowrap xl:text-base">
+              <a href="/" class="button alpha !bg-charcoal lg:!px-4">Solving a Chess Puzzle</a>
+              <a href="/" class="button alpha !bg-charcoal lg:!px-4">FAQ</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="xl:row-span-3 bg-ash bg-[url(/images/checkered-background.png)] rounded-md p-4">
+          <div class="flex flex-col h-full">
+            <div class="flex-1">
+              <div class="text-oak">
+                <h3 class="font-serif text-xl font-bold uppercase xl:text-2xl">Instructions</h3>
+              </div>
+              <hr class="w-1/2 lg:w-3/5 border-[1px] border-oak mt-2">
+              <p class="mt-5 2xl:text-xl">
+                Any other move besides the correct puzzle move will result in a losing or significantly worse
+                position.
+              </p>
+              <p class="mt-5 feedback-message 2xl:text-xl">
+                Find the best move for <span class="font-bold">black</span>.
+              </p>
+            </div>
+            <div class="flex gap-2 mt-5 text-sm xl:text-base">
+              <a href="/" class="button alpha !bg-charcoal lg:!px-4">Reveal Hint</a>
+            </div>
+          </div>
         </div>
       </div>
-
-      {{!-- info panels --}}
-      <div class="lg:col-span-2">
-        <div class="grid h-full grid-cols-1 gap-10 lg:grid-rows-2 xl:grid-rows-5">
-          <div class="xl:row-span-2 bg-ash bg-[url(/images/checkered-background.png)] rounded-md p-4">
-            <div class="flex flex-col h-full">
-              <div class="flex-1">
-                <div class="flex items-center gap-x-4 text-oak">
-                  <span class="text-3xl xl:text-4xl icon-trophy"></span>
-                  <div>
-                    <h3 class="font-serif text-xl font-bold uppercase xl:text-2xl">Daily Puzzle</h3>
-                  </div>
-                </div>
-                <hr class="w-1/2 lg:w-3/5 border-[1px] border-oak mt-2">
-                <p class="mt-5">
-                  <span class="mr-2">Puzzle rating:</span>
-                  <span class="font-bold">2475</span>
-                </p>
-                <p>
-                  <span class="mr-2">Puzzle Difficulty:</span>
-                  <span class="icon-star"></span>
-                  <span class="icon-star"></span>
-                  <span class="icon-star"></span>
-                  <span class="icon-star"></span>
-                  <span class="icon-star"></span>
-                </p>
-              </div>
-              <div class="flex flex-wrap gap-2 mt-5 text-sm sm:flex-nowrap xl:text-base">
-                <a href="/" class="button alpha !bg-charcoal lg:!px-4">Solving a Chess Puzzle</a>
-                <a href="/" class="button alpha !bg-charcoal lg:!px-4">FAQ</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="xl:row-span-3 bg-ash bg-[url(/images/checkered-background.png)] rounded-md p-4">
-            <div class="flex flex-col h-full">
-              <div class="flex-1">
-                <div class="text-oak">
-                  <h3 class="font-serif text-xl font-bold uppercase xl:text-2xl">Instructions</h3>
-                </div>
-                <hr class="w-1/2 lg:w-3/5 border-[1px] border-oak mt-2">
-                <p class="mt-5 2xl:text-xl">
-                  Any other move besides the correct puzzle move will result in a losing or significantly worse
-                  position.
-                </p>
-                <p class="mt-5 feedback-message 2xl:text-xl">
-                  Find the best move for <span class="font-bold">black</span>.
-                </p>
-              </div>
-              <div class="flex gap-2 mt-5 text-sm xl:text-base">
-                <a href="/" class="button alpha !bg-charcoal lg:!px-4">Reveal Hint</a>
-              </div>
-            </div>
-          </div>
-        </div>
-  </section>
+</section>
