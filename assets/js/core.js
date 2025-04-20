@@ -60,9 +60,11 @@ for (const board of positionBoards) {
 }
 
 // Set up puzzle board
-const puzzleBoard = document.querySelector('.puzzle-board');
-const feedbackMessage = document.querySelector('.feedback-message');
-if (puzzleBoard && feedbackMessage) setUpPuzzleBoard(puzzleBoard, feedbackMessage);
+const puzzleSection = document.querySelector('.puzzle-section');
+const puzzleBoard = puzzleSection.querySelector('.puzzle-board');
+const feedbackMessage = puzzleSection.querySelector('.feedback-message');
+const nextPuzzleBtn = puzzleSection.querySelector('.next-puzzle-btn');
+if (puzzleSection) setUpPuzzleBoard(puzzleBoard, feedbackMessage, nextPuzzleBtn);
 
 // Watch the faq panel (to open and close questions)
 const faqPanel = document.querySelector('.faq-panel');

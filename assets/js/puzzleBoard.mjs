@@ -5,6 +5,7 @@ import { getMoveType } from './chessUtils.mjs';
 import { playMoveAudio } from './sounds.mjs';
 
 const FEEDBACK_MESSAGES = {
+  start: `Find the best move for <b class="font-bold">%%</b>.`,
   correct: `<b class="text-green-500 font-medium">%%</b> is the best move, keep going...`,
   wrong: `<b class="text-rose-500 font-medium">%%</b> isn't right, try again.`,
   hint: `The piece on <b>%%</b> needs to move.`,
@@ -113,6 +114,18 @@ const showPromotionMenu = (boardElement, game, dest, playerColor) => {
 
   // Promise, so that the game waits for promotion result
   const res = new Promise((resolve, reject) => {
+    const watchCancelMove = (e) => {
+      if (e.target.closest('.promotion-menu') !== menu) {
+        // Remove promotion menu
+        boardElement.classList.remove('puzzle-board-overlay');
+        menu.remove();
+        // Remove event listener
+        document.removeEventListener('click', watchCancelMove);
+        // resolve
+        resolve(null);
+      }
+    };
+    document.addEventListener('click', watchCancelMove);
     menu.addEventListener('click', (e) => {
       // Remove promotion menu
       boardElement.classList.remove('puzzle-board-overlay');
@@ -211,7 +224,26 @@ const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo
     } catch {
       // Error occured, must be promotion
       promotionPiece = await showPromotionMenu(boardElement, game, dest, playerColor);
-      move = game.move({ from: orig, to: dest, promotion: promotionPiece });
+      if (promotionPiece) {
+        move = game.move({ from: orig, to: dest, promotion: promotionPiece });
+      } else {
+        const lastMove = game.history({ verbose: true })[game.history().length - 1];
+        console.log(getDestsFromGame(game));
+
+        return cg.set({
+          fen: game.fen(),
+          turnColor: playerColor,
+          check: game.isCheck(),
+          lastMove: [lastMove.from, lastMove.to],
+          movable: {
+            color: playerColor,
+            dests: getDestsFromGame(game),
+            events: {
+              after: handlePlayerInput(boardElement, feedbackMessage, cg, game, solutionInfo, playerColor),
+            },
+          },
+        });
+      }
     }
 
     const moveType = getMoveType(game, move);
@@ -233,7 +265,7 @@ const handlePlayerInput = (boardElement, feedbackMessage, cg, game, solutionInfo
 };
 
 // Main function to set up the puzzle board
-export const setUpPuzzleBoard = (boardElement, feedbackMessage) => {
+export const setUpPuzzleBoard = (boardElement, feedbackMessage, nextPuzzleBtn) => {
   const puzzleInfo = getPuzzleInfo(boardElement);
   const solutionInfo = puzzleInfo.solutionInfo;
   const game = new Chess();
@@ -244,6 +276,8 @@ export const setUpPuzzleBoard = (boardElement, feedbackMessage) => {
     game.loadPgn(puzzleInfo.positionPgn);
   }
   const playerColor = getOppositeColor(game.turn());
+
+  feedbackMessage.innerHTML = FEEDBACK_MESSAGES.start.replace('%%', playerColor);
 
   const config = {
     fen: game.fen(),
