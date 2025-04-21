@@ -60,5 +60,6 @@ router.route('/faq').get(faqController.getFaqPage);
 
 // Puzzle forge
 router.route('/puzzle-forge').get(puzzleController.getRandomPuzzle);
+router.route('/puzzle-forge/:id').get(puzzleController.getPuzzleById);
 
 export default router;

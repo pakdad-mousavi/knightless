@@ -236,7 +236,7 @@
 
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {{#each puzzles}}
-      <div class="p-4 rounded-md bg-ash">
+      <a class="p-4 rounded-md bg-ash" href="/puzzle-forge/{{this.id}}">
         <div class="mt-2 mb-6 text-xl">
           <div class="flex items-center mb-2">
             <h4 class="flex-1">Puzzle rating:</h4>
@@ -244,13 +244,7 @@
           </div>
           <div class="flex items-center">
             <h4 class="flex-1">Difficulty:</h4>
-            <div class="flex items-center gap-x-1">
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-            </div>
+            {{{getDifficulty this.rating}}}
           </div>
         </div>
         <div class="w-full border-[1px] border-spruce rounded-md">
@@ -258,7 +252,7 @@
             data-last-move="{{this.moves}}" data-highlight-squares="">
           </div>
         </div>
-      </div>
+      </a>
       {{/each}}
     </div>
   </section>

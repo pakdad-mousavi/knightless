@@ -69,49 +69,45 @@ export const getRandomPuzzle = async (req, res) => {
   const cookiePuzzle = req.signedCookies?.currentPuzzle || null;
 
   if (cookiePuzzle) {
-    try {
-      // If cookie puzzle exists, find it in db using id
-      const currentPuzzle = await Puzzle.findOne({ id: Number(cookiePuzzle) }).lean();
-
-      // Return the puzzle to the client
-      const model = {
-        title: 'Daily Puzzle',
-        currentPuzzle,
-        isHomePage: false,
-        user: req.session.passport ? req.session.passport.user : null,
-      };
-
-      return res.render('puzzle-forge', model);
-    } catch (e) {
-      console.log(e);
-    }
+    return res.redirect(`/puzzle-forge/${cookiePuzzle}`);
   } else {
     try {
       // If puzzle cookie doesn't exist, get a random puzzle
       const puzzleCount = await Puzzle.countDocuments();
       const randomId = Math.round(Math.random() * puzzleCount);
-      const randomPuzzle = await Puzzle.findOne({ id: randomId }).lean();
 
       // Assign the random puzzle's id to the cookie for client
-      res.cookie('currentPuzzle', randomPuzzle.id, {
+      res.cookie('currentPuzzle', randomId, {
         httpOnly: false,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'Lax',
         signed: true,
-        path: "/puzzle-forge"
+        path: '/puzzle-forge',
       });
 
-      // Return the puzzle to the client
-      const model = {
-        title: 'Daily Puzzle',
-        currentPuzzle: randomPuzzle,
-        isHomePage: false,
-        user: req.session.passport ? req.session.passport.user : null,
-      };
-
-      return res.render('puzzle-forge', model);
+      return res.redirect(`/puzzle-forge/${randomId}`);
     } catch (e) {
       console.log(e);
     }
+  }
+};
+
+export const getPuzzleById = async (req, res) => {
+  const { id } = req.params;
+  const escapedId = Number(encodeURIComponent(id).trim());
+
+  try {
+    const puzzle = await Puzzle.findOne({ id: escapedId }).lean();
+
+    const model = {
+      title: 'Puzzle Forge',
+      currentPuzzle: puzzle,
+      isHomePage: false,
+      user: req.session.passport ? req.session.passport.user : null,
+    };
+
+    return res.render('puzzle-forge', model);
+  } catch (e) {
+    console.log(e);
   }
 };
