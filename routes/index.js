@@ -10,6 +10,8 @@ import * as puzzleController from '../controllers/puzzles.js';
 import * as timelineController from '../controllers/timeline.js';
 import * as faqController from '../controllers/faq.js';
 import * as mapController from '../controllers/map.js';
+import * as learnController from '../controllers/learn.js';
+
 
 const router = express.Router();
 
@@ -42,11 +44,22 @@ router.route('/hall-of-fame').get(playersController.getPlayers);
 router.route('/hall-of-fame').post(playersController.applySearchFilters);
 router.route('/hall-of-fame/:id').get(playersController.getPlayerById);
 
+// Learn
+router.route('/learn').get(learnController.index)
 // Pieces
-router.route('/pieces/:id').get(piecesController.getPieceById);
+router.route('/learn/pieces').get(learnController.pieces)
+router.route('/learn/pieces/king').get(learnController.king)
+router.route('/learn/pieces/queen').get(learnController.queen)
+router.route('/learn/pieces/rook').get(learnController.rook)
+router.route('/learn/pieces/bishop').get(learnController.bishop)
+router.route('/learn/pieces/knight').get(learnController.knight)
+router.route('/learn/pieces/pawn').get(learnController.pawn)
+
+// Pieces
+// router.route('/pieces/:id').get(piecesController.getPieceById);
 
 // Notation
-router.route('/notation').get(notationController.index);
+// router.route('/notation').get(notationController.index);
 
 // Attributions
 router.route('/attributions').get(attributionsController.index);
