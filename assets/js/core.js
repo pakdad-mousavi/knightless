@@ -61,10 +61,10 @@ for (const board of positionBoards) {
 
 // Set up puzzle board
 const puzzleSection = document.querySelector('.puzzle-section');
-const puzzleBoard = puzzleSection.querySelector('.puzzle-board');
-const feedbackMessage = puzzleSection.querySelector('.feedback-message');
-const nextPuzzleBtn = puzzleSection.querySelector('.next-puzzle-btn');
-if (puzzleSection) {
+const puzzleBoard = puzzleSection?.querySelector('.puzzle-board');
+const feedbackMessage = puzzleSection?.querySelector('.feedback-message');
+const nextPuzzleBtn = puzzleSection?.querySelector('.next-puzzle-btn');
+if (puzzleSection && puzzleBoard) {
   // Scroll down to puzzle section
   const top = puzzleSection.getBoundingClientRect().top;
   if (window.top !== top + 20) {
