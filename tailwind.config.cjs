@@ -11,6 +11,7 @@ export default {
     extend: {
       colors: {
         birch: '#CCBFA6',
+        driftwood: '#938368',
         ash: '#323334',
         spruce: '#20211D',
         charcoal: '#191818',
