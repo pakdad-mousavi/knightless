@@ -7,7 +7,7 @@
 @tailwind utilities;
 
 html {
-  @apply w-full overflow-x-hidden;
+  @apply w-full overflow-x-hidden scroll-smooth;
 }
 
 body {

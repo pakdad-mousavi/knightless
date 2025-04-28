@@ -65,6 +65,7 @@ const puzzleBoard = puzzleSection?.querySelector('.puzzle-board');
 const feedbackMessage = puzzleSection?.querySelector('.feedback-message');
 const nextPuzzleBtn = puzzleSection?.querySelector('.next-puzzle-btn');
 if (puzzleSection && puzzleBoard) {
+  document.documentElement.style.scrollBehavior = 'auto';
   // Scroll down to puzzle section
   const top = puzzleSection.getBoundingClientRect().top;
   if (window.top !== top + 20) {
