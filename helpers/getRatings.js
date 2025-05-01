@@ -1,4 +1,4 @@
-export const RATINGS = Object.freeze({
+const RATINGS = Object.freeze({
   '2500-2900': [2500, 2900],
   '2500-2550': [2500, 2550],
   '2550-2600': [2550, 2600],
