@@ -9,6 +9,11 @@ const TIMES = {
   highlightingSquares: 2000, // Time for highlighting squares
 };
 
+const SQUARES_COLORS = {
+  gray: 'bg-black',
+  red: 'bg-red-800',
+};
+
 // Function to transition the board element with a fade effect
 const transitionBoardElement = (boardElement, cg, startingPosition) => {
   boardElement.classList.toggle('after:opacity-0'); // Toggle opacity for fade effect
@@ -23,10 +28,19 @@ const transitionBoardElement = (boardElement, cg, startingPosition) => {
   }, 1000);
 };
 
+const drawArrows = (arrows, cg) => {
+  const shapeSet = arrows.map((arrow) => {
+    return { orig: arrow.orig, dest: arrow.dest, brush: 'yellow' };
+  });
+
+  cg.setShapes(shapeSet);
+};
+
 // Function to create and append a highlight square to the board
-const createAndAppendHighlight = (boardElement, width, square, left, top) => {
+const createAndAppendHighlight = (boardElement, width, square, left, top, squaresColor) => {
   const squareElement = document.createElement('div');
-  squareElement.classList.add('bg-black', 'opacity-0', 'aspect-square', 'absolute', 'square-highlight');
+  const color = SQUARES_COLORS[squaresColor];
+  squareElement.classList.add(color, 'opacity-0', 'aspect-square', 'absolute', 'square-highlight');
   squareElement.setAttribute('data-square', square);
   squareElement.style.left = `${left}%`;
   squareElement.style.top = `${top}%`;
@@ -75,19 +89,19 @@ const recalulateSizeAndPosition = (squareElement, boardElement, square) => {
 };
 
 // Function to highlight a specific square on the board
-const highlightSquare = (boardElement, square) => {
+const highlightSquare = (boardElement, square, squaresColor) => {
   const totalWidth = boardElement.offsetWidth;
   const squareWidth = totalWidth / 8;
 
   const { leftPercentage, topPercentage } = calculateHighlightPosition(boardElement, square);
 
   // Create and append the highlight square
-  const appendedSquare = createAndAppendHighlight(boardElement, squareWidth, square, leftPercentage, topPercentage);
+  const appendedSquare = createAndAppendHighlight(boardElement, squareWidth, square, leftPercentage, topPercentage, squaresColor);
   return appendedSquare;
 };
 
 // Function to remove all highlighted squares from the board
-const removeAllHighlightedSquares = () => {
+const removeCosmetics = (cg) => {
   const highlightedSquares = document.querySelectorAll('.square-highlight');
 
   for (const square of highlightedSquares) {
@@ -96,6 +110,8 @@ const removeAllHighlightedSquares = () => {
       square.remove(); // Remove the square after fade-out
     }, 500);
   }
+
+  cg.set({ fen: cg.getFen() });
 };
 
 // Main function to set up the sample chessboard and execute movement rounds
@@ -118,21 +134,14 @@ export const setUpSampleBoard = (boardElement) => {
       enabled: true,
       duration: 200, // Animation duration for moves
     },
-    // drawable: {
-    //   visible: true, // can view
-    //   shapes: [
-    //     {
-    //       orig: 'd4',
-    //       dest: 'e6',
-    //       brush: 'yellow',
-    //     },
-    //     {
-    //       orig: 'd6',
-    //       dest: 'e6',
-    //       brush: 'blue',
-    //     },
-    //   ],
-    // },
+    drawable: {
+      visible: true, // can view
+      // {
+      //   orig: 'd4',
+      //   dest: 'e6',
+      //   brush: 'yellow',
+      // },
+    },
   };
 
   const cg = Chessground(boardElement, config);
@@ -160,14 +169,14 @@ export const setUpSampleBoard = (boardElement) => {
 
         for (let i = 0; i < movementRound.moves.length; i++) {
           const move = movementRound.moves[i];
-          const squares = movementRound.squaresToHighlight[i] || [];
+          const squares = movementRound.squaresToHighlight[i]?.squares || [];
+          const squaresColor = movementRound.squaresToHighlight[i]?.color;
+          const arrows = movementRound.squaresToHighlight[i]?.arrows;
 
           if (squares.length) {
             await new Promise((res) => {
-              removeAllHighlightedSquares();
-
               for (const square of squares) {
-                const elem = highlightSquare(boardElement, square);
+                const elem = highlightSquare(boardElement, square, squaresColor);
 
                 const listener = () => {
                   recalulateSizeAndPosition(elem, boardElement, square);
@@ -176,8 +185,10 @@ export const setUpSampleBoard = (boardElement) => {
                 resizeListeners.push(listener);
               }
 
+              drawArrows(arrows, cg);
+
               window.setTimeout(() => {
-                removeAllHighlightedSquares();
+                removeCosmetics(cg);
               }, 1500);
               setTimeout(() => {
                 resizeListeners.forEach((fn) => window.removeEventListener('resize', fn));
@@ -187,10 +198,12 @@ export const setUpSampleBoard = (boardElement) => {
             });
           }
 
-          await new Promise((res) => {
-            cg.move(move.slice(0, 2), move.slice(2, 4));
-            setTimeout(res, TIMES.move);
-          });
+          if (move) {
+            await new Promise((res) => {
+              cg.move(move.slice(0, 2), move.slice(2, 4));
+              setTimeout(res, TIMES.move);
+            });
+          }
         }
       }
     }
