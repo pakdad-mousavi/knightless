@@ -65,7 +65,7 @@ const movements = Object.freeze({
       moves: ['d4e6', 'e6f4', 'f4e2', 'e2d4', 'd4c6', 'c6b4', 'b4c2', 'c2d4'],
       squaresToHighlight: [
         {
-          squares: ['c6', 'e6', 'f5', 'f3', 'e2', 'c2', 'b3', 'b5'],
+          squares: ['c6', 'e6', 'f5', 'f3', 'e2', 'c2', 'b3', 'b5', 'd4'],
           arrows: [],
           color: 'gray',
         },

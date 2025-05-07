@@ -1,5 +1,5 @@
 <section class="container px-10 pt-20 mx-auto font-sans">
-  <div class="flex flex-wrap items-end mb-20 lg:flex-nowrap gap-y-10 lg:gap-0">
+  <div class="flex flex-wrap items-end mb-40 lg:flex-nowrap gap-y-10 lg:gap-0">
     <div class="order-2 md:w-full lg:w-1/3 2xl:w-1/4 lg:order-1">
       <img src="/images/piece-images/beta/knight.webp" alt=""
         class="w-1/3 mx-auto sm:px-2 lg:w-3/5 xl:w-5/12 2xl:w-1/2 -scale-x-100">
@@ -25,8 +25,33 @@
       </div>
     </div>
   </div>
-  {{!-- 'relative', 'after:content-none', 'after:w-full', 'after:h-full', 'after:absolute', 'after:top-0',
-  'after:left-0', 'after:bg-white/40' --}}
-  <div class="relative w-1/2 mx-auto sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0"
-    data-piece="knight"></div>
+
+  <div class="flex flex-col-reverse items-center mb-20 lg:flex-row lg:gap-0 gap-y-8">
+    <div
+      class="px-2 py-3 w-full sm:w-4/5 lg:w-5/12 border-[1px] border-oak rounded-md flex items-center justify-center">
+      <div
+        class="relative w-[98%] sm:w-[97%] lg:w-[97%] xl:w-[98%] 2xl:w-[99%] sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0"
+        data-piece="knight"></div>
+    </div>
+    <div class="w-full lg:w-7/12 lg:px-8">
+      <div class="mb-10">
+        <h2 class="text-center sm:text-left mb-4 font-serif text-3xl font-bold uppercase sm:text-4xl text-oak">How It Moves</h2>
+        <hr class="w-4/5 sm:w-full mx-auto border-2 lg:w-4/5 border-oak sm:mx-0">
+      </div>
+      <div class="space-y-4 text-lg">
+        <p>
+          The knight moves uniquely in an L-shape pattern: it goes two squares in a straight line, either vertically or
+          horizontally, and then turns to move one square either left or right, forming an L-shape pattern.
+        </p>
+        <p>
+          It can <span class="font-bold">jump</span> over both its own and enemy pieces, making it a powerful tool for
+          reaching unexpected squares.
+        </p>
+        <p>
+          The knight is renown for its ability to attack multiple pieces at once, forcing the opponent to make a
+          difficult choice. No other piece moves like the knight!
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
