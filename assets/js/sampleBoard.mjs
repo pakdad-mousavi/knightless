@@ -1,4 +1,5 @@
 import { getMovementInfoFromPiece } from '../../helpers/getMovementsForPiece.js';
+import { getTacticInfoFromPieceAndTactic } from '../../helpers/getTacticsForPiece.js';
 import { Chessground } from '/chessground/dist/chessground.min.js';
 import { ranks, files } from '/chessground/dist/types.js';
 
@@ -38,9 +39,10 @@ const drawArrows = (arrows, cg) => {
 
 // Function to create and append a highlight square to the board
 const createAndAppendHighlight = (boardElement, width, square, left, top, squaresColor) => {
+  const boardId = boardElement.id;
   const squareElement = document.createElement('div');
   const color = SQUARES_COLORS[squaresColor];
-  squareElement.classList.add(color, 'opacity-0', 'aspect-square', 'absolute', 'square-highlight');
+  squareElement.classList.add(color, 'opacity-0', 'aspect-square', 'absolute', `square-highlight-${boardId}`);
   squareElement.setAttribute('data-square', square);
   squareElement.style.left = `${left}%`;
   squareElement.style.top = `${top}%`;
@@ -101,8 +103,9 @@ const highlightSquare = (boardElement, square, squaresColor) => {
 };
 
 // Function to remove all highlighted squares from the board
-const removeCosmetics = (cg) => {
-  const highlightedSquares = document.querySelectorAll('.square-highlight');
+const removeCosmetics = (boardElement, cg) => {
+  const boardId = boardElement.id;
+  const highlightedSquares = document.querySelectorAll(`.square-highlight-${boardId}`);
 
   for (const square of highlightedSquares) {
     square.style.opacity = 0; // Fade out the square
@@ -118,7 +121,18 @@ const removeCosmetics = (cg) => {
 export const setUpSampleBoard = (boardElement) => {
   // Load the data for the respective piece
   const piece = boardElement.dataset.piece;
-  const movementRounds = getMovementInfoFromPiece(piece);
+  const boardType = boardElement.dataset.type;
+  const boardId = crypto.randomUUID();
+  boardElement.id = boardId;
+
+  // Get the movement round based on the type of the board
+  let movementRounds;
+  if (boardType === 'movements') {
+    movementRounds = getMovementInfoFromPiece(piece);
+  } else if (boardType === 'tactics') {
+    const tactic = boardElement.dataset.tactic;
+    movementRounds = getTacticInfoFromPieceAndTactic(piece, tactic);
+  }
 
   const initialPosition = movementRounds[0].startingPosition;
 
@@ -188,7 +202,7 @@ export const setUpSampleBoard = (boardElement) => {
               drawArrows(arrows, cg);
 
               window.setTimeout(() => {
-                removeCosmetics(cg);
+                removeCosmetics(boardElement, cg);
               }, 1500);
               setTimeout(() => {
                 resizeListeners.forEach((fn) => window.removeEventListener('resize', fn));
