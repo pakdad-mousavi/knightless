@@ -261,6 +261,7 @@ export const setUpSampleBoard = (boardElement) => {
 };
 
 export const destroySampleBoard = (boardElement) => {
+  if (!boardElement) return;
   const sampleBoard = sampleBoards.get(boardElement.id);
   sampleBoard.cg.cancelMove();
   sampleBoard.cg.stop();

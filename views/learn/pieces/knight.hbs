@@ -99,17 +99,30 @@
         </h2>
         <hr class="w-4/5 mx-auto border-2 sm:w-full lg:w-4/5 border-oak sm:mx-0">
       </div>
-      <div class="mb-8 space-y-4 text-lg text-center sm:text-left">
-        <p>
-          A <span class="font-bold">fork</span> is a tactical move where the knight attacks two or more enemy pieces
-          simultaneously in a single turn, often forcing the opponent into a difficult decision.
-        </p>
-        <p>
-          Due to its unique L-shaped jumping pattern, the knight can effortlessly strike two or more different types of
-          enemy pieces from surprising and hard-to-predict angles on the board.
-        </p>
+      <div class="mb-8 text-lg text-center sm:text-left tactic-info-container">
+        <div class="space-y-4 active-tactic-text" data-tactic="forks">
+          <p>
+            A <span class="font-bold">fork</span> is a tactical move where the knight attacks two or more enemy pieces
+            simultaneously in a single turn, often forcing the opponent into a difficult decision.
+          </p>
+          <p>
+            Due to its unique L-shaped jumping pattern, the knight can effortlessly strike two or more different types
+            of
+            enemy pieces from surprising and hard-to-predict angles on the board.
+          </p>
+        </div>
+        <div class="space-y-4" data-tactic="smotheredMate">
+          <p>
+            A <span class="font-bold">smothered mate</span> is a unique checkmating pattern where the knight delivers
+            checkmate while the enemy king is surrounded by its own pieces, unable to escape.
+          </p>
+          <p>
+            The knight's ability to jump over pieces allows it to create this unique checkmating pattern, as it can
+            deliver the final blow from an unexpected angle.
+          </p>
+        </div>
       </div>
-      <div class="flex flex-wrap gap-2 tactics">
+      <div class="flex flex-wrap justify-center gap-2 sm:justify-start tactics">
         <button type="button"
           class="px-6 py-1.5 bg-dark-oak border-[1px] border-transparent rounded-md hover:bg-ash hover:border-birch duration-300 active-tactic"
           data-tactic="forks">

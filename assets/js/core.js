@@ -8,7 +8,7 @@ import { watchMegaMenus } from './megaMenu.mjs';
 import { watchHomePageBanner } from './watchHomePageBanner.mjs';
 import { watchTitleDividers } from './watchTitleDividers.mjs';
 import { createMap } from './map.mjs';
-import { handleTacticBoards } from './handleTacticBoards.mjs';
+import { handleTacticDisplays } from './handleTacticDisplays.mjs';
 
 // Watch mega menus in the header
 const megaMenus = document.querySelectorAll('.mega-menu-panel');
@@ -50,9 +50,10 @@ if (checkboxes.length && radios.length && searchbar) {
 
 // Watch different tactics on the pieces page
 const tacticBtnsContainer = document.querySelector('.tactics');
+const tacticInfoContainer = document.querySelector('.tactic-info-container');
 const tacticBoardsContainer = document.querySelector('.tactic-boards-container');
-if (tacticBtnsContainer) {
-  handleTacticBoards(tacticBtnsContainer, tacticBoardsContainer);
+if (tacticBtnsContainer && tacticInfoContainer) {
+  handleTacticDisplays(tacticBtnsContainer, tacticBoardsContainer, tacticInfoContainer);
 }
 
 // Set up all sample boards
