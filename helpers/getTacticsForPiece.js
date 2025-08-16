@@ -49,9 +49,61 @@ const tactics = Object.freeze({
           },
         ],
       },
-      
     ],
-    smotheredMate: {},
+    smotheredMate: [
+      {
+        startingPosition: '3r2rk/pp4pp/1qp4N/8/8/4P3/PP3PPP/R4RK1',
+        moves: ['h6f7', ''],
+        squaresToHighlight: [
+          {
+            squares: ['h6', 'f7'],
+            arrows: [{ orig: 'h6', dest: 'f7' }],
+            color: 'gray',
+          },
+          {
+            squares: ['f7', 'h8'],
+            arrows: [{ orig: 'f7', dest: 'h8' }],
+            color: 'red',
+          },
+        ],
+      },
+      {
+        startingPosition: 'r4rk1/p7/1q2b2p/3p1pp1/2P2p2/8/PPQN1nPP/R1B2RK1',
+        moves: ['f2h3', 'g1h1', 'b6g1', 'f1g1', 'h3f2', ''],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['g1', 'h3', 'b6'],
+            arrows: [
+              { orig: 'h3', dest: 'g1' },
+              { orig: 'b6', dest: 'g1' },
+            ],
+            color: 'red',
+          },
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['g1', 'h1'],
+            arrows: [{ orig: 'g1', dest: 'h1' }],
+            color: 'red',
+          },
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['f2', 'h1'],
+            arrows: [{ orig: 'f2', dest: 'h1' }],
+            color: 'red',
+          },
+        ],
+      },
+    ],
   },
 });
 

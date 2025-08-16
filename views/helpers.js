@@ -112,6 +112,10 @@ const helper = {
       return star.repeat(1);
     }
   },
+
+  generateUUID() {
+    return crypto.randomUUID();
+  },
 };
 
 export default helper;

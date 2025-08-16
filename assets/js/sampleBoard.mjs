@@ -5,15 +5,24 @@ import { ranks, files } from '/chessground/dist/types.js';
 
 // Constants for timing different animations
 const TIMES = {
+  initialDelay: 500, // Initial delay before beginning animations
   move: 800, // Time for a single move animation
-  boardTransition: 1500, // Time for transitioning the board
-  highlightingSquares: 2000, // Time for highlighting squares
+
+  boardTransition: 1500, // Total time for transitioning the board
+  fadingInBoard: 500, // Time for fading the board in
+  showingBoard: 500, // Time for fading the board out
+
+  highlightingSquares: 2000, // Total time for showing, displaying and fading squares
+  fadingInOutSquare: 500, // Time for fading a square in or out
 };
 
 const SQUARES_COLORS = {
   gray: 'bg-black',
   red: 'bg-red-800',
 };
+
+const sampleBoards = new Map();
+const initialDelays = new Map();
 
 // Function to transition the board element with a fade effect
 const transitionBoardElement = (boardElement, cg, startingPosition) => {
@@ -23,13 +32,14 @@ const transitionBoardElement = (boardElement, cg, startingPosition) => {
       fen: startingPosition, // Reset the board to the starting position
       lastMove: [],
     });
-  }, 500);
+  }, TIMES.showingBoard);
   window.setTimeout(() => {
     boardElement.classList.toggle('after:opacity-0'); // Toggle opacity back
-  }, 1000);
+  }, TIMES.fadingInBoard + TIMES.showingBoard);
 };
 
 const drawArrows = (arrows, cg) => {
+  if (!arrows.length) return;
   const shapeSet = arrows.map((arrow) => {
     return { orig: arrow.orig, dest: arrow.dest, brush: 'yellow' };
   });
@@ -47,14 +57,14 @@ const createAndAppendHighlight = (boardElement, width, square, left, top, square
   squareElement.style.left = `${left}%`;
   squareElement.style.top = `${top}%`;
   squareElement.style.width = `${width}px`;
-  squareElement.style.transitionDuration = '500ms';
+  squareElement.style.transitionDuration = `${TIMES.fadingInOutSquare}ms`;
 
   boardElement.appendChild(squareElement);
 
   // Trigger opacity change for fade-in effect
-  requestAnimationFrame(() => {
+  window.setTimeout(() => {
     squareElement.style.opacity = '50%';
-  });
+  }, 10);
 
   return squareElement;
 };
@@ -104,6 +114,7 @@ const highlightSquare = (boardElement, square, squaresColor) => {
 
 // Function to remove all highlighted squares from the board
 const removeCosmetics = (boardElement, cg) => {
+  if (!document.body.contains(boardElement)) return;
   const boardId = boardElement.id;
   const highlightedSquares = document.querySelectorAll(`.square-highlight-${boardId}`);
 
@@ -111,7 +122,7 @@ const removeCosmetics = (boardElement, cg) => {
     square.style.opacity = 0; // Fade out the square
     window.setTimeout(() => {
       square.remove(); // Remove the square after fade-out
-    }, 500);
+    }, TIMES.fadingInOutSquare);
   }
 
   cg.set({ fen: cg.getFen() });
@@ -122,8 +133,6 @@ export const setUpSampleBoard = (boardElement) => {
   // Load the data for the respective piece
   const piece = boardElement.dataset.piece;
   const boardType = boardElement.dataset.type;
-  const boardId = crypto.randomUUID();
-  boardElement.id = boardId;
 
   // Get the movement round based on the type of the board
   let movementRounds;
@@ -150,24 +159,31 @@ export const setUpSampleBoard = (boardElement) => {
     },
     drawable: {
       visible: true, // can view
-      // {
-      //   orig: 'd4',
-      //   dest: 'e6',
-      //   brush: 'yellow',
-      // },
     },
   };
 
   const cg = Chessground(boardElement, config);
+  sampleBoards.set(boardElement.id, { cg, timeouts: [] });
 
-  let isFirstRound = true; // Flag to handle the first round
+  let isFirstRound = true; // Flag to handle the first round (to avoid board transitioning)
 
   // Function to execute all movement rounds
   let isRunning = false;
   let resizeListeners = [];
 
   const executeRounds = async () => {
-    if (isRunning) return; // Prevent overlapping calls
+    // Prevent overlapping calls
+    if (isRunning || !document.body.contains(boardElement)) return;
+
+    // Clear any previous delays and wait begin new initial delay
+    window.clearTimeout(initialDelays.get(boardElement.id));
+    await new Promise((res) => {
+      const initialDelayTimeout = window.setTimeout(res, TIMES.initialDelay);
+      initialDelays.set(boardElement.id, initialDelayTimeout);
+    });
+
+    // Ensures the board was not switched out during the initial delay
+    if (isRunning || !document.body.contains(boardElement)) return;
     isRunning = true;
 
     while (isRunning) {
@@ -177,21 +193,29 @@ export const setUpSampleBoard = (boardElement) => {
         } else {
           await new Promise((res) => {
             transitionBoardElement(boardElement, cg, movementRound.startingPosition);
-            setTimeout(res, TIMES.boardTransition);
+            const transitionTimeout = setTimeout(res, TIMES.boardTransition);
+            sampleBoards.get(boardElement.id).timeouts.push(transitionTimeout);
           });
+          sampleBoards.get(boardElement.id).timeouts.pop();
         }
 
         for (let i = 0; i < movementRound.moves.length; i++) {
-          const move = movementRound.moves[i];
+          const move = movementRound.moves?.[i];
           const squares = movementRound.squaresToHighlight[i]?.squares || [];
           const squaresColor = movementRound.squaresToHighlight[i]?.color;
           const arrows = movementRound.squaresToHighlight[i]?.arrows;
 
-          if (squares.length) {
-            await new Promise((res) => {
+          if (squares.length && document.body.contains(boardElement)) {
+            await new Promise(async (res) => {
               for (const square of squares) {
                 const elem = highlightSquare(boardElement, square, squaresColor);
 
+                // Recalculate size and position of squares for initial update
+                requestAnimationFrame(() => {
+                  recalulateSizeAndPosition(elem, boardElement, square);
+                });
+
+                // Watch for window resize events and resize squares accordingly
                 const listener = () => {
                   recalulateSizeAndPosition(elem, boardElement, square);
                 };
@@ -199,29 +223,53 @@ export const setUpSampleBoard = (boardElement) => {
                 resizeListeners.push(listener);
               }
 
-              drawArrows(arrows, cg);
+              // Draw arrows if any
+              if (arrows && arrows.length) {
+                drawArrows(arrows, cg);
+              }
 
+              // Remove any cosmetics once animation is completed
               window.setTimeout(() => {
                 removeCosmetics(boardElement, cg);
-              }, 1500);
-              setTimeout(() => {
+              }, TIMES.highlightingSquares - TIMES.fadingInOutSquare);
+
+              const resizeTimeout = window.setTimeout(() => {
                 resizeListeners.forEach((fn) => window.removeEventListener('resize', fn));
                 resizeListeners = [];
                 res();
               }, TIMES.highlightingSquares);
+              sampleBoards.get(boardElement.id).timeouts.push(resizeTimeout);
             });
           }
 
-          if (move) {
+          if (move && document.body.contains(boardElement)) {
             await new Promise((res) => {
               cg.move(move.slice(0, 2), move.slice(2, 4));
-              setTimeout(res, TIMES.move);
+              const moveTimeout = window.setTimeout(res, TIMES.move);
+              sampleBoards.get(boardElement.id).timeouts.push(moveTimeout);
             });
+            sampleBoards.get(boardElement.id).timeouts.pop();
           }
         }
       }
     }
   };
 
-  executeRounds(); // Start executing the rounds
+  if (document.body.contains(boardElement)) {
+    executeRounds(); // Start executing the rounds
+  }
+};
+
+export const destroySampleBoard = (boardElement) => {
+  const sampleBoard = sampleBoards.get(boardElement.id);
+  sampleBoard.cg.cancelMove();
+  sampleBoard.cg.stop();
+  sampleBoard.cg.destroy();
+  removeCosmetics(boardElement, sampleBoard.cg);
+
+  for (const timeout of sampleBoard.timeouts) {
+    window.clearTimeout(timeout);
+  }
+
+  sampleBoards.delete(boardElement.id);
 };
