@@ -98,7 +98,6 @@ const helper = {
   },
 
   getDifficulty(rating) {
-    
     const star = `<span class="icon-star"></span> `;
     if (rating > 2500) {
       return star.repeat(5);
