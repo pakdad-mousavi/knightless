@@ -72,6 +72,39 @@ const movements = Object.freeze({
       ],
     },
   ],
+  rook: [
+    {
+      startingPosition: '8/8/8/8/3R4/8/8/8',
+      moves: ['d4f4', ''],
+      squaresToHighlight: [
+        {
+          squares: ['d4', 'd3', 'd2', 'd1', 'c4', 'b4', 'a4', 'e4', 'f4', 'g4', 'h4', 'd5', 'd6', 'd7', 'd8'],
+          arrows: [
+            { orig: 'c4', dest: 'a4' },
+            { orig: 'e4', dest: 'h4' },
+            { orig: 'd3', dest: 'd1' },
+            { orig: 'd5', dest: 'd8' },
+          ],
+          color: 'gray',
+        },
+        {
+          squares: ['f5', 'f6', 'f7', 'f8', 'f3', 'f2', 'f1', 'e4', 'g4', 'h4', 'c4', 'b4', 'a4', 'f4'],
+          arrows: [
+            { orig: 'e4', dest: 'a4' },
+            { orig: 'g4', dest: 'h4' },
+            { orig: 'f3', dest: 'f1' },
+            { orig: 'f5', dest: 'f8' },
+          ],
+          color: 'gray',
+        },
+      ],
+    },
+    {
+      startingPosition: '8/8/p1p1p2p/8/8/p2R1p1p/8/5p2',
+      moves: ['d3a3', 'a3a6', 'a6c6', 'c6e6', 'e6h6', 'h6h3', 'h3f3', 'f3f1'],
+      squaresToHighlight: [],
+    },
+  ],
 });
 
 export const getMovementInfoFromPiece = (piece) => {
