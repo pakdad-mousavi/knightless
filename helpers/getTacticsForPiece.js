@@ -184,37 +184,31 @@ const tactics = Object.freeze({
     ],
     skewers: [
       {
-        startingPosition: 'r4rk1/p7/1q2b2p/3p1pp1/2P2p2/8/PPQN1nPP/R1B2RK1',
-        moves: ['f2h3', 'g1h1', 'b6g1', 'f1g1', 'h3f2', ''],
+        startingPosition: '8/8/3k3r/8/8/1R6/6K1/8',
+        moves: ['b3b6', 'd6c5', 'b6h6'],
         squaresToHighlight: [
           {
             squares: [],
             color: 'red',
           },
           {
-            squares: ['g1', 'h3', 'b6'],
-            arrows: [
-              { orig: 'h3', dest: 'g1' },
-              { orig: 'b6', dest: 'g1' },
-            ],
+            squares: ['b6', 'd6', 'h6'],
+            arrows: [{ orig: 'b6', dest: 'h6' }],
             color: 'red',
           },
+        ],
+      },
+      {
+        startingPosition: 'r4rk1/p2np1bp/1p3pp1/2p5/2Pq4/1P3PP1/P1Q2RKP/8',
+        moves: ['f2d2', 'd4e5', 'd2d7'],
+        squaresToHighlight: [
           {
             squares: [],
             color: 'red',
           },
           {
-            squares: ['g1', 'h1'],
-            arrows: [{ orig: 'g1', dest: 'h1' }],
-            color: 'red',
-          },
-          {
-            squares: [],
-            color: 'red',
-          },
-          {
-            squares: ['f2', 'h1'],
-            arrows: [{ orig: 'f2', dest: 'h1' }],
+            squares: ['d2', 'd4', 'd7'],
+            arrows: [{ orig: 'd2', dest: 'd7' }],
             color: 'red',
           },
         ],
@@ -222,37 +216,37 @@ const tactics = Object.freeze({
     ],
     forks: [
       {
-        startingPosition: 'r4rk1/p7/1q2b2p/3p1pp1/2P2p2/8/PPQN1nPP/R1B2RK1',
-        moves: ['f2h3', 'g1h1', 'b6g1', 'f1g1', 'h3f2', ''],
+        startingPosition: '8/6k1/8/8/8/1PRR4/1KP5/6q1',
+        moves: ['d3g3', 'g1g3', 'c3g3'],
         squaresToHighlight: [
           {
             squares: [],
             color: 'red',
           },
           {
-            squares: ['g1', 'h3', 'b6'],
+            squares: ['g1', 'g3', 'g7'],
             arrows: [
-              { orig: 'h3', dest: 'g1' },
-              { orig: 'b6', dest: 'g1' },
+              { orig: 'g3', dest: 'g1' },
+              { orig: 'g3', dest: 'g7' },
             ],
             color: 'red',
           },
+        ],
+      },
+      {
+        startingPosition: '6k1/p4p1p/1pn2bp1/2p5/4P3/2P2PP1/PP1R1K1P/8',
+        moves: ['d2d6', 'c6e5', 'd6f6'],
+        squaresToHighlight: [
           {
             squares: [],
             color: 'red',
           },
           {
-            squares: ['g1', 'h1'],
-            arrows: [{ orig: 'g1', dest: 'h1' }],
-            color: 'red',
-          },
-          {
-            squares: [],
-            color: 'red',
-          },
-          {
-            squares: ['f2', 'h1'],
-            arrows: [{ orig: 'f2', dest: 'h1' }],
+            squares: ['c6', 'd6', 'f6'],
+            arrows: [
+              { orig: 'd6', dest: 'c6' },
+              { orig: 'd6', dest: 'f6' },
+            ],
             color: 'red',
           },
         ],
@@ -260,37 +254,17 @@ const tactics = Object.freeze({
     ],
     batteries: [
       {
-        startingPosition: 'r4rk1/p7/1q2b2p/3p1pp1/2P2p2/8/PPQN1nPP/R1B2RK1',
-        moves: ['f2h3', 'g1h1', 'b6g1', 'f1g1', 'h3f2', ''],
+        startingPosition: '2r2r1k/pbqn1ppp/1p2p3/3p4/3P4/1Q2PNP1/PP1NKPPR/7R',
+        moves: ['h2h7', 'h8g8', 'h7h8'],
         squaresToHighlight: [
           {
-            squares: [],
+            squares: ['h1', 'h2', 'h7'],
+            arrows: [{ orig: 'h1', dest: 'h7' }],
             color: 'red',
           },
           {
-            squares: ['g1', 'h3', 'b6'],
-            arrows: [
-              { orig: 'h3', dest: 'g1' },
-              { orig: 'b6', dest: 'g1' },
-            ],
-            color: 'red',
-          },
-          {
-            squares: [],
-            color: 'red',
-          },
-          {
-            squares: ['g1', 'h1'],
-            arrows: [{ orig: 'g1', dest: 'h1' }],
-            color: 'red',
-          },
-          {
-            squares: [],
-            color: 'red',
-          },
-          {
-            squares: ['f2', 'h1'],
-            arrows: [{ orig: 'f2', dest: 'h1' }],
+            squares: ['h1', 'h7', 'h8'],
+            arrows: [{ orig: 'h1', dest: 'h8' }],
             color: 'red',
           },
         ],

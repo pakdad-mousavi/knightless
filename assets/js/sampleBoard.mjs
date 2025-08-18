@@ -261,7 +261,7 @@ export const setUpSampleBoard = (boardElement) => {
 };
 
 export const destroySampleBoard = (boardElement) => {
-  if (!boardElement) return;
+  if (!boardElement || !document.body.contains(boardElement)) return;
   const sampleBoard = sampleBoards.get(boardElement.id);
   sampleBoard.cg.cancelMove();
   sampleBoard.cg.stop();

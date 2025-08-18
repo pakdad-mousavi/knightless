@@ -91,7 +91,15 @@
       <div id="{{ generateUUID }}"
         class="relative w-[98%] sm:w-[97%] lg:w-[97%] xl:w-[98%] 2xl:w-[99%] sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0"
         data-piece="rook" data-type="tactics" data-tactic="pins"></div>
-
+      <div id="{{ generateUUID }}"
+        class="relative w-[98%] sm:w-[97%] lg:w-[97%] xl:w-[98%] 2xl:w-[99%] sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0"
+        data-piece="rook" data-type="tactics" data-tactic="skewers"></div>
+      <div id="{{ generateUUID }}"
+        class="relative w-[98%] sm:w-[97%] lg:w-[97%] xl:w-[98%] 2xl:w-[99%] sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0"
+        data-piece="rook" data-type="tactics" data-tactic="forks"></div>
+      <div id="{{ generateUUID }}"
+        class="relative w-[98%] sm:w-[97%] lg:w-[97%] xl:w-[98%] 2xl:w-[99%] sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0"
+        data-piece="rook" data-type="tactics" data-tactic="batteries"></div>
     </div>
     <div class="w-full lg:w-7/12 lg:px-8">
       <div class="mb-10">
@@ -103,7 +111,7 @@
       <div class="mb-8 text-lg text-center sm:text-left tactic-info-container">
         <div class="space-y-4 active-tactic-text" data-tactic="backrankMate">
           <p>
-            <span class="font-bold">Back-Rank Mates</span> involve the rook (or queen) delivering checkmate along the
+            <span class="font-bold">Back-rank mates</span> involve the rook (or queen) delivering checkmate along the
             back rank, often with the enemy king trapped behind its own pawns.
           </p>
           <p>
@@ -121,6 +129,36 @@
             the pinned piece would expose the king to check.
           </p>
         </div>
+        <div class="space-y-4" data-tactic="skewers">
+          <p>
+            A <span class="font-bold">skewer</span>, similar to a pin, is a tactic where a more valuable piece is in
+            front of an undefended, less valuable piece.
+          </p>
+          <p>
+            The more valuable piece is forced to move to avoid being captured, rendering the piece behind it vulnerable
+            ready for capture on the next move.
+          </p>
+        </div>
+        <div class="space-y-4" data-tactic="forks">
+          <p>
+            A <span class="font-bold">fork</span> is a tactic which involves attacking two undefended or higher valued
+            pieces at the same time, forcing the opponent to make a tough decision.
+          </p>
+          <p>
+            The opponent can only save one of the pieces, at the expense of the other. On the next move, whichever piece
+            was left undefended will be captured.
+          </p>
+        </div>
+        <div class="space-y-4" data-tactic="batteries">
+          <p>
+            A <span class="font-bold">battery</span> is a formation of heavy pieces which line up on the same file or
+            rank, providing a powerful attacking force.
+          </p>
+          <p>
+            This formation allows for coordinated attacks and can create multiple threats at once, making it difficult
+            for the opponent to defend their position effectively.
+          </p>
+        </div>
       </div>
       <div class="flex flex-wrap justify-center gap-2 sm:justify-start tactics">
         <button type="button"
@@ -132,6 +170,21 @@
           class="px-6 py-1.5 bg-dark-oak border-[1px] border-transparent rounded-md hover:bg-ash hover:border-birch duration-300"
           data-tactic="pins">
           Pins
+        </button>
+        <button type="button"
+          class="px-6 py-1.5 bg-dark-oak border-[1px] border-transparent rounded-md hover:bg-ash hover:border-birch duration-300"
+          data-tactic="skewers">
+          Skewers
+        </button>
+        <button type="button"
+          class="px-6 py-1.5 bg-dark-oak border-[1px] border-transparent rounded-md hover:bg-ash hover:border-birch duration-300"
+          data-tactic="forks">
+          Forks
+        </button>
+        <button type="button"
+          class="px-6 py-1.5 bg-dark-oak border-[1px] border-transparent rounded-md hover:bg-ash hover:border-birch duration-300"
+          data-tactic="batteries">
+          Batteries
         </button>
       </div>
     </div>
