@@ -210,6 +210,34 @@ const movements = Object.freeze({
       ],
     },
   ],
+  bishop: [
+    {
+      startingPosition: '8/8/8/2B5/6B1/8/8/8',
+      moves: ['', 'c5a3', 'a3b2', 'b2f6', 'g4d7', 'd7b5', 'b5d3'],
+      squaresToHighlight: [
+        {
+          squares: ['b4', 'a3', 'd6', 'e7', 'f8', 'd4', 'e3', 'f2', 'g1', 'b6', 'a7', 'c5'],
+          arrows: [
+            { orig: 'c5', dest: 'a3' },
+            { orig: 'c5', dest: 'a7' },
+            { orig: 'c5', dest: 'g1' },
+            { orig: 'c5', dest: 'f8' },
+          ],
+          color: 'gray',
+        },
+        {
+          squares: ['d1', 'e2', 'f3', 'h3', 'h5', 'f5', 'g4', 'e6', 'd7', 'c8'],
+          arrows: [
+            { orig: 'g4', dest: 'h3' },
+            { orig: 'g4', dest: 'h5' },
+            { orig: 'g4', dest: 'd1' },
+            { orig: 'g4', dest: 'c8' },
+          ],
+          color: 'gray',
+        },
+      ],
+    },
+  ],
 });
 
 export const getMovementInfoFromPiece = (piece) => {
