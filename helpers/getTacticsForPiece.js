@@ -551,6 +551,71 @@ const tactics = Object.freeze({
       },
     ],
   },
+  pawn: {
+    passedPawn: [
+      {
+        startingPosition: '5k2/p4ppp/1p6/2pPp3/2P1K3/1P6/P4PPP/8',
+        moves: [''],
+        squaresToHighlight: [
+          {
+            squares: ['c6', 'd6', 'e6'],
+            arrows: [{ orig: 'd5', dest: 'd6' }],
+            color: 'red',
+          },
+        ],
+      },
+      {
+        startingPosition: '8/8/3pk3/pp6/2PP4/P1K5/8/8',
+        moves: ['c4b5', ''],
+        squaresToHighlight: [
+          {
+            squares: ['c4', 'b5'],
+            arrows: [{ orig: 'c4', dest: 'b5' }],
+            color: 'red',
+          },
+          {
+            squares: ['b5', 'b6', 'b7', 'b8'],
+            arrows: [{ orig: 'b5', dest: 'b8' }],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+    forks: [
+      {
+        startingPosition: 'r1bqr1k1/ppp2pbp/2np1np1/4p3/3P4/2PBPNB1/PP1N1PPP/R2Q1RK1',
+        moves: ['e5e4', 'd3c2', 'e4f3'],
+        squaresToHighlight: [
+          {
+            squares: ['e5', 'e4'],
+            arrows: [{ orig: 'e5', dest: 'e4' }],
+            color: 'red',
+          },
+          {
+            squares: ['e4', 'd3', 'f3'],
+            arrows: [
+              { orig: 'e4', dest: 'd3' },
+              { orig: 'e4', dest: 'f3' },
+            ],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+    pawnPyramid: [
+      {
+        startingPosition: 'r1bq1rk1/p4ppp/1pnbpn2/2pp4/3P1B2/2PBPN2/PP1NQPPP/R4RK1',
+        moves: [''],
+        squaresToHighlight: [
+          {
+            squares: ['b2', 'c3', 'd4', 'e3', 'f2'],
+            arrows: [],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+  },
 });
 
 export const getTacticInfoFromPieceAndTactic = (piece, tactic) => {

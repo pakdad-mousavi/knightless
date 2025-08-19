@@ -163,6 +163,53 @@ const movements = Object.freeze({
       ],
     },
   ],
+  pawn: [
+    {
+      startingPosition: '8/2p1p3/3p4/2p5/8/3P4/8/8',
+      moves: ['d3d4', 'd4c5', 'c5d6', 'd6e7'],
+      squaresToHighlight: [
+        {
+          squares: ['d3', 'd4'],
+          arrows: [{ orig: 'd3', dest: 'd4' }],
+          color: 'gray',
+        },
+        {
+          squares: ['c5', 'd4'],
+          arrows: [{ orig: 'd4', dest: 'c5' }],
+          color: 'red',
+        },
+        {
+          squares: ['c5', 'd6'],
+          arrows: [{ orig: 'c5', dest: 'd6' }],
+          color: 'red',
+        },
+        {
+          squares: ['c7', 'd6', 'e7'],
+          arrows: [
+            { orig: 'd6', dest: 'c7' },
+            { orig: 'd6', dest: 'e7' },
+          ],
+          color: 'red',
+        },
+      ],
+    },
+    {
+      startingPosition: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
+      moves: ['a2a3', 'b2b4', 'c2c3', 'c3c4', 'c4c5', 'd2d4', 'd4d5'],
+      squaresToHighlight: [
+        {
+          squares: ['a2', 'a3'],
+          arrows: [{ orig: 'a2', dest: 'a3' }],
+          color: 'gray',
+        },
+        {
+          squares: ['b2', 'b3', 'b4'],
+          arrows: [{ orig: 'b2', dest: 'b4' }],
+          color: 'gray',
+        },
+      ],
+    },
+  ],
 });
 
 export const getMovementInfoFromPiece = (piece) => {
