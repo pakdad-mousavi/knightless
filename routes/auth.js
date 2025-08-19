@@ -20,7 +20,7 @@ router.get('/google', ensureNotAuthenticated, passport.authenticate('google', { 
 
 // Callback after user is authenticated with google
 router.get('/google/callback', ensureNotAuthenticated, passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
-  res.redirect('/home');
+  res.redirect('/');
 });
 
 router.get('/logout', (req, res, next) => {

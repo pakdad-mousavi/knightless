@@ -1,17 +1,11 @@
 import express from 'express';
 import * as indexController from '../controllers/index.js';
-import * as homeController from '../controllers/home.js';
 import * as playersController from '../controllers/players.js';
-import * as piecesController from '../controllers/pieces.js';
-import * as notationController from '../controllers/notation.js';
 import * as attributionsController from '../controllers/attributions.js';
 import * as contactController from '../controllers/contact.js';
 import * as puzzleController from '../controllers/puzzles.js';
-import * as timelineController from '../controllers/timeline.js';
 import * as faqController from '../controllers/faq.js';
-import * as mapController from '../controllers/map.js';
 import * as learnController from '../controllers/learn.js';
-
 
 const router = express.Router();
 
@@ -31,13 +25,7 @@ const ensureNotAuthenticated = (req, res, next) => {
 };
 
 // Index
-router.route('/').get(ensureNotAuthenticated, indexController.index);
-
-// Home
-router.route('/home').get(ensureAuthenticated, homeController.index);
-
-// // Map
-// router.route('/map').get(ensureAuthenticated, mapController.index);
+router.route('/').get(indexController.index);
 
 // Hall of fame
 router.route('/hall-of-fame').get(playersController.getPlayers);
@@ -45,21 +33,15 @@ router.route('/hall-of-fame').post(playersController.applySearchFilters);
 router.route('/hall-of-fame/:id').get(playersController.getPlayerById);
 
 // Learn
-router.route('/learn').get(learnController.index)
+router.route('/learn').get(learnController.index);
 // Pieces
-router.route('/learn/pieces').get(learnController.pieces)
-router.route('/learn/pieces/king').get(learnController.king)
-router.route('/learn/pieces/queen').get(learnController.queen)
-router.route('/learn/pieces/rook').get(learnController.rook)
-router.route('/learn/pieces/bishop').get(learnController.bishop)
-router.route('/learn/pieces/knight').get(learnController.knight)
-router.route('/learn/pieces/pawn').get(learnController.pawn)
-
-// Pieces
-// router.route('/pieces/:id').get(piecesController.getPieceById);
-
-// Notation
-// router.route('/notation').get(notationController.index);
+router.route('/learn/pieces').get(learnController.pieces);
+router.route('/learn/pieces/king').get(learnController.king);
+router.route('/learn/pieces/queen').get(learnController.queen);
+router.route('/learn/pieces/rook').get(learnController.rook);
+router.route('/learn/pieces/bishop').get(learnController.bishop);
+router.route('/learn/pieces/knight').get(learnController.knight);
+router.route('/learn/pieces/pawn').get(learnController.pawn);
 
 // Attributions
 router.route('/attributions').get(attributionsController.index);
