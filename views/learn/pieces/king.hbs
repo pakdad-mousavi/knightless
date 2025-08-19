@@ -1,1 +1,172 @@
-king
+<section class="container px-10 pt-20 mx-auto font-sans">
+  <div class="flex flex-wrap items-end mb-32 lg:flex-nowrap gap-y-10 lg:gap-0">
+    <div class="order-2 md:w-full lg:w-1/3 2xl:w-1/4 lg:order-1">
+      <img src="/images/piece-images/beta/king.webp" alt=""
+        class="w-1/3 mx-auto sm:px-2 lg:w-3/5 xl:w-5/12 2xl:w-1/2 -scale-x-100">
+    </div>
+    <div class="order-1 text-center md:w-full lg:w-2/3 2xl:w-3/4 2xl:px-20 lg:order-2 sm:text-left">
+      <h2 class="mb-4 font-serif text-2xl font-bold uppercase sm:text-3xl text-oak">Introducing</h2>
+      <div class="flex flex-wrap items-center mb-6 gap-x-4 sm:flex-nowrap">
+        <h1 class="w-full mb-4 font-serif text-4xl font-bold uppercase sm:w-auto sm:text-5xl text-oak sm:mb-0">
+          The King
+        </h1>
+        <hr class="w-4/5 mx-auto border-2 sm:w-auto sm:flex-1 border-oak sm:mx-0">
+      </div>
+      <div class="space-y-4 text-lg">
+        <p>
+          The king is the most important piece in chess, as its capture results in a loss. It can move one square in
+          any direction, making it a versatile but limited piece. The king is the heart of the game, and its safety is
+          highly prioritized.
+        </p>
+        <p>
+          The king is most effective when it is protected and not exposed to threats. Players must be cautious about
+          the king's safety, especially during the opening and middlegame phases, to avoid getting checkmated.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col-reverse items-center mb-32 lg:flex-row lg:gap-0 gap-y-8">
+    <div
+      class="px-2 py-3 w-full sm:w-4/5 lg:w-5/12 border-[1px] border-oak rounded-md flex items-center justify-center">
+      <div id="{{ generateUUID }}"
+        class="relative w-[98%] sm:w-[97%] lg:w-[97%] xl:w-[98%] 2xl:w-[99%] sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0"
+        data-piece="king" data-type="movements"></div>
+    </div>
+    <div class="w-full lg:w-7/12 lg:px-8">
+      <div class="mb-10">
+        <h2 class="mb-4 font-serif text-3xl font-bold text-center uppercase sm:text-left sm:text-4xl text-oak">
+          How It Moves
+        </h2>
+        <hr class="w-4/5 mx-auto border-2 sm:w-full lg:w-4/5 border-oak sm:mx-0">
+      </div>
+      <div class="space-y-4 text-lg text-center sm:text-left">
+        <p>
+          The king moves one square in any direction: horizontally, vertically, or diagonally. This limited range makes
+          the king a vulnerable piece, especially in the opening and middlegame.
+        </p>
+        <p>
+          The king cannot move into check, meaning it must always stay out of reach of enemy pieces. This restriction
+          adds to the king's vulnerability, as it often needs protection from other pieces.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-20">
+    <div class="mb-10">
+      <h2 class="mb-4 font-serif text-3xl font-bold text-center uppercase sm:text-4xl text-oak">
+        Key Facts
+      </h2>
+      <hr class="w-2/5 mx-auto border-2 border-oak">
+    </div>
+    <div class="flex flex-wrap justify-center gap-8 mx-auto max-w-96 md:max-w-none">
+      {{> key-fact fact="Vulnerable Yet Vital" description="The king is the most important piece; if checkmated, the
+      game ends, making protection and positioning crucial throughout all phases."}}
+
+      {{> key-fact fact="Safety Through Castling" description="Castling safeguards the king by moving it behind pawns
+      while activating a rook, combining defense with improved piece coordination in one move."}}
+
+      {{> key-fact fact="Weak In Middlegame" description="The king is fragile during the middlegame, where powerful
+      attacks can target its defenses, so careful pawn structure and vigilance are essential."}}
+
+      {{> key-fact fact="Strong In Endgames" description="When queens and rooks are gone, the king becomes a powerful
+      attacker, moving toward the center to support pawns and restrict opponents."}}
+
+      {{> key-fact fact="Master Of Opposition" description="In pawn endgames, the king uses opposition to control key
+      squares, outmaneuver the opponent, and decide races that determine promotion outcomes."}}
+    </div>
+  </div>
+
+  <div class="flex flex-col-reverse items-center mb-32 lg:flex-row lg:gap-0 gap-y-8">
+    <div
+      class="px-2 py-3 w-full sm:w-4/5 lg:w-5/12 border-[1px] border-oak rounded-md flex items-center justify-center tactic-boards-container">
+      <div id="{{ generateUUID }}"
+        class="relative w-[98%] sm:w-[97%] lg:w-[97%] xl:w-[98%] 2xl:w-[99%] sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0 active-tactic-board"
+        data-piece="king" data-type="tactics" data-tactic="castling"></div>
+      <div id="{{ generateUUID }}"
+        class="relative w-[98%] sm:w-[97%] lg:w-[97%] xl:w-[98%] 2xl:w-[99%] sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0"
+        data-piece="king" data-type="tactics" data-tactic="forks"></div>
+      <div id="{{ generateUUID }}"
+        class="relative w-[98%] sm:w-[97%] lg:w-[97%] xl:w-[98%] 2xl:w-[99%] sample-board aspect-square after:content-[''] after:duration-500 after:w-full after:h-full after:absolute after:inset-0 after:backdrop-blur-lg after:z-10 after:rounded-md after:opacity-0"
+        data-piece="king" data-type="tactics" data-tactic="opposition"></div>
+    </div>
+    <div class="w-full lg:w-7/12 lg:px-8">
+      <div class="mb-10">
+        <h2 class="mb-4 font-serif text-3xl font-bold text-center uppercase sm:text-left sm:text-4xl text-oak">
+          Common Tactics
+        </h2>
+        <hr class="w-4/5 mx-auto border-2 sm:w-full lg:w-4/5 border-oak sm:mx-0">
+      </div>
+      <div class="mb-8 text-lg text-center sm:text-left tactic-info-container">
+        <div class="space-y-4 active-tactic-text" data-tactic="castling">
+          <p>
+            <span class="font-bold">Castling</span> is a single, defensive move which is used to move the king out of
+            the center of the board, while bringing the rook into the game.
+          </p>
+          <p>
+            It can only be done by the king, if the king and rook have not moved, and there are no pieces with line of
+            sight in the path of the castle.
+          </p>
+          <p>
+            Castling is the only move in the game which allows a player to move two pieces during one move!
+          </p>
+        </div>
+        <div class="space-y-4" data-tactic="forks">
+          <p>
+            A <span class="font-bold">fork</span> is a tactic which involves attacking two undefended or higher valued
+            pieces at the same time, forcing the opponent to make a tough decision.
+          </p>
+          <p>
+            Although rare, the king can actually fork pieces (except the king and queen) if placed correctly!
+          </p>
+        </div>
+        <div class="space-y-4" data-tactic="opposition">
+          <p>
+            In endgames, <span class="font-bold">opposition</span> refers to the position where two kings stand on the
+            same rank, file, or diagonal with an odd number of squares between them.
+          </p>
+          <p>
+            The player who moves their king into opposition can control key squares and limit the movement of the
+            opposing king. This is because the opposing king cannot move into the squares controlled by the
+            player's king without putting itself in check.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-center gap-2 sm:justify-start tactics">
+        <button type="button"
+          class="px-6 py-1.5 bg-dark-oak border-[1px] border-transparent rounded-md hover:bg-ash hover:border-birch duration-300 active-tactic"
+          data-tactic="castling">
+          Castling
+        </button>
+        <button type="button"
+          class="px-6 py-1.5 bg-dark-oak border-[1px] border-transparent rounded-md hover:bg-ash hover:border-birch duration-300"
+          data-tactic="forks">
+          Forks
+        </button>
+        <button type="button"
+          class="px-6 py-1.5 bg-dark-oak border-[1px] border-transparent rounded-md hover:bg-ash hover:border-birch duration-300"
+          data-tactic="opposition">
+          Opposition
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-20">
+    <div class="flex items-center justify-center sm:justify-between">
+      <a href="/learn/pieces/pawn" class="px-6 py-1.5 border rounded-md bg-ash border-birch duration-300">
+        Previous
+      </a>
+      <hr class="w-full border-birch border-[1px] sm:block hidden">
+      <div
+        class="px-6 py-1.5 border rounded-md bg-ash border-birch duration-300 text-nowrap font-serif sm:block hidden">
+        THE KING
+      </div>
+      <hr class="w-full border-birch border-[1px]">
+      <a href="/learn/pieces/queen" class="px-6 py-1.5 border rounded-md bg-ash border-birch duration-300">
+        Next
+      </a>
+    </div>
+  </div>
+</section>

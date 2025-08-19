@@ -433,6 +433,124 @@ const tactics = Object.freeze({
       },
     ],
   },
+  king: {
+    castling: [
+      {
+        startingPosition: 'r2qr1k1/pppb1pp1/1bnp1n1p/4p3/2B1P3/2NPBN1P/PPPQ1PP1/R3K2R',
+        moves: ['e1g1'],
+        squaresToHighlight: [
+          {
+            squares: ['e1', 'h1'],
+            arrows: [{ orig: 'e1', dest: 'h1' }],
+            color: 'red',
+          },
+        ],
+      },
+      {
+        startingPosition: 'r2qr1k1/pppb1pp1/1bnp1n1p/4p3/2B1P3/2NPBN1P/PPPQ1PP1/R3K2R',
+        moves: ['e1a1'],
+        squaresToHighlight: [
+          {
+            squares: ['e1', 'a1'],
+            arrows: [{ orig: 'e1', dest: 'a1' }],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+    forks: [
+      {
+        startingPosition: '8/8/8/1k2nb2/8/6K1/8/8',
+        moves: ['g3f4', 'f5b1', 'f4e5'],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['e5', 'f5', 'f4'],
+            arrows: [
+              { orig: 'f4', dest: 'e5' },
+              { orig: 'f4', dest: 'f5' },
+            ],
+            color: 'red',
+          },
+        ],
+      },
+      {
+        startingPosition: '8/2R5/8/8/1rpr1k2/8/2K5/8',
+        moves: ['c2c3', 'd4d3', 'c3b4'],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['b4', 'd4', 'c3'],
+            arrows: [
+              { orig: 'c3', dest: 'b4' },
+              { orig: 'c3', dest: 'd4' },
+            ],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+    opposition: [
+      {
+        startingPosition: '8/2k5/8/8/2PK4/8/8/8',
+        moves: ['d4c5', 'c7d7', 'c5b6', 'd7c8', 'c4c5', 'c8d7', 'b6b7', ''],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['b6', 'c6', 'd6'],
+            arrows: [
+              { orig: 'c5', dest: 'b6' },
+              { orig: 'c5', dest: 'c6' },
+              { orig: 'c5', dest: 'd6' },
+            ],
+            color: 'red',
+          },
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['c6', 'c7'],
+            arrows: [
+              { orig: 'b6', dest: 'c6' },
+              { orig: 'b6', dest: 'c7' },
+            ],
+            color: 'red',
+          },
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['c6', 'c7', 'c8'],
+            arrows: [
+              { orig: 'b7', dest: 'c8' },
+              { orig: 'b7', dest: 'c7' },
+              { orig: 'b7', dest: 'c6' },
+            ],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+  },
 });
 
 export const getTacticInfoFromPieceAndTactic = (piece, tactic) => {

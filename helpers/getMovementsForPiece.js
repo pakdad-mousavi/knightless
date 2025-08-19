@@ -141,6 +141,28 @@ const movements = Object.freeze({
       ],
     },
   ],
+  king: [
+    {
+      startingPosition: '8/8/8/8/3K4/8/8/8',
+      moves: ['d4e4', 'e4f4', 'f4g5', 'g5f6', 'f6e7', 'e7d6', 'd6d5'],
+      squaresToHighlight: [
+        {
+          squares: ['c5', 'c4', 'c3', 'd3', 'e3', 'e4', 'e5', 'd5', 'd4'],
+          arrows: [
+            { orig: 'd4', dest: 'e3' },
+            { orig: 'd4', dest: 'e4' },
+            { orig: 'd4', dest: 'e5' },
+            { orig: 'd4', dest: 'c3' },
+            { orig: 'd4', dest: 'c4' },
+            { orig: 'd4', dest: 'c5' },
+            { orig: 'd4', dest: 'd3' },
+            { orig: 'd4', dest: 'd5' },
+          ],
+          color: 'gray',
+        },
+      ],
+    },
+  ],
 });
 
 export const getMovementInfoFromPiece = (piece) => {
