@@ -271,6 +271,168 @@ const tactics = Object.freeze({
       },
     ],
   },
+  queen: {
+    centralization: [
+      {
+        startingPosition: 'kr2qb1N/ppQ5/2b3p1/1N5p/6nP/1P4P1/P1P1BP2/R1BR2K1',
+        moves: ['e8e5', ''],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['a1', 'h8', 'c7', 'b5', 'e2', 'g3'],
+            arrows: [
+              { orig: 'e5', dest: 'a1' },
+              { orig: 'e5', dest: 'h8' },
+              { orig: 'e5', dest: 'c7' },
+              { orig: 'e5', dest: 'b5' },
+              { orig: 'e5', dest: 'e2' },
+              { orig: 'e5', dest: 'g3' },
+            ],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+    pins: [
+      {
+        startingPosition: '2k5/8/8/5r2/8/1K1Q4/8/8',
+        moves: ['d3h3', 'c8c7', 'h3f5'],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['h3', 'f5', 'c8'],
+            arrows: [{ orig: 'h3', dest: 'c8' }],
+            color: 'red',
+          },
+        ],
+      },
+      {
+        startingPosition: '6k1/pppb1ppp/6q1/3p4/3P4/2P4P/PP2QPP1/3R1RK1',
+        moves: ['d7h3', ''],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['g6', 'g2', 'g1'],
+            arrows: [{ orig: 'g6', dest: 'g1' }],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+    skewers: [
+      {
+        startingPosition: '5r2/4r3/8/2k5/8/7Q/3K4/8',
+        moves: ['h3a3', 'c5c6', 'a3e7'],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['a3', 'c5', 'e7', 'f8'],
+            arrows: [{ orig: 'a3', dest: 'f8' }],
+            color: 'red',
+          },
+        ],
+      },
+      {
+        startingPosition: '7k/ppp2npp/2n2p1q/3r4/6Q1/P2NP1P1/1PP4P/K2R3R',
+        moves: ['g4c4', 'c6e7', 'e3e4', 'd5d8', 'c4f7'],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['c4', 'd5', 'f7'],
+            arrows: [{ orig: 'c4', dest: 'f7' }],
+            color: 'red',
+          },
+          {
+            squares: ['e7', 'd5'],
+            arrows: [{ orig: 'e7', dest: 'd5' }],
+            color: 'red',
+          },
+          {
+            squares: ['c4', 'e4', 'd5', 'f7'],
+            arrows: [
+              { orig: 'e4', dest: 'd5' },
+              { orig: 'c4', dest: 'f7' },
+            ],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+    forks: [
+      {
+        startingPosition: '8/3r2k1/8/8/8/8/1K2Q3/8',
+        moves: ['e2g4', 'g7f6', 'g4d7'],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['g4', 'd7', 'g7'],
+            arrows: [
+              { orig: 'g4', dest: 'd7' },
+              { orig: 'g4', dest: 'g7' },
+            ],
+            color: 'red',
+          },
+        ],
+      },
+      {
+        startingPosition: '6R1/8/q7/8/8/1K2N2k/8/8',
+        moves: ['a6e6', 'e3c4', 'e6g8'],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['e6', 'b3', 'e3', 'g8'],
+            arrows: [
+              { orig: 'e6', dest: 'b3' },
+              { orig: 'e6', dest: 'e3' },
+              { orig: 'e6', dest: 'g8' },
+            ],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+    batteries: [
+      {
+        startingPosition: 'rr4k1/2pbqpb1/3p2pp/pp6/4PN2/PB1Q4/1PP2PPP/1K1R3R',
+        moves: ['e7f6', 'f4e2', 'f6b2'],
+        squaresToHighlight: [
+          {
+            squares: [],
+            color: 'red',
+          },
+          {
+            squares: ['g7', 'f6', 'b2', 'f4'],
+            arrows: [
+              { orig: 'g7', dest: 'b2' },
+              { orig: 'f6', dest: 'f4' },
+            ],
+            color: 'red',
+          },
+        ],
+      },
+    ],
+  },
 });
 
 export const getTacticInfoFromPieceAndTactic = (piece, tactic) => {
