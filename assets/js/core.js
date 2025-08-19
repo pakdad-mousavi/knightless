@@ -7,7 +7,6 @@ import { setUpPositionBoard } from './positionBoard.mjs';
 import { watchMegaMenus } from './megaMenu.mjs';
 import { watchHomePageBanner } from './watchHomePageBanner.mjs';
 import { watchTitleDividers } from './watchTitleDividers.mjs';
-import { createMap } from './map.mjs';
 import { handleTacticDisplays } from './handleTacticDisplays.mjs';
 
 // Watch mega menus in the header
@@ -95,5 +94,3 @@ if (faqPanel) watchFaqPanel(faqPanel);
 const timeline = document.querySelector('.horizontal-timeline');
 if (timeline) watchTimelineScroll(timeline);
 
-const mapContainer = document.querySelector('.map-container');
-if (mapContainer) createMap();
