@@ -2,8 +2,8 @@
   <div class="container flex flex-wrap items-center px-10 py-6 mx-auto lg:flex-nowrap">
     <div class="flex items-center flex-1">
       <a href="/" class="inline-flex items-center gap-2">
-        <img src="https://placehold.co/25.png" alt="">
-        <h1 class="font-semibold">Knightless</h1>
+        <img src="/images/logo.svg" alt="A golden knight." class="w-8" style="max-width: 32px;">
+        <h1 class="font-semibold font-serif uppercase text-birch !tracking-normal">Knightless</h1>
       </a>
     </div>
     <label for="menu-toggle" class="cursor-pointer lg:hidden">
@@ -48,15 +48,16 @@
         {{#if user}}
         <li class="w-full lg:w-auto">
           <a href="/profile"
-            class="header-item lg:!px-6 lg:!py-6 lg:rounded-full lg:bg-ash lg:bg-[url(/images/chesspieces/bK.svg)] lg:bg-contain lg:border-[1px] whitespace-nowrap lg:hover:bg-charcoal focus:!text-gray-200 lg:border-birch lg:text-birch">
+            class="header-item lg:size-10 flex items-center justify-center lg:rounded-md lg:bg-ash lg:bg-contain lg:border-[1px] whitespace-nowrap lg:hover:bg-charcoal lg:border-birch lg:text-birch">
             <span class="lg:hidden">Profile</span>
-            <span class="lg:block"></span>
+            <span class="hidden text-2xl lg:block icon-knight"></span>
           </a>
         </li>
         {{else}}
         <li class="w-full lg:w-auto"><a href="/auth/login"
-            class="header-item lg:!px-6 lg:!py-2 rounded-md lg:bg-ash lg:border-[1px] whitespace-nowrap lg:hover:bg-charcoal focus:!text-gray-200 lg:border-birch lg:text-birch">Sign
-            In</a>
+            class="header-item lg:!px-6 lg:!py-2 rounded-md lg:bg-ash lg:border-[1px] whitespace-nowrap lg:hover:bg-charcoal focus:!text-gray-200 lg:border-birch lg:text-birch">
+            Sign In
+          </a>
         </li>
         {{/if}}
       </ul>
