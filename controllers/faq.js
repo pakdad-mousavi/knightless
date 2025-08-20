@@ -1,3 +1,8 @@
 export const getFaqPage = async (req, res) => {
-  res.render('faq');
+  const model = {
+    title: 'Frequently Asked Questions',
+    user: req.session.passport ? req.session.passport.user : null,
+  };
+
+  res.render('faq', model);
 };

@@ -8,7 +8,7 @@ export const index = async (req, res) => {
   });
 
   const model = {
-    title: 'Chessless',
+    title: '',
     pageCategory: 'home',
     puzzles: formattedPuzzles,
     user: req.session.passport ? req.session.passport.user : null,

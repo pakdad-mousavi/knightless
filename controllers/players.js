@@ -107,6 +107,7 @@ export const getPlayers = async (req, res) => {
     paging,
     title: 'Hall Of Fame',
     isHomePage: false,
+    user: req.session.passport ? req.session.passport.user : null,
   };
 
   res.render('hall-of-fame/list', model);
@@ -145,6 +146,7 @@ export const getPlayerById = async (req, res) => {
       player,
       title: fullname,
       isHomePage: false,
+      user: req.session.passport ? req.session.passport.user : null,
     };
     res.render('hall-of-fame/player', model);
   } catch (e) {
