@@ -16,11 +16,6 @@
     <div class="z-10 hidden mt-6 rounded-md lg:block basis-full lg:basis-auto lg:mt-0 bg-black/50 backdrop-blur-md"
       id="menu">
       <ul class="flex flex-col items-center text-center gap-x-7 gap-y-2 lg:flex-row">
-        <hr class="w-full border-cream border-1 lg:hidden">
-        <li class="w-full lg:w-auto group {{getCssClass pageCategory 'learn' 'active-header-item' ''}}">
-          <a href="/learn" class="header-item">Learn</a>
-          <hr class="hidden w-0 duration-200 lg:block group-hover:w-full">
-        </li>
         <li
           class="relative w-full lg:w-auto mega-menu-panel group {{getCssClass pageCategory 'puzzles' 'active-header-item' ''}}">
           <a href="/daily-puzzle" class="header-item mega-menu-btn">
@@ -28,8 +23,7 @@
             <span class="text-xs ms-2 icon-down-arrow"></span>
           </a>
           <hr class="hidden w-0 duration-200 lg:block group-hover:w-full">
-          <ul
-            class="mg-menu">
+          <ul class="mg-menu">
             <li><a href="/puzzle-forge">Puzzle Forge</a></li>
             <li><a href="/daily-puzzle">Daily Puzzle</a></li>
             <li><a href="/faq">Puzzle FAQ</a></li>

@@ -32,8 +32,6 @@ router.route('/hall-of-fame').get(playersController.getPlayers);
 router.route('/hall-of-fame').post(playersController.applySearchFilters);
 router.route('/hall-of-fame/:id').get(playersController.getPlayerById);
 
-// Learn
-router.route('/learn').get(learnController.index);
 // Pieces
 router.route('/learn/pieces').get(learnController.pieces);
 router.route('/learn/pieces/king').get(learnController.king);
