@@ -10,7 +10,7 @@ export const index = (req, res) => {
 
 export const pieces = (req, res) => {
   const model = {
-    title: 'Chessless',
+    title: 'The Pieces',
     pageCategory: 'home',
     user: req.session.passport ? req.session.passport.user : null,
   };
@@ -20,7 +20,7 @@ export const pieces = (req, res) => {
 
 export const king = (req, res) => {
   const model = {
-    title: 'Chessless',
+    title: 'The King',
     pageCategory: 'home',
     user: req.session.passport ? req.session.passport.user : null,
   };
@@ -30,7 +30,7 @@ export const king = (req, res) => {
 
 export const queen = (req, res) => {
   const model = {
-    title: 'Chessless',
+    title: 'The Queen',
     pageCategory: 'home',
     user: req.session.passport ? req.session.passport.user : null,
   };
@@ -40,7 +40,7 @@ export const queen = (req, res) => {
 
 export const rook = (req, res) => {
   const model = {
-    title: 'Chessless',
+    title: 'The Rook',
     pageCategory: 'home',
     user: req.session.passport ? req.session.passport.user : null,
   };
@@ -50,7 +50,7 @@ export const rook = (req, res) => {
 
 export const bishop = (req, res) => {
   const model = {
-    title: 'Chessless',
+    title: 'The Bishop',
     pageCategory: 'home',
     user: req.session.passport ? req.session.passport.user : null,
   };
@@ -60,7 +60,7 @@ export const bishop = (req, res) => {
 
 export const knight = (req, res) => {
   const model = {
-    title: 'Chessless',
+    title: 'The Knight',
     pageCategory: 'home',
     user: req.session.passport ? req.session.passport.user : null,
   };
@@ -70,7 +70,7 @@ export const knight = (req, res) => {
 
 export const pawn = (req, res) => {
   const model = {
-    title: 'Chessless',
+    title: 'The Pawn',
     pageCategory: 'home',
     user: req.session.passport ? req.session.passport.user : null,
   };
