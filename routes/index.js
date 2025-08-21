@@ -6,6 +6,7 @@ import * as contactController from '../controllers/contact.js';
 import * as puzzleController from '../controllers/puzzles.js';
 import * as faqController from '../controllers/faq.js';
 import * as learnController from '../controllers/learn.js';
+import * as profileController from '../controllers/profile.js';
 
 const router = express.Router();
 
@@ -54,5 +55,8 @@ router.route('/faq').get(faqController.getFaqPage);
 // Puzzle forge
 router.route('/puzzle-forge').get(puzzleController.getRandomPuzzle);
 router.route('/puzzle-forge/:id').get(puzzleController.getPuzzleById);
+
+// User Profile
+router.route('/profile').get(ensureAuthenticated, profileController.getProfilePage);
 
 export default router;
