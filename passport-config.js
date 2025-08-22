@@ -23,10 +23,15 @@ export const initializePassport = () => {
   );
 
   passport.serializeUser((user, done) => {
-    done(null, user);
+    done(null, user.id);
   });
 
-  passport.deserializeUser((user, done) => {
-    done(null, user);
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await User.findById(id).select('name email').lean(); // fetch latest
+      done(null, user);
+    } catch (err) {
+      done(err);
+    }
   });
 };

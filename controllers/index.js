@@ -11,7 +11,7 @@ export const index = async (req, res) => {
     title: '',
     pageCategory: 'home',
     puzzles: formattedPuzzles,
-    user: req.session.passport ? req.session.passport.user : null,
+    user: req.user ? req.user : null,
   };
   res.render('index', model);
 };

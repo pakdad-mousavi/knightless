@@ -58,7 +58,7 @@ export const getDailyPuzzle = async (req, res) => {
     title: 'Daily Puzzle',
     dailyPuzzle,
     isHomePage: false,
-    user: req.session.passport ? req.session.passport.user : null,
+    user: req.user ? req.user : null,
   };
 
   res.render('daily-puzzle', model);
@@ -103,7 +103,7 @@ export const getPuzzleById = async (req, res) => {
       title: 'Puzzle Forge',
       currentPuzzle: puzzle,
       isHomePage: false,
-      user: req.session.passport ? req.session.passport.user : null,
+      user: req.user ? req.user : null,
     };
 
     return res.render('puzzle-forge', model);
