@@ -1,0 +1,87 @@
+<div class="container px-10 mx-auto font-sans">
+  <section class="pt-20 pb-10">
+    <div class="space-y-4 text-center">
+      <div
+        class="relative flex items-center justify-center mx-auto border rounded-xl size-20 border-oak hover:cursor-pointer bg-[url('/images/checkered-background.png')] bg-contain hover:bg-ash duration-150">
+        <div
+          class="absolute text-lg border icon-pencil -top-2.5 -right-2.5 text-oak size-8 bg-spruce rounded-lg border-oak">
+        </div>
+        <span class="text-4xl icon-knight text-oak"></span>
+      </div>
+      <div class="space-y-1">
+        <h2 class="text-2xl font-bold">{{user.name}}</h2>
+        <h3 class="text-sm">{{user.email}}</h3>
+      </div>
+    </div>
+  </section>
+
+  <section class="pt-10 pb-20">
+    <div class="relative space-y-2 font-serif font-bold text-center uppercase text-oak">
+      <div class="flex flex-col items-center justify-center mb-4">
+        <hr class="w-0 duration-1000 border-2 title-divider border-oak">
+        <h2 class="px-4 text-3xl -translate-y-1/2 sm:text-4xl bg-spruce">Profile Management</h2>
+      </div>
+    </div>
+    <div class="mx-auto space-y-4 sm:w-3/4 md:w-full lg:w-4/5">
+      <div
+        class="flex flex-col items-center p-4 text-center border rounded-lg md:flex-row gap-y-6 gap-x-10 border-oak md:text-left">
+        <div class="w-full md:w-1/2">
+          <h3 class="text-lg font-bold">Username</h3>
+          <h4>A cool, custom name for you!</h4>
+          <hr class="block mt-2 border-oak md:hidden">
+        </div>
+        <div class="w-full md:w-1/2">
+          <input type="text"
+            class="w-full px-2 py-2 border rounded-md outline-none bg-ash border-birch placeholder:text-birch"
+            placeholder="Enter your username...">
+        </div>
+      </div>
+      <div class="flex justify-center w-full md:justify-end">
+        <a href="#" class="button beta">Update Profile</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pt-20">
+    <div class="relative space-y-2 font-serif font-bold text-center uppercase text-oak">
+      <div class="flex flex-col items-center justify-center mb-4">
+        <hr class="w-0 duration-1000 border-2 title-divider border-oak">
+        <h2 class="px-4 text-3xl -translate-y-1/2 sm:text-4xl bg-spruce">Account Management</h2>
+      </div>
+    </div>
+    <div class="mx-auto space-y-4 sm:w-3/4 md:w-full lg:w-4/5">
+      <div
+        class="flex flex-col items-center p-4 text-center border rounded-lg md:flex-row gap-y-6 gap-x-10 border-oak md:text-left">
+        <div class="w-full md:w-1/2">
+          <h3 class="text-lg font-bold">Sign Out</h3>
+          <h4>Exit your account, sign back in later.</h4>
+          <hr class="block mt-2 border-oak md:hidden">
+        </div>
+        <div class="w-full md:w-1/2">
+          <a href="#" class="block w-48 mx-auto text-center md:mr-0 md:ml-auto button beta">Sign Out</a>
+        </div>
+      </div>
+      <div
+        class="flex flex-col items-center p-4 text-center border rounded-lg md:flex-row gap-y-6 gap-x-10 border-oak md:text-left">
+        <div class="w-full md:w-1/2">
+          <h3 class="text-lg font-bold">Delete Account</h3>
+          <h4>Permanently remove your account.</h4>
+          <hr class="block mt-2 border-oak md:hidden">
+        </div>
+        <div class="w-full md:w-1/2">
+          <a href="#"
+            class="block w-48 mx-auto text-center md:mr-0 md:ml-auto button border-rose-500 text-rose-500">Delete
+            Account</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="flex items-center">
+      <hr class="w-full border-birch">
+      <a href="/" class="button beta">Back to Home</a>
+      <hr class="w-full border-birch">
+    </div>
+  </section>
+</div>
