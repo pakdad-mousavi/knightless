@@ -1,6 +1,5 @@
 import { setUpPuzzleBoard } from './puzzleBoard.mjs';
 import { watchFaqPanel } from './faq.mjs';
-import { watchTimelineScroll } from './timeline.mjs';
 import { resetFilters, watchActiveFilters, watchSliders } from './filters.mjs';
 import { setUpSampleBoard } from './sampleBoard.mjs';
 import { setUpPositionBoard } from './positionBoard.mjs';
@@ -8,6 +7,7 @@ import { watchMegaMenus } from './megaMenu.mjs';
 import { watchHomePageBanner } from './watchHomePageBanner.mjs';
 import { watchTitleDividers } from './watchTitleDividers.mjs';
 import { handleTacticDisplays } from './handleTacticDisplays.mjs';
+import { profileHandler } from './profile.mjs';
 
 // Watch mega menus in the header
 const megaMenus = document.querySelectorAll('.mega-menu-panel');
@@ -90,7 +90,8 @@ if (puzzleSection && puzzleBoard) {
 const faqPanel = document.querySelector('.faq-panel');
 if (faqPanel) watchFaqPanel(faqPanel);
 
-// Watch the timeline (to update progress bar)
-const timeline = document.querySelector('.horizontal-timeline');
-if (timeline) watchTimelineScroll(timeline);
-
+// Watch profile page forms in the profile page
+const isProfilePage = window.location.href.endsWith('/profile');
+if (isProfilePage) {
+  profileHandler();
+}

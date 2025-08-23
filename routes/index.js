@@ -58,5 +58,7 @@ router.route('/puzzle-forge/:id').get(puzzleController.getPuzzleById);
 
 // User Profile
 router.route('/profile').get(ensureAuthenticated, profileController.getProfilePage);
+router.route('/profile').post(ensureAuthenticated, profileController.updateCustomUsername);
+router.route('/profile').delete(ensureAuthenticated, profileController.deleteAccount);
 
 export default router;

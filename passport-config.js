@@ -28,7 +28,7 @@ export const initializePassport = () => {
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = await User.findById(id).select('name email').lean(); // fetch latest
+      const user = await User.findById(id).select('name email customName').lean(); // fetch latest
       done(null, user);
     } catch (err) {
       done(err);
