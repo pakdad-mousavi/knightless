@@ -1,7 +1,7 @@
 {
   "name": "chessless",
   "version": "1.0.0",
-  "description": "Website that both teaches chess and allows you to read about other chess aspects.",
+  "description": "Website that both teaches chess and creates a base for an upcoming chess storymode!",
   "type": "module",
   "main": "app.js",
   "engines": {
@@ -12,7 +12,7 @@
     "build-dev": "rollup -c -w"
   },
   "keywords": [],
-  "author": "Pakdad Mousavi (and dad)",
+  "author": "Pakdad Mousavi",
   "license": "ISC",
   "dependencies": {
     "chess.js": "^1.0.0-beta.8",
