@@ -1,24 +1,17 @@
-# chessless
+# Knightless
 
-Website that both teaches chess and allows you to read about other chess aspects.
+Knightless is an open source project designed to create a base for a chess storymode. This project aims to deliver an incredible storymode solution for all chess players around the world!
 
-## To Do List
+## Contributing
 
-1. Cache the daily puzzle.
-2. Add correlation ID to each request.
-3. Add logger to the project.
-4. Add analytics (microsoft clarity) to the project.
-5. Use ResizeObserverAPI to resize the chessboards automatically.
+Want to include new chess players? Add a more in-depth tutorial section? Well contributions are welcome!
 
-## MVP pages
-1. Hall of Fame
-2. Daily Puzzle
-3. Puzzle Forge
-4. Learning
-  - The pieces
-  - Board setup
-  - Basic terms
-  - Simple checkmates
-5. Attributions
-6. Contact Us
-7. Sign In
+Just clone or fork the repository to get started.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For questions or support, please open an issue or contact **knightless@info.com**.
