@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { engine } from 'express-handlebars';
 import helpers from './views/helpers.js';
 import cookieParser from 'cookie-parser';
-import path from 'path';
+import path from 'node:path';
 import dotenv from 'dotenv';
 import nosqlSanitizer from 'express-nosql-sanitizer';
 import passport from 'passport';
