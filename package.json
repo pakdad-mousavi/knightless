@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "DEBUG=\"app\" node ./app.js",
-    "build-dev": "rollup -c -w"
+    "build-dev": "rollup -c -w",
+    "build": "rollup -c"
   },
   "keywords": [],
   "author": "Pakdad Mousavi",
