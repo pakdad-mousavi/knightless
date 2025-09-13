@@ -4,6 +4,9 @@
   "description": "Website that both teaches chess and allows you to read about other chess aspects.",
   "type": "module",
   "main": "app.js",
+  "engines": {
+    "node": ">=22.14.0"
+  },
   "scripts": {
     "start": "DEBUG=\"app\" node ./app.js",
     "build-dev": "rollup -c -w"
