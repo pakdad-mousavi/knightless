@@ -19,7 +19,7 @@ router.route('/login').get(ensureNotAuthenticated, loginController.index);
 router.get('/google', ensureNotAuthenticated, passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 // Callback after user is authenticated with google
-router.get('/google/callback', ensureNotAuthenticated, passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+router.get('/google/callback', ensureNotAuthenticated, passport.authenticate('google', { failureRedirect: '/auth/login' }), (req, res) => {
   res.redirect('/');
 });
 
