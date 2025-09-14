@@ -3,12 +3,17 @@ import { Strategy } from 'passport-google-oauth20';
 import { User } from './models/user.js';
 
 export const initializePassport = () => {
+  const callbackURL =
+  process.env.NODE_ENV === 'production'
+  ? 'https://knightless.onrender.com/auth/google/callback'
+  : `http://localhost:${process.env.PORT}/auth/google/callback`;
+
   passport.use(
     new Strategy(
       {
         clientID: process.env.OAUTH_CLIENT_ID,
         clientSecret: process.env.OAUTH_CLIENT_SECRET,
-        callbackURL: 'http://localhost:3000/auth/google/callback',
+        callbackURL,
       },
       async (accessToken, refreshToken, profile, done) => {
         const user = await User.findOneAndUpdate(
